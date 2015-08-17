@@ -1,7 +1,3 @@
-type Mutation {
-
-}
-
 interface Node {
   id: ID!
 }
@@ -13,27 +9,34 @@ type PageInfo {
   endCursor: String
 }
 
+type Post implements Node {
+  id: ID!
+  title: String!
+  body: String!
+  tags: [String]
+  author: User
+  publishedAt: String
+}
+
+type PostConnection {
+  pageInfo: PageInfo!
+  edges: [PostEdge]
+}
+
+type PostEdge {
+  node: Post
+  cursor: String!
+}
+
 type Query {
   node(id: ID!): Node
-  viewer: User
+  posts(before: String, after: String, first: Int, last: Int): PostConnection
 }
 
 type User implements Node {
   id: ID!
-  widgets(before: String, after: String, first: Int, last: Int): WidgetConnection
-}
-
-type Widget implements Node {
-  id: ID!
-  name: String
-}
-
-type WidgetConnection {
-  pageInfo: PageInfo!
-  edges: [WidgetEdge]
-}
-
-type WidgetEdge {
-  node: Widget
-  cursor: String!
+  firstName: String!
+  lastName: String!
+  email: String!
+  posts(before: String, after: String, first: Int, last: Int): PostConnection
 }

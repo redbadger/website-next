@@ -8,26 +8,31 @@
  */
 
 // Model types
+class Post extends Object {}
 class User extends Object {}
-class Widget extends Object {}
 
 // Mock data
-var viewer = new User();
-viewer.id = '1';
-viewer.name = 'Anonymous';
-var widgets = ['What\'s-it', 'Who\'s-it', 'How\'s-it'].map((name, i) => {
-  var widget = new Widget();
-  widget.name = name;
-  widget.id = `${i}`;
-  return widget;
+var user = new User();
+user.id = '1';
+user.firstName = 'Erlich';
+user.lastName = 'Bachman';
+user.email = 'erlich@bachman.com';
+
+var posts = ['Ok blog', 'Shit blog', 'Albert viral blog'].map((title, i) => {
+  let post = new Post();
+  post.id = `${i}`;
+  post.title = title;
+  post.body = 'bla bla bla';
+  post.author = user;
+  return post;
 });
 
 module.exports = {
   // Export methods that your schema can use to interact with your database
-  getUser: (id) => id === viewer.id ? viewer : null,
-  getViewer: () => viewer,
-  getWidget: (id) => widgets.find(w => w.id === id),
-  getWidgets: () => widgets,
+  getPost: (id) => posts.find(w => w.id === id),
+  getPosts: () => posts,
+  getUser: () => user,
+  getPostsByUser: () => posts,
   User,
-  Widget,
+  Post
 };

@@ -8,10 +8,6 @@
  */
 
 import {
-  GraphQLBoolean,
-  GraphQLFloat,
-  GraphQLID,
-  GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
@@ -25,18 +21,16 @@ import {
   connectionFromArray,
   fromGlobalId,
   globalIdField,
-  mutationWithClientMutationId,
   nodeDefinitions,
 } from 'graphql-relay';
 
 import {
-  // Import methods that your schema can use to interact with your database
   User,
-  Widget,
-  getUser,
-  getViewer,
-  getWidget,
-  getWidgets,
+  Post,
+  getPost,
+  getPosts,
+  getPostsByUser,
+  getUser
 } from './database';
 
 /**
@@ -48,19 +42,19 @@ import {
 var {nodeInterface, nodeField} = nodeDefinitions(
   (globalId) => {
     var {type, id} = fromGlobalId(globalId);
-    if (type === 'User') {
+    if (type === 'Post') {
+      return getPost(id);
+    } else if (type === 'User') {
       return getUser(id);
-    } else if (type === 'Widget') {
-      return getWidget(id);
     } else {
       return null;
     }
   },
   (obj) => {
-    if (obj instanceof User) {
+    if (obj instanceof Post) {
+      return postType;
+    } else if (obj instanceof User) {
       return userType;
-    } else if (obj instanceof Widget)  {
-      return widgetType;
     } else {
       return null;
     }
@@ -70,40 +64,50 @@ var {nodeInterface, nodeField} = nodeDefinitions(
 /**
  * Define your own types here
  */
-
-var userType = new GraphQLObjectType({
+const userType = new GraphQLObjectType({
   name: 'User',
-  description: 'A person who uses our app',
+  description: 'A blog user',
   fields: () => ({
-    id: globalIdField('User'),
-    widgets: {
-      type: widgetConnection,
-      description: 'A person\'s collection of widgets',
+    id: globalIdField('Post'),
+    firstName: { type: new GraphQLNonNull(GraphQLString) },
+    lastName: { type: new GraphQLNonNull(GraphQLString) },
+    email: { type: new GraphQLNonNull(GraphQLString) },
+    posts: {
+      type: postConnection,
+      description: 'The users posts',
       args: connectionArgs,
-      resolve: (_, args) => connectionFromArray(getWidgets(), args),
-    },
+      resolve: ({id}, args) => connectionFromArray(
+        getPostsByUser(id),
+        args
+      )
+    }
   }),
-  interfaces: [nodeInterface],
+  interfaces: [nodeInterface]
 });
 
-var widgetType = new GraphQLObjectType({
-  name: 'Widget',
-  description: 'A shiny widget',
+
+const postType = new GraphQLObjectType({
+  name: 'Post',
+  description: 'A shiny post',
   fields: () => ({
-    id: globalIdField('Widget'),
-    name: {
-      type: GraphQLString,
-      description: 'The name of the widget',
-    },
+    id: globalIdField('Post'),
+    title: { type: new GraphQLNonNull(GraphQLString) },
+    body: { type: new GraphQLNonNull(GraphQLString) },
+    tags: { type: new GraphQLList(GraphQLString) },
+    author: { type: userType },
+    publishedAt: { type: GraphQLString }
   }),
-  interfaces: [nodeInterface],
+  interfaces: [nodeInterface]
 });
+
+
+
 
 /**
  * Define your own connection types here
  */
-var {connectionType: widgetConnection} =
-  connectionDefinitions({name: 'Widget', nodeType: widgetType});
+var {connectionType: postConnection} =
+  connectionDefinitions({name: 'Post', nodeType: postType});
 
 /**
  * This is the type that will be the root of our query,
@@ -113,23 +117,13 @@ var queryType = new GraphQLObjectType({
   name: 'Query',
   fields: () => ({
     node: nodeField,
-    // Add your own root fields here
-    viewer: {
-      type: userType,
-      resolve: () => getViewer(),
+    posts: {
+      type: postConnection,
+      description: 'Our collection of posts',
+      args: connectionArgs,
+      resolve: (_, args) => connectionFromArray(getPosts(), args)
     },
   }),
-});
-
-/**
- * This is the type that will be the root of our mutations,
- * and the entry point into performing writes in our schema.
- */
-var mutationType = new GraphQLObjectType({
-  name: 'Mutation',
-  fields: () => ({
-    // Add your own mutations here
-  })
 });
 
 /**
@@ -137,6 +131,5 @@ var mutationType = new GraphQLObjectType({
  * type we defined above) and export it.
  */
 export var Schema = new GraphQLSchema({
-  query: queryType,
-  mutation: mutationType
+  query: queryType
 });
