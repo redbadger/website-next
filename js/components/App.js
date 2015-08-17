@@ -1,11 +1,13 @@
+import Post from './Post';
+
 class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Widget list</h1>
+        <h1>Post list</h1>
         <ul>
-          {this.props.viewer.widgets.edges.map(edge =>
-            <li>{edge.node.name} (ID: {edge.node.id})</li>
+          {this.posts.edges.map(edge =>
+            <Post key={edge.node.id} post={edge.node} />
           )}
         </ul>
       </div>
@@ -15,16 +17,14 @@ class App extends React.Component {
 
 export default Relay.createContainer(App, {
   fragments: {
-    viewer: () => Relay.QL`
-      fragment on User {
-        widgets(first: 10) {
-          edges {
-            node {
-              id,
-              name,
-            },
-          },
-        },
+    posts: () => Relay.QL`
+      fragment on PostConnection {
+        edges {
+          node {
+            id
+            ${Post.getFragment('post')}
+          }
+        }
       }
     `,
   },
