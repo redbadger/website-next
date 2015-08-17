@@ -1,37 +1,27 @@
-/**
- *  Copyright (c) 2015, Facebook, Inc.
- *  All rights reserved.
- *
- *  This source code is licensed under the BSD-style license found in the
- *  LICENSE file in the root directory of this source tree. An additional grant
- *  of patent rights can be found in the PATENTS file in the same directory.
- */
+import requireDir from 'require-dir';
+import users from '../migration/posts/out/authors';
 
 // Model types
 class Post extends Object {}
 class User extends Object {}
 
-// Mock data
-var user = new User();
-user.id = '1';
-user.firstName = 'Erlich';
-user.lastName = 'Bachman';
-user.email = 'erlich@bachman.com';
-
-var posts = ['Ok blog', 'Shit blog', 'Albert viral blog'].map((title, i) => {
-  let post = new Post();
-  post.id = `${i}`;
-  post.title = title;
-  post.body = 'bla bla bla';
-  post.author = user;
-  return post;
+var posts = [];
+const postData = requireDir('../migration/posts/out/posts');
+Object.keys(postData).forEach(k => {
+  const d = postData[k];
+  const post = new Post();
+  post.id = d.slug;
+  post.title = d.title;
+  post.body = d.content;
+  post.authorId = d.author;
+  posts.push(post);
 });
 
 module.exports = {
   // Export methods that your schema can use to interact with your database
   getPost: (id) => posts.find(w => w.id === id),
   getPosts: () => posts,
-  getUser: () => user,
+  getUser: id => users.find(u => u.id === id),
   getPostsByUser: () => posts,
   User,
   Post

@@ -13,7 +13,7 @@ parser.parseString(data, (e, result) => {
   const root = result.rss.channel[0];
   fs.writeFileSync(path.resolve(__dirname, 'out/authors.json'),
     JSON.stringify(root['wp:author'].map(a => ({
-      login: a['wp:author_login'][0],
+      id: a['wp:author_login'][0],
       email: a['wp:author_email'][0],
       displayName: a['wp:author_display_name'][0],
       firstName: a['wp:author_first_name'][0],
