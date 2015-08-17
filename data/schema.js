@@ -94,7 +94,10 @@ const postType = new GraphQLObjectType({
     title: { type: new GraphQLNonNull(GraphQLString) },
     body: { type: new GraphQLNonNull(GraphQLString) },
     tags: { type: new GraphQLList(GraphQLString) },
-    author: { type: userType },
+    author: {
+      type: userType,
+      resolve: ({authorId}) => getUser(authorId)
+    },
     publishedAt: { type: GraphQLString }
   }),
   interfaces: [nodeInterface]
