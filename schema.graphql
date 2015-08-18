@@ -30,6 +30,10 @@ type PostEdge {
 
 type Query {
   node(id: ID!): Node
+  test: Test
+}
+
+type Test {
   posts(before: String, after: String, first: Int, last: Int): PostConnection
 }
 

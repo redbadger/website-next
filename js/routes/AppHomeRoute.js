@@ -1,14 +1,13 @@
 export default class extends Relay.Route {
   static path = '/';
   static queries = {
-    posts: Component =>
-      Relay.QL`
-        query {
-          posts(first: 10) {
-            ${Component.getFragment('posts')}
-          }
+    query: Component => Relay.QL`
+      query {
+        test {
+          ${Component.getFragment('query')}
         }
-      `
+      }
+    `
   };
   static routeName = 'AppHomeRoute';
 }

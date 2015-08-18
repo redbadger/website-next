@@ -103,6 +103,18 @@ const postType = new GraphQLObjectType({
   interfaces: [nodeInterface]
 });
 
+const testType = new GraphQLObjectType({
+  name: 'Test',
+  fields: () => ({
+    posts: {
+      type: postConnection,
+      description: 'Our collection of posts',
+      args: connectionArgs,
+      resolve: (_, args) => connectionFromArray(getPosts(), args)
+    }
+  })
+});
+
 
 
 
@@ -120,11 +132,9 @@ var queryType = new GraphQLObjectType({
   name: 'Query',
   fields: () => ({
     node: nodeField,
-    posts: {
-      type: postConnection,
-      description: 'Our collection of posts',
-      args: connectionArgs,
-      resolve: (_, args) => connectionFromArray(getPosts(), args)
+    test: {
+      type: testType,
+      resolve: () => { return {a: 3}; }
     },
   }),
 });
