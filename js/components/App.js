@@ -2,12 +2,21 @@ import Post from './Post';
 
 class App extends React.Component {
   render() {
+    console.log(JSON.stringify(this.props.viewer.posts));
     return (
       <div>
-        <h1>Post list</h1>
+        <h1>Posts list</h1>
         <ul>
-          {this.posts.edges.map(edge =>
-            <Post key={edge.node.id} post={edge.node} />
+          {this.props.viewer.posts.edges.map(edge =>
+            <li>{edge.node.title} (ID: {edge.node.id})
+ {edge.node.publishedAt}</li>
+          )}
+        </ul>
+        <h2>More posts</h2>
+        <ul>
+          {this.props.viewer.posts.edges.map(
+            edge =>
+              <li><Post key={edge.node.id} post={edge.node} /></li>
           )}
         </ul>
       </div>
@@ -17,14 +26,18 @@ class App extends React.Component {
 
 export default Relay.createContainer(App, {
   fragments: {
-    posts: () => Relay.QL`
-      fragment on PostConnection {
-        edges {
-          node {
-            id
-            ${Post.getFragment('post')}
-          }
-        }
+    viewer: () => Relay.QL`
+      fragment on User {
+        posts(first: 10) {
+          edges {
+            node {
+              id,
+              title,
+              publishedAt,
+              body
+            },
+          },
+        },
       }
     `,
   },
