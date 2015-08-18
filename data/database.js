@@ -33,7 +33,7 @@ module.exports = {
     user.lastName = userData.lastName;
     return user;
   }).find(u => u.id === id),
-  getPostsByUser: () => posts,
+  getPostsByUser: (id) => posts.filter(w => w.authorId === id),
   User,
   Post
 };
