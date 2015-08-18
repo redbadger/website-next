@@ -14,8 +14,12 @@ Object.keys(postData).forEach(k => {
   post.title = d.title;
   post.body = d.content;
   post.authorId = d.author;
+  post.publishedAt = d.publishedAt;
   posts.push(post);
 });
+
+posts = posts.sort((a,b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt));
+
 
 module.exports = {
   // Export methods that your schema can use to interact with your database
