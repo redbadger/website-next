@@ -525,7 +525,7 @@
         {
           "kind": "OBJECT",
           "name": "Test",
-          "description": null,
+          "description": "Temporary intermediate object while issue https://github.com/facebook/relay/issues/108 is fixed/figured out",
           "fields": [
             {
               "name": "posts",

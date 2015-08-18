@@ -9,7 +9,7 @@ var posts = [];
 const postData = requireDir('../migration/posts/out/posts');
 Object.keys(postData).forEach(k => {
   const d = postData[k];
-  const post = new Post();
+  let post = new Post();
   post.id = d.slug;
   post.title = d.title;
   post.body = d.content;
@@ -23,9 +23,16 @@ posts = posts.sort((a,b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt
 
 module.exports = {
   // Export methods that your schema can use to interact with your database
-  getPost: (id) => posts.find(w => w.id === id),
+  getPost: (id) => posts.find(post => post.id === id),
   getPosts: () => posts,
-  getUser: id => users.find(u => u.id === id),
+  getUser: id => users.map((userData) => {
+    let user = new User();
+    user.id = userData.id;
+    user.email = userData.email;
+    user.firstName = userData.firstName;
+    user.lastName = userData.lastName;
+    return user;
+  }).find(u => u.id === id),
   getPostsByUser: () => posts,
   User,
   Post

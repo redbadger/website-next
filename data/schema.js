@@ -68,7 +68,7 @@ const userType = new GraphQLObjectType({
   name: 'User',
   description: 'A blog user',
   fields: () => ({
-    id: globalIdField('Post'),
+    id: globalIdField('User'),
     firstName: { type: new GraphQLNonNull(GraphQLString) },
     lastName: { type: new GraphQLNonNull(GraphQLString) },
     email: { type: new GraphQLNonNull(GraphQLString) },
@@ -105,6 +105,7 @@ const postType = new GraphQLObjectType({
 
 const testType = new GraphQLObjectType({
   name: 'Test',
+  description: 'Temporary intermediate object while issue https://github.com/facebook/relay/issues/108 is fixed/figured out',
   fields: () => ({
     posts: {
       type: postConnection,
@@ -134,7 +135,7 @@ var queryType = new GraphQLObjectType({
     node: nodeField,
     test: {
       type: testType,
-      resolve: () => { return {a: 3}; }
+      resolve: () => { return {temp: 'hack'}; }
     },
   }),
 });
