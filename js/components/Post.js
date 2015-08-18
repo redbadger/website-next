@@ -3,7 +3,7 @@ class Post extends React.Component {
     return (
       <div>
         <h1>{this.props.post.title}</h1>
-        <p>{this.props.post.body}</p>
+        <div dangerouslySetInnerHTML={ { __html: this.props.post.body } } />
         <p>Published at: {this.props.post.publishedAt}</p>
       </div>
     );
