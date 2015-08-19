@@ -1,10 +1,33 @@
+import {Router, Route} from 'react-router';
+import BrowserHistory from 'react-router/lib/BrowserHistory';
+
+import relayNestedRoutes from 'relay-nested-routes';
+
 import App from './components/App';
-import AppHomeRoute from './routes/AppHomeRoute';
+
+const NestedRootContainer = relayNestedRoutes(React, Relay);
+
+
+let IndexQueries = {
+  query: Component => Relay.QL`
+    query {
+      test {
+        ${Component.getFragment('query')}
+      }
+    }
+  `
+};
 
 React.render(
-  <Relay.RootContainer
-    Component={App}
-    route={new AppHomeRoute()}
-  />,
+  <Router history={new BrowserHistory()}>
+    <Route component={NestedRootContainer}>
+      <Route
+        name="blog-index" // added a name to the route
+        path="/"
+        component={App}
+        queries={IndexQueries} // and the query
+      />
+    </Route>
+  </Router>,
   document.getElementById('root')
 );
