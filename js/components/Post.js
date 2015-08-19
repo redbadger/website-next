@@ -6,9 +6,9 @@ class Post extends React.Component {
     return (
       <div>
         <h1>{post.title}</h1>
+        <p>Published at: {post.publishedAt}</p>
         <h3>By: {`${post.author.firstName} ${post.author.lastName}`}</h3>
         <div dangerouslySetInnerHTML={ { __html: post.body } } />
-        <p>Published at: {post.publishedAt}</p>
       </div>
     );
   }
