@@ -23,7 +23,7 @@ let PostQueries = {
   post: (Component) => {
     return Relay.QL`
       query {
-        node(id: $id) {
+        getPostBySlug(slug: $splat) {
           ${Component.getFragment('post')},
         },
       }
@@ -41,7 +41,7 @@ React.render(
       />
       <Route
         name="post"
-        path="/post/:id"
+        path="/blog/*"
         component={Post}
         queries={PostQueries}
       />

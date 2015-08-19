@@ -14,6 +14,7 @@ type Post implements Node {
   title: String!
   body: String!
   tags: [String]
+  slug: [String]
   author: User
   publishedAt: String
 }
@@ -31,6 +32,7 @@ type PostEdge {
 type Query {
   node(id: ID!): Node
   test: Test
+  getPostBySlug(slug: String!): Post
 }
 
 type Test {

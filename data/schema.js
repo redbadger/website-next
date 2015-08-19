@@ -94,6 +94,10 @@ const postType = new GraphQLObjectType({
     title: { type: new GraphQLNonNull(GraphQLString) },
     body: { type: new GraphQLNonNull(GraphQLString) },
     tags: { type: new GraphQLList(GraphQLString) },
+    slug: {
+      type: new GraphQLNonNull(GraphQLString),
+      resolve: ({id}) => id
+    },
     author: {
       type: userType,
       resolve: ({authorId}) => getUser(authorId)
@@ -137,6 +141,19 @@ var queryType = new GraphQLObjectType({
       type: testType,
       resolve: () => { return {temp: 'hack'}; }
     },
+    getPostBySlug: {
+      type: postType,
+      args: {
+        slug: {
+          type: new GraphQLNonNull(GraphQLString),
+          description: 'Slug of the blog including the prepended date. E.g 2015/08/10/london-react-meetup-august-2015/'
+        }
+      }, 
+      resolve: (_, {slug}) => {
+   
+        return getPost(slug);
+        }
+    }
   }),
 });
 

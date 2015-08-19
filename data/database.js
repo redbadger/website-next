@@ -10,7 +10,7 @@ const postData = requireDir('../migration/posts/out/posts');
 Object.keys(postData).forEach(k => {
   const d = postData[k];
   let post = new Post();
-  post.id = d.slug;
+  post.id = d.url.replace('http://red-badger.com/blog/', '').slice(0, -1);
   post.title = d.title;
   post.body = d.content;
   post.authorId = d.author;
@@ -19,7 +19,6 @@ Object.keys(postData).forEach(k => {
 });
 
 posts = posts.sort((a,b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt));
-
 
 module.exports = {
   // Export methods that your schema can use to interact with your database

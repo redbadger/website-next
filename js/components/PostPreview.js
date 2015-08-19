@@ -6,7 +6,7 @@ class PostPreview extends React.Component {
     let {post} = this.props;
     return (
       <div>
-        <Link to={`/post/${post.id}`}>
+        <Link to={`/blog/${post.slug}`}>
           <h1>{post.title}</h1>
         </Link>
         <h3>By: {`${post.author.firstName} ${post.author.lastName}`}</h3>
@@ -20,7 +20,7 @@ export default Relay.createContainer(PostPreview, {
   fragments: {
     post: () => Relay.QL`
       fragment on Post {
-        id
+        slug
         title
         author {
           firstName
