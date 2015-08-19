@@ -29,8 +29,6 @@
     "react": "^0.14.0-beta3",
     "react-relay": "^0.1.0",
     "require-dir": "^0.3.0",
-    "todomvc-app-css": "^2.0.1",
-    "todomvc-common": "^1.0.2",
     "react-router": "1.0.0-beta3",
     "relay-nested-routes": "^0.3.1"
   }
