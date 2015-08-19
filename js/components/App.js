@@ -1,3 +1,4 @@
+import {Link} from 'react-router';
 import Post from './Post';
 
 class App extends React.Component {
@@ -7,7 +8,9 @@ class App extends React.Component {
         <h1>Post list</h1>
         <ul>
           {this.props.query.posts.edges.map(edge =>
-            <Post key={edge.node.id} post={edge.node} />
+            <Link to={`/post/${edge.node.id}`}>                                            
+              <h1>{edge.node.title}</h1>
+            </Link>
           )}
         </ul>
         <button onClick={
@@ -32,6 +35,7 @@ export default Relay.createContainer(App, {
           edges {
             node {
               id
+              title
               ${Post.getFragment('post')}
             }
           }

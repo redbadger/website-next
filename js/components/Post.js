@@ -1,5 +1,8 @@
+import 'babel/polyfill';
+
 class Post extends React.Component {
   render() {
+    let {post} = this.props;
     return (
       <div>
         <h1>{this.props.post.title}</h1>
