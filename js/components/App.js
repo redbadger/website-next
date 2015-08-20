@@ -1,6 +1,7 @@
 import 'babel/polyfill';
 
 import PostPreview from './PostPreview';
+import Header from './Header';
 
 class App extends React.Component {
   state = { loading: false };
@@ -13,7 +14,7 @@ class App extends React.Component {
 
         this.setState({loading: true}, () => {
           this.props.relay.setVariables({
-            count: this.props.relay.variables.count + 2
+            count: this.props.relay.variables.count + 5
           }, (readyState) => { // this gets called twice https://goo.gl/ZsQ3Dy
             if (readyState.done) {
               this.setState({loading: false});
@@ -28,11 +29,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1>Post list</h1>
-        {this.props.query.posts.edges.map(edge =>
-          <PostPreview post={edge.node} />
-        )}
-        {this.state.loading && <h1>Loading...</h1>}
+        <Header />
+        <div>
+          <h1>Post list</h1>
+          {this.props.query.posts.edges.map(edge =>
+            <PostPreview post={edge.node} />
+          )}
+          {this.state.loading && <h1>Loading...</h1>}
+        </div>
       </div>
     );
   }
