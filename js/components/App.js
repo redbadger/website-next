@@ -3,6 +3,28 @@ import 'babel/polyfill';
 import PostPreview from './PostPreview';
 
 class App extends React.Component {
+  state = { loading: false };
+
+  componentDidMount() {
+    window.onscroll = () => {
+      if (!this.state.loading
+        && (window.innerHeight + window.scrollY)
+          >= document.body.offsetHeight) {
+
+        this.setState({loading: true}, () => {
+          this.props.relay.setVariables({
+            count: this.props.relay.variables.count + 2
+          }, (readyState) => { // this gets called twice https://goo.gl/ZsQ3Dy
+            if (readyState.done) {
+              this.setState({loading: false});
+            }
+          });
+        });
+
+      }
+    }.bind(this);
+  }
+
   render() {
     return (
       <div>
@@ -12,14 +34,7 @@ class App extends React.Component {
             <PostPreview post={edge.node} />
           )}
         </ul>
-        <button onClick={
-            () => { this.props.relay.setVariables({
-              count: this.props.relay.variables.count + 2
-            });
-          }
-        }>
-          Show more
-        </button>
+        {this.state.loading && <h1>Loading...</h1>}
       </div>
     );
   }
