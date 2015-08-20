@@ -17,16 +17,17 @@
     "babel-relay-plugin": "^0.1.1",
     "babel-runtime": "5.8.20",
     "css-loader": "^0.15.1",
+    "del": "^1.1.1",
     "eslint": "^1.0.0",
     "eslint-loader": "^1.0.0",
     "eslint-plugin-react": "^3.2.0",
     "extract-text-webpack-plugin": "^0.8.1",
+    "gulp": "^3.8.11",
     "postcss-color-rebeccapurple": "^1.1.0",
     "postcss-loader": "^0.4.3",
     "style-loader": "^0.12.3",
     "webpack": "^1.10.5",
     "webpack-dev-server": "^1.10.1"
-
   },
   "dependencies": {
     "classnames": "^2.1.3",
