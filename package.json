@@ -6,9 +6,7 @@
   "version": "0.1.0",
   "scripts": {
     "test": "webpack",
-    "clean": "rm -rf dist",
-    "build": "npm run clean && webpack",
-    "start": "npm run update-schema && babel-node ./server.js",
+    "start": "npm run update-schema && webpack && babel-node ./server.js",
     "update-schema": "babel-node ./scripts/updateSchema.js"
   },
   "devDependencies": {
