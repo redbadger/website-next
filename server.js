@@ -8,6 +8,8 @@ import {Schema} from './data/schema';
 const APP_PORT = 3000;
 const GRAPHQL_PORT = 8080;
 
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 // Expose a GraphQL endpoint
 var graphQLServer = express();
 graphQLServer.use('/', graphQLHTTP({schema: Schema, pretty: true}));
@@ -24,10 +26,25 @@ var compiler = webpack({
         test: /\.js$/,
         loader: 'babel',
         query: {stage: 0, plugins: ['./build/babelRelayPlugin']}
+      },
+      { test: /\.css$/,
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader')
       }
     ]
   },
-  output: {filename: 'app.js', path: '/'}
+  output: {filename: 'app.js', path: '/'},
+  postcss: [
+    require('autoprefixer-core'),
+    require('postcss-color-rebeccapurple')
+  ],
+
+  resolve: {
+    modulesDirectories: ['node_modules', 'js/components']
+  },
+
+  plugins: [
+    new ExtractTextPlugin('style.css', { allChunks: true })
+  ]
 });
 var app = new WebpackDevServer(compiler, {
   contentBase: '/public/',
