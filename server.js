@@ -53,7 +53,7 @@ var app = new WebpackDevServer(compiler, {
   stats: {colors: true}
 });
 // Serve static resources
-app.use('/', express.static('public'));
+app.use('/blog', express.static('public'));
 app.use('/blog/*', express.static('public'));
 
 app.use('/node_modules/react', express.static('node_modules/react'));
