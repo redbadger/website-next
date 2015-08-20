@@ -12,6 +12,7 @@ globals:
   document: false
   React: false
   Relay: false
+  window: false
 
 arrowFunctions: true
 blockBindings: true
