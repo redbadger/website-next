@@ -12,6 +12,6 @@ gulp.task('copy-assets', function () {
   gulp.src(['assets/css/**/*']).pipe(gulp.dest('public'));
   gulp.src(['assets/favicons/*']).pipe(gulp.dest('public'));
   gulp.src(['assets/images/**/*']).pipe(gulp.dest('public/images'));
-  gulp.src(['layouts/*']).pipe(gulp.dest('public'));
+  gulp.src(['layouts/**/*']).pipe(gulp.dest('public'));
 });
 

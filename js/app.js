@@ -27,7 +27,7 @@ let PostQueries = {
           ${Component.getFragment('post')},
         },
       }
-    `}
+  `}
 };
 
 React.render(
@@ -35,7 +35,7 @@ React.render(
     <Route component={NestedRootContainer}>
       <Route
         name="home" // added a name to the route
-        path="/"
+        path="/blog/"
         component={App}
         queries={IndexQueries} // and the query
       />
