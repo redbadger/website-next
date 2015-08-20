@@ -29,11 +29,9 @@ class App extends React.Component {
     return (
       <div>
         <h1>Post list</h1>
-        <ul>
-          {this.props.query.posts.edges.map(edge =>
-            <PostPreview post={edge.node} />
-          )}
-        </ul>
+        {this.props.query.posts.edges.map(edge =>
+          <PostPreview post={edge.node} />
+        )}
         {this.state.loading && <h1>Loading...</h1>}
       </div>
     );
