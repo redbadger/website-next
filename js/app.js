@@ -11,7 +11,7 @@ const NestedRootContainer = relayNestedRoutes(React, Relay);
 let IndexQueries = {
   query: Component => Relay.QL`
     query {
-      test {
+      session {
         ${Component.getFragment('query')}
       }
     }

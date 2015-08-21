@@ -46,7 +46,7 @@ export default Relay.createContainer(App, {
   initialVariables: {count: 5},
   fragments: {
     query: () => Relay.QL`
-      fragment on Test {
+      fragment on Session {
         posts(first: $count) {
           edges {
             node {

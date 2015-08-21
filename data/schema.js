@@ -107,8 +107,8 @@ const postType = new GraphQLObjectType({
   interfaces: [nodeInterface]
 });
 
-const testType = new GraphQLObjectType({
-  name: 'Test',
+const sessionType = new GraphQLObjectType({
+  name: 'Session',
   description: 'Temporary intermediate object while issue https://github.com/facebook/relay/issues/108 is fixed/figured out',
   fields: () => ({
     ip: {
@@ -141,8 +141,8 @@ var queryType = new GraphQLObjectType({
   name: 'Query',
   fields: () => ({
     node: nodeField,
-    test: {
-      type: testType,
+    session: {
+      type: sessionType,
       resolve: (request) => request
     },
     getPostBySlug: {
