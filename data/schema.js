@@ -111,6 +111,10 @@ const testType = new GraphQLObjectType({
   name: 'Test',
   description: 'Temporary intermediate object while issue https://github.com/facebook/relay/issues/108 is fixed/figured out',
   fields: () => ({
+    ip: {
+      type: GraphQLString,
+      resolve: ({ip}) => ip
+    },
     posts: {
       type: postConnection,
       description: 'Our collection of posts',
@@ -139,7 +143,7 @@ var queryType = new GraphQLObjectType({
     node: nodeField,
     test: {
       type: testType,
-      resolve: () => { return {temp: 'hack'}; }
+      resolve: (request) => request
     },
     getPostBySlug: {
       type: postType,
@@ -148,9 +152,9 @@ var queryType = new GraphQLObjectType({
           type: new GraphQLNonNull(GraphQLString),
           description: 'Slug of the blog including the prepended date. E.g 2015/08/10/london-react-meetup-august-2015/'
         }
-      }, 
+      },
       resolve: (_, {slug}) => {
-   
+
         return getPost(slug);
         }
     }
