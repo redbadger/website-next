@@ -15,6 +15,7 @@ Object.keys(postData).forEach(k => {
   post.body = d.content;
   post.authorId = d.author;
   post.publishedAt = d.publishedAt;
+  post.viewerDoesLike = false;
   posts.push(post);
 });
 
@@ -22,6 +23,7 @@ posts = posts.sort((a,b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt
 
 module.exports = {
   // Export methods that your schema can use to interact with your database
+  likePost: (id) => true,
   getPost: (id) => posts.find(post => post.id === id),
   getPosts: () => posts,
   getUser: id => users.map((userData) => {

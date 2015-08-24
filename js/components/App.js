@@ -4,6 +4,8 @@ import Header from './header';
 
 import styles from './style.css';
 
+import LikePostMutation from '../mutations/AddLikeToPostMutation';
+
 class App extends React.Component {
   state = { loading: false };
 
