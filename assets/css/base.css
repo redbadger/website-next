@@ -50,5 +50,5 @@ body {
   font-size: 16px;
   line-height: 1.25;
   color: #333;
-  background: #fff url("/images/backgrounds/noise_bg_dark.png");
+  background: url("/images/doodles/blog_doodle.png") no-repeat center top,url("/images/backgrounds/noise_bg.png")
 }

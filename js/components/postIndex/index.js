@@ -34,7 +34,7 @@ class PostIndex extends React.Component {
           {this.props.query.posts.edges.map(edge =>
             <PostPreview post={edge.node} />
           )}
-          {this.state.loading && <h1>Loading...</h1>}
+          {this.state.loading && <h1 className={styles.loading}>Loading...</h1>}
         </div>
       </div>
     );
@@ -42,7 +42,7 @@ class PostIndex extends React.Component {
 }
 
 export default Relay.createContainer(PostIndex, {
-  initialVariables: {count: 5},
+  initialVariables: {count: 15},
   fragments: {
     query: () => Relay.QL`
       fragment on Session {
