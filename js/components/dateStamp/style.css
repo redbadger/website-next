@@ -1,0 +1,16 @@
+.dateStamp {
+  background: #005952;
+  display: inline-block;
+  font-size: 0.8em;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  min-width: 3em;
+  margin-bottom: 1em;
+  padding: 0.3em 0;
+  border-radius: 5px;
+}
+
+.day {
+  font-size: 2em;
+}
