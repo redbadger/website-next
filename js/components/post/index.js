@@ -1,14 +1,20 @@
 import 'babel/polyfill';
+import Header from '../header';
+import DateStamp from '../dateStamp';
+import styles from './style.css';
 
 class Post extends React.Component {
   render() {
     let {post} = this.props;
     return (
       <div>
-        <h1>{post.title}</h1>
-        <p>Published at: {post.publishedAt}</p>
-        <h3>By: {`${post.author.firstName} ${post.author.lastName}`}</h3>
-        <div dangerouslySetInnerHTML={ { __html: post.body } } />
+        <Header />
+        <article className={styles.post}>
+          <DateStamp className={post.publishedAt} />
+          <h1>{post.title}</h1>
+          <h3>By: {`${post.author.firstName} ${post.author.lastName}`}</h3>
+          <div dangerouslySetInnerHTML={ { __html: post.body } } />
+        </article>
       </div>
     );
   }
@@ -24,7 +30,7 @@ export default Relay.createContainer(Post, {
           lastName
         }
         body
-        publishedAt
+        ${DateStamp.getFragment('post')}
       }
     `
   },

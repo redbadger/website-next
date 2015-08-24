@@ -1,0 +1,4 @@
+.post {
+  grid-push: 3/12;
+  grid-column: 6/12;
+}
