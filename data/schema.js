@@ -13,6 +13,8 @@ import {
   GraphQLObjectType,
   GraphQLSchema,
   GraphQLString,
+  GraphQLBoolean,
+  GraphQLID
 } from 'graphql';
 
 import {
@@ -22,6 +24,7 @@ import {
   fromGlobalId,
   globalIdField,
   nodeDefinitions,
+  mutationWithClientMutationId
 } from 'graphql-relay';
 
 import {
@@ -30,7 +33,8 @@ import {
   getPost,
   getPosts,
   getPostsByUser,
-  getUser
+  getUser,
+  likePost
 } from './database';
 
 /**
@@ -94,6 +98,7 @@ const postType = new GraphQLObjectType({
     title: { type: new GraphQLNonNull(GraphQLString) },
     body: { type: new GraphQLNonNull(GraphQLString) },
     tags: { type: new GraphQLList(GraphQLString) },
+    viewerDoesLike: { type: new GraphQLNonNull(GraphQLBoolean) },
     slug: {
       type: new GraphQLNonNull(GraphQLString),
       resolve: ({id}) => id
@@ -148,19 +153,45 @@ var queryType = new GraphQLObjectType({
           type: new GraphQLNonNull(GraphQLString),
           description: 'Slug of the blog including the prepended date. E.g 2015/08/10/london-react-meetup-august-2015/'
         }
-      }, 
+      },
       resolve: (_, {slug}) => {
-   
+
         return getPost(slug);
         }
     }
   }),
 });
 
+var LikePostMutation = mutationWithClientMutationId({
+  name: 'AddLikeToPostMutation',
+  inputFields: {
+    id: { type: new GraphQLNonNull(GraphQLID) },
+  },
+  outputFields: {
+    viewerDoesLike: {
+      type: { type: new GraphQLNonNull(GraphQLBoolean) },
+      resolve: (_, {id}) => likePost(id),
+    },
+  },
+  mutateAndGetPayload: ({id, text}) => {
+    var localHidingSpotId = fromGlobalId(id).id;
+    return {localHidingSpotId};
+  },
+});
+
+var mutationType = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    likePost: LikePostMutation
+  },
+});
+
+
 /**
  * Finally, we construct our schema (whose starting query type is the query
  * type we defined above) and export it.
  */
 export var Schema = new GraphQLSchema({
-  query: queryType
+  query: queryType,
+  mutation: mutationType
 });

@@ -3,6 +3,8 @@ import 'babel/polyfill';
 import PostPreview from './PostPreview';
 import Header from './Header';
 
+import LikePostMutation from '../mutations/AddLikeToPostMutation';
+
 class App extends React.Component {
   state = { loading: false };
 
