@@ -1,8 +1,19 @@
+const browsers = ['ie >= 8', 'last 2 versions', 'iOS >= 6.1', 'Android >= 2.3', 'ExplorerMobile >= 9'];
+
+const options = {
+  columns: 12, // the number of columns in the grid
+  maxWidth: 960, // the maximum width of the grid (in px)
+  gutter: 20 // the width of the gutter (in px)
+};
+
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var path = require('path');
 var fs = require('fs');
+
+var autoprefixer = require('autoprefixer-core')(browsers);
+var grid = require('postcss-grid')(options);
 
 module.exports = {
   entry: path.resolve(__dirname, 'js', 'app.js'),
@@ -27,9 +38,8 @@ module.exports = {
   },
 
   postcss: [
-    require('autoprefixer-core'),
-    require('postcss-color-rebeccapurple')
-  ],
+      autoprefixer, grid
+    ],
 
   resolve: {
     modulesDirectories: ['node_modules', 'js/components', 'js/components/header']
