@@ -20,14 +20,13 @@ let IndexQueries = {
 
 // The root queries for the widget site
 let PostQueries = {
-  post: (Component) => {
-    return Relay.QL`
-      query {
-        getPostBySlug(slug: $splat) {
-          ${Component.getFragment('post')},
-        },
-      }
-  `}
+  post: Component => Relay.QL`
+    query {
+      getPostBySlug(slug: $splat) {
+        ${Component.getFragment('post')},
+      },
+    }
+  `
 };
 
 React.render(

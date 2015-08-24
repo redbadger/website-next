@@ -112,8 +112,7 @@ const sessionType = new GraphQLObjectType({
   description: 'Temporary intermediate object while issue https://github.com/facebook/relay/issues/108 is fixed/figured out',
   fields: () => ({
     ip: {
-      type: GraphQLString,
-      resolve: ({ip}) => ip
+      type: GraphQLString
     },
     posts: {
       type: postConnection,
@@ -154,9 +153,8 @@ var queryType = new GraphQLObjectType({
         }
       },
       resolve: (_, {slug}) => {
-
         return getPost(slug);
-        }
+      }
     }
   }),
 });

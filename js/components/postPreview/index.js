@@ -13,7 +13,7 @@ class PostPreview extends React.Component {
           </Link>
         </h3>
         <p>
-          {'By: '} 
+          {'By: '}
           <Link className={styles.authorLink} to={'/#'}>
            {`${post.author.firstName} ${post.author.lastName}`}
           </Link>
