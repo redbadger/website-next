@@ -32,7 +32,7 @@ export default class Header extends React.Component {
               <li className={styles.navListElement}>
                 <a href="/blog">
                   Blog
-                  <div className="active" />
+                  <div className={styles.active} />
                 </a>
               </li>
               <li className={styles.navListElement}>

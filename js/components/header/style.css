@@ -30,3 +30,12 @@ nav {
   margin: 0 auto;
   padding: 0 2em;
 }
+
+.active {
+  position: absolute;
+  bottom: -6px;
+  height: 12px;
+  left: 15%;
+  right: 15%;
+  background-color: #be1414;
+}
