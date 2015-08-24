@@ -1,0 +1,32 @@
+.headerNav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+  background: #000 url("/images/backgrounds/blackpaper_bg.jpg");
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+.navListElement {
+  display: inline-block;
+  position: relative;
+  padding: 0 2em;
+  line-height: 2.5;
+}
+
+.navListElement a {
+  text-decoration: none;
+    color: #fff;
+}
+
+.container {
+  width: 920px;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 2em;
+}

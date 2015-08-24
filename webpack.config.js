@@ -32,7 +32,7 @@ module.exports = {
   ],
 
   resolve: {
-    modulesDirectories: ['node_modules', 'js/components']
+    modulesDirectories: ['node_modules', 'js/components', 'js/components/header']
   },
 
   plugins: [

@@ -1,3 +1,5 @@
+import styles from './style.css';
+
 export default class Header extends React.Component {
   render() {
     return (
@@ -13,27 +15,27 @@ export default class Header extends React.Component {
         </div>
 
         <nav>
-          <div className="container">
-            <ul>
-              <li>
+          <div className={styles.container}>
+            <ul className={styles.headerNav}>
+              <li className={styles.navListElement}>
                 <a href="/"> Home </a>
               </li>
-              <li>
+              <li className={styles.navListElement}>
                 <a href="/our-work">Our Work</a>
               </li>
-              <li>
+              <li className={styles.navListElement}>
                 <a href="/services">Services</a>
               </li>
-              <li>
+              <li className={styles.navListElement}>
                 <a href="/ideas">Ideas</a>
               </li>
-              <li>
+              <li className={styles.navListElement}>
                 <a href="/blog">
                   Blog
                   <div className="active" />
                 </a>
               </li>
-              <li>
+              <li className={styles.navListElement}>
                 <a href="/about-us">About us</a>
               </li>
             </ul>

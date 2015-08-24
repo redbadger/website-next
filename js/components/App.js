@@ -1,7 +1,8 @@
 import 'babel/polyfill';
-
 import PostPreview from './PostPreview';
-import Header from './Header';
+import Header from './header';
+
+import styles from './style.css';
 
 class App extends React.Component {
   state = { loading: false };
