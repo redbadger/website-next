@@ -8,7 +8,7 @@ export default class Header extends React.Component {
           <div className="row">
             <div className="grid">
               <a href="/">
-                <img src="/images/logos/redbadger_logo.png" alt="Red Badger Logo" className="logo" />
+                <img src="/images/logos/redbadger_logo.png" alt="Red Badger Logo" className={styles.logo} />
               </a>
             </div>
           </div>

@@ -39,3 +39,8 @@ nav {
   right: 15%;
   background-color: #be1414;
 }
+
+.logo {
+  margin: 1.25em 0;
+  grid-push: 2/12;
+}
