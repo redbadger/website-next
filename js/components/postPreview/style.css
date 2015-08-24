@@ -1,0 +1,12 @@
+.linkColor {
+  color: #005952;
+}
+
+.titleLink {
+  composes: linkColor;
+  font-size: 1.6em;
+}
+
+.authorLink {
+  composes: linkColor;
+}

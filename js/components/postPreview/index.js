@@ -1,15 +1,23 @@
 import 'babel/polyfill';
 import {Link} from 'react-router';
+import styles from './style.css';
 
 class PostPreview extends React.Component {
   render() {
     let {post} = this.props;
     return (
       <div>
-        <Link to={`/blog/${post.slug}`}>
-          <h1>{post.title}</h1>
-        </Link>
-        <h3>By: {`${post.author.firstName} ${post.author.lastName}`}</h3>
+        <h3>
+          <Link className={styles.titleLink} to={`/blog/${post.slug}`}>
+            {post.title}
+          </Link>
+        </h3>
+        <p>
+          {'By: '} 
+          <Link className={styles.authorLink} to={'/#'}>
+           {`${post.author.firstName} ${post.author.lastName}`}
+          </Link>
+        </p>
         <p>Published at: {post.publishedAt}</p>
       </div>
     );

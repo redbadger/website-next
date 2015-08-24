@@ -1,5 +1,5 @@
 import 'babel/polyfill';
-import PostPreview from './PostPreview';
+import PostPreview from './postPreview';
 import Header from './header';
 
 import styles from './style.css';
@@ -32,7 +32,6 @@ class App extends React.Component {
       <div>
         <Header />
         <div>
-          <h1>Post list</h1>
           {this.props.query.posts.edges.map(edge =>
             <PostPreview post={edge.node} />
           )}
