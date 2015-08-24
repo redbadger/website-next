@@ -1,4 +1,6 @@
 import styles from './style.css';
+import {Link} from 'react-router';
+
 
 export default class Header extends React.Component {
   render() {
@@ -30,10 +32,10 @@ export default class Header extends React.Component {
                 <a href="/ideas">Ideas</a>
               </li>
               <li className={styles.navListElement}>
-                <a href="/blog">
+                <Link to="/blog">
                   Blog
                   <div className={styles.active} />
-                </a>
+                </Link>
               </li>
               <li className={styles.navListElement}>
                 <a href="/about-us">About us</a>

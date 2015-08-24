@@ -34,7 +34,7 @@ React.render(
     <Route component={NestedRootContainer}>
       <Route
         name="home" // added a name to the route
-        path="/blog/"
+        path="/blog"
         component={PostIndex}
         queries={IndexQueries} // and the query
       />
