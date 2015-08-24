@@ -12,7 +12,6 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 var fs = require('fs');
 
-var autoprefixer = require('autoprefixer-core')(browsers);
 var grid = require('postcss-grid')(options);
 
 module.exports = {
@@ -23,6 +22,9 @@ module.exports = {
     path: path.resolve('./public'),
     libraryTarget: 'umd'
   },
+  cssnext: {
+    browsers: browsers,
+  },
 
   module: {
     loaders: [
@@ -32,13 +34,13 @@ module.exports = {
         query: {stage: 0, plugins: ['./build/babelRelayPlugin']}
       },
       { test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!cssnext-loader')
       }
     ]
   },
 
   postcss: [
-      autoprefixer, grid
+      grid
     ],
 
   resolve: {
