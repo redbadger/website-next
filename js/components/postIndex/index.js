@@ -1,8 +1,9 @@
 import 'babel/polyfill';
-import PostPreview from './postPreview';
-import Header from './header';
+import PostPreview from '../postPreview';
+import Header from '../header';
+import styles from './style.css';
 
-class App extends React.Component {
+class PostIndex extends React.Component {
   state = { loading: false };
 
   componentDidMount() {
@@ -29,7 +30,7 @@ class App extends React.Component {
     return (
       <div>
         <Header />
-        <div>
+        <div className={styles.postList}>
           {this.props.query.posts.edges.map(edge =>
             <PostPreview post={edge.node} />
           )}
@@ -40,7 +41,7 @@ class App extends React.Component {
   }
 }
 
-export default Relay.createContainer(App, {
+export default Relay.createContainer(PostIndex, {
   initialVariables: {count: 5},
   fragments: {
     query: () => Relay.QL`

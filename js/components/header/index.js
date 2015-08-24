@@ -1,4 +1,6 @@
 import styles from './style.css';
+import {Link} from 'react-router';
+
 
 export default class Header extends React.Component {
   render() {
@@ -8,7 +10,7 @@ export default class Header extends React.Component {
           <div className="row">
             <div className="grid">
               <a href="/">
-                <img src="/images/logos/redbadger_logo.png" alt="Red Badger Logo" className="logo" />
+                <img src="/images/logos/redbadger_logo.png" alt="Red Badger Logo" className={styles.logo} />
               </a>
             </div>
           </div>
@@ -30,10 +32,10 @@ export default class Header extends React.Component {
                 <a href="/ideas">Ideas</a>
               </li>
               <li className={styles.navListElement}>
-                <a href="/blog">
+                <Link to="/blog">
                   Blog
-                  <div className="active" />
-                </a>
+                  <div className={styles.active} />
+                </Link>
               </li>
               <li className={styles.navListElement}>
                 <a href="/about-us">About us</a>

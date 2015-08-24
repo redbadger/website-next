@@ -1,0 +1,4 @@
+.postList {
+  grid-push: 2/12;
+  grid-column: 8/12;
+}

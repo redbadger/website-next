@@ -2,8 +2,8 @@ import {Router, Route} from 'react-router';
 import relayNestedRoutes from 'relay-nested-routes';
 import BrowserHistory from 'react-router/lib/BrowserHistory';
 
-import App from './components/App';
-import Post from './components/Post';
+import PostIndex from './components/postIndex';
+import Post from './components/post';
 
 const NestedRootContainer = relayNestedRoutes(React, Relay);
 
@@ -34,8 +34,8 @@ React.render(
     <Route component={NestedRootContainer}>
       <Route
         name="home" // added a name to the route
-        path="/blog/"
-        component={App}
+        path="/blog"
+        component={PostIndex}
         queries={IndexQueries} // and the query
       />
       <Route
