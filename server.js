@@ -36,7 +36,7 @@ var compiler = webpack({
         query: {stage: 0, plugins: ['./build/babelRelayPlugin']}
       },
       { test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!cssnext-loader')
       }
     ]
   },
