@@ -2,7 +2,7 @@ import 'babel/polyfill';
 import styles from './style.css';
 import moment from 'moment';
 
-class PostPreview extends React.Component {
+class DateStamp extends React.Component {
   render() {
     const dateTime = moment(this.props.iso8601);
     return (
@@ -15,7 +15,7 @@ class PostPreview extends React.Component {
   }
 }
 
-export default Relay.createContainer(PostPreview, {
+export default Relay.createContainer(DateStamp, {
   fragments: {
     post: () => Relay.QL`
       fragment on Post {

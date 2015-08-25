@@ -12,11 +12,15 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Expose a GraphQL endpoint
 var graphQLServer = express();
+graphQLServer.set('view engine', 'jade');
+graphQLServer.get('/graphiql', (req,res) => res.render('graphiql.jade'));
+
 graphQLServer.use('/', graphQLHTTP((request) => ({
   schema: Schema,
   pretty: true,
   rootValue: request
 })));
+
 graphQLServer.listen(GRAPHQL_PORT, () => console.log(
   `GraphQL Server is now running on http://localhost:${GRAPHQL_PORT}`
 ));
@@ -61,6 +65,7 @@ app.use(express.static('public'));
 
 app.use('/node_modules/react', express.static('node_modules/react'));
 app.use('/node_modules/react-relay', express.static('node_modules/react-relay'));
+app.use('/node_modules/graphiql', express.static('node_modules/graphiql'));
 
 app.listen(APP_PORT, () => {
   console.log(`App is now running on http://localhost:${APP_PORT}`);
