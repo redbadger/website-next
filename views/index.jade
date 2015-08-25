@@ -1,0 +1,28 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', type='text/css', href='http://localhost:8080//reset.css')
+    link(rel='stylesheet', type='text/css', href='http://localhost:8080//base.css')
+    link(rel='stylesheet', type='text/css', href='http://localhost:8080//style.css')
+    title Relay • Starter Kit
+  body
+    #root
+    script(type='text/javascript').
+      // Force `fetch` polyfill to workaround Chrome not displaying request body
+      // in developer tools for the native `fetch`.
+      self.fetch = null;
+      function warnRelayMissing() {
+      document.body.innerHTML = (
+      '<h2>Could not find relay.js</h2>' +
+      '<p>' +
+      'Be sure to run <code>npm run build</code> ' +
+      'in the <code>relay/</code> directory.' +
+      '</p>'
+      );
+      }
+    script(src='http://localhost:8080/webpack-dev-server.js')
+    script(src='http://localhost:8080/node_modules/react/dist/react.min.js')
+    script(src='http://localhost:8080/node_modules/react-relay/dist/relay.js', onerror='warnRelayMissing()')
+    script(src='http://localhost:8080/js/app.js')
