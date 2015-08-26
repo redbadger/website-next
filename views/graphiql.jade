@@ -18,6 +18,19 @@ html(lang='en')
           body: JSON.stringify(graphQLParams)
         }).then(function(response) { return response.json() });
       };
-      React.render(React.createElement(GraphiQL, { fetcher: graphQLFetcher }), document.body);
+      React.render(React.createElement(
+        GraphiQL,
+        { fetcher: graphQLFetcher },
+        React.createElement(
+          GraphiQL.Logo,
+          null,
+          React.createElement("img", {
+            src: "http://localhost:8080/images/logos/redbadger_logo_small_round.png",
+            alt: "Red Badger Logo",
+            height: "30"
+          }),
+          " Badger Brain"
+        )
+      ), document.body);
     
     
