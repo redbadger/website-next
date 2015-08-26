@@ -10,13 +10,13 @@ class PostPreview extends React.Component {
       <div>
         <DateStamp post={post} />
         <h3>
-          <Link className={styles.titleLink} to={`/blog/${post.slug}`}>
+          <Link className={styles.title} to={`/blog/${post.slug}`}>
             {post.title}
           </Link>
         </h3>
         <p>
-          {'By: '}
-          <Link className={styles.authorLink} to={'/#'}>
+          {'by '}
+          <Link className={styles.author} to={'/#'}>
            {`${post.author.firstName} ${post.author.lastName}`}
           </Link>
         </p>

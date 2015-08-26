@@ -2,3 +2,11 @@
   grid-push: 3/12;
   grid-column: 6/12;
 }
+ 
+.title {
+  font-family: "FranklinGothicHand","CenturyGothicRegular","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 1.6em;
+  color: #005952;
+  line-height: 1.2;
+  text-decoration: none;
+}

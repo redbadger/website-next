@@ -2,6 +2,7 @@ import 'babel/polyfill';
 import Layout from '../layouts/general';
 import DateStamp from '../dateStamp';
 import styles from './style.css';
+import {Link} from 'react-router';
 
 class Post extends React.Component {
   render() {
@@ -10,8 +11,13 @@ class Post extends React.Component {
       <Layout>
         <article className={styles.post}>
           <DateStamp post={post} />
-          <h1>{post.title}</h1>
-          <h3>By: {`${post.author.firstName} ${post.author.lastName}`}</h3>
+          <h1 className={styles.title}>{post.title}</h1>
+          <p>
+            {'by '}
+            <Link className={styles.author} to={'/#'}>
+             {`${post.author.firstName} ${post.author.lastName}`}
+            </Link>
+          </p>
           <div dangerouslySetInnerHTML={ { __html: post.body } } />
         </article>
       </Layout>

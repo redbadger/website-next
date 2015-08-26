@@ -2,11 +2,14 @@
   color: #005952;
 }
 
-.titleLink {
+.author {
   composes: linkColor;
-  font-size: 1.6em;
 }
 
-.authorLink {
+.title {
   composes: linkColor;
+  font-family: "FranklinGothicHand","CenturyGothicRegular","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 1.6em;
+  line-height: 1.2;
+  text-decoration: none;
 }
