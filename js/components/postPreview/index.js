@@ -8,7 +8,7 @@ class PostPreview extends React.Component {
     let {post} = this.props;
     return (
       <div>
-        <DateStamp iso8601={post.publishedAt} />
+        <DateStamp post={post} />
         <h3>
           <Link className={styles.titleLink} to={`/blog/${post.slug}`}>
             {post.title}
@@ -36,7 +36,6 @@ export default Relay.createContainer(PostPreview, {
           lastName
         }
         ${DateStamp.getFragment('post')}
-        publishedAt
       }
     `
   },
