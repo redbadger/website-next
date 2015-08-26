@@ -1,5 +1,5 @@
 import 'babel/polyfill';
-import Header from '../header';
+import Layout from '../layouts/general';
 import DateStamp from '../dateStamp';
 import styles from './style.css';
 
@@ -7,15 +7,14 @@ class Post extends React.Component {
   render() {
     let {post} = this.props;
     return (
-      <div>
-        <Header />
+      <Layout>
         <article className={styles.post}>
-          <DateStamp className={post.publishedAt} />
+          <DateStamp post={post} />
           <h1>{post.title}</h1>
           <h3>By: {`${post.author.firstName} ${post.author.lastName}`}</h3>
           <div dangerouslySetInnerHTML={ { __html: post.body } } />
         </article>
-      </div>
+      </Layout>
     );
   }
 }
