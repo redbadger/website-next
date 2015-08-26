@@ -31,6 +31,7 @@ app.listen(APP_PORT, () => console.log(
 
 
 var app = new WebpackDevServer(webpack(config), {
+  headers: { "Access-Control-Allow-Origin": "*" },
   contentBase: '/public/',
   publicPath: '/',
   stats: {colors: true},
