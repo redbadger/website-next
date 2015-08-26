@@ -4,12 +4,12 @@ html(lang='en')
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title GraphiQL Red Badgers Schema
-    link(rel='stylesheet' type='text/css' href='http://localhost:3000/node_modules/graphiql/graphiql.css')
+    link(rel='stylesheet' type='text/css' href='http://localhost:8080/node_modules/graphiql/graphiql.css')
   body
     #root
-    script(src='http://localhost:3000/node_modules/react/dist/react.min.js')
-    script(src='http://localhost:3000/node_modules/graphiql/graphiql.min.js')
-    script(src='http://localhost:3000/node_modules/react-relay/dist/relay.js')
+    script(src='http://localhost:8080/node_modules/react/dist/react.min.js')
+    script(src='http://localhost:8080/node_modules/graphiql/graphiql.min.js')
+    script(src='http://localhost:8080/node_modules/react-relay/dist/relay.js')
     script(type='text/javascript').
       function graphQLFetcher(graphQLParams) {
         return fetch(window.location.origin + '/graphql', {

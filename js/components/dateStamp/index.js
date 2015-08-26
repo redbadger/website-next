@@ -4,7 +4,7 @@ import moment from 'moment';
 
 class DateStamp extends React.Component {
   render() {
-    const dateTime = moment(this.props.iso8601);
+    const dateTime = moment(this.props.post.publishedAt);
     return (
       <div className={styles.dateStamp}>
         <div className={styles.day} >{dateTime.format('DD')}</div>

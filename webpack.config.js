@@ -20,6 +20,7 @@ module.exports = {
   output: {
     filename: 'app.js',
     path: path.resolve('./public'),
+    publicPath: '/',
     libraryTarget: 'umd'
   },
   cssnext: {
