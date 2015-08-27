@@ -9,8 +9,8 @@ class PostPreview extends React.Component {
     return (
       <div>
         <DateStamp post={post} />
-        <h3>
-          <Link className={styles.title} to={`/blog/${post.slug}`}>
+        <h3 className={styles.titleHeading}>
+          <Link className={styles.titleAnchor} to={`/blog/${post.slug}`}>
             {post.title}
           </Link>
         </h3>

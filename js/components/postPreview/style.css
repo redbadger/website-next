@@ -2,7 +2,11 @@
   composes: darkGreen from "../../colors.css";
 }
 
-.title {
+.titleHeading {
+  margin: 0.8em 0;
+}
+
+.titleAnchor {
   composes: darkGreen from "../../colors.css";
   composes: franklinGothicHand from "../../fonts.css";
   font-size: 1.6em;
