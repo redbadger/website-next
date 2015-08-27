@@ -17,6 +17,10 @@
   text-decoration: none;
 }
 
+.contactLinkItem {
+  line-height: 2em;
+}
+
 .contactLink {
   text-decoration: none;
   color: white;
@@ -31,6 +35,7 @@
 .redBadgerFont {
   composes: redBadgerFont from "../../fonts.css";
   composes: green from "../../colors.css";
+  font-size: 1.5em;
 }
 
 .inputContainer {
