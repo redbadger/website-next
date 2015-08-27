@@ -4,7 +4,7 @@ export default class Footer extends React.Component {
   render() {
     return (
       <footer className={styles.footer}>
-        <div>
+        <div className={styles.footerColumn}>
           <p>
             <strong className={styles.strong}>
               Red Badger Consulting Limited
@@ -20,7 +20,7 @@ export default class Footer extends React.Component {
           </p>
         </div>
 
-        <div>
+        <div className={styles.footerColumn}>
           <ul>
             <li>
               <a href="mailto:hello@red-badger.com"
@@ -70,7 +70,7 @@ export default class Footer extends React.Component {
           </ul>
         </div>
 
-        <div>
+        <div className={styles.footerColumn}>
           <p>
             <strong className={styles.strong}>Join our newsletter</strong>
           </p>

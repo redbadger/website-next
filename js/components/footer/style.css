@@ -4,8 +4,16 @@
   composes: blackPaper from "../../backgrounds.css";
   grid-column: 12/12;
   color: white;
-  padding: 1.4em;
+  padding: 40px 20px 60px;
   line-height: 1.25;
+}
+
+.footerColumn {
+  grid-column: 3/12;
+}
+
+.footerColumn:first-child {
+  grid-push: 1/12;
 }
 
 .strong {
