@@ -13,11 +13,3 @@
   line-height: 1.2;
   text-decoration: none;
 }
-
-.divider {
-  border: none;
-  background: url("/images/backgrounds/rule_grey.png") no-repeat left center;
-  background-size: 100% 14px;
-  height: 1em;
-  margin: 1.5em 0;
-}

@@ -8,7 +8,6 @@ class PostPreview extends React.Component {
     let {post} = this.props;
     return (
       <div>
-        <hr className={styles.divider} />
         <DateStamp post={post} />
         <h3>
           <Link className={styles.title} to={`/blog/${post.slug}`}>

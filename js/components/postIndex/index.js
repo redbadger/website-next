@@ -22,9 +22,13 @@ class PostIndex extends React.Component {
     return (
       <Layout>
         <div className={styles.postList}>
-          {this.props.query.posts.edges.map(edge =>
-            <PostPreview post={edge.node} />
+          {this.props.query.posts.edges.map((edge, index) =>
+            <div>
+              {index == 0 ? null : <hr className={styles.divider} />}
+              <PostPreview post={edge.node} />
+            </div>
           )}
+          <hr className={styles.divider} />
           <button
             className={styles.loadMoreButton}
             onClick={this._loadMore.bind(this)}
