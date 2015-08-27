@@ -1,5 +1,28 @@
 @import '../../responsive.css';
 
+@media (--small) {
+
+  .newsletterColumn {
+    grid-column: 11/12;
+  }
+
+  .footerColumn {
+    grid-column: 5/12;
+    margin-bottom: 20px;
+  }
+}
+
+@media (--large) {
+  .footerColumn, .newsletterColumn {
+    grid-column: 3/12;
+  }
+
+  .footerColumn:first-child {
+    grid-push: 1/12;
+  }
+
+}
+
 .footer {
   composes: blackPaper from "../../backgrounds.css";
   grid-column: 12/12;
@@ -8,16 +31,13 @@
   line-height: 1.25;
 }
 
-.footerColumn {
-  grid-column: 3/12;
-}
-
-.footerColumn:first-child {
-  grid-push: 1/12;
-}
-
 .strong {
   composes: centuryGothicBold from "../../fonts.css";
+}
+
+.newsletter {
+  composes: strong;
+  text-transform: uppercase;
 }
 
 .contactUs {

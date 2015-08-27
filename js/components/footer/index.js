@@ -70,9 +70,9 @@ export default class Footer extends React.Component {
           </ul>
         </div>
 
-        <div className={styles.footerColumn}>
+        <div className={styles.newsletterColumn}>
           <p>
-            <strong className={styles.strong}>Join our newsletter</strong>
+            <strong className={styles.newsletter}>Join our newsletter</strong>
           </p>
           <form
             action="//red-badger.us6.list-manage.com/subscribe/post?u=0ab76cd515&amp;amp;id=b20af1dc4e"
