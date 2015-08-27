@@ -1,6 +1,11 @@
 .post {
   grid-push: 3/12;
   grid-column: 6/12;
+  margin: 1em 0;
+}
+
+.authorTitle {
+  margin: 0.5em 0;
 }
 
 .title {
@@ -9,4 +14,8 @@
   font-size: 1.6em;
   line-height: 1.2;
   text-decoration: none;
+}
+
+.divider {
+  composes: divider from "../../util.css"
 }
