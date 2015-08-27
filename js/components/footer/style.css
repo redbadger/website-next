@@ -1,3 +1,45 @@
+@import '../../responsive.css';
+
 .footer {
+  composes: blackPaper from "../../backgrounds.css";
   grid-column: 12/12;
+  color: white;
+  padding: 1.4em;
+}
+
+.strong {
+  composes: centuryGothicBold from "../../fonts.css";
+}
+
+.contactUs {
+  composes: lightGreen from "../../colors.css";
+  text-decoration: none;
+}
+
+.contactLink {
+  text-decoration: none;
+  color: white;
+}
+
+.contactUsSpan {
+  composes: redBadgerFont from "../../fonts.css";
+  font-size: 0.7em;
+  padding-left: 0.5em;
+}
+
+.redBadgerFont {
+  composes: redBadgerFont from "../../fonts.css";
+  composes: green from "../../colors.css";
+}
+
+@media (--small) {
+  .address {
+    grid-column: 4/12;
+  }
+}
+
+@media (--small) {
+  .address {
+    grid-column: 12/12;
+  }
 }

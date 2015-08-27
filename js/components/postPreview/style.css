@@ -1,9 +1,9 @@
-.author {
-  composes: darkGreen from "../../colors.css";
-}
-
 .titleHeading {
   margin: 0.8em 0;
+}
+
+.author {
+  composes: darkGreen from "../../colors.css";
 }
 
 .titleAnchor {

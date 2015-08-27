@@ -20,7 +20,7 @@ export default class Header extends React.Component {
           </div>
         </div>
 
-        <nav>
+        <nav className={styles.nav}>
           <div className={styles.container}>
             <ul className={styles.headerNav}>
               <li className={styles.navListElement}>

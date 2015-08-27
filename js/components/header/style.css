@@ -6,8 +6,8 @@
     margin: 0;
 }
 
-nav {
-  background: #000 url("/images/backgrounds/blackpaper_bg.jpg");
+.nav {
+  composes: blackPaper from "../../backgrounds.css";
   text-transform: uppercase;
   text-align: center;
   width: 100%;
