@@ -22,7 +22,7 @@ export default class Footer extends React.Component {
 
         <div className={styles.footerColumn}>
           <ul>
-            <li>
+            <li className={styles.contactLinkItem} >
               <a href="mailto:hello@red-badger.com"
                 className={styles.contactLink} >
                 <span className={styles.redBadgerFont} >
@@ -31,7 +31,7 @@ export default class Footer extends React.Component {
                 {' hello@red-badger.com'}
               </a>
             </li>
-            <li>
+            <li className={styles.contactLinkItem} >
               <a href="http://twitter.com/redbadgerteam"
                 className={styles.contactLink} >
                 <span className={styles.redBadgerFont}>
@@ -40,7 +40,7 @@ export default class Footer extends React.Component {
                 {' @redbadgerteam'}
               </a>
             </li>
-            <li>
+            <li className={styles.contactLinkItem} >
               <a href="http://www.facebook.com/RedBadger"
                 className={styles.contactLink} >
                 <span className={styles.redBadgerFont}>
@@ -49,7 +49,7 @@ export default class Footer extends React.Component {
                 {' facebook'}
               </a>
             </li>
-            <li>
+            <li className={styles.contactLinkItem} >
               <a href="http://www.linkedin.com/companies/red-badger"
                 className={styles.contactLink} >
                 <span className={styles.redBadgerFont}>
@@ -58,7 +58,7 @@ export default class Footer extends React.Component {
                 {' linkedin'}
               </a>
             </li>
-            <li>
+            <li className={styles.contactLinkItem} >
               <a href="https://instagram.com/redbadgerteam"
                 className={styles.contactLink} >
                 <span className={styles.redBadgerFont}>
