@@ -11,13 +11,16 @@ class Post extends React.Component {
       <Layout>
         <article className={styles.post}>
           <DateStamp post={post} />
-          <h1 className={styles.title}>{post.title}</h1>
-          <p>
-            {'by '}
-            <Link className={styles.author} to={'/#'}>
-             {`${post.author.firstName} ${post.author.lastName}`}
-            </Link>
-          </p>
+          <hr className={styles.divider} />
+          <div className={styles.authorTitle} >
+            <h1 className={styles.title}>{post.title}</h1>
+            <p>
+              {'by '}
+              <Link className={styles.author} to={'/#'}>
+               {`${post.author.firstName} ${post.author.lastName}`}
+              </Link>
+            </p>
+          </div>
           <div dangerouslySetInnerHTML={ { __html: post.body } } />
         </article>
       </Layout>
