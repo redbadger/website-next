@@ -1,3 +1,16 @@
+/*
+* Global variables used with future CSS syntax
+*/
+
+:root {
+  --green: #6da620;
+  --lightGreen: #009187;
+}
+
+/*
+* Composable classes
+*/
+
 .darkGreenBackground {
   background-color: #005952;
 }

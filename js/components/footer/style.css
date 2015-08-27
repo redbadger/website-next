@@ -1,4 +1,5 @@
 @import '../../responsive.css';
+@import '../../colors.css';
 
 @media (--small) {
 
@@ -41,7 +42,7 @@
 }
 
 .contactUs {
-  composes: lightGreen from "../../colors.css";
+  color: var(--lightGreen);
   text-decoration: none;
 }
 
@@ -62,7 +63,7 @@
 
 .redBadgerFont {
   composes: redBadgerFont from "../../fonts.css";
-  composes: green from "../../colors.css";
+  color: var(--green);
   font-size: 1.5em;
 }
 
