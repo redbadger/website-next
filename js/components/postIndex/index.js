@@ -19,23 +19,22 @@ class PostIndex extends React.Component {
   }
 
   render() {
-    let loadingOrLoadMore;
-
-    if (this.state.loading) {
-      loadingOrLoadMore = <h1 className={styles.loading}>Loading...</h1>
-    } else {
-      loadingOrLoadMore =
-        <button onClick={this._loadMore.bind(this)} >
-         Load more posts
-        </button>
-    }
     return (
       <Layout>
         <div className={styles.postList}>
           {this.props.query.posts.edges.map(edge =>
             <PostPreview post={edge.node} />
           )}
-          {loadingOrLoadMore}
+          <button
+            className={styles.loadMoreButton}
+            onClick={this._loadMore.bind(this)}
+            disabled={this.state.loading} >
+            {this.state.loading ?
+              <div className={styles.spinner}>
+                <div className={styles.bounce1}></div>
+                <div className={styles.bounce2}></div>
+              </div> : 'Load more posts'}
+          </button>
         </div>
       </Layout>
     );
