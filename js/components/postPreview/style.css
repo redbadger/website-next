@@ -1,14 +1,10 @@
-.linkColor {
-  color: #005952;
-}
-
 .author {
-  composes: linkColor;
+  composes: darkGreen from "../../colors.css";
 }
 
 .title {
-  composes: linkColor;
-  font-family: "FranklinGothicHand","CenturyGothicRegular","Helvetica Neue",Helvetica,Arial,sans-serif;
+  composes: darkGreen from "../../colors.css";
+  composes: franklinGothicHand from "../../fonts.css";
   font-size: 1.6em;
   line-height: 1.2;
   text-decoration: none;

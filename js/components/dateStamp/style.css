@@ -1,5 +1,5 @@
 .dateStamp {
-  background: #005952;
+  composes: darkGreenBackground from "../../colors.css";
   display: inline-block;
   font-size: 0.8em;
   color: #fff;
