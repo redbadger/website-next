@@ -155,6 +155,21 @@ var queryType = new GraphQLObjectType({
       resolve: (_, {slug}) => {
         return getPost(slug);
       }
+    },
+    badgerBouncer: {
+      type: new GraphQLNonNull(GraphQLString),
+      args: {
+        timsChars: {
+          type: new GraphQLNonNull(GraphQLString),
+          description: "Enter the characters that were Tim Berners-Lee's big mistake in the web address"
+        }
+      },
+      resolve: (_, {timsChars}) => {
+        if (timsChars === '//') {
+          return 'Correct! The passwords WOBBLYBADGER. Email jobs@red-badger.com.'
+        }
+        return "Wrong. But you've got this far don't give up";
+      }
     }
   }),
 });
