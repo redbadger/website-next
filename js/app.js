@@ -20,10 +20,10 @@ let IndexQueries = {
 
 // The root queries for the widget site
 let PostQueries = {
-  post: Component, {splat} => Relay.QL`
+  post: Component => Relay.QL`
     query {
       node(id: $id) {
-        ${Component.getFragment('post', {splat})},
+        ${Component.getFragment('post')},
       },
     }
   `
