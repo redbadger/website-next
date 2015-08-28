@@ -21,7 +21,7 @@ class Post extends React.Component {
               </Link>
             </p>
           </div>
-          <div dangerouslySetInnerHTML={ { __html: post.body } } />
+          <div className={styles.body} dangerouslySetInnerHTML={ { __html: post.body } } />
         </article>
       </Layout>
     );

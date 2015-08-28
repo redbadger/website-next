@@ -19,3 +19,7 @@
 .divider {
   composes: divider from "../../util.css"
 }
+
+.body p {
+  margin: 0.6em 0;
+}
