@@ -23,7 +23,7 @@ app.use('/graphql', graphQLHTTP((request) => ({
 })));
 
 // App routes
-app.get(['/blog', '/blog/*'], (req,res) => res.render('index.jade'));
+app.get(['/blog', '/blog/:id'], (req,res) => res.render('index.jade'));
 
 app.listen(APP_PORT, () => console.log(
   `Server is now running on http://localhost:${APP_PORT}`

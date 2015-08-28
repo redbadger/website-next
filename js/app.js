@@ -20,10 +20,10 @@ let IndexQueries = {
 
 // The root queries for the widget site
 let PostQueries = {
-  post: Component => Relay.QL`
+  post: Component, {splat} => Relay.QL`
     query {
-      getPostBySlug(slug: $splat) {
-        ${Component.getFragment('post')},
+      node(id: $id) {
+        ${Component.getFragment('post', {splat})},
       },
     }
   `
@@ -40,7 +40,7 @@ React.render(
       />
       <Route
         name="post"
-        path="/blog/*"
+        path="/blog/:id"
         component={Post}
         queries={PostQueries}
       />

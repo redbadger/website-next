@@ -10,7 +10,7 @@ class PostPreview extends React.Component {
       <div>
         <DateStamp post={post} />
         <h3 className={styles.titleHeading}>
-          <Link className={styles.titleAnchor} to={`/blog/${post.slug}`}>
+          <Link className={styles.titleAnchor} to={`/blog/${post.id}`}>
             {post.title}
           </Link>
         </h3>
@@ -29,6 +29,7 @@ export default Relay.createContainer(PostPreview, {
   fragments: {
     post: () => Relay.QL`
       fragment on Post {
+        id
         slug
         title
         author {
