@@ -3,6 +3,7 @@
 import xml2js from 'xml2js';
 import fs from 'fs';
 import path from 'path';
+import sanitizeHtml from 'sanitize-html';
 
 const filename = path.resolve(
   __dirname,
@@ -21,11 +22,35 @@ function getIndicesOf(searchStr, str) {
   return indices;
 }
 
-var previewMaker = function (content) {
+function previewMaker(content) {
   // Return first two paragraphs of text
   var position = getIndicesOf('</p>', content)[2] + 4;
-  return content.slice(0, position);
-};
+  return stripInlineStylesFromImages(content.slice(0, position));
+}
+
+function stripInlineStylesFromImages(content) {
+  // Wordpress dump contains inline styles for images
+  // in posts which we'd like to get rid of
+
+  // SanitizeHTML is very strict by default, so
+  // we're using a bit of custom magic to only
+  // affect img tags
+  return sanitizeHtml(content, {
+    allowedTags: false,
+    allowedAttributes: false,
+    transformTags: {
+      img: (tagName, attribs) => {
+        delete attribs['width'];
+        delete attribs['height'];
+        delete attribs['class'];
+        return {
+          tagName: 'img',
+          attribs: attribs
+        };
+      }
+    }
+  });
+}
 
 const parser = new xml2js.Parser();
 parser.parseString(data, (e, result) => {

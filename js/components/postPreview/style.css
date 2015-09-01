@@ -27,3 +27,7 @@
 .postBody p {
   margin: 10px 0;
 }
+
+.postBody img {
+  width: 100%;
+}
