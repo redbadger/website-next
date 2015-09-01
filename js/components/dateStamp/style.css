@@ -1,3 +1,5 @@
+@import '../../responsive.css';
+
 .dateStamp {
   composes: darkGreenBackground from "../../colors.css";
   display: inline-block;
@@ -8,8 +10,25 @@
   min-width: 3em;
   padding: 0.3em 0;
   border-radius: 5px;
+  position: absolute;
+  left: -70px;
 }
 
 .day {
   font-size: 2em;
+}
+
+@media (--small) {
+  .dateStamp {
+    position: static;
+  }
+
+  .dateStamp div {
+    display: inline-block;
+    margin: 0 3px;
+  }
+
+  .day {
+    font-size: 1em;
+  }
 }

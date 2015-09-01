@@ -1,5 +1,9 @@
 @import '../../colors.css';
 
+.postPreview {
+  position: relative;
+}
+
 .titleHeading {
   margin: 0.8em 0 0;
 }
