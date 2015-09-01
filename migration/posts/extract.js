@@ -8,6 +8,25 @@ const filename = path.resolve(
   __dirname,
   'in/redbadger.wordpress.2015-08-17.xml');
 const data = fs.readFileSync(filename);
+
+function getIndicesOf(searchStr, str) {
+  var startIndex = 0;
+  var searchStrLen = searchStr.length;
+  var index = 0;
+  var indices = [];
+  while ((index = str.indexOf(searchStr, startIndex)) > -1) {
+    indices.push(index);
+    startIndex = index + searchStrLen;
+  }
+  return indices;
+}
+
+var previewMaker = function (content) {
+  // Return first two paragraphs of text
+  var position = getIndicesOf('</p>', content)[1] + 4;
+  return content.slice(0, position);
+};
+
 const parser = new xml2js.Parser();
 parser.parseString(data, (e, result) => {
   const root = result.rss.channel[0];
@@ -28,6 +47,7 @@ parser.parseString(data, (e, result) => {
       publishedAt: new Date(i.pubDate[0]).toISOString(),
       author: i['dc:creator'][0],
       content: i['content:encoded'][0],
+      preview: previewMaker(i['content:encoded'][0]),
       tags: i.category
         .filter(c => c.$.domain === 'post_tag')
         .map(c => c._)

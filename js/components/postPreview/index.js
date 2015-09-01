@@ -20,6 +20,10 @@ class PostPreview extends React.Component {
            {`${post.author.firstName} ${post.author.lastName}`}
           </Link>
         </p>
+        <p dangerouslySetInnerHTML={{__html: post.preview}}/>
+        <Link className={styles.titleAnchor} to={`/blog/${post.id}`}>
+          Read more...
+        </Link>
       </div>
     );
   }
@@ -36,6 +40,7 @@ export default Relay.createContainer(PostPreview, {
           firstName
           lastName
         }
+        preview
         ${DateStamp.getFragment('post')}
       }
     `

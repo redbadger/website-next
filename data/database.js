@@ -12,6 +12,7 @@ Object.keys(postData).forEach(k => {
   let post = new Post();
   post.id = d.url.replace('http://red-badger.com/blog/', '').slice(0, -1);
   post.title = d.title;
+  post.preview = d.preview;
   post.body = d.content;
   post.authorId = d.author;
   post.publishedAt = d.publishedAt;
