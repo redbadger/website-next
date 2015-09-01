@@ -5,11 +5,12 @@
   "main": "extract-posts-xml.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "extract-posts": "../node_modules/.bin/babel-node ./posts/extract.js"
+    "start": "../node_modules/.bin/babel-node ./posts/extract.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "xml2js": "^0.4.10"
+    "xml2js": "^0.4.10",
+    "sanitize-html": "^1.10.0"
   }
 }

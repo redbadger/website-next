@@ -7,19 +7,25 @@ class PostPreview extends React.Component {
   render() {
     let {post} = this.props;
     return (
-      <div>
+      <div className={styles.postPreview}>
         <DateStamp post={post} />
         <h3 className={styles.titleHeading}>
           <Link className={styles.titleAnchor} to={`/blog/${post.id}`}>
             {post.title}
           </Link>
         </h3>
-        <p>
+        <div className={styles.author}>
           {'by '}
-          <Link className={styles.author} to={'/#'}>
+          <Link className={styles.authorLink} to={'/#'}>
            {`${post.author.firstName} ${post.author.lastName}`}
           </Link>
-        </p>
+        </div>
+        <div className={styles.postBody} >
+          <p dangerouslySetInnerHTML={{__html: post.preview}}/>
+        </div>
+        <Link className={styles.titleAnchor} to={`/blog/${post.id}`}>
+          Read more...
+        </Link>
       </div>
     );
   }
@@ -36,6 +42,7 @@ export default Relay.createContainer(PostPreview, {
           firstName
           lastName
         }
+        preview
         ${DateStamp.getFragment('post')}
       }
     `

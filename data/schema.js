@@ -93,6 +93,7 @@ const postType = new GraphQLObjectType({
     id: globalIdField('Post'),
     title: { type: new GraphQLNonNull(GraphQLString) },
     body: { type: new GraphQLNonNull(GraphQLString) },
+    preview: { type: GraphQLString },
     tags: { type: new GraphQLList(GraphQLString) },
     slug: {
       type: new GraphQLNonNull(GraphQLString),
@@ -122,8 +123,6 @@ const sessionType = new GraphQLObjectType({
     }
   })
 });
-
-
 
 
 /**
@@ -156,6 +155,8 @@ var queryType = new GraphQLObjectType({
         return getPost(slug);
       }
     },
+
+    // Easter egg feature for potential recruites
     badgerBouncer: {
       type: new GraphQLNonNull(GraphQLString),
       args: {
