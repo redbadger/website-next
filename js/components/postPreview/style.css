@@ -24,10 +24,18 @@
   text-decoration: none;
 }
 
-.postBody p {
-  margin: 10px 0;
-}
+.postBody {
+  {
+    p {
+      margin: 10px 0;
+    }
 
-.postBody img {
-  width: 100%;
+    img {
+      width: 100%;
+    }
+
+    a {
+      color: var(--darkGreen);
+    }
+  }
 }

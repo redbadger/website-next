@@ -13,6 +13,7 @@ var path = require('path');
 var fs = require('fs');
 
 var grid = require('postcss-grid')(options);
+var nested = require('postcss-nesting');
 
 module.exports = {
   entry: path.resolve(__dirname, 'js', 'app.js'),
@@ -41,6 +42,7 @@ module.exports = {
   },
 
   postcss: [
+      nested,
       grid
     ],
 
@@ -49,6 +51,17 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin('style.css', { allChunks: true })
+    new ExtractTextPlugin('style.css', { allChunks: true }),
+    // `moment` has a contextual require which means **all** of it's locales
+    // are automatically pulled into `webpack`. We can tell it to ignore them
+    // here as we load our own.
+    // https://github.com/webpack/webpack/issues/198
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    // Loading timezone subset using application here: https://github.com/moment/momentjs.com/issues/187
+    // Hopefully moment-timezone will provide their own data-builder soon!
+    new webpack.NormalModuleReplacementPlugin(
+        /moment-timezone\/data\/packed\/latest.json/,
+      path.resolve('./data/timezones.json')
+    )
   ]
 };
