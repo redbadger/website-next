@@ -1,15 +1,25 @@
+@import '../../colors.css';
+
 .titleHeading {
-  margin: 0.8em 0;
+  margin: 0.8em 0 0;
 }
 
 .author {
-  composes: darkGreen from "../../colors.css";
+  margin-top: 0;
+}
+
+.authorLink {
+  color: var(--darkGreen);
 }
 
 .titleAnchor {
-  composes: darkGreen from "../../colors.css";
+  color: var(--darkGreen);
   composes: franklinGothicHand from "../../fonts.css";
   font-size: 1.6em;
   line-height: 1.2;
   text-decoration: none;
+}
+
+.postBody p {
+  margin: 10px 0;
 }

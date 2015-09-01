@@ -23,7 +23,7 @@ function getIndicesOf(searchStr, str) {
 
 var previewMaker = function (content) {
   // Return first two paragraphs of text
-  var position = getIndicesOf('</p>', content)[1] + 4;
+  var position = getIndicesOf('</p>', content)[2] + 4;
   return content.slice(0, position);
 };
 

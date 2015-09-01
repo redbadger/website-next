@@ -7,20 +7,22 @@ class PostPreview extends React.Component {
   render() {
     let {post} = this.props;
     return (
-      <div>
+      <div className={styles.postPreview}>
         <DateStamp post={post} />
         <h3 className={styles.titleHeading}>
           <Link className={styles.titleAnchor} to={`/blog/${post.id}`}>
             {post.title}
           </Link>
         </h3>
-        <p>
+        <div className={styles.author}>
           {'by '}
-          <Link className={styles.author} to={'/#'}>
+          <Link className={styles.authorLink} to={'/#'}>
            {`${post.author.firstName} ${post.author.lastName}`}
           </Link>
-        </p>
-        <p dangerouslySetInnerHTML={{__html: post.preview}}/>
+        </div>
+        <div className={styles.postBody} >
+          <p dangerouslySetInnerHTML={{__html: post.preview}}/>
+        </div>
         <Link className={styles.titleAnchor} to={`/blog/${post.id}`}>
           Read more...
         </Link>
