@@ -20,9 +20,9 @@ class PostPreview extends React.Component {
            {`${post.author.firstName} ${post.author.lastName}`}
           </Link>
         </div>
-        <div className={styles.postBody} >
+        <article className={styles.postBody} >
           <p dangerouslySetInnerHTML={{__html: post.preview}}/>
-        </div>
+        </article>
         <Link className={styles.titleAnchor} to={`/blog/${post.id}`}>
           Read more...
         </Link>
