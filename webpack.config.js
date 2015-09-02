@@ -16,7 +16,7 @@ var grid = require('postcss-grid')(options);
 var nested = require('postcss-nesting');
 
 module.exports = {
-  entry: path.resolve(__dirname, 'js', 'app.js'),
+  entry: path.resolve(__dirname, 'app', 'app.js'),
 
   output: {
     filename: 'app.js',
@@ -47,7 +47,7 @@ module.exports = {
     ],
 
   resolve: {
-    modulesDirectories: ['node_modules', 'js/']
+    modulesDirectories: ['node_modules', 'app/']
   },
 
   plugins: [
