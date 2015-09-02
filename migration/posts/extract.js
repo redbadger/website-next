@@ -25,10 +25,10 @@ function getIndicesOf(searchStr, str) {
 function previewMaker(content) {
   // Return first two paragraphs of text
   var position = getIndicesOf('</p>', content)[2] + 4;
-  return stripInlineStylesFromImages(content.slice(0, position));
+  return sanitizeContent(content.slice(0, position));
 }
 
-function stripInlineStylesFromImages(content) {
+function sanitizeContent(content) {
   // Wordpress dump contains inline styles for images
   // in posts which we'd like to get rid of
 
@@ -71,7 +71,7 @@ parser.parseString(data, (e, result) => {
       url: i.link[0],
       publishedAt: new Date(i.pubDate[0]).toISOString(),
       author: i['dc:creator'][0],
-      content: i['content:encoded'][0],
+      content: sanitizeContent(i['content:encoded'][0]),
       preview: previewMaker(i['content:encoded'][0]),
       tags: i.category
         .filter(c => c.$.domain === 'post_tag')

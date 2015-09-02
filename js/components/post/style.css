@@ -1,7 +1,17 @@
+@import '../../colors.css';
+
 .post {
-  grid-push: 3/12;
-  grid-column: 6/12;
   margin: 1em 0;
+
+  {
+    img {
+      width: 100%;
+    }
+
+    a {
+      color: var(--darkGreen);
+    }
+  }
 }
 
 .authorTitle {

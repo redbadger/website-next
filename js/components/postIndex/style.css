@@ -1,19 +1,5 @@
 @import '../../responsive.css';
 
-@media (--small) {
-  .postList {
-    grid-push: 1/12;
-    grid-column: 10/12;
-  }
-}
-
-@media (--large) {
-  .postList {
-    grid-push: 3/12;
-    grid-column: 6/12;
-  }
-}
-
 .postList {
   margin-top: 1.5em;
 }
@@ -34,7 +20,6 @@
   font-size: 1.1rem;
   margin-bottom: 1.5em;
 }
-
 
 .spinner {
   width: 21px;

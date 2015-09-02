@@ -16,3 +16,15 @@
   line-height: 1;
   -webkit-font-smoothing: antialiased;
 }
+
+article h1, article h2, article h3, article h4, article h5, article h6, .article h1, .article h2, .article h3, .article h4, .article h5, .article h6 {
+  font-family: "CenturyGothicBold","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-weight: none;
+  text-align: left;
+  margin: 1.5em 0 0.8em;
+}
+
+article h2 {
+  font-size: 1.4rem;
+  line-height: 1.25rem;
+}
