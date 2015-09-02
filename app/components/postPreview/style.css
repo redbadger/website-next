@@ -18,7 +18,7 @@
 
 .titleAnchor {
   color: var(--darkGreen);
-  composes: franklinGothicHand from "../../fonts.css";
+  composes: franklinGothicHand from "fonts.css";
   font-size: 1.6em;
   line-height: 1.2;
   text-decoration: none;

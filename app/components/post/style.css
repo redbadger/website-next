@@ -2,6 +2,7 @@
 
 .post {
   margin: 1em 0;
+  position: relative;
 
   {
     img {
@@ -19,15 +20,15 @@
 }
 
 .title {
-  composes: darkGreen from "../../colors.css";
-  composes: franklinGothicHand from "../../fonts.css";
+  color: var(--darkGreen);
+  composes: franklinGothicHand from "fonts.css";
   font-size: 1.6em;
   line-height: 1.2;
   text-decoration: none;
 }
 
 .divider {
-  composes: divider from "../../util.css"
+  composes: divider from "util.css"
 }
 
 .body p {

@@ -33,7 +33,7 @@
 }
 
 .strong {
-  composes: centuryGothicBold from "../../fonts.css";
+  composes: centuryGothicBold from "fonts.css";
 }
 
 .newsletter {
@@ -56,13 +56,13 @@
 }
 
 .contactUsSpan {
-  composes: redBadgerFont from "../../fonts.css";
+  composes: redBadgerFont from "fonts.css";
   font-size: 0.7em;
   padding-left: 0.5em;
 }
 
 .redBadgerFont {
-  composes: redBadgerFont from "../../fonts.css";
+  composes: redBadgerFont from "fonts.css";
   color: var(--green);
   font-size: 1.5em;
 }

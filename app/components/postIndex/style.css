@@ -5,13 +5,13 @@
 }
 
 .divider {
-  composes: divider from "../../util.css";
+  composes: divider from "util.css";
   margin: 1.5em 0;
 }
 
 .loadMoreButton {
-  composes: darkGreenBackground from "../../colors.css";
-  composes: franklinGothicHand from "../../fonts.css";
+  composes: darkGreenBackground from "colors.css";
+  composes: franklinGothicHand from "fonts.css";
   width: 100%;
   color: #fff;
   border: none;

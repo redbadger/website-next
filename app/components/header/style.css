@@ -7,7 +7,7 @@
 }
 
 .nav {
-  composes: blackPaper from "../../backgrounds.css";
+  composes: blackPaper from "backgrounds.css";
   text-transform: uppercase;
   text-align: center;
   width: 100%;
