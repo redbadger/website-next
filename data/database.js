@@ -16,6 +16,7 @@ Object.keys(postData).forEach(k => {
   post.body = d.content;
   post.authorId = d.author;
   post.publishedAt = d.publishedAt;
+  post.kudosCount = 0; // TODO: need persistence
   posts.push(post);
 });
 
@@ -35,5 +36,8 @@ module.exports = {
   }).find(u => u.id === id),
   getPostsByUser: (id) => posts.filter(w => w.authorId === id),
   User,
-  Post
+  Post,
+  updatePostKudosCount: (id) => {
+    this.getPost(id).kudosCount++;
+  }
 };

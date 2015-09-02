@@ -13,6 +13,7 @@ import {
   GraphQLObjectType,
   GraphQLSchema,
   GraphQLString,
+  GraphQLID
 } from 'graphql';
 
 import {
@@ -22,6 +23,7 @@ import {
   fromGlobalId,
   globalIdField,
   nodeDefinitions,
+  mutationWithClientMutationId
 } from 'graphql-relay';
 
 import {
@@ -30,7 +32,8 @@ import {
   getPost,
   getPosts,
   getPostsByUser,
-  getUser
+  getUser,
+  updatePostKudosCount
 } from './database';
 
 /**
@@ -167,7 +170,7 @@ var queryType = new GraphQLObjectType({
       },
       resolve: (_, {timsChars}) => {
         if (timsChars === '//') {
-          return 'Correct! The passwords WOBBLYBADGER. Email jobs@red-badger.com.'
+          return 'Correct! The password is WOBBLYBADGER. Email jobs@red-badger.com.'
         }
         return "Wrong. But you've got this far don't give up";
       }
@@ -175,10 +178,41 @@ var queryType = new GraphQLObjectType({
   }),
 });
 
+var AddArticleKudosMutation = mutationWithClientMutationId({
+  name: 'AddArticleKudos',
+  inputFields: {
+    id: { type: new GraphQLNonNull(GraphQLID) }
+  },
+  outputFields: {
+    post: {
+      type: Post,
+      resolve: ({localPostId}) => getPost(localPostId)
+    }
+  },
+  mutateAndGetPayload: ({id}) => {
+    var localPostId = fromGlobalId(id).id;
+    // Update database
+    updatePostKudosCount(localPostId);
+    return {localPostId};
+  }
+});
+
+/**
+ * This is the type that will be the root of our mutations,
+ * and the entry point into performing writes in our schema.
+ */
+var mutationType = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: () => ({
+    addArticleKudos: AddArticleKudosMutation
+  })
+});
+
 /**
  * Finally, we construct our schema (whose starting query type is the query
  * type we defined above) and export it.
  */
 export var Schema = new GraphQLSchema({
-  query: queryType
+  query: queryType,
+  mutation: mutationType
 });
