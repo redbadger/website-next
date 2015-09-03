@@ -3,8 +3,16 @@ import Layout from '../layouts/general';
 import DateStamp from '../dateStamp';
 import styles from './style.css';
 import {Link} from 'react-router';
+import AddKudosToArticleMutation from '../../mutations/AddKudosToArticleMutation';
 
 class Post extends React.Component {
+
+  _handleKudos = () => {
+    Relay.Store.update(new AddKudosToArticleMutation({
+      post: this.props.post
+    }));
+  }
+
   render() {
     let {post} = this.props;
     return (
@@ -19,6 +27,14 @@ class Post extends React.Component {
               <Link className={styles.author} to={'/#'}>
                {`${post.author.firstName} ${post.author.lastName}`}
               </Link>
+            </p>
+          </div>
+          <div>
+            <p>
+              Kudos count: {post.kudosCount}
+            </p>
+            <p>
+              <button onClick={this._handleKudos}>Kudos</button>
             </p>
           </div>
           <div className={styles.body} dangerouslySetInnerHTML={ { __html: post.body } } />
@@ -38,7 +54,9 @@ export default Relay.createContainer(Post, {
           lastName
         }
         body
+        kudosCount
         ${DateStamp.getFragment('post')}
+        ${AddKudosToArticleMutation.getFragment('post')}
       }
     `
   },

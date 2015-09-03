@@ -38,6 +38,8 @@ module.exports = {
   User,
   Post,
   updatePostKudosCount: (id) => {
-    this.getPost(id).kudosCount++;
+    console.log('UPDATING ' + id);
+    console.log('POST: ' + posts.find(post => post.id === id));
+    posts.find(post => post.id === id).kudosCount += 1;
   }
 };

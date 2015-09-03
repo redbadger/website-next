@@ -13,7 +13,8 @@ import {
   GraphQLObjectType,
   GraphQLSchema,
   GraphQLString,
-  GraphQLID
+  GraphQLID,
+  GraphQLInt
 } from 'graphql';
 
 import {
@@ -106,7 +107,8 @@ const postType = new GraphQLObjectType({
       type: userType,
       resolve: ({authorId}) => getUser(authorId)
     },
-    publishedAt: { type: GraphQLString }
+    publishedAt: { type: GraphQLString },
+    kudosCount: {type: new GraphQLNonNull(GraphQLInt)}
   }),
   interfaces: [nodeInterface]
 });
@@ -178,19 +180,25 @@ var queryType = new GraphQLObjectType({
   }),
 });
 
-var AddArticleKudosMutation = mutationWithClientMutationId({
-  name: 'AddArticleKudos',
+var AddKudosToArticleMutation = mutationWithClientMutationId({
+  name: 'AddKudosToArticle',
   inputFields: {
     id: { type: new GraphQLNonNull(GraphQLID) }
   },
   outputFields: {
     post: {
-      type: Post,
-      resolve: ({localPostId}) => getPost(localPostId)
+      type: postType,
+      resolve: ({localPostId}) => {
+        console.log('RESOLVING ' + localPostId);
+        console.log(getPost(localPostId));
+        return getPost(localPostId);
+      }
     }
   },
   mutateAndGetPayload: ({id}) => {
+    console.log('MUTATING: ' + id);
     var localPostId = fromGlobalId(id).id;
+    console.log('LOCAL POST ID: ' + localPostId);
     // Update database
     updatePostKudosCount(localPostId);
     return {localPostId};
@@ -204,7 +212,7 @@ var AddArticleKudosMutation = mutationWithClientMutationId({
 var mutationType = new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
-    addArticleKudos: AddArticleKudosMutation
+    addKudosToArticle: AddKudosToArticleMutation
   })
 });
 

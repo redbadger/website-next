@@ -1,3 +1,5 @@
+// Mutation for adding kudos to articles
+
 export default class AddKudosToArticleMutation extends Relay.Mutation {
   static fragments = {
     post: () => Relay.QL`
@@ -6,9 +8,11 @@ export default class AddKudosToArticleMutation extends Relay.Mutation {
       }
     `,
   };
+
   getMutation() {
     return Relay.QL`mutation{addKudosToArticle}`;
   }
+
   getFatQuery() {
     return Relay.QL`
       fragment on AddKudosToArticlePayload {
@@ -18,6 +22,7 @@ export default class AddKudosToArticleMutation extends Relay.Mutation {
       }
     `;
   }
+
   getConfigs() {
     return [{
       type: 'FIELDS_CHANGE',
@@ -26,20 +31,22 @@ export default class AddKudosToArticleMutation extends Relay.Mutation {
       },
     }];
   }
+
+  getCollisionKey() {
+    return `check_${this.props.post.id}`;
+  }
+
   getVariables() {
     return {
       id: this.props.post.id,
     };
   }
+
   getOptimisticResponse() {
     return {
-      game: {
-        turnsRemaining: this.props.game.turnsRemaining - 1,
-      },
-      hidingSpot: {
-        id: this.props.hidingSpot.id,
-        hasBeenChecked: true,
-      },
+      post: {
+        kudosCount: this.props.post.kudosCount + 1,
+      }
     };
   }
 }
