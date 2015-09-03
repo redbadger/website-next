@@ -188,17 +188,11 @@ var AddKudosToArticleMutation = mutationWithClientMutationId({
   outputFields: {
     post: {
       type: postType,
-      resolve: ({localPostId}) => {
-        console.log('RESOLVING ' + localPostId);
-        console.log(getPost(localPostId));
-        return getPost(localPostId);
-      }
+      resolve: ({localPostId}) => getPost(localPostId)
     }
   },
   mutateAndGetPayload: ({id}) => {
-    console.log('MUTATING: ' + id);
     var localPostId = fromGlobalId(id).id;
-    console.log('LOCAL POST ID: ' + localPostId);
     // Update database
     updatePostKudosCount(localPostId);
     return {localPostId};

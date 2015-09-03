@@ -5,6 +5,7 @@ export default class AddKudosToArticleMutation extends Relay.Mutation {
     post: () => Relay.QL`
       fragment on Post {
         id,
+        kudosCount
       }
     `,
   };
@@ -45,6 +46,7 @@ export default class AddKudosToArticleMutation extends Relay.Mutation {
   getOptimisticResponse() {
     return {
       post: {
+        id: this.props.post.id,
         kudosCount: this.props.post.kudosCount + 1,
       }
     };

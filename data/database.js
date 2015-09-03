@@ -37,9 +37,6 @@ module.exports = {
   getPostsByUser: (id) => posts.filter(w => w.authorId === id),
   User,
   Post,
-  updatePostKudosCount: (id) => {
-    console.log('UPDATING ' + id);
-    console.log('POST: ' + posts.find(post => post.id === id));
-    posts.find(post => post.id === id).kudosCount += 1;
-  }
+  updatePostKudosCount: (id) =>
+    posts.find(post => post.id === id).kudosCount += 1
 };
