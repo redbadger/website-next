@@ -1,12 +1,12 @@
+import React from 'react'; // eslint-disable-line no-unused-vars
+import ReactDOM from 'react-dom';
+import Relay from 'react-relay';
 import {Router, Route} from 'react-router';
-import relayNestedRoutes from 'relay-nested-routes';
-import BrowserHistory from 'react-router/lib/BrowserHistory';
+import ReactRouterRelay from 'react-router-relay';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import PostIndex from './components/postIndex';
 import Post from './components/post';
-
-const NestedRootContainer = relayNestedRoutes(React, Relay);
-
 
 let IndexQueries = {
   query: Component => Relay.QL`
@@ -29,9 +29,9 @@ let PostQueries = {
   `
 };
 
-React.render(
-  <Router history={new BrowserHistory()}>
-    <Route component={NestedRootContainer}>
+ReactDOM.render(
+  <Router history={createBrowserHistory()} createElement={ReactRouterRelay.createElement}>
+    <Route path="/">
       <Route
         name="home" // added a name to the route
         path="/blog"
@@ -51,7 +51,7 @@ React.render(
 
 // Amy Crimmens wants to advertise for jobs in the console!
 
-console.log('%cWanna work for Red Badger? See if you can get past the Badger Bouncer on our GraphQL route query type...', 'font-size:12px;color:green;text-shadow:0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);');﻿
+console.log('%cWanna work for Red Badger? See if you can get past the Badger Bouncer on our GraphQL route query type...', 'font-size:12px;color:green;text-shadow:0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);');﻿ // eslint-disable-line
 
 if (typeof window !== 'undefined') {
   window.hint = '/graphiql';

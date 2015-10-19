@@ -1,5 +1,6 @@
-// Mutation for adding kudos to articles
+import Relay from 'react-relay';
 
+// Mutation for adding kudos to articles
 export default class AddKudosToArticleMutation extends Relay.Mutation {
   static fragments = {
     post: () => Relay.QL`

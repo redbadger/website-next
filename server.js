@@ -1,6 +1,5 @@
 import express from 'express';
 import graphQLHTTP from 'express-graphql';
-import path from 'path';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import {Schema} from './data/schema';
@@ -31,7 +30,7 @@ app.listen(APP_PORT, () => console.log(
 
 
 var app = new WebpackDevServer(webpack(config), {
-  headers: { "Access-Control-Allow-Origin": "*" },
+  headers: { 'Access-Control-Allow-Origin': '*' },
   contentBase: '/public/',
   publicPath: '/',
   stats: {colors: true},
@@ -41,6 +40,7 @@ var app = new WebpackDevServer(webpack(config), {
 app.use(express.static('public'));
 
 app.use('/node_modules/react', express.static('node_modules/react'));
+app.use('/node_modules/react-dom', express.static('node_modules/react-dom'));
 app.use('/node_modules/react-relay', express.static('node_modules/react-relay'));
 app.use('/node_modules/graphiql', express.static('node_modules/graphiql'));
 

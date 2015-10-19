@@ -13,16 +13,5 @@ html(lang='en')
       // Force `fetch` polyfill to workaround Chrome not displaying request body
       // in developer tools for the native `fetch`.
       self.fetch = null;
-      function warnRelayMissing() {
-      document.body.innerHTML = (
-      '<h2>Could not find relay.js</h2>' +
-      '<p>' +
-      'Be sure to run <code>npm run build</code> ' +
-      'in the <code>relay/</code> directory.' +
-      '</p>'
-      );
-      }
     script(src='http://localhost:8080/webpack-dev-server.js')
-    script(src='http://localhost:8080/node_modules/react/dist/react.min.js')
-    script(src='http://localhost:8080/node_modules/react-relay/dist/relay.js', onerror='warnRelayMissing()')
     script(src='http://localhost:8080/app.js')

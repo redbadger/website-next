@@ -10,7 +10,6 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var path = require('path');
-var fs = require('fs');
 
 var grid = require('postcss-grid')(options);
 var nested = require('postcss-nesting');
@@ -42,9 +41,9 @@ module.exports = {
   },
 
   postcss: [
-      nested,
-      grid
-    ],
+    nested,
+    grid
+  ],
 
   resolve: {
     modulesDirectories: ['node_modules', 'app/']

@@ -8,13 +8,15 @@
  */
 
 import {
+  GraphQLBoolean, // eslint-disable-line
+  GraphQLFloat, // eslint-disable-line
+  GraphQLID,
+  GraphQLInt,
   GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLSchema,
-  GraphQLString,
-  GraphQLID,
-  GraphQLInt
+  GraphQLString
 } from 'graphql';
 
 import {
@@ -167,14 +169,14 @@ var queryType = new GraphQLObjectType({
       args: {
         timsChars: {
           type: new GraphQLNonNull(GraphQLString),
-          description: "Enter the characters that were Tim Berners-Lee's big mistake in the web address"
+          description: 'Enter the characters that were Tim Berners-Lee\'s big mistake in the web address'
         }
       },
       resolve: (_, {timsChars}) => {
         if (timsChars === '//') {
-          return 'Correct! The password is WOBBLYBADGER. Email jobs@red-badger.com.'
+          return 'Correct! The password is WOBBLYBADGER. Email jobs@red-badger.com.';
         }
-        return "Wrong. But you've got this far don't give up";
+        return 'Wrong. But you\'ve got this far don\'t give up';
       }
     }
   }),

@@ -1,4 +1,5 @@
-import 'babel/polyfill';
+import React from 'react';
+import Relay from 'react-relay';
 import {Link} from 'react-router';
 import styles from './style.css';
 import DateStamp from '../dateStamp';

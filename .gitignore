@@ -3,3 +3,4 @@ npm-debug.log
 public/
 data/schema.graphql
 data/schema.json
+.DS_Store
