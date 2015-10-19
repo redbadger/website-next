@@ -1,4 +1,5 @@
-import 'babel/polyfill';
+import React from 'react';
+import Relay from 'react-relay';
 import PostPreview from '../postPreview';
 import Layout from '../layouts/general';
 import styles from './style.css';
@@ -24,7 +25,7 @@ class PostIndex extends React.Component {
         <div className={styles.postList}>
           {this.props.query.posts.edges.map((edge, index) =>
             <div>
-              {index == 0 ? null : <hr className={styles.divider} />}
+              {index === 0 ? null : <hr className={styles.divider} />}
               <PostPreview post={edge.node} />
             </div>
           )}
