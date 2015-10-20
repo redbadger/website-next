@@ -21,8 +21,10 @@ class PostPreview extends React.Component {
            {`${post.author.firstName} ${post.author.lastName}`}
           </Link>
         </div>
-        <article className={styles.postBody} >
-          <p dangerouslySetInnerHTML={{ __html: post.preview }}/>
+
+        <article className={styles.postBody}>
+          <p dangerouslySetInnerHTML={{ __html: post.preview }} />
+
         </article>
         <Link className={styles.titleAnchor} to={`/blog/${post.id}`}>
           Read more...
