@@ -46,6 +46,6 @@ export default Relay.createContainer(PostPreview, {
         preview
         ${DateStamp.getFragment('post')}
       }
-    `
-  }
+    `,
+  },
 });

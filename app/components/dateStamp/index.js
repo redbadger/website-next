@@ -22,6 +22,6 @@ export default Relay.createContainer(DateStamp, {
       fragment on Post {
         publishedAt
       }
-    `
-  }
+    `,
+  },
 });

@@ -10,7 +10,7 @@ class PostIndex extends React.Component {
   _loadMore() {
     this.setState({ loading: true }, () => {
       this.props.relay.setVariables({
-        count: this.props.relay.variables.count + 5
+        count: this.props.relay.variables.count + 5,
       }, (readyState) => { // this gets called twice https://goo.gl/ZsQ3Dy
         if (readyState.done) {
           this.setState({ loading: false });
@@ -59,6 +59,6 @@ export default Relay.createContainer(PostIndex, {
           }
         }
       }
-    `
-  }
+    `,
+  },
 });

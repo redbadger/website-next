@@ -9,7 +9,7 @@ import AddKudosToArticleMutation from '../../mutations/AddKudosToArticleMutation
 class Post extends React.Component {
   _handleKudos = () => {
     Relay.Store.update(new AddKudosToArticleMutation({
-      post: this.props.post
+      post: this.props.post,
     }));
   }
 
@@ -58,6 +58,6 @@ export default Relay.createContainer(Post, {
         ${DateStamp.getFragment('post')}
         ${AddKudosToArticleMutation.getFragment('post')}
       }
-    `
-  }
+    `,
+  },
 });

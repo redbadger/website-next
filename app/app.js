@@ -15,7 +15,7 @@ let IndexQueries = {
         ${Component.getFragment('query')}
       }
     }
-  `
+  `,
 };
 
 // The root queries for the widget site
@@ -26,7 +26,7 @@ let PostQueries = {
         ${Component.getFragment('post')},
       },
     }
-  `
+  `,
 };
 
 var Application = (

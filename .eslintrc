@@ -13,6 +13,7 @@
   "rules": {
     "object-curly-spacing": [2, "always"],
     "no-console": 0,
-    "react/jsx-uses-react": 1
+    "react/jsx-uses-react": 1,
+    "comma-dangle": [2, "always-multiline"]
   }
 }
