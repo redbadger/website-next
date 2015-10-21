@@ -38,5 +38,5 @@ module.exports = {
   User,
   Post,
   updatePostKudosCount: (id) =>
-    posts.find(post => post.id === id).kudosCount += 1
+    posts.find(post => post.id === id).kudosCount += 1,
 };

@@ -32,7 +32,7 @@ class PostIndex extends React.Component {
           <hr className={styles.divider} />
           <button
             className={styles.loadMoreButton}
-            onClick={this._loadMore.bind(this)}
+            onClick={::this._loadMore}
             disabled={this.state.loading} >
             {this.state.loading ?
               <div className={styles.spinner}>

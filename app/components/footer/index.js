@@ -6,7 +6,7 @@ export default class Footer extends React.Component {
     return (
       <footer className={styles.footer}>
         <div className={styles.footerColumn}>
-          <p>
+          <div>
             <strong className={styles.strong}>
               Red Badger Consulting Limited
             </strong>
@@ -18,7 +18,7 @@ export default class Footer extends React.Component {
                 >
               </span>
             </a>
-          </p>
+          </div>
         </div>
 
         <div className={styles.footerColumn}>

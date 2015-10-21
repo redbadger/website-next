@@ -15,6 +15,7 @@ class Post extends React.Component {
 
   render() {
     let { post } = this.props;
+
     return (
       <Layout>
         <article className={styles.post}>
