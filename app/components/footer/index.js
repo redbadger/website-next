@@ -85,15 +85,15 @@ export default class Footer extends React.Component {
             <div className={styles.inputContainer}>
               <input type="text" id="mce-EMAIL" name="EMAIL"
                 placeholder="Enter your email" className={styles.inputText} />
-              <input type="submit" value="Subscribe" class="newsletter-submit"
+              <input type="submit" value="Subscribe" className="newsletter-submit"
                 className={styles.inputSubmit} />
               <div className={styles.botCatcher}>
                 <input type="text" name="b_0ab76cd515_b20af1dc4e"
-                  tabindex="-1" value=""/>
+                  tabIndex="-1" value=""/>
               </div>
             </div>
           </form>
-          <div class="copyright"><span>© Red Badger All Rights Reserved</span>
+          <div className="copyright"><span>© Red Badger All Rights Reserved</span>
           </div>
         </div>
       </footer>

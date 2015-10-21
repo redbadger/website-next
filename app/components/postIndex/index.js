@@ -24,7 +24,7 @@ class PostIndex extends React.Component {
       <Layout>
         <div className={styles.postList}>
           {this.props.query.posts.edges.map((edge, index) =>
-            <div>
+            <div key={index}>
               {index == 0 ? null : <hr className={styles.divider} />}
               <PostPreview post={edge.node} />
             </div>
