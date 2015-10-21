@@ -1,12 +1,12 @@
-import 'babel/polyfill';
+import React from 'react';
+import Relay from 'react-relay';
 import Layout from '../layouts/general';
 import DateStamp from '../dateStamp';
 import styles from './style.css';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 import AddKudosToArticleMutation from '../../mutations/AddKudosToArticleMutation';
 
 class Post extends React.Component {
-
   _handleKudos = () => {
     Relay.Store.update(new AddKudosToArticleMutation({
       post: this.props.post
@@ -14,7 +14,7 @@ class Post extends React.Component {
   }
 
   render() {
-    let {post} = this.props;
+    let { post } = this.props;
     return (
       <Layout>
         <article className={styles.post}>
@@ -59,5 +59,5 @@ export default Relay.createContainer(Post, {
         ${AddKudosToArticleMutation.getFragment('post')}
       }
     `
-  },
+  }
 });

@@ -1,3 +1,4 @@
+import Relay from 'react-relay';
 // Mutation for adding kudos to articles
 
 export default class AddKudosToArticleMutation extends Relay.Mutation {
@@ -7,7 +8,7 @@ export default class AddKudosToArticleMutation extends Relay.Mutation {
         id,
         kudosCount
       }
-    `,
+    `
   };
 
   getMutation() {
@@ -28,8 +29,8 @@ export default class AddKudosToArticleMutation extends Relay.Mutation {
     return [{
       type: 'FIELDS_CHANGE',
       fieldIDs: {
-        post: this.props.post.id,
-      },
+        post: this.props.post.id
+      }
     }];
   }
 
@@ -39,7 +40,7 @@ export default class AddKudosToArticleMutation extends Relay.Mutation {
 
   getVariables() {
     return {
-      id: this.props.post.id,
+      id: this.props.post.id
     };
   }
 
@@ -47,7 +48,7 @@ export default class AddKudosToArticleMutation extends Relay.Mutation {
     return {
       post: {
         id: this.props.post.id,
-        kudosCount: this.props.post.kudosCount + 1,
+        kudosCount: this.props.post.kudosCount + 1
       }
     };
   }

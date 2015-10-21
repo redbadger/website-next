@@ -10,7 +10,6 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var path = require('path');
-var fs = require('fs');
 
 var grid = require('postcss-grid')(options);
 var nested = require('postcss-nesting');
@@ -18,22 +17,34 @@ var nested = require('postcss-nesting');
 module.exports = {
   entry: path.resolve(__dirname, 'app', 'app.js'),
 
+  eslint: {
+    configFile: './.eslintrc'
+  },
+
   output: {
     filename: 'app.js',
     path: path.resolve('./public'),
     publicPath: '/',
     libraryTarget: 'umd'
   },
+
   cssnext: {
-    browsers: browsers,
+    browsers: browsers
   },
 
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      }
+    ],
     loaders: [
       {
         test: /\.js$/,
         loader: 'babel',
-        query: {stage: 0, plugins: ['./build/babelRelayPlugin']}
+        query: { stage: 0, plugins: ['./build/babelRelayPlugin'] }
       },
       { test: /\.css$/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader!cssnext-loader')
@@ -42,9 +53,9 @@ module.exports = {
   },
 
   postcss: [
-      nested,
-      grid
-    ],
+    nested,
+    grid
+  ],
 
   resolve: {
     modulesDirectories: ['node_modules', 'app/']

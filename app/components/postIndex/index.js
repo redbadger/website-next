@@ -1,4 +1,5 @@
-import 'babel/polyfill';
+import React from 'react';
+import Relay from 'react-relay';
 import PostPreview from '../postPreview';
 import Layout from '../layouts/general';
 import styles from './style.css';
@@ -7,12 +8,12 @@ class PostIndex extends React.Component {
   state = { loading: false };
 
   _loadMore() {
-    this.setState({loading: true}, () => {
+    this.setState({ loading: true }, () => {
       this.props.relay.setVariables({
         count: this.props.relay.variables.count + 5
       }, (readyState) => { // this gets called twice https://goo.gl/ZsQ3Dy
         if (readyState.done) {
-          this.setState({loading: false});
+          this.setState({ loading: false });
         }
       });
     });
@@ -46,7 +47,7 @@ class PostIndex extends React.Component {
 }
 
 export default Relay.createContainer(PostIndex, {
-  initialVariables: {count: 5},
+  initialVariables: { count: 5 },
   fragments: {
     query: () => Relay.QL`
       fragment on Session {
@@ -58,6 +59,6 @@ export default Relay.createContainer(PostIndex, {
           }
         }
       }
-    `,
-  },
+    `
+  }
 });

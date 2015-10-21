@@ -1,4 +1,5 @@
-import 'babel/polyfill';
+import React from 'react';
+import Relay from 'react-relay';
 import styles from './style.css';
 import moment from 'moment';
 
@@ -21,6 +22,6 @@ export default Relay.createContainer(DateStamp, {
       fragment on Post {
         publishedAt
       }
-    `,
-  },
+    `
+  }
 });

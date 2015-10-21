@@ -1,6 +1,5 @@
 import express from 'express';
 import graphQLHTTP from 'express-graphql';
-import path from 'path';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import {Schema} from './data/schema';
@@ -29,12 +28,11 @@ app.listen(APP_PORT, () => console.log(
   `Server is now running on http://localhost:${APP_PORT}`
 ));
 
-
 var app = new WebpackDevServer(webpack(config), {
   headers: { "Access-Control-Allow-Origin": "*" },
   contentBase: '/public/',
   publicPath: '/',
-  stats: {colors: true},
+  stats: { colors: true },
   hot: true
 });
 // Serve static resources
