@@ -49,7 +49,7 @@ export default class AddKudosToArticleMutation extends Relay.Mutation {
       post: {
         id: this.props.post.id,
         kudosCount: this.props.post.kudosCount + 1,
-      }
+      },
     };
   }
 }

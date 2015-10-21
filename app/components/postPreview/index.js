@@ -1,12 +1,12 @@
 import React from 'react';
 import Relay from 'react-relay';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 import styles from './style.css';
 import DateStamp from '../dateStamp';
 
 class PostPreview extends React.Component {
   render() {
-    let {post} = this.props;
+    let { post } = this.props;
     return (
       <div className={styles.postPreview}>
         <DateStamp post={post} />
@@ -22,7 +22,7 @@ class PostPreview extends React.Component {
           </Link>
         </div>
         <article className={styles.postBody} >
-          <p dangerouslySetInnerHTML={{__html: post.preview}}/>
+          <p dangerouslySetInnerHTML={{ __html: post.preview }}/>
         </article>
         <Link className={styles.titleAnchor} to={`/blog/${post.id}`}>
           Read more...
@@ -46,6 +46,6 @@ export default Relay.createContainer(PostPreview, {
         preview
         ${DateStamp.getFragment('post')}
       }
-    `
+    `,
   },
 });

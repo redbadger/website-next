@@ -8,12 +8,12 @@ class PostIndex extends React.Component {
   state = { loading: false };
 
   _loadMore() {
-    this.setState({loading: true}, () => {
+    this.setState({ loading: true }, () => {
       this.props.relay.setVariables({
-        count: this.props.relay.variables.count + 5
+        count: this.props.relay.variables.count + 5,
       }, (readyState) => { // this gets called twice https://goo.gl/ZsQ3Dy
         if (readyState.done) {
-          this.setState({loading: false});
+          this.setState({ loading: false });
         }
       });
     });
@@ -24,8 +24,8 @@ class PostIndex extends React.Component {
       <Layout>
         <div className={styles.postList}>
           {this.props.query.posts.edges.map((edge, index) =>
-            <div>
-              {index === 0 ? null : <hr className={styles.divider} />}
+            <div key={index}>
+              {index == 0 ? null : <hr className={styles.divider} />}
               <PostPreview post={edge.node} />
             </div>
           )}
@@ -47,7 +47,7 @@ class PostIndex extends React.Component {
 }
 
 export default Relay.createContainer(PostIndex, {
-  initialVariables: {count: 5},
+  initialVariables: { count: 5 },
   fragments: {
     query: () => Relay.QL`
       fragment on Session {

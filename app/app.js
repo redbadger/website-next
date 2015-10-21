@@ -1,7 +1,7 @@
-import React from 'react'; // eslint-disable-line no-unused-vars
+import React from 'react';
 import ReactDOM from 'react-dom';
 import Relay from 'react-relay';
-import {Router, Route} from 'react-router';
+import { Router, Route } from 'react-router';
 import ReactRouterRelay from 'react-router-relay';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
@@ -15,7 +15,7 @@ let IndexQueries = {
         ${Component.getFragment('query')}
       }
     }
-  `
+  `,
 };
 
 // The root queries for the widget site
@@ -26,10 +26,10 @@ let PostQueries = {
         ${Component.getFragment('post')},
       },
     }
-  `
+  `,
 };
 
-ReactDOM.render(
+var Application = (
   <Router history={createBrowserHistory()} createElement={ReactRouterRelay.createElement}>
     <Route path="/">
       <Route
@@ -45,14 +45,14 @@ ReactDOM.render(
         queries={PostQueries}
       />
     </Route>
-  </Router>,
-  document.getElementById('root')
+  </Router>
 );
+
+ReactDOM.render(Application, document.getElementById('root'));
 
 // Amy Crimmens wants to advertise for jobs in the console!
 
-console.log('%cWanna work for Red Badger? See if you can get past the Badger Bouncer on our GraphQL route query type...', 'font-size:12px;color:green;text-shadow:0 1px 0 #ccc,0 2px 0 #c9c9c9,0 3px 0 #bbb,0 4px 0 #b9b9b9,0 5px 0 #aaa,0 6px 1px rgba(0,0,0,.1),0 0 5px rgba(0,0,0,.1),0 1px 3px rgba(0,0,0,.3),0 3px 5px rgba(0,0,0,.2),0 5px 10px rgba(0,0,0,.25),0 10px 10px rgba(0,0,0,.2),0 20px 20px rgba(0,0,0,.15);');﻿ // eslint-disable-line
-
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined' && typeof console !== 'undefined') {
+  console.log('Wanna work for Red Badger? See if you can get past the Badger Bouncer on our GraphQL route query type...');
   window.hint = '/graphiql';
 }

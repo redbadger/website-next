@@ -28,12 +28,11 @@ app.listen(APP_PORT, () => console.log(
   `Server is now running on http://localhost:${APP_PORT}`
 ));
 
-
 var app = new WebpackDevServer(webpack(config), {
   headers: { 'Access-Control-Allow-Origin': '*' },
   contentBase: '/public/',
   publicPath: '/',
-  stats: {colors: true},
+  stats: { colors: true },
   hot: true
 });
 // Serve static resources

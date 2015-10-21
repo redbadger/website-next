@@ -3,19 +3,18 @@ import Relay from 'react-relay';
 import Layout from '../layouts/general';
 import DateStamp from '../dateStamp';
 import styles from './style.css';
-import {Link} from 'react-router';
+import { Link } from 'react-router';
 import AddKudosToArticleMutation from '../../mutations/AddKudosToArticleMutation';
 
 class Post extends React.Component {
-
   _handleKudos = () => {
     Relay.Store.update(new AddKudosToArticleMutation({
-      post: this.props.post
+      post: this.props.post,
     }));
   }
 
   render() {
-    let {post} = this.props;
+    let { post } = this.props;
     return (
       <Layout>
         <article className={styles.post}>
@@ -59,6 +58,6 @@ export default Relay.createContainer(Post, {
         ${DateStamp.getFragment('post')}
         ${AddKudosToArticleMutation.getFragment('post')}
       }
-    `
+    `,
   },
 });
