@@ -19,12 +19,10 @@ async function parseWPPostContent(content) { /* eslint-ignore no-unused-vars */
   const gists = content.match(/\[gist id="([^"]+)"[^\]]*\]/g);
   if (gists !== null) {
     gists.forEach((gist) => {
-      const gistId = /\[gist id="([^"]+)"( file="([^"]+)")?\]/.exec(gist);
-      if (gistId[1]) console.log('gist_id', gistId[1]);
-      if (gistId[3]) console.log('file', gistId[3]);
-      // content = content.replace()
+      content = content.replace(gist, 'haha im a gist');
     });
   }
+  return sanitizeContent(content);
 }
 
 function getWPAuthors(authors) {
@@ -38,15 +36,15 @@ function getWPAuthors(authors) {
 }
 
 async function getWPPosts(posts) {
-  return posts
+  return await* posts
     .filter(i => i['wp:status'][0] === 'publish')
-    .map(i => ({
+    .map(async (i) => ({
       title: i.title[0],
       slug: i['wp:post_name'][0],
       url: i.link[0],
       publishedAt: new Date(i.pubDate[0]).toISOString(),
       author: i['dc:creator'][0],
-      content: sanitizeContent(i['content:encoded'][0]),
+      content: await parseWPPostContent(i['content:encoded'][0]),
       preview: previewMaker(i['content:encoded'][0]),
       tags: i.category
         .filter(c => c.$.domain === 'post_tag')
@@ -67,10 +65,10 @@ async function extractWPContent() {
   let to = (f) => path.resolve(__dirname, 'out/' + f);
   let stringify = (json) => JSON.stringify(json, null, 2);
 
-  return Promise.all([
+  return await* [
     fs.writeFile(to('authors.json'), stringify(authors)),
     ...posts.map(p => fs.writeFile(to(`posts/${p.slug}.json`), stringify(p))),
-  ]);
+  ];
 }
 
 function getIndicesOf(searchStr, str) {
