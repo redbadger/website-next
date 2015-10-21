@@ -1,14 +1,12 @@
-import 'babel/polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Relay from 'react-relay';
 import { Router, Route } from 'react-router';
-import relayNestedRoutes from 'relay-nested-routes';
-import BrowserHistory from 'react-router/lib/BrowserHistory';
+import ReactRouterRelay from 'react-router-relay';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
+
 import PostIndex from './components/postIndex';
 import Post from './components/post';
-
-const NestedRootContainer = relayNestedRoutes(React, Relay);
 
 let IndexQueries = {
   query: Component => Relay.QL`
@@ -32,8 +30,8 @@ let PostQueries = {
 };
 
 ReactDOM.render(
-  <Router history={new BrowserHistory()}>
-    <Route component={NestedRootContainer}>
+  <Router history={createBrowserHistory()} createElement={ReactRouterRelay.createElement}>
+    <Route path="/">
       <Route
         name="home" // added a name to the route
         path="/blog"
