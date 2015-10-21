@@ -1,3 +1,4 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
 import Relay from 'react-relay';
 import { Router, Route } from 'react-router';
@@ -28,7 +29,7 @@ let PostQueries = {
   `
 };
 
-ReactDOM.render(
+var Application = (
   <Router history={createBrowserHistory()} createElement={ReactRouterRelay.createElement}>
     <Route path="/">
       <Route
@@ -44,9 +45,10 @@ ReactDOM.render(
         queries={PostQueries}
       />
     </Route>
-  </Router>,
-  document.getElementById('root')
+  </Router>
 );
+
+ReactDOM.render(Application, document.getElementById('root'));
 
 // Amy Crimmens wants to advertise for jobs in the console!
 
