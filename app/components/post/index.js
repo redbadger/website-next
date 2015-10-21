@@ -15,6 +15,8 @@ class Post extends React.Component {
 
   render() {
     let { post } = this.props;
+    post.body = post.body.replace(/\[gist id=&quot;(.*)&quot;\]/g, '<script src="http://gist.github.com/$1.js"></script>');
+
     return (
       <Layout>
         <article className={styles.post}>
