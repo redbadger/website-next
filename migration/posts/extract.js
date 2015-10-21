@@ -4,6 +4,8 @@ import xml2js from 'xml2js';
 import fs from 'fs.promised';
 import path from 'path';
 import sanitizeHtml from 'sanitize-html';
+import fetch from 'node-fetch';
+import { highlight } from 'highlight.js';
 
 function parseXML(xml) {
   return new Promise((res, rej) => {
@@ -15,11 +17,34 @@ function parseXML(xml) {
   });
 }
 
+function delay(time) {
+  return new Promise((res) => setTimeout(res, time));
+}
+
 async function parseWPPostContent(content) { /* eslint-ignore no-unused-vars */
   const gists = content.match(/\[gist id="([^"]+)"[^\]]*\]/g);
   if (gists !== null) {
-    gists.forEach((gist) => {
-      content = content.replace(gist, 'haha im a gist');
+    await* gists.map(async (gist, index) => {
+      await delay(index * 100);
+      const gistInfo = /\[gist id="([^"]+)"( file="([^"]+)")?\]/.exec(gist);
+      try {
+        const gistJson = await (await fetch(`https://api.github.com/gists/${gistInfo[1]}`, {
+          method: 'GET',
+          headers: { Authorization: 'token 26b3766c35d2374f2ec3bcaeffb2abe53745e15f' },
+        })).json();
+        if (gistJson && gistInfo[3]) { // replace for just the specified filename
+          const code = highlight(gistJson.files[gistInfo[3]].language, gistJson.files[gistInfo[3]].content).value;
+          content = content.replace(gist, '<pre>' + code + '</pre>');
+        } else { // replace with all files within the gist
+          let allFilesTogether = '';
+          Object.keys(gistJson.files).forEach(filename => {
+            allFilesTogether += highlight(gistJson.files[filename].language, gistJson.files[filename].content).value;
+          });
+          content = content.replace(gist, '<pre>' + allFilesTogether + '</pre>');
+        }
+      } catch (ex) {
+        console.error(ex);
+      }
     });
   }
   return sanitizeContent(content);
