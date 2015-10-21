@@ -5,7 +5,7 @@
   "repository": "facebook/relay-starter-kit",
   "version": "0.1.0",
   "scripts": {
-    "test": "webpack",
+    "test": "gulp test",
     "start": "npm run update-schema && webpack && babel-node ./server.js",
     "lint": "eslint ./app/**/*.js ./data/*.js ./scripts/*.js",
     "update-schema": "babel-node ./scripts/updateSchema.js"
