@@ -6,6 +6,7 @@ import path from 'path';
 import sanitizeHtml from 'sanitize-html';
 import fetch from 'node-fetch';
 import { highlight } from 'highlight.js';
+import { parseDOM as htmlparser } from 'htmlparser2';
 
 function parseXML(xml) {
   return new Promise((res, rej) => {
@@ -17,10 +18,6 @@ function parseXML(xml) {
   });
 }
 
-function delay(time) {
-  return new Promise((res) => setTimeout(res, time));
-}
-
 async function parseWPPostContent(content) { /* eslint-ignore no-unused-vars */
   const gists = content.match(/\[gist id="([^"]+)"[^\]]*\]/g);
   if (gists !== null) {
@@ -28,17 +25,18 @@ async function parseWPPostContent(content) { /* eslint-ignore no-unused-vars */
       await delay(index * 100);
       const gistInfo = /\[gist id="([^"]+)"( file="([^"]+)")?\]/.exec(gist);
       try {
+        console.log(`Fetching gist ${gistInfo[1]}...`);
         const gistJson = await (await fetch(`https://api.github.com/gists/${gistInfo[1]}`, {
           method: 'GET',
           headers: { Authorization: 'token 26b3766c35d2374f2ec3bcaeffb2abe53745e15f' },
         })).json();
         if (gistJson && gistInfo[3]) { // replace for just the specified filename
-          const code = highlight(gistJson.files[gistInfo[3]].language, gistJson.files[gistInfo[3]].content).value;
+          const code = highlight(getCodeLanguage(gistJson.files[gistInfo[3]].language), gistJson.files[gistInfo[3]].content).value;
           content = content.replace(gist, '<pre>' + code + '</pre>');
-        } else { // replace with all files within the gist
+        } else if (gistJson) { // replace with all files within the gist
           let allFilesTogether = '';
           Object.keys(gistJson.files).forEach(filename => {
-            allFilesTogether += highlight(gistJson.files[filename].language, gistJson.files[filename].content).value;
+            allFilesTogether += highlight(getCodeLanguage(gistJson.files[filename].language), gistJson.files[filename].content).value;
           });
           content = content.replace(gist, '<pre>' + allFilesTogether + '</pre>');
         }
@@ -48,6 +46,38 @@ async function parseWPPostContent(content) { /* eslint-ignore no-unused-vars */
     });
   }
   return sanitizeContent(content);
+}
+
+async function parseWPPostContentToJson(content) {
+  const traverseAndRemoveCircular = (tree) => {
+    return tree.map(element => {
+      delete element.parent;
+      delete element.next;
+      delete element.prev;
+      if (Array.isArray(element.children)) {
+        element.children = traverseAndRemoveCircular(element.children);
+      }
+      return element;
+    });
+  }
+
+  return traverseAndRemoveCircular(htmlparser(content));
+}
+
+function delay(time) {
+  return new Promise((res) => setTimeout(res, time));
+}
+
+function getCodeLanguage(language) {
+  const transform = {
+    'shell': 'bash',
+  };
+  if (language && transform[language.toLowerCase()]) {
+    return transform[language.toLowerCase()];
+  } else if (language) {
+    return language.toLowerCase();
+  }
+  return null;
 }
 
 function getWPAuthors(authors) {
@@ -69,7 +99,7 @@ async function getWPPosts(posts) {
       url: i.link[0],
       publishedAt: new Date(i.pubDate[0]).toISOString(),
       author: i['dc:creator'][0],
-      content: await parseWPPostContent(i['content:encoded'][0]),
+      content: await parseWPPostContentToJson(i['content:encoded'][0]),
       preview: previewMaker(i['content:encoded'][0]),
       tags: i.category
         .filter(c => c.$.domain === 'post_tag')

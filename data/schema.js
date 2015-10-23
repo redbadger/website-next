@@ -16,7 +16,8 @@ import {
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLSchema,
-  GraphQLString
+  GraphQLString,
+  GraphQLScalarType,
 } from 'graphql';
 
 import {
@@ -26,7 +27,7 @@ import {
   fromGlobalId,
   globalIdField,
   nodeDefinitions,
-  mutationWithClientMutationId
+  mutationWithClientMutationId,
 } from 'graphql-relay';
 
 import {
@@ -36,7 +37,7 @@ import {
   getPosts,
   getPostsByUser,
   getUser,
-  updatePostKudosCount
+  updatePostKudosCount,
 } from './database';
 
 /**
@@ -45,9 +46,9 @@ import {
  * The first method defines the way we resolve an ID to its object.
  * The second defines the way we resolve an object to its GraphQL type.
  */
-var {nodeInterface, nodeField} = nodeDefinitions(
+var { nodeInterface, nodeField } = nodeDefinitions(
   (globalId) => {
-    var {type, id} = fromGlobalId(globalId);
+    var { type, id } = fromGlobalId(globalId);
     if (type === 'Post') {
       return getPost(id);
     } else if (type === 'User') {
@@ -82,13 +83,13 @@ const userType = new GraphQLObjectType({
       type: postConnection,
       description: 'The users posts',
       args: connectionArgs,
-      resolve: ({id}, args) => connectionFromArray(
+      resolve: ({ id }, args) => connectionFromArray(
         getPostsByUser(id),
         args
-      )
-    }
+      ),
+    },
   }),
-  interfaces: [nodeInterface]
+  interfaces: [nodeInterface],
 });
 
 
@@ -98,21 +99,27 @@ const postType = new GraphQLObjectType({
   fields: () => ({
     id: globalIdField('Post'),
     title: { type: new GraphQLNonNull(GraphQLString) },
-    body: { type: new GraphQLNonNull(GraphQLString) },
+    body: { type: new GraphQLScalarType({
+      name: 'Body',
+      description: 'The JSON schema representing the body of an article',
+      serialize: (value) => value,
+      parseValue: (value) => value,
+      parseLiteral: (value) => value,
+    }) },
     preview: { type: GraphQLString },
     tags: { type: new GraphQLList(GraphQLString) },
     slug: {
       type: new GraphQLNonNull(GraphQLString),
-      resolve: ({id}) => id
+      resolve: ({ id }) => id,
     },
     author: {
       type: userType,
-      resolve: ({authorId}) => getUser(authorId)
+      resolve: ({ authorId }) => getUser(authorId),
     },
     publishedAt: { type: GraphQLString },
-    kudosCount: {type: new GraphQLNonNull(GraphQLInt)}
+    kudosCount: { type: new GraphQLNonNull(GraphQLInt) },
   }),
-  interfaces: [nodeInterface]
+  interfaces: [nodeInterface],
 });
 
 const sessionType = new GraphQLObjectType({
@@ -120,23 +127,23 @@ const sessionType = new GraphQLObjectType({
   description: 'Temporary intermediate object while issue https://github.com/facebook/relay/issues/108 is fixed/figured out',
   fields: () => ({
     ip: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     posts: {
       type: postConnection,
       description: 'Our collection of posts',
       args: connectionArgs,
-      resolve: (_, args) => connectionFromArray(getPosts(), args)
-    }
-  })
+      resolve: (_, args) => connectionFromArray(getPosts(), args),
+    },
+  }),
 });
 
 
 /**
  * Define your own connection types here
  */
-var {connectionType: postConnection} =
-  connectionDefinitions({name: 'Post', nodeType: postType});
+var { connectionType: postConnection } =
+  connectionDefinitions({ name: 'Post', nodeType: postType });
 
 /**
  * This is the type that will be the root of our query,
@@ -148,19 +155,19 @@ var queryType = new GraphQLObjectType({
     node: nodeField,
     session: {
       type: sessionType,
-      resolve: (request) => request
+      resolve: (request) => request,
     },
     getPostBySlug: {
       type: postType,
       args: {
         slug: {
           type: new GraphQLNonNull(GraphQLString),
-          description: 'Slug of the blog including the prepended date. E.g 2015/08/10/london-react-meetup-august-2015/'
-        }
+          description: 'Slug of the blog including the prepended date. E.g 2015/08/10/london-react-meetup-august-2015/',
+        },
       },
-      resolve: (_, {slug}) => {
+      resolve: (_, { slug }) => {
         return getPost(slug);
-      }
+      },
     },
 
     // Easter egg feature for potential recruites
@@ -169,36 +176,36 @@ var queryType = new GraphQLObjectType({
       args: {
         timsChars: {
           type: new GraphQLNonNull(GraphQLString),
-          description: 'Enter the characters that were Tim Berners-Lee\'s big mistake in the web address'
-        }
+          description: 'Enter the characters that were Tim Berners-Lee\'s big mistake in the web address',
+        },
       },
-      resolve: (_, {timsChars}) => {
+      resolve: (_, { timsChars }) => {
         if (timsChars === '//') {
           return 'Correct! The password is WOBBLYBADGER. Email jobs@red-badger.com.';
         }
         return 'Wrong. But you\'ve got this far don\'t give up';
-      }
-    }
+      },
+    },
   }),
 });
 
 var AddKudosToArticleMutation = mutationWithClientMutationId({
   name: 'AddKudosToArticle',
   inputFields: {
-    id: { type: new GraphQLNonNull(GraphQLID) }
+    id: { type: new GraphQLNonNull(GraphQLID) },
   },
   outputFields: {
     post: {
       type: postType,
-      resolve: ({localPostId}) => getPost(localPostId)
-    }
+      resolve: ({ localPostId }) => getPost(localPostId),
+    },
   },
-  mutateAndGetPayload: ({id}) => {
+  mutateAndGetPayload: ({ id }) => {
     var localPostId = fromGlobalId(id).id;
     // Update database
     updatePostKudosCount(localPostId);
-    return {localPostId};
-  }
+    return { localPostId };
+  },
 });
 
 /**
@@ -208,8 +215,8 @@ var AddKudosToArticleMutation = mutationWithClientMutationId({
 var mutationType = new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
-    addKudosToArticle: AddKudosToArticleMutation
-  })
+    addKudosToArticle: AddKudosToArticleMutation,
+  }),
 });
 
 /**
@@ -218,5 +225,5 @@ var mutationType = new GraphQLObjectType({
  */
 export var Schema = new GraphQLSchema({
   query: queryType,
-  mutation: mutationType
+  mutation: mutationType,
 });
