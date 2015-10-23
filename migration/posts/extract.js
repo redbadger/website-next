@@ -57,18 +57,6 @@ function createEmbeddedGistTag(gistId, filename) {
   return `<EmbeddedGist id="${gistId}" />`;
 }
 
-function getCodeLanguage(language) {
-  const transform = {
-    'shell': 'bash',
-  };
-  if (language && transform[language.toLowerCase()]) {
-    return transform[language.toLowerCase()];
-  } else if (language) {
-    return language.toLowerCase();
-  }
-  return null;
-}
-
 function getWPAuthors(authors) {
   return authors.map(a => ({
     id: a['wp:author_login'][0],
