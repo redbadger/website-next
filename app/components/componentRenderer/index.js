@@ -14,6 +14,7 @@ export default class ComponentRenderer extends React.Component {
   render() {
     const tree = this.props.schema.map((schema, index) => {
       const { type, name, data, attribs, children } = schema;
+      if (attribs) { delete attribs.style; } // some elements have custom styling, remove it for now since it breaks rendering
 
       if (type === 'text') {
         return <span key={index}>{data}</span>;
