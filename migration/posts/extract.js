@@ -4,8 +4,6 @@ import xml2js from 'xml2js';
 import fs from 'fs.promised';
 import path from 'path';
 import sanitizeHtml from 'sanitize-html';
-import fetch from 'node-fetch';
-import { highlight } from 'highlight.js';
 import { parseDOM as htmlparser } from 'htmlparser2';
 
 function parseXML(xml) {

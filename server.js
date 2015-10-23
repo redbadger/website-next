@@ -42,7 +42,6 @@ app.use('/node_modules/react', express.static('node_modules/react'));
 app.use('/node_modules/react-dom', express.static('node_modules/react-dom'));
 app.use('/node_modules/react-relay', express.static('node_modules/react-relay'));
 app.use('/node_modules/graphiql', express.static('node_modules/graphiql'));
-app.use('/node_modules/highlight.js', express.static('node_modules/highlight.js'));
 
 app.listen(WEBPACK_PORT, () => {
   console.log(`Webpack is now running on http://localhost:${WEBPACK_PORT}`);
