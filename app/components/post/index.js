@@ -4,6 +4,7 @@ import Layout from '../layouts/general';
 import DateStamp from '../dateStamp';
 import styles from './style.css';
 import { Link } from 'react-router';
+import ComponentRenderer from '../componentRenderer';
 import AddKudosToArticleMutation from '../../mutations/AddKudosToArticleMutation';
 
 class Post extends React.Component {
@@ -19,7 +20,7 @@ class Post extends React.Component {
       <Layout>
         <article className={styles.post}>
           <DateStamp post={post} />
-          <hr className={styles.divider} />
+          {/*<hr className={styles.divider} />*/}
           <div className={styles.authorTitle} >
             <h1 className={styles.title}>{post.title}</h1>
             <p>
@@ -37,7 +38,9 @@ class Post extends React.Component {
               <button onClick={this._handleKudos}>Kudos</button>
             </p>
           </div>
-          <div className={styles.body} dangerouslySetInnerHTML={ { __html: post.body } } />
+          <div className={styles.body}>
+            <ComponentRenderer schema={post.body} />
+          </div>
         </article>
       </Layout>
     );

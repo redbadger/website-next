@@ -12,5 +12,9 @@
   "dependencies": {
     "xml2js": "^0.4.13",
     "sanitize-html": "^1.11.1"
+  },
+  "devDependencies": {
+    "fs.promised": "^2.2.1",
+    "htmlparser2": "^3.8.3"
   }
 }
