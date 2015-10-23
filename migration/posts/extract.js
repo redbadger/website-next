@@ -18,37 +18,9 @@ function parseXML(xml) {
   });
 }
 
-async function parseWPPostContent(content) { /* eslint-ignore no-unused-vars */
-  const gists = content.match(/\[gist id="([^"]+)"[^\]]*\]/g);
-  if (gists !== null) {
-    await* gists.map(async (gist, index) => {
-      await delay(index * 100);
-      const gistInfo = /\[gist id="([^"]+)"( file="([^"]+)")?\]/.exec(gist);
-      try {
-        console.log(`Fetching gist ${gistInfo[1]}...`);
-        const gistJson = await (await fetch(`https://api.github.com/gists/${gistInfo[1]}`, {
-          method: 'GET',
-          headers: { Authorization: 'token 26b3766c35d2374f2ec3bcaeffb2abe53745e15f' },
-        })).json();
-        if (gistJson && gistInfo[3]) { // replace for just the specified filename
-          const code = highlight(getCodeLanguage(gistJson.files[gistInfo[3]].language), gistJson.files[gistInfo[3]].content).value;
-          content = content.replace(gist, '<pre>' + code + '</pre>');
-        } else if (gistJson) { // replace with all files within the gist
-          let allFilesTogether = '';
-          Object.keys(gistJson.files).forEach(filename => {
-            allFilesTogether += highlight(getCodeLanguage(gistJson.files[filename].language), gistJson.files[filename].content).value;
-          });
-          content = content.replace(gist, '<pre>' + allFilesTogether + '</pre>');
-        }
-      } catch (ex) {
-        console.error(ex);
-      }
-    });
-  }
-  return sanitizeContent(content);
-}
-
 async function parseWPPostContentToJson(content) {
+  content = replaceGists(content);
+
   const traverseAndRemoveCircular = (tree) => {
     return tree.map(element => {
       delete element.parent;
@@ -59,13 +31,32 @@ async function parseWPPostContentToJson(content) {
       }
       return element;
     });
-  }
+  };
 
   return traverseAndRemoveCircular(htmlparser(content));
 }
 
-function delay(time) {
-  return new Promise((res) => setTimeout(res, time));
+function replaceGists(content) {
+  // replace gist short tag for EmbeddedGist
+  const gists = content.match(/\[gist id="([^"]+)"[^\]]*\]/g);
+  if (gists !== null) {
+    gists.forEach(gist => {
+      const gistInfo = /\[gist id="([^"]+)"( file="([^"]+)")?\]/.exec(gist);
+      content = content.replace(gist, createEmbeddedGistTag(gistInfo[1], gistInfo[3]));
+    });
+  }
+
+  // some gists are inserted as scripts so we need to replace them this way too
+  content = content.replace(/<script src="https:\/\/gist\.github\.com\/[^\/]+\/([^."]+)\.js"( ?\/)?>(<\/script>)?/g, '<EmbeddedGist id="$1" />');
+
+  return content;
+}
+
+function createEmbeddedGistTag(gistId, filename) {
+  if (filename) {
+    return `<EmbeddedGist id="${gistId}" file="${filename}" />`;
+  }
+  return `<EmbeddedGist id="${gistId}" />`;
 }
 
 function getCodeLanguage(language) {

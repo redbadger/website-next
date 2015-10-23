@@ -1,6 +1,10 @@
 import React from 'react';
 import EmbeddedGist from '../embeddedGist';
 
+const componentIndex = {
+  embeddedgist: EmbeddedGist,
+};
+
 export default class ComponentRenderer extends React.Component {
 
   static propTypes = {
@@ -11,28 +15,23 @@ export default class ComponentRenderer extends React.Component {
     const tree = this.props.schema.map((schema, index) => {
       const { type, name, data, attribs, children } = schema;
 
-      const Name = name;
-
       if (type === 'text') {
-        const gistInfo = /\[gist id="([^"]+)"( file="([^"]+)")?\]/.exec(data);
-        if (gistInfo) {
-          return <EmbeddedGist key={index} id={gistInfo[1]} file={gistInfo[3] || undefined} />;
-        }
-
         return <span key={index}>{data}</span>;
       }
 
       if (type === 'tag') {
         const childrenComponents = <ComponentRenderer key={index} schema={children} />;
 
-        return (
-          <Name {...attribs}>
-            {childrenComponents}
-          </Name>
-        );
+        if (componentIndex[name]) {
+          const Name = componentIndex[name];
+          return <Name {...attribs} children={children.length ? childrenComponents : undefined} key={index} />
+        }
+
+        const Name = name;
+        return <Name {...attribs} children={children.length ? childrenComponents : undefined} key={index} />;
       }
 
-      console.log(`Undefined schema type ${type}`);
+      console.error(`Undefined schema type ${type}`, schema);
     });
 
     if (this.props.schema.length > 1) {
