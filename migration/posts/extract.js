@@ -17,7 +17,7 @@ function parseXML(xml) {
 }
 
 async function parseWPPostContentToJson(content) {
-  content = replaceGists(content);
+  content = replaceClasses(replaceGists(replaceCaptions(content)));
 
   const traverseAndRemoveCircular = (tree) => {
     return tree.map(element => {
@@ -32,6 +32,12 @@ async function parseWPPostContentToJson(content) {
   };
 
   return traverseAndRemoveCircular(htmlparser(content));
+}
+
+function replaceCaptions(content) {
+  content = content.replace(/\[caption( id="([^"]+)")?( align="([^"]+)")?[^\]]*\](.*)\[\/caption\]/g, '<div id="$2" className="wp-caption $4">$5</div>');
+
+  return content;
 }
 
 function replaceGists(content) {
@@ -55,6 +61,10 @@ function createEmbeddedGistTag(gistId, filename) {
     return `<EmbeddedGist id="${gistId}" file="${filename}" />`;
   }
   return `<EmbeddedGist id="${gistId}" />`;
+}
+
+function replaceClasses(content) {
+  return content.replace(/ class=/g, ' className=');
 }
 
 function getWPAuthors(authors) {
