@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import styles from './index.css';
+import React, {Component} from 'react'
+import styles from './style.css';
 
 class Home extends Component {
   render () {
