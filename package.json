@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/redbadger/website-next",
   "dependencies": {
-    "babel": "^6.3.13",
     "babel-core": "^6.3.17",
     "babel-loader": "^6.2.0",
     "babel-polyfill": "^6.3.14",
