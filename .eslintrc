@@ -1,5 +1,8 @@
 {
   "parser": "babel-eslint",
+  "ecmaFeatures": {
+    "modules": true,
+  },
   "env": {
     "node": true,
     "browser": true,
@@ -23,7 +26,7 @@
     "react/jsx-no-duplicate-props": 1,
     "react/jsx-no-literals": 0,
     "react/jsx-no-undef": 1,
-    "react/jsx-quotes": 1,
+    "jsx-quotes": 1,
     "react/jsx-sort-prop-types": 1,
     "react/jsx-sort-props": 1,
     "react/jsx-uses-react": 1,
