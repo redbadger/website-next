@@ -32,8 +32,7 @@ const config = {
   },
   module: {
     loaders: [
-      { test: /\.json$/, loader: 'json' },
-      { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
+      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract(
