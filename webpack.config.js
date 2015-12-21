@@ -40,6 +40,11 @@ const loaders = [
         'postcss-loader'
       ].join('!')
     )
+  },
+  {
+    test: /\.(png|jpe?g)$/,
+    exclude: /node_modules/,
+    loader: 'file-loader?name=[hash].[ext]'
   }
 ];
 
