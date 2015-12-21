@@ -1,7 +1,9 @@
-import {createElement as h} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import home from './components/home';
+import Home from './components/home';
 
 const element = document.getElementById('mount');
 
-ReactDOM.render(h(home, null), element);
+const page = (<Home />);
+
+ReactDOM.render(page, element);

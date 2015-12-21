@@ -7,11 +7,11 @@ return `
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Red Badger</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/public/main.css" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
   </head>
   <body>
     <div id="mount">${body}</div>
-    <script type="text/javascript" src="/public/main.js"></script>
+    <script type="text/javascript" src="/client.js"></script>
   </body>
 </html>
 `;
