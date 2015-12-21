@@ -1,5 +1,7 @@
+@value primary from "../variables/colors.css";
+
 .title {
-  color: #BE1414;
+  color: primary;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 2em;
 }

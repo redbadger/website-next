@@ -1,0 +1,13 @@
+@value large, mediaLarge from "../variables/breakpoints.css";
+
+.container {
+  width: 100%;
+  max-width: large;
+}
+
+@media mediaLarge {
+  .container {
+    width: large;
+    margin: 0 auto;
+  }
+}

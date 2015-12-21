@@ -2,10 +2,10 @@ import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import html from './html';
-import Home from './components/home';
+import Root from './components/root';
 
 const app = express();
-const root = (<Home />);
+const root = (<Root />);
 const port = process.env.PORT || 8080;
 
 app.use(

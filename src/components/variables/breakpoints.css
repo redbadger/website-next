@@ -1,0 +1,4 @@
+@value small: 767px;
+@value mediaSmall: (max-width: small);
+@value large: 920px;
+@value mediaLarge: (min-width: large);

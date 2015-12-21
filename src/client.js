@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Home from './components/home';
+import Root from './components/root';
 
 const element = document.getElementById('mount');
 
-const page = (<Home />);
+const page = (<Root />);
 
 ReactDOM.render(page, element);
