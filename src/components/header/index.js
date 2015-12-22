@@ -13,6 +13,7 @@ export default class Header extends React.Component {
             <Logo />
           </a>
         </Container>
+        <Nav/>
       </header>
     );
   }
