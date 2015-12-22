@@ -1,3 +1,5 @@
+@value font from "../variables/colors.css";
+
 @font-face {
   font-family: "FranklinGothicHandDemi";
   src: url("./FranklinGothicHandDemi.eot");
@@ -36,26 +38,38 @@
   src: url("./CenturyGothicRegularItalic.eot?#iefix") format("embedded-opentype"), url("./CenturyGothicRegularItalic.woff") format("woff"), url("./CenturyGothicRegularItalic.ttf") format("truetype");
 }
 
+.defaultFontSize {
+  font-size: 16px;
+  line-height: 1.25;
+}
+
 .defaultFont {
   font-family: "CenturyGothicRegular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: font;
 }
 
 .defaultFontBold {
   font-family: "CenturyGothicBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: font;
 }
 
 .defaultFontItalic {
   font-family: "CenturyGothicRegularItalic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: font;
 }
+
 
 .defaultFontBoldItalic {
   font-family: "CenturyGothicBoldItalic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: font;
 }
 
 .heroFont {
   font-family: "FranklinGothicHand", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: font;
 }
 
 .heroFontBold {
   font-family: "FranklinGothicHandDemi", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: font;
 }

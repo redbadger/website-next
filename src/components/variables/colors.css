@@ -1,1 +1,23 @@
-@value primary: #BE1414;
+@value font: #333;
+
+@value white: #FFF;
+@value black: #000;
+@value grey: #888;
+@value darkGrey: #666;
+@value midGrey: #BBB;
+@value lightGrey: #DDD;
+@value lighterGrey: #E7E7E7;
+
+@value red: #BE1414;
+@value blue: #065AA1;
+@value green: #406618;
+@value turquoise: #005952;
+@value orange: #F25E17;
+@value purple: #663366;
+@value cyan: #009187;
+@value lightGreen: #6DA620;
+
+@value stampRed: #BA3A3D;
+@value craftLabelColor: #F8D39C;
+
+@value primary: red;

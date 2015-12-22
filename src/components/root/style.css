@@ -1,0 +1,16 @@
+/**
+ * Global styles for base elements
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #FFF url("./noise.png");
+}
+
+.root {
+  composes: defaultFontSize defaultFont from "../fonts/style.css";
+}
