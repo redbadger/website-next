@@ -1,0 +1,61 @@
+@font-face {
+  font-family: "FranklinGothicHandDemi";
+  src: url("./FranklinGothicHandDemi.eot");
+  src: url("./FranklinGothicHandDemi.eot?#iefix") format("embedded-opentype"), url("./FranklinGothicHandDemi.woff") format("woff"), url("./FranklinGothicHandDemi.ttf")  format("truetype"), url("./FranklinGothicHandDemi.svg#26db41b3b7fd6eb21c95af94ce516beb") format("svg");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "FranklinGothicHand";
+  src: url("./FranklinGothicHand.eot");
+  src: url("./FranklinGothicHand.eot?#iefix") format("embedded-opentype"), url("./FranklinGothicHand.woff") format("woff"), url("./FranklinGothicHand.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "CenturyGothicBoldItalic";
+  src: url("./CenturyGothicBoldItalic.eot");
+  src: url("./CenturyGothicBoldItalic.eot?#iefix") format("embedded-opentype"), url("./CenturyGothicBoldItalic.woff") format("woff"), url("./CenturyGothicBoldItalic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "CenturyGothicBold";
+  src: url("./CenturyGothicBold.eot");
+  src: url("./CenturyGothicBold.eot?#iefix") format("embedded-opentype"), url("./CenturyGothicBold.woff") format("woff"), url("./CenturyGothicBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "CenturyGothicRegular";
+  src: url("./CenturyGothicRegular.eot");
+  src: url("./CenturyGothicRegular.eot?#iefix") format("embedded-opentype"), url("./CenturyGothicRegular.woff") format("woff"), url("./CenturyGothicRegular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "CenturyGothicRegularItalic";
+  src: url("./CenturyGothicRegularItalic.eot");
+  src: url("./CenturyGothicRegularItalic.eot?#iefix") format("embedded-opentype"), url("./CenturyGothicRegularItalic.woff") format("woff"), url("./CenturyGothicRegularItalic.ttf") format("truetype");
+}
+
+.defaultFont {
+  font-family: "CenturyGothicRegular", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.defaultFontBold {
+  font-family: "CenturyGothicBold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.defaultFontItalic {
+  font-family: "CenturyGothicRegularItalic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.defaultFontBoldItalic {
+  font-family: "CenturyGothicBoldItalic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.heroFont {
+  font-family: "FranklinGothicHand", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.heroFontBold {
+  font-family: "FranklinGothicHandDemi", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

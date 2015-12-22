@@ -43,7 +43,7 @@ const loaders = [
     )
   },
   {
-    test: /\.(png|jpe?g)$/,
+    test: /\.(png|jpe?g|eot|ttf|woff|svg)$/,
     exclude: /node_modules/,
     loader: 'file-loader?name=[hash].[ext]'
   }
