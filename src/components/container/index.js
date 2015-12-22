@@ -12,5 +12,5 @@ export default class Container extends React.Component {
 }
 
 Container.propTypes = {
-  children: React.PropTypes.element
+  children: React.PropTypes.node
 };

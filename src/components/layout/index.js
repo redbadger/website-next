@@ -14,7 +14,7 @@ class Layout extends React.Component {
 }
 
 Layout.propTypes = {
-  children: React.PropTypes.element
+  children: React.PropTypes.node
 };
 
 export default Layout;
