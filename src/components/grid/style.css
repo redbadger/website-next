@@ -1,0 +1,116 @@
+@value gutterSize: 40px;
+
+/**
+ * Core grid component
+ *
+ * Taken from https://github.com/suitcss/components-grid
+ *
+ * DO NOT apply dimension or offset utilities to the `Grid` element. All cell
+ * widths and offsets should be applied to child grid cells.
+ */
+
+/* Grid container
+   ========================================================================== */
+
+/**
+ * All content must be contained within child `cell` elements.
+ *
+ * 1. Account for browser defaults of elements that might be the root node of
+ *    the component.
+ */
+
+.grid {
+  box-sizing: border-box;
+  display: flex; /* 1 */
+  flex-flow: row wrap;
+  margin: 0; /* 1 */
+  padding: 0; /* 1 */
+}
+
+/**
+ * Modifier: center align all grid cells
+ */
+
+.alignCenter {
+  justify-content: center;
+}
+
+/**
+ * Modifier: right align all grid cells
+ */
+
+.alignRight {
+  justify-content: flex-end;
+}
+
+/**
+ * Modifier: middle-align grid cells
+ */
+
+.alignMiddle {
+  align-items: center;
+}
+
+/**
+ * Modifier: bottom-align grid cells
+ */
+
+.alignBottom {
+  align-items: flex-end;
+}
+
+/**
+ * Modifier: allow cells to equal distribute width
+ *
+ * 1. Provide all values to avoid IE10 bug with shorthand flex - http://git.io/vllC7
+ *    Use `0%` to avoid bug in IE10/11 with unitless flex basis - http://git.io/vllWx
+ */
+
+.fit > .cell {
+  flex: 1 1 0%; /* 1 */
+}
+
+/**
+ * Modifier: all cells match height of tallest cell in a row
+ */
+
+.equalHeight > .cell {
+  display: flex;
+}
+
+/**
+ * Modifier: gutters
+ */
+
+.withGutter {
+  margin: 0 calc(-0.5 * gutterSize);
+}
+
+.withGutter > .cell {
+  padding: 0 calc(0.5 * gutterSize);
+}
+
+/* Grid cell
+   ========================================================================== */
+
+/**
+ * No explicit width by default. Rely on combining `cell` with a dimension
+ * utility or a component class that extends 'grid'.
+ *
+ * 1. Set flex items to full width by default
+ */
+
+.cell {
+  box-sizing: inherit;
+  flex: 0 0 100%; /* 1 */
+}
+
+/**
+ * Modifier: horizontally center one unit
+ * Set a specific unit to be horizontally centered. Doesn't affect
+ * any other units. Can still contain a child `grid` component.
+ */
+
+.cellCenter {
+  margin: 0 auto;
+}
