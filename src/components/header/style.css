@@ -1,7 +1,3 @@
-.header {
-  composes: nbfc from "../utils/layout.css";
-}
-
 .logo {
   float: left;
 }
