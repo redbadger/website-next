@@ -1,0 +1,51 @@
+@value white, lightGrey, cyan, lightCyan, lightGreen from "../variables/colors.css";
+
+.footer {
+  composes: blackPaper from "../utils/background.css";
+  color: lightGrey;
+  padding: 1.5em 0;
+}
+
+.footer address {
+  font-style: normal;
+  margin-top: 4px;
+}
+
+.footer a {
+  text-decoration: none;
+}
+
+.contactUsLink {
+  color: cyan;
+}
+
+.contactUsLink:hover {
+  color: lightCyan;
+}
+
+.links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contactLink,
+.socialLink {
+  color: white;
+}
+
+.contactLink:hover {
+  color: lightCyan;
+}
+
+.socialLink:hover {
+  color: lightGreen;
+}
+
+.icon {
+  color: lightGreen;
+}
+
+.iconCyan {
+  color: cyan;
+}
