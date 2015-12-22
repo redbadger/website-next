@@ -1,0 +1,7 @@
+@value black from "../variables/colors.css";
+
+.blackPaper {
+  background-color: black;
+  background-image: url("./black-paper.jpg");
+  width: 100%;
+}

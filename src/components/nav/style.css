@@ -1,11 +1,9 @@
-@value primary, white, black from "../variables/colors.css";
+@value primary, white from "../variables/colors.css";
 
 .nav {
-  background-color: black;
-  background-image: url("./blackpaper.jpg");
+  composes: blackPaper from "../utils/background.css";
   text-transform: uppercase;
   text-align: center;
-  width: 100%;
 }
 
 .navList {
