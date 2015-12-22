@@ -4,6 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const cssnext = require('postcss-cssnext');
 const dedupe = require('postcss-discard-duplicates');
 const autoprefixer = require('autoprefixer');
+const postcss = () => [ cssnext, autoprefixer, dedupe ];
 
 const plugins = [
   new webpack.DefinePlugin({
@@ -68,7 +69,7 @@ const config = [
     module: {
       loaders: loaders
     },
-    postcss: () => [ cssnext, autoprefixer, dedupe ],
+    postcss: postcss,
     plugins: plugins,
     devtool: 'source-map'
   },
@@ -83,7 +84,7 @@ const config = [
     module: {
       loaders: loaders
     },
-    postcss: () => [ cssnext, autoprefixer, dedupe ],
+    postcss: postcss,
     plugins: plugins,
     devtool: 'source-map'
   }
