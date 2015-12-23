@@ -2,8 +2,11 @@ import React from 'react';
 import classNames from 'classnames';
 import Container from '../container';
 import { Grid, Cell } from '../grid';
+import Input from '../input';
+import Button from '../button';
 import styles from './style.css';
 import * as icons from '../icons/style.css';
+import * as display from '../utils/display.css';
 
 export default class Footer extends React.Component {
   render () {
@@ -13,7 +16,7 @@ export default class Footer extends React.Component {
           <Grid>
 
             <Cell>
-              <address>
+              <address className={styles.address}>
                 <strong>Red Badger Consulting Limited</strong>
                 <br/>
                 <span>12 Mallow Street</span>
@@ -59,6 +62,25 @@ export default class Footer extends React.Component {
                   </a>
                 </li>
               </ul>
+            </Cell>
+
+            <Cell>
+              <h4 className={styles.newsletterHeading}>Join our newsletter</h4>
+              <form action="//red-badger.us6.list-manage.com/subscribe/post?u=0ab76cd515&amp;amp;id=b20af1dc4e" className={styles.todo} method="post" >
+                <label>
+                  Suscribe to receive news, ideas and lessons learned from Red Badger
+                </label>
+                <div className={styles.inputContainer}>
+                  <Input className={styles.inputText} name="EMAIL" placeholder="Enter your email" type="text"/>
+                  <Button className={styles.inputSubmit} type="submit">Subscribe</Button>
+                  <div className={display.hiddenVisually}>
+                    <input name="b_0ab76cd515_b20af1dc4e" tabIndex="-1" type="text" value=""/>
+                  </div>
+                </div>
+              </form>
+              <div>
+                <span>© Red Badger All Rights Reserved</span>
+              </div>
             </Cell>
 
           </Grid>

@@ -1,4 +1,4 @@
-@value white, lightGrey, cyan, lightCyan, lightGreen from "../variables/colors.css";
+@value white, grey, midGrey, lightGrey, cyan, lightCyan, green, lightGreen from "../variables/colors.css";
 
 .footer {
   composes: blackPaper from "../utils/background.css";
@@ -6,7 +6,7 @@
   padding: 1.5em 0;
 }
 
-.footer address {
+.address {
   font-style: normal;
   margin-top: 4px;
 }
@@ -48,4 +48,41 @@
 
 .iconCyan {
   color: cyan;
+}
+
+.newsletterHeading {
+  margin-top: 4px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.inputContainer {
+  width: 100%;
+  overflow: hidden;
+}
+
+.inputText,
+.inputSubmit {
+  margin: 0.5em 0;
+  padding: 0;
+  border: none;
+  float: left;
+  -webkit-appearance: none;
+  height: 30px;
+}
+
+.inputText {
+  width: 65%;
+  margin-right: 1%;
+  padding-left: 6px;
+}
+
+.inputSubmit {
+  width: 34%;
+  background-color: lightGreen;
+  color: white;
+}
+
+.inputSubmit:hover {
+  background-color: green;
 }
