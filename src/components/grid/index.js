@@ -1,6 +1,6 @@
 /*eslint react/no-multi-comp:0*/
 import React from 'react';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import styles from './style.css';
 
 const gridClassNames = classNames(

@@ -1,5 +1,5 @@
 import React from 'react';
-import classNames from 'classNames';
+import classNames from 'classnames';
 import Container from '../container';
 import { Grid, Cell } from '../grid';
 import styles from './style.css';
