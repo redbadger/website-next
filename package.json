@@ -9,7 +9,7 @@
     "start": "node build/server.js",
     "build": "webpack",
     "watch": "webpack --watch",
-    "lint": "eslint -c .eslintrc ./src/**"
+    "lint": "eslint --cache ./src/**"
   },
   "repository": {
     "type": "git",
