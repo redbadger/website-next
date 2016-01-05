@@ -1,5 +1,6 @@
 "use strict";
 
+require('babel-core/register');
 const childProcess = require('child_process');
 const phantomjs = require('phantomjs');
 

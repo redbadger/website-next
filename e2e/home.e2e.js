@@ -1,5 +1,6 @@
-var chai = require('chai'),
-    browser = global.browser; // comes from wdio
+import chai from 'chai';
+
+const browser = global.browser; // comes from wdio
 
 describe('Home page', function () {
   it('should load', function (done) {
