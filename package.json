@@ -5,11 +5,11 @@
   "description": "Red Badger's website",
   "main": "build/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"No tests yet!\"",
     "start": "node build/server.js",
     "build": "webpack",
     "watch": "webpack --watch",
-    "lint": "eslint -c .eslintrc ./src/**"
+    "lint": "eslint --cache ./src/**"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,10 @@
     "url": "https://github.com/redbadger/website-next/issues"
   },
   "homepage": "https://github.com/redbadger/website-next",
+  "pre-push": [
+    "lint",
+    "test"
+  ],
   "dependencies": {
     "classnames": "^2.2.1",
     "express": "^4.13.3",
@@ -45,6 +49,7 @@
     "postcss-cssnext": "^2.3.0",
     "postcss-discard-duplicates": "^2.0.0",
     "postcss-loader": "^0.8.0",
+    "pre-push": "0.1.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.9"
   }
