@@ -5,12 +5,12 @@
   "description": "Red Badger's website",
   "main": "build/server.js",
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/.bin/mocha --compilers js:babel-register ./src/**/*.spec.js",
+    "test": "NODE_ENV=test mocha --compilers js:babel-register ./src/**/*.spec.js",
     "e2e": "wdio",
     "start": "node build/server.js",
     "build": "webpack",
     "watch": "webpack --watch",
-    "lint": "./node_modules/.bin/eslint -c .eslintrc ./src/**"
+    "lint": "eslint -c .eslintrc ./src/**"
   },
   "repository": {
     "type": "git",
