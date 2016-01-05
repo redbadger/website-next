@@ -18,7 +18,7 @@ exports.config = {
   // directory is where your package.json resides, so `wdio` will be called from there.
   //
   specs: [
-      'e2e/**/*.e2e.js'
+    'e2e/**/*.e2e.js'
   ],
   // Patterns to exclude.
   exclude: [
@@ -38,7 +38,7 @@ exports.config = {
   // https://docs.saucelabs.com/reference/platforms-configurator
   //
   capabilities: [{
-      browserName: 'phantomjs'
+    browserName: 'phantomjs'
   }],
   //
   // ===================
@@ -100,7 +100,7 @@ exports.config = {
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
   mochaOpts: {
-      ui: 'bdd'
+    ui: 'bdd'
   },
 
   //
