@@ -2,7 +2,6 @@ import Button from './index';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import Chai from 'chai';
-import 'sinon';
 
 const expect = Chai.expect;
 
