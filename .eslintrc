@@ -13,6 +13,7 @@
   ],
   "extends": "eslint:recommended",
   "rules": {
+    "indent": [2, 2, {"SwitchCase": 1}],
     "semi": 2,
     "space-before-function-paren": 2,
     "react/display-name": 0,
