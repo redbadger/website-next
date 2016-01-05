@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import styles from './style.css';
-import logo from '../logo/logo.png';
 
 export default function Button (props) {
   let { className, ...other } = props;
