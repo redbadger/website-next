@@ -10,7 +10,13 @@ test:
   override:
     - npm run lint
     - npm run test:server
-    - npm run build
+    - NODE_ENV=production npm run build
     - npm start:
         background: true
     - npm run test:e2e
+
+deployment:
+  production:
+    branch: heroku
+    commands:
+      - git push -f git@heroku.com:redbadger-next.git $CIRCLE_SHA1:master
