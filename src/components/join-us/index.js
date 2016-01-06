@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import styles from './style.css';
 
-class Home extends Component {
+class JoinUs extends Component {
   render () {
     return (
-      <h1 className={styles.title}>Red Badger!</h1>
+      <h1 className={styles.title}>Join Us</h1>
     );
   }
 }
 
-export default Home;
+export default JoinUs;
