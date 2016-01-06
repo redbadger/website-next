@@ -5,7 +5,7 @@
   "description": "Red Badger's website",
   "main": "build/server.js",
   "scripts": {
-    "test:server": "BABEL_ENV=test mocha --compilers js:babel-register ./src/**/*.spec.js",
+    "test:server": "BABEL_DISABLE_CACHE=1 BABEL_ENV=test mocha --compilers js:babel-register ./src/**/*.spec.js",
     "test:e2e": "wdio",
     "start": "node build/server.js",
     "build": "webpack",
