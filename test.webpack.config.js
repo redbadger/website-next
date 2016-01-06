@@ -1,10 +1,7 @@
-const normalConfig = require('./webpack.config.js')[0];
-const testConfig = {
+const commonConfig = require('./common.webpack.config.js');
+
+module.exports = Object.assign({
   output: {
     libraryTarget: 'commonjs2'
-  },
-  module: normalConfig.module,
-  plugins: normalConfig.plugins
-};
-
-module.exports = testConfig;
+  }
+}, commonConfig);

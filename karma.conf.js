@@ -1,5 +1,4 @@
-const testConfig = require('./test.webpack.config.js');
-delete testConfig.output;
+const commonConfig = require('./common.webpack.config.js');
 
 module.exports = function(config) {
     config.set({
@@ -13,7 +12,7 @@ module.exports = function(config) {
             'src/**/*.js': ['webpack']
         },
 
-        webpack: testConfig,
+        webpack: commonConfig,
 
         webpackMiddleware: {
             noInfo: true
