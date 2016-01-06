@@ -5,8 +5,8 @@
   "description": "Red Badger's website",
   "main": "build/server.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha --compilers js:babel-register ./src/**/*.spec.js",
-    "e2e": "wdio",
+    "test:server": "BABEL_DISABLE_CACHE=1 BABEL_ENV=test mocha --compilers js:babel-register ./src/**/*.spec.js",
+    "test:e2e": "wdio",
     "start": "node build/server.js",
     "build": "webpack",
     "watch": "webpack --watch",
@@ -23,7 +23,7 @@
   "homepage": "https://github.com/redbadger/website-next",
   "pre-push": [
     "lint",
-    "test"
+    "test:server"
   ],
   "dependencies": {
     "classnames": "^2.2.1",
