@@ -6,8 +6,8 @@
   "main": "build/server.js",
   "scripts": {
     "test:server": "BABEL_DISABLE_CACHE=1 BABEL_ENV=test mocha --compilers js:babel-register ./src/**/*.spec.js",
-    "test:client": "karma start config/karma.conf.js",
-    "test:e2e": "wdio",
+    "test:client": "karma start config/karma.config.js",
+    "test:e2e": "wdio config/wdio.config.js",
     "start": "node build/server.js",
     "build": "webpack --config config/webpack.config.js",
     "watch": "webpack --config config/webpack.config.js --watch",
