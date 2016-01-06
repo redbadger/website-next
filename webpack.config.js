@@ -105,7 +105,7 @@ const config = [
 
 const testconfig = {
   output: {
-    libraryTarget: 'commonjs2',
+    libraryTarget: 'commonjs2'
   },
   module: {
     loaders: loaders
@@ -113,5 +113,7 @@ const testconfig = {
   postcss: postcss,
   plugins: plugins
 };
+
+console.log(process.env.NODE_ENV);
 
 module.exports = process.env.NODE_ENV === 'test' ? testconfig : config;
