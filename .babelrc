@@ -6,7 +6,7 @@
         [
           "babel-plugin-webpack-loaders",
           {
-            "config": "./test.webpack.config.js",
+            "config": "config/test.webpack.config.js",
             "verbose": false
           }
         ]
