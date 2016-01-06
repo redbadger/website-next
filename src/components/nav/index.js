@@ -9,7 +9,6 @@ export default class Nav extends React.Component {
         <ul className={styles.navList}>
           <li className={styles.navItem}>
             <a className={styles.navItemLink} href="/">Home</a>
-            <div className={styles.active}></div>
           </li>
           <li className={styles.navItem}>
             <a className={styles.navItemLink} href="/our-work">Our Work</a>
@@ -25,6 +24,7 @@ export default class Nav extends React.Component {
           </li>
           <li className={styles.navItem}>
             <a className={styles.navItemLink} href="/about-us">About us</a>
+            <div className={styles.active}></div>
           </li>
         </ul>
         <div className={styles.badge}>
