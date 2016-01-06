@@ -5,3 +5,23 @@
   background-image: url("./black-paper.jpg");
   width: 100%;
 }
+
+.craft {
+  background-image: url("./craft.png");
+}
+
+.paperTear {
+  position: relative;
+}
+
+.paperTear:before {
+  content: "";
+  background-image: url("./paper-tear.png");
+  background-position: center bottom;
+  background-repeat: repeat-x;
+  width: 100%;
+  height: 23px;
+  position: absolute;
+  left: 0;
+  top: -11px;
+}
