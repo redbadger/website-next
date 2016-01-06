@@ -5,11 +5,11 @@ module.exports = function(config) {
         browsers: ['Firefox'],
         frameworks: ['mocha'],
         files: [
-            'src/**/*.spec.js'
+            '../src/**/*.spec.js'
         ],
 
         preprocessors: {
-            'src/**/*.js': ['webpack']
+            '../src/**/*.js': ['webpack']
         },
 
         webpack: commonConfig,

@@ -6,11 +6,11 @@
   "main": "build/server.js",
   "scripts": {
     "test:server": "BABEL_DISABLE_CACHE=1 BABEL_ENV=test mocha --compilers js:babel-register ./src/**/*.spec.js",
-    "test:client": "karma start karma.conf.js",
+    "test:client": "karma start config/karma.conf.js",
     "test:e2e": "wdio",
     "start": "node build/server.js",
-    "build": "webpack",
-    "watch": "webpack --watch",
+    "build": "webpack --config config/webpack.config.js",
+    "watch": "webpack --config config/webpack.config.js --watch",
     "lint": "eslint -c .eslintrc ./src/**"
   },
   "repository": {
