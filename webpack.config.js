@@ -114,6 +114,4 @@ const testconfig = {
   plugins: plugins
 };
 
-console.log(process.env.NODE_ENV);
-
 module.exports = process.env.NODE_ENV === 'test' ? testconfig : config;
