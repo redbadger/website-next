@@ -17,7 +17,7 @@ function addClassNames (element) {
 export default function Content (props) {
   return (
     <div className={styles.content}>
-      {props.children.map(addClassNames)}
+      {React.Children.map(props.children, addClassNames)}
     </div>
   );
 }
