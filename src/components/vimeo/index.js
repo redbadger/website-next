@@ -1,10 +1,11 @@
 import React from 'react';
+import styles from './style.css';
 
 export default function Vimeo (props) {
   const source = "https://player.vimeo.com/video/" + props.id;
   return (
-    <div>
-      <iframe allowFullScreen frameBorder="0" height="281" src={source} width="500"></iframe>
+    <div className={styles.vimeo}>
+      <iframe allowFullScreen className={styles.embed} frameBorder="0" src={source}></iframe>
     </div>
   );
 }
