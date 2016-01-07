@@ -3,7 +3,7 @@ import chai from 'chai';
 const browser = global.browser; // comes from wdio
 
 describe('Join Us page', function () {
-  it('should load', function (done) {
+  it('loads', function (done) {
     browser
       .url('http://localhost:8080')
       .getTitle()
