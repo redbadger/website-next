@@ -17,6 +17,6 @@ test:
 
 deployment:
   production:
-    branch: heroku
+    branch: master
     commands:
       - git push -f git@heroku.com:redbadger-next.git $CIRCLE_SHA1:master
