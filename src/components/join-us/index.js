@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import classnames from 'classnames';
 import Content from '../content';
-import YouTube from '../youtube';
+import Vimeo from '../vimeo';
 import * as backgrounds from '../utils/background.css';
 
 class JoinUs extends Component {
@@ -14,7 +14,7 @@ class JoinUs extends Component {
           <h3>Heading 3</h3>
           <p>Paragraph. Lorem ipsum do sol.</p>
         </Content>
-        <YouTube id="HkEG6t8TafI" />
+        <Vimeo id="110925126" />
       </div>
     );
   }
