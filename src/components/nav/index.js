@@ -1,11 +1,55 @@
+/*eslint react/no-set-state:0*/
+/* eslint react/no-did-mount-set-state: 0 */
 import React from 'react';
 import Badge from '../badge';
 import styles from './style.css';
+import classNames from 'classnames';
 
 export default class Nav extends React.Component {
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      inView: true
+    };
+  }
+
+  componentDidMount () {
+    window.addEventListener('scroll', this.handleScroll.bind(this));
+
+    this.offsetY = this.refs.nav.offsetTop;
+    this.setState({
+      inView: this.isInView()
+    });
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('scroll', this.handleScroll.bind(this));
+  }
+
+  isInView () {
+    return window.scrollY < this.offsetY;
+  }
+
+  handleScroll () {
+    const inView = this.state.inView;
+    if(this.isInView() !== inView) {
+      this.setState({
+        inView: !inView
+      });
+    }
+  }
+
   render () {
+    const fixedClass = {};
+    const fixedBadgeClass = {};
+    fixedBadgeClass[styles.fixedBadge] = fixedClass[styles.fixed] = !this.state.inView;
+
+    const navClass = classNames(fixedClass, styles.nav);
+    const badgeClass = classNames(fixedBadgeClass, styles.badge);
+
     return (
-      <nav className={styles.nav}>
+      <nav className={navClass} ref="nav">
         <ul className={styles.navList}>
           <li className={styles.navItem}>
             <a className={styles.navItemLink} href="/">Home</a>
@@ -27,8 +71,8 @@ export default class Nav extends React.Component {
             <div className={styles.active}></div>
           </li>
         </ul>
-        <div className={styles.badge}>
-          <Badge/>
+        <div className={badgeClass}>
+          <Badge />
         </div>
       </nav>
     );
