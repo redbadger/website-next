@@ -5,7 +5,7 @@ import { Grid, Cell } from '../grid';
 import Section from '../section';
 import styles from './style.css';
 import * as textStyles from '../utils/text.css';
-import Vimeo from '../vimeo';
+import Video from '../video';
 
 const joinTitle = `
   Join us
@@ -63,7 +63,7 @@ class JoinUs extends Component {
                   </Content>
                 </Cell>
                 <Cell>
-                  <Vimeo id="110925126" />
+                  <Video id="110925126" type="vimeo" />
                 </Cell>
               </Grid>
             </Container>
