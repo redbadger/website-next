@@ -1,10 +1,11 @@
 import React from 'react';
+import styles from './style.css';
 
 export default function YouTube (props) {
   const source = "https://www.youtube.com/embed/" + props.id;
   return (
-    <div>
-      <iframe allowFullScreen frameBorder="0" height="315" src={source} width="560"></iframe>
+    <div className={styles.container}>
+      <iframe allowFullScreen className={styles.embed} frameBorder="0" src={source}></iframe>
     </div>
   );
 }
