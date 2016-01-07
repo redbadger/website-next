@@ -1,0 +1,3 @@
+.joinUs {
+  composes: craft paperTear from "../utils/background.css";
+}
