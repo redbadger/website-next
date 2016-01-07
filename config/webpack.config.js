@@ -11,6 +11,7 @@
  * times on the server.
  */
 
+const webpack = require('webpack');
 const commonConfig = require('./common.webpack.config.js');
 const cssnext = require('postcss-cssnext');
 const dedupe = require('postcss-discard-duplicates');
@@ -22,24 +23,34 @@ const coreConfig = Object.assign({
 }, commonConfig);
 
 const config = [
-  Object.assign({
+  Object.assign({}, coreConfig, {
     name: 'server',
     target: 'node',
+    externals: /^[a-z\-0-9]+$/,
     entry: ['./src/server.js'],
     output: {
       path: 'build',
-      filename: 'server.js'
+      filename: 'server.js',
+      libraryTarget: 'commonjs2'
     }
-  }, coreConfig),
-  Object.assign({
+  }),
+  Object.assign({}, coreConfig, {
     name: 'client',
     target: 'web',
     entry: ['./src/client.js'],
     output: {
       path: 'build',
       filename: 'client.js'
-    }
-  }, coreConfig)
+    },
+    plugins: [
+      ...coreConfig.plugins,
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+        }
+      })
+    ]
+  })
 ];
 
 module.exports = config;
