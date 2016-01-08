@@ -66,5 +66,8 @@
     "url-loader": "^0.5.7",
     "webdriverio": "^3.4.0",
     "webpack": "^1.12.9"
+  },
+  "engines": {
+    "node": "5.3.0"
   }
 }

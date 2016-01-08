@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 5
+    version: 5.3.0
 
 dependencies:
   pre:
@@ -17,6 +17,6 @@ test:
 
 deployment:
   production:
-    branch: heroku
+    branch: master
     commands:
       - git push -f git@heroku.com:redbadger-next.git $CIRCLE_SHA1:master

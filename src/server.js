@@ -10,6 +10,10 @@ const root = (<Root />);
 const port = process.env.PORT || 8080;
 
 app.use(
+  express.static('static')
+);
+
+app.use(
   express.static('build')
 );
 
