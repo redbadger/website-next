@@ -1,6 +1,10 @@
 @value primary, white from "../variables/colors.css";
 @value mediaLarge from "../variables/breakpoints.css";
 
+.navWrapper {
+  min-height: 40px;
+}
+
 .nav {
   composes: blackPaper from "../utils/background.css";
   text-transform: uppercase;
@@ -55,6 +59,7 @@
   .fixed {
     position: fixed;
     top: 0;
+    z-index: 1;
   }
 
   .fixedBadge {
