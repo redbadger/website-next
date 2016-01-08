@@ -46,39 +46,35 @@ class JoinUs extends Component {
   render () {
     return (
       <div>
-        <div>
-          <Section>
-            <Container>
-              <Content>
-                <h1>{joinTitle}</h1>
-                <h3>{joinSubTitle}</h3>
-              </Content>
-              <Grid>
-                <Cell>
-                  <Content>
-                    <p>{joinP}</p>
-                    <p>
-                      <strong>{joinExtra}</strong>
-                    </p>
-                  </Content>
-                </Cell>
-                <Cell>
-                  <Video id="110925126" type="vimeo" />
-                </Cell>
-              </Grid>
-            </Container>
-          </Section>
-        </div>
-        <div className={styles.apply}>
-          <Section>
-            <Container>
-              <Content>
-                <h2>{applyTitle}</h2>
-                {applyP}
-              </Content>
-            </Container>
-          </Section>
-        </div>
+        <Section>
+          <Container>
+            <Content>
+              <h1>{joinTitle}</h1>
+              <h3>{joinSubTitle}</h3>
+            </Content>
+            <Grid>
+              <Cell>
+                <Content>
+                  <p>{joinP}</p>
+                  <p>
+                    <strong>{joinExtra}</strong>
+                  </p>
+                </Content>
+              </Cell>
+              <Cell>
+                <Video id="110925126" type="vimeo" />
+              </Cell>
+            </Grid>
+          </Container>
+        </Section>
+        <Section className={styles.apply}>
+          <Container>
+            <Content>
+              <h2>{applyTitle}</h2>
+              {applyP}
+            </Content>
+          </Container>
+        </Section>
       </div>
     );
   }
