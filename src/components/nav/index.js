@@ -2,6 +2,7 @@
 /* eslint react/no-did-mount-set-state: 0 */
 import React from 'react';
 import Badge from '../badge';
+import NavItem from '../navitem';
 import styles from './style.css';
 import classNames from 'classnames';
 
@@ -52,25 +53,12 @@ export default class Nav extends React.Component {
       <div className={styles.navWrapper}>
         <nav className={navClass} ref="nav">
           <ul className={styles.navList}>
-            <li className={styles.navItem}>
-              <a className={styles.navItemLink} href="/">Home</a>
-            </li>
-            <li className={styles.navItem}>
-              <a className={styles.navItemLink} href="/our-work">Our Work</a>
-            </li>
-            <li className={styles.navItem}>
-              <a className={styles.navItemLink} href="/services">Services</a>
-            </li>
-            <li className={styles.navItem}>
-              <a className={styles.navItemLink} href="/ideas">Ideas</a>
-            </li>
-            <li className={styles.navItem}>
-              <a className={styles.navItemLink} href="/blog">Blog</a>
-            </li>
-            <li className={styles.navItem}>
-              <a className={styles.navItemLink} href="/about-us">About us</a>
-              <div className={styles.active}></div>
-            </li>
+            <NavItem href="/" title="Home" />
+            <NavItem href="/our-work" title="Our work" />
+            <NavItem href="/services" title="Services" />
+            <NavItem href="/ideas" title="Ideas" />
+            <NavItem href="/blog" title="Blog" />
+            <NavItem active href="/about-us" title="About us" />
           </ul>
           <div className={badgeClass}>
             <Badge />
