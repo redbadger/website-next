@@ -3,9 +3,10 @@ const commonConfig = require('./common.webpack.config.js');
 
 module.exports = function (config) {
   config.set({
-    browsers: ['Firefox'],
+    browsers: ['PhantomJS'],
     frameworks: ['mocha'],
     files: [
+      '../node_modules/phantomjs-polyfill/bind-polyfill.js',
       '../src/**/*.spec.js'
     ],
 
@@ -29,9 +30,10 @@ module.exports = function (config) {
     },
 
     plugins: [
-      require("karma-webpack"),
-      require("karma-mocha"),
-      require("karma-firefox-launcher")
+      'karma-webpack',
+      'karma-mocha',
+      'karma-firefox-launcher',
+      'karma-phantomjs-launcher'
     ],
     singleRun: true
 
