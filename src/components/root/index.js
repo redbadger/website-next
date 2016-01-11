@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Layout from '../layout';
-import Home from '../home';
+import JoinUs from '../join-us';
 import styles from './style.css';
 
 class Root extends Component {
@@ -8,7 +8,7 @@ class Root extends Component {
     return (
       <div className={styles.root}>
         <Layout>
-          <Home />
+          <JoinUs />
         </Layout>
       </div>
     );
