@@ -3,7 +3,7 @@ const commonConfig = require('./common.webpack.config.js');
 
 module.exports = function (config) {
   config.set({
-    browsers: ['PhantomJS'],
+    browsers: ['PhantomJS', 'Firefox'],
     frameworks: ['mocha'],
     files: [
       '../node_modules/phantomjs-polyfill/bind-polyfill.js',
