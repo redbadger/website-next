@@ -34,7 +34,7 @@ export default class Nav extends React.Component {
 
   handleScroll () {
     const inView = this.state.inView;
-    if(this.isInView() !== inView) {
+    if (this.isInView() !== inView) {
       this.setState({
         inView: !inView
       });
