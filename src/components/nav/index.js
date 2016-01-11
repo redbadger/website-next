@@ -2,7 +2,7 @@
 /* eslint react/no-did-mount-set-state: 0 */
 import React from 'react';
 import Badge from '../badge';
-import NavItem from '../navitem';
+import NavItem from '../nav-item';
 import styles from './style.css';
 import classNames from 'classnames';
 
