@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "description": "Red Badger's website",
-  "main": "build/server.js",
+  "main": "build/server",
   "scripts": {
     "test:server": "BABEL_DISABLE_CACHE=1 BABEL_ENV=test mocha --compilers js:babel-register ./src/**/*.spec.js",
     "test:client": "karma start config/karma.config.js",
     "test:e2e": "wdio config/wdio.config.js",
-    "start": "node build/server.js",
-    "build": "webpack --config config/webpack.config.js",
+    "start": "node build/server",
+    "build": "npm run build:client && npm run build:server",
+    "build:server": "webpack --config config/server.webpack.config.js",
+    "build:client": "webpack --config config/client.webpack.config.js",
     "watch": "webpack --config config/webpack.config.js --watch",
     "lint": "eslint -c .eslintrc ./src/**"
   },
