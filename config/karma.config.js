@@ -1,31 +1,50 @@
 const clientConfig = require('./client.webpack.config.js');
 
+const webpackConfig = Object.assign({}, clientConfig, {
+  devtool: 'inline-source-map',
+  module: Object.assign({}, clientConfig.module, {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|\.spec\.js)/,
+        loader: 'isparta'
+      }
+    ]
+  })
+});
+
 module.exports = function (config) {
   config.set({
     browsers: ['PhantomJS', 'Firefox'],
-    frameworks: ['mocha'],
+    frameworks: [ 'mocha' ],
     files: [
       '../node_modules/phantomjs-polyfill/bind-polyfill.js',
-      '../src/**/*.spec.js'
+      './tests.webpack.js'
     ],
-
     preprocessors: {
-      '../src/**/*.js': ['webpack']
+      './tests.webpack.js': [ 'webpack', 'sourcemap' ]
     },
-
-    webpack: clientConfig,
-
+    reporters: [
+      'mocha',
+      'coverage'
+    ],
+    coverageReporter: {
+      type: 'lcov',
+      dir: '../coverage'
+    },
+    webpack: webpackConfig,
     webpackMiddleware: {
       noInfo: true
     },
-
     plugins: [
       'karma-webpack',
       'karma-mocha',
+      'karma-mocha-reporter',
       'karma-firefox-launcher',
-      'karma-phantomjs-launcher'
+      'karma-phantomjs-launcher',
+      'karma-coverage',
+      'karma-sourcemap-loader'
     ],
     singleRun: true
-
   });
 };
