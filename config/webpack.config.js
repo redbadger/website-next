@@ -21,7 +21,7 @@ const serverConfig = require('./server.webpack.config.js');
 const tests = glob.sync('./src/**/*.spec.js');
 
 const config = [
-  Object.assign({
+  Object.assign({}, clientConfig, {
     name: 'client',
     target: 'web',
     entry: ['./src/client.js'],
@@ -29,8 +29,8 @@ const config = [
       path: 'build/client',
       filename: 'index.js'
     }
-  }, clientConfig),
-  Object.assign({
+  }),
+  Object.assign({}, serverConfig, {
     name: 'server',
     entry: ['./src/server.js'],
     output: {
@@ -38,8 +38,8 @@ const config = [
       filename: 'index.js',
       libraryTarget: 'commonjs2'
     }
-  }, serverConfig),
-  Object.assign({
+  }),
+  Object.assign({}, serverConfig, {
     name: 'test',
     entry: tests,
     output: {
@@ -47,7 +47,7 @@ const config = [
       filename: 'index.js',
       libraryTarget: 'commonjs2'
     }
-  }, serverConfig)
+  })
 ];
 
 module.exports = config;
