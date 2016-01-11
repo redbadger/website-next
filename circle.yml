@@ -10,7 +10,7 @@ test:
   override:
     - npm run lint
     - npm run test:server
-    - npm run test:client
+    - npm run test:client -- --browsers PhantomJS
     - NODE_ENV=production npm run build
     - npm start:
         background: true
