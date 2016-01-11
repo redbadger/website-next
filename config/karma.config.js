@@ -1,5 +1,4 @@
-const webpack = require('webpack');
-const commonConfig = require('./common.webpack.config.js');
+const clientConfig = require('./client.webpack.config.js');
 
 module.exports = function (config) {
   config.set({
@@ -14,16 +13,7 @@ module.exports = function (config) {
       '../src/**/*.js': ['webpack']
     },
 
-    webpack: Object.assign({}, commonConfig, {
-      plugins: [
-        ...commonConfig.plugins,
-        new webpack.DefinePlugin({
-          'process.env': {
-            NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
-          }
-        })
-      ]
-    }),
+    webpack: clientConfig,
 
     webpackMiddleware: {
       noInfo: true
