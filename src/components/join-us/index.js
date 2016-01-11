@@ -4,8 +4,8 @@ import Content from '../content';
 import { Grid, Cell } from '../grid';
 import Section from '../section';
 import styles from './style.css';
-import * as textStyles from '../utils/text.css';
 import Video from '../video';
+import ComponentRenderer from '../component-renderer';
 
 const joinTitle = `
   Join us
@@ -31,16 +31,26 @@ const applyTitle = `
   How to Apply
 `;
 
-const applyP = (
-  <p className={textStyles.center}>{`
-  If you'd like more information, you want to apply, or you'd simply like to
-  say 'hello', then please get in touch with your CV, Stackoverflow profile,
-  Github, code, portfolio and anything else you think we might be interested
-  in, at:
-    `}
-    <a href="mailto:jobs@red-badger.com">jobs@red-badger.com.</a>
-  </p>
-);
+const applyP = {
+  type: 'Paragraph',
+  props: {
+    children: [
+      `If you'd like more information, you want to apply, or you'd simply like to
+      say 'hello', then please get in touch with your CV, Stackoverflow profile,
+      Github, code, portfolio and anything else you think we might be interested
+      in, at: `,
+      {
+        type: 'Link',
+        props: {
+          href: "mailto:jobs@red-badger.com",
+          children: [
+            "jobs@red-badger.com."
+          ]
+        }
+      }
+    ]
+  }
+};
 
 class JoinUs extends Component {
   render () {
@@ -74,7 +84,7 @@ class JoinUs extends Component {
             <Container>
               <Content>
                 <h2>{applyTitle}</h2>
-                {applyP}
+                <ComponentRenderer schema={applyP} />
               </Content>
             </Container>
           </Section>
