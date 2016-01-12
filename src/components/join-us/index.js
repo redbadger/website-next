@@ -93,10 +93,10 @@ class JoinUs extends Component {
         <div>
           <Section>
             <Container>
-              <ComponentRenderer schema={titles} />
+              <ComponentRenderer data={titles} />
               <Grid>
                 <Cell>
-                  <ComponentRenderer schema={join} />
+                  <ComponentRenderer data={join} />
                 </Cell>
                 <Cell>
                   <Video id="110925126" type="vimeo" />
@@ -108,7 +108,7 @@ class JoinUs extends Component {
         <div className={styles.apply}>
           <Section>
             <Container>
-              <ComponentRenderer schema={apply} />
+              <ComponentRenderer data={apply} />
             </Container>
           </Section>
         </div>

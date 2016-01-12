@@ -10,7 +10,7 @@ import isArray from 'lodash/lang/isArray';
 import isString from 'lodash/lang/isString';
 
 export default class ComponentRenderer extends React.Component {
-  build (schema) {
+  build (data) {
     const componentIndex = {
       Paragraph: Paragraph,
       Link: Link,
@@ -20,9 +20,9 @@ export default class ComponentRenderer extends React.Component {
       Title2: Title2,
       Title3: Title3
     };
-    const componentName = schema.type;
+    const componentName = data.type;
     const Component = componentIndex[componentName];
-    const componentChildren = schema.props.children;
+    const componentChildren = data.props.children;
 
     let text = null;
     let childNodes = [];
@@ -39,16 +39,16 @@ export default class ComponentRenderer extends React.Component {
       text = componentChildren;
     }
 
-    return React.createElement(Component, schema.props, text || childNodes);
+    return React.createElement(Component, data.props, text || childNodes);
   }
 
   render () {
-    return this.build(this.props.schema);
+    return this.build(this.props.data);
   }
 }
 
 ComponentRenderer.propTypes = {
-  schema: React.PropTypes.shape({
+  data: React.PropTypes.shape({
     type: React.PropTypes.string
   }).isRequired
 };
