@@ -1,11 +1,12 @@
 import React from 'react';
+import styles from './style.css';
 
 export default function JobOverview (props) {
   return (
-    <div>
-      <a href={props.href}>{props.title}</a>
-      <p><strong>{props.subtitle}</strong></p>
-      <p>{props.body}</p>
+    <div className={styles.note}>
+      <a className={styles.title} href={props.href}>{props.title}<span className={styles.icon}></span></a>
+      <p className={styles.paragraph}><strong>{props.subtitle}</strong></p>
+      <p className={styles.paragraph}>{props.body}</p>
     </div>
   );
 }
