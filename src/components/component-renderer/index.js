@@ -9,17 +9,18 @@ import Content from '../content';
 import isArray from 'lodash/lang/isArray';
 import isString from 'lodash/lang/isString';
 
+const componentIndex = {
+  Paragraph: Paragraph,
+  Link: Link,
+  Strong: Strong,
+  Content: Content,
+  Title1: Title1,
+  Title2: Title2,
+  Title3: Title3
+};
+
 export default class ComponentRenderer extends React.Component {
   build (data) {
-    const componentIndex = {
-      Paragraph: Paragraph,
-      Link: Link,
-      Strong: Strong,
-      Content: Content,
-      Title1: Title1,
-      Title2: Title2,
-      Title3: Title3
-    };
     const componentName = data.type;
     const Component = componentIndex[componentName];
     const componentChildren = data.props.children;
