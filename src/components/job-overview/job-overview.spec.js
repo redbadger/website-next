@@ -12,7 +12,7 @@ describe('Job Overview', () => {
 
   before(() => {
     const renderer = TestUtils.createRenderer();
-    renderer.render(<JobOverview body="Body" href="TestLink" subTitle="SubTitle" title="Title" />);
+    renderer.render(<JobOverview body="Body" href="TestLink" subtitle="SubTitle" title="Title" />);
     result = renderer.getRenderOutput();
   });
 
@@ -20,8 +20,8 @@ describe('Job Overview', () => {
     expect(result.props.children[0]).to.include(<a href="TestLink">Title</a>);
   });
 
-  it('renders the sub title', () => {
-    expect(result.props.children[1]).to.include(<p>SubTitle</p>);
+  it('renders the subtitle with strong', () => {
+    expect(result.props.children[1]).to.include(<p><strong>SubTitle</strong></p>);
   });
 
   it('renders the body', () => {
