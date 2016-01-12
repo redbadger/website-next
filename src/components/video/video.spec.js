@@ -1,9 +1,8 @@
 import Video from './index';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import Chai from 'chai';
+import { expect } from 'chai';
 
-const expect = Chai.expect;
 let renderer;
 let rendered;
 

@@ -1,22 +1,26 @@
 import Button from './index';
 import React from 'react';
 import TestUtils from 'react-addons-test-utils';
-import Chai from 'chai';
-
-const expect = Chai.expect;
+import { expect } from 'chai';
 
 describe('Button', () => {
+
+  let renderer;
+  let result;
+
+  before(() => {
+    renderer = TestUtils.createRenderer();
+  });
+
   it('is a button if href is not passed in props', () => {
-    const renderer = TestUtils.createRenderer();
     renderer.render(<Button />);
-    const rendered = renderer.getRenderOutput();
-    expect(rendered.type).to.equal('button');
+    result = renderer.getRenderOutput();
+    expect(result.type).to.equal('button');
   });
 
   it('is a link if href is passed in props', () => {
-    const renderer = TestUtils.createRenderer();
     renderer.render(<Button href="//red-badger.com" />);
-    const rendered = renderer.getRenderOutput();
-    expect(rendered.type).to.equal('a');
+    result = renderer.getRenderOutput();
+    expect(result.type).to.equal('a');
   });
 });
