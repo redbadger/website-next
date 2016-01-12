@@ -11,7 +11,7 @@
     "start": "node build/server.js",
     "build": "webpack --config config/webpack.config.js",
     "watch": "webpack --config config/webpack.config.js --watch",
-    "lint": "eslint -c .eslintrc ./src/**"
+    "lint": "eslint --cache ."
   },
   "repository": {
     "type": "git",
