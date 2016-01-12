@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from './styles.css';
 
-export default class Link extends React.Component {
-  render () {
-    return <a className={styles.a} href={this.props.href}>{this.props.children}</a>;
-  }
+export default function Link (props) {
+  return <a className={styles.a} href={props.href}>{props.children}</a>;
 }
 
 Link.propTypes = {

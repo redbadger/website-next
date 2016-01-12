@@ -1,9 +1,7 @@
 import React from 'react';
 
-export default class Paragraph extends React.Component {
-  render () {
-    return <strong>{this.props.children}</strong>;
-  }
+export default function Paragraph (props) {
+  return <strong>{props.children}</strong>;
 }
 
 Paragraph.propTypes = {

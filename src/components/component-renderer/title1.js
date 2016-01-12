@@ -1,10 +1,8 @@
 import React from 'react';
 import styles from './styles.css';
 
-export default class Title1 extends React.Component {
-  render () {
-    return <h1 className={styles.h1}>{this.props.children}</h1>;
-  }
+export default function Title1 (props) {
+  return <h1 className={styles.h1}>{props.children}</h1>;
 }
 
 Title1.propTypes = {
