@@ -86,6 +86,23 @@ const apply = {
   }
 };
 
+const listings = {
+  type: 'Content',
+  props: {
+    children: [
+      {
+        type: 'JobOverview',
+        props: {
+          title: 'Badger Academy Internships',
+          subtitle: 'Badger Academy is a little bit different to most internship programmes.',
+          body: 'At the beginning of each summer we take on a group of students; usually around 6. They spend 2 months with us immersing themselves in life at Red Badger and learning about what it’s really like to work in a professional software workshop.',
+          href: '/badger-academy-internships'
+        }
+      }
+    ]
+  }
+};
+
 class JoinUs extends Component {
   render () {
     return (
@@ -105,6 +122,11 @@ class JoinUs extends Component {
             </Container>
           </Section>
         </div>
+        <Section>
+          <Container>
+            <ComponentRenderer data={listings} />
+          </Container>
+        </Section>
         <div className={styles.apply}>
           <Section>
             <Container>
