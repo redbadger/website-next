@@ -9,6 +9,7 @@ dependencies:
 test:
   override:
     - npm run lint
+    - NODE_ENV=test npm run build
     - npm run test:server
     - npm run test:client -- --browsers PhantomJS
     - NODE_ENV=production npm run build
