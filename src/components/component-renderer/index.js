@@ -6,6 +6,8 @@ import Title1 from './title1';
 import Title2 from './title2';
 import Title3 from './title3';
 import Content from '../content';
+import isArray from 'lodash/lang/isArray';
+import isString from 'lodash/lang/isString';
 
 export default class ComponentRenderer extends React.Component {
   build (schema) {
@@ -25,7 +27,7 @@ export default class ComponentRenderer extends React.Component {
     let text = null;
     let childNodes = [];
 
-    if (componentChildren instanceof Array) {
+    if (isArray(componentChildren)) {
       childNodes = componentChildren.map((child, index) => {
         if (child.type && componentIndex[child.type]) {
           child.props.key = index;
@@ -33,7 +35,7 @@ export default class ComponentRenderer extends React.Component {
         }
         return child;
       });
-    } else if (typeof componentChildren === 'string') {
+    } else if (isString(componentChildren)) {
       text = componentChildren;
     }
 

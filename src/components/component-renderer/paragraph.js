@@ -5,10 +5,12 @@ import classNames from 'classnames';
 
 export default class Paragraph extends React.Component {
   render () {
-    return <p className={classNames(textStyles.center, styles.p)}>{this.props.children}</p>;
+    const pClass = classNames(textStyles[this.props.align], styles.p);
+    return <p className={pClass}>{this.props.children}</p>;
   }
 }
 
 Paragraph.propTypes = {
+  align: React.PropTypes.oneOf(['center', 'left', 'right']),
   children: React.PropTypes.node
 };

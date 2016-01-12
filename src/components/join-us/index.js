@@ -78,7 +78,8 @@ const apply = {
                 ]
               }
             }
-          ]
+          ],
+          align: 'center'
         }
       }
     ]
