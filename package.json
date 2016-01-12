@@ -5,11 +5,12 @@
   "description": "Red Badger's website",
   "main": "build/server.js",
   "scripts": {
+    "clean": "rimraf build",
     "test:server": "BABEL_DISABLE_CACHE=1 BABEL_ENV=test mocha --compilers js:babel-register ./src/**/*.spec.js",
     "test:client": "karma start config/karma.config.js",
     "test:e2e": "wdio config/wdio.config.js",
     "start": "node build/server.js",
-    "build": "webpack --config config/webpack.config.js",
+    "build": "npm run clean && webpack --config config/webpack.config.js",
     "watch": "webpack --config config/webpack.config.js --watch",
     "lint": "eslint -c .eslintrc ./src/**"
   },
@@ -63,6 +64,7 @@
     "postcss-loader": "^0.8.0",
     "pre-push": "0.1.1",
     "react-addons-test-utils": "^0.14.5",
+    "rimraf": "2.5.0",
     "url-loader": "^0.5.7",
     "webdriverio": "^3.4.0",
     "webpack": "^1.12.9"
