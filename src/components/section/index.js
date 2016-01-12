@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './style.css';
+import classNames from 'classnames';
 
-export default class Section extends React.Component {
-  render () {
-    return (
-      <section className={styles.section}>
-        {this.props.children}
-      </section>
-    );
-  }
+export default function Section (props) {
+  const sectionClass = classNames(props.className, styles.section);
+  return (
+    <section className={sectionClass}>
+      {props.children}
+    </section>
+  );
 }
 
 Section.propTypes = {

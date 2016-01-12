@@ -107,33 +107,29 @@ class JoinUs extends Component {
   render () {
     return (
       <div>
-        <div>
-          <Section>
-            <Container>
-              <ComponentRenderer data={titles} />
-              <Grid>
-                <Cell>
-                  <ComponentRenderer data={join} />
-                </Cell>
-                <Cell>
-                  <Video id="110925126" type="vimeo" />
-                </Cell>
-              </Grid>
-            </Container>
-          </Section>
-        </div>
+        <Section>
+          <Container>
+            <ComponentRenderer data={titles} />
+            <Grid>
+              <Cell>
+                <ComponentRenderer data={join} />
+              </Cell>
+              <Cell>
+                <Video id="110925126" type="vimeo" />
+              </Cell>
+            </Grid>
+          </Container>
+        </Section>
         <Section>
           <Container>
             <ComponentRenderer data={listings} />
           </Container>
         </Section>
-        <div className={styles.apply}>
-          <Section>
-            <Container>
-              <ComponentRenderer data={apply} />
-            </Container>
-          </Section>
-        </div>
+        <Section className={styles.apply}>
+          <Container>
+            <ComponentRenderer data={apply} />
+          </Container>
+        </Section>
       </div>
     );
   }
