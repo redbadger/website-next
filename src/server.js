@@ -6,7 +6,7 @@ import Root from './components/root';
 
 const app = express();
 const root = (<Root />);
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8000;
 
 app.use(
   express.static('static')
@@ -18,7 +18,7 @@ app.use(
 
 app.get('/',
   (req, res) => {
-    res.send(html(ReactDOMServer.renderToString(root)));
+    res.send(html(ReactDOMServer.renderToString(root), process.env.HMR === 'true'));
   }
 );
 

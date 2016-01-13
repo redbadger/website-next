@@ -1,4 +1,13 @@
-export default function (body) {
+export default function (body, usingHMR) {
+  let appScript = '/index.js';
+
+  // When using Hot Module Replacement we need to serve the client-side JavaScript
+  // from Webpack Dev Server so that the client can be notified of changes and
+  // receive them.
+  if (usingHMR) {
+    appScript = 'http://localhost:8081/index.js';
+  }
+
   return `
   <!doctype html>
   <html>
@@ -11,7 +20,7 @@ export default function (body) {
     </head>
     <body>
       <div id="mount">${body}</div>
-      <script type="text/javascript" src="/index.js"></script>
+      <script type="text/javascript" src="${appScript}"></script>
     </body>
   </html>
   `;
