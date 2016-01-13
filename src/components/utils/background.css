@@ -25,3 +25,10 @@
   left: 0;
   top: -11px;
 }
+
+.redLine:before {
+  content: "";
+  background-image: url("./rule-red.png");
+  height: 14px;
+  display: block;
+}

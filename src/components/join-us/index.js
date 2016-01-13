@@ -73,9 +73,7 @@ const apply = {
               type: 'Link',
               props: {
                 href: "mailto:jobs@red-badger.com",
-                children: [
-                  "jobs@red-badger.com."
-                ]
+                children: "jobs@red-badger.com."
               }
             }
           ],
@@ -90,6 +88,12 @@ const listings = {
   type: 'Content',
   props: {
     children: [
+      {
+        type: 'Title2',
+        props: {
+          children: 'Current Vacancies'
+        }
+      },
       {
         type: 'JobOverview',
         props: {
@@ -107,8 +111,8 @@ class JoinUs extends Component {
   render () {
     return (
       <div>
-        <Section>
-          <Container>
+        <Container>
+          <Section>
             <ComponentRenderer data={titles} />
             <Grid>
               <Cell>
@@ -118,13 +122,11 @@ class JoinUs extends Component {
                 <Video id="110925126" type="vimeo" />
               </Cell>
             </Grid>
-          </Container>
-        </Section>
-        <Section>
-          <Container>
+          </Section>
+          <Section className={styles.listings}>
             <ComponentRenderer data={listings} />
-          </Container>
-        </Section>
+          </Section>
+        </Container>
         <Section className={styles.apply}>
           <Container>
             <ComponentRenderer data={apply} />

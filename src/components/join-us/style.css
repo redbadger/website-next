@@ -1,3 +1,12 @@
 .apply {
   composes: craft paperTear from "../utils/background.css";
 }
+
+.listings {
+  composes: redLine from "../utils/background.css";
+  padding-top: 0;
+}
+
+.listings:before {
+  margin-bottom: 25px;
+}
