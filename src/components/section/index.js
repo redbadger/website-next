@@ -12,5 +12,6 @@ export default function Section (props) {
 }
 
 Section.propTypes = {
-  children: React.PropTypes.node
+  children: React.PropTypes.node,
+  className: React.PropTypes.string
 };

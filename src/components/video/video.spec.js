@@ -1,31 +1,27 @@
 import Video from './index';
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
+import { render, findWithType, hasProp } from '../../test-helper';
 import { expect } from 'chai';
 
-let renderer;
-let rendered;
-
 describe('Video', () => {
-  beforeEach(() => {
-    renderer = TestUtils.createRenderer();
-  });
-
   it('adds an iframe', () => {
-    renderer.render(<Video id="1" type="youtube" />);
-    rendered = renderer.getRenderOutput();
-    expect(rendered.props.children.type).to.equal('iframe');
+    const result = render(<Video id="1" type="youtube" />);
+    const iframe = findWithType('iframe', result);
+
+    expect(iframe).to.exist;
   });
 
   it('adds a youtube iframe if the type is youtube', () => {
-    renderer.render(<Video id="1" type="youtube" />);
-    rendered = renderer.getRenderOutput();
-    expect(rendered.props.children.props.src).to.equal('https://www.youtube.com/embed/1');
+    const result = render(<Video id="1" type="youtube" />);
+    const iframe = findWithType('iframe', result);
+
+    expect(hasProp('src', 'https://www.youtube.com/embed/1')(iframe)).to.equal(true);
   });
 
   it('adds a vimeo iframe if the type is vimeo', () => {
-    renderer.render(<Video id="1" type="vimeo" />);
-    rendered = renderer.getRenderOutput();
-    expect(rendered.props.children.props.src).to.equal('https://player.vimeo.com/video/1');
+    const result = render(<Video id="1" type="vimeo" />);
+    const iframe = findWithType('iframe', result);
+
+    expect(hasProp('src', 'https://player.vimeo.com/video/1')(iframe)).to.equal(true);
   });
 });
