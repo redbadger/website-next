@@ -1,4 +1,3 @@
-import 'source-map-support/register';
 import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
@@ -14,7 +13,7 @@ app.use(
 );
 
 app.use(
-  express.static('build')
+  express.static('build/client')
 );
 
 app.get('/',

@@ -1,7 +1,7 @@
 /*
  * Building with Webpack
  *
- * We use Webpack and Babel to build both the client and the server. This
+ * We use Webpack and Babel to build both the client, server and tests. This
  * allows us to use tools like CSS modules and File Loader so we can just
  * require component related files and have the appropriate transforms for
  * client and server rendering be applied.
@@ -9,47 +9,44 @@
  * It also has the benefit that we do not need to bootstrap our server
  * application with babel polyfill and register and results in faster start
  * times on the server.
+ *
+ * The major drawback with this approach is that we are outputting the files
+ * for each of these targets. Webpack does not currently support a way to just
+ * transform the import call without also outputting the file.
  */
 
-const webpack = require('webpack');
-const commonConfig = require('./common.webpack.config.js');
-const cssnext = require('postcss-cssnext');
-const dedupe = require('postcss-discard-duplicates');
-const autoprefixer = require('autoprefixer');
-const postcss = () => [ cssnext, autoprefixer, dedupe ];
-
-const coreConfig = Object.assign({
-  postcss: postcss
-}, commonConfig);
+const glob = require('glob');
+const clientConfig = require('./client.webpack.config.js');
+const serverConfig = require('./server.webpack.config.js');
+const tests = glob.sync('./src/**/*.spec.js');
 
 const config = [
-  Object.assign({}, coreConfig, {
-    name: 'server',
-    target: 'node',
-    externals: /^[a-z\-0-9]+$/,
-    entry: ['./src/server.js'],
-    output: {
-      path: 'build',
-      filename: 'server.js',
-      libraryTarget: 'commonjs2'
-    }
-  }),
-  Object.assign({}, coreConfig, {
+  Object.assign({}, clientConfig, {
     name: 'client',
     target: 'web',
     entry: ['./src/client.js'],
     output: {
-      path: 'build',
-      filename: 'client.js'
-    },
-    plugins: [
-      ...coreConfig.plugins,
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
-        }
-      })
-    ]
+      path: 'build/client',
+      filename: 'index.js'
+    }
+  }),
+  Object.assign({}, serverConfig, {
+    name: 'server',
+    entry: ['./src/server.js'],
+    output: {
+      path: 'build/server',
+      filename: 'index.js',
+      libraryTarget: 'commonjs2'
+    }
+  }),
+  Object.assign({}, serverConfig, {
+    name: 'test',
+    entry: tests,
+    output: {
+      path: 'build/test',
+      filename: 'index.js',
+      libraryTarget: 'commonjs2'
+    }
   })
 ];
 
