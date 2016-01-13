@@ -124,16 +124,20 @@ class JoinUs extends Component {
             </Grid>
           </Container>
         </Section>
-        <Section className={styles.listings}>
-          <Container>
-            <ComponentRenderer data={listings} />
-          </Container>
-        </Section>
-        <Section className={styles.apply}>
-          <Container>
-            <ComponentRenderer data={apply} />
-          </Container>
-        </Section>
+        <div className={styles.listings}>
+          <Section>
+            <Container>
+              <ComponentRenderer data={listings} />
+            </Container>
+          </Section>
+        </div>
+        <div className={styles.apply}>
+          <Section>
+            <Container>
+              <ComponentRenderer data={apply} />
+            </Container>
+          </Section>
+        </div>
       </div>
     );
   }

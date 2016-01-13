@@ -2,9 +2,8 @@ import TestUtils from 'react-addons-test-utils';
 import equals from 'lodash/isEqual';
 import ShallowTestUtils from 'react-shallow-testutils';
 
-const renderer = TestUtils.createRenderer();
-
 export function render (component) {
+  const renderer = TestUtils.createRenderer();
   renderer.render(component);
   return renderer.getRenderOutput();
 }
