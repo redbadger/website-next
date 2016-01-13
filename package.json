@@ -14,7 +14,7 @@
     "start": "node build/server",
     "test:client": "karma start config/karma.config.babel.js",
     "test:e2e": "wdio config/wdio.config.js",
-    "test:server": "npm run build:server-tests && mocha ./build/test/index.js",
+    "test:server": "mocha ./build/test/index.js",
     "watch:client": "HMR=true webpack-dev-server --config config/client.webpack.config.babel.js --content-base build/client --hot --inline --port 8081",
     "watch:server": "webpack --config config/server.webpack.config.babel.js --watch & HMR=true nodemon --watch build/server build/server"
   },
@@ -29,6 +29,7 @@
   "homepage": "https://github.com/redbadger/website-next",
   "pre-push": [
     "lint",
+    "build:server-tests",
     "test:server"
   ],
   "dependencies": {
