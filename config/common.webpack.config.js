@@ -1,3 +1,7 @@
+/*
+ * Common config for webpack
+ */
+
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -15,7 +19,10 @@ const loaders = [
   {
     test: /\.js$/,
     exclude: /node_modules/,
-    loader: 'babel-loader'
+    loader: 'babel-loader',
+    query: {
+      cacheDirectory: true
+    }
   },
   {
     test: /\.css$/,
@@ -38,14 +45,6 @@ const loaders = [
     loader: 'file-loader?name=[hash].[ext]'
   }
 ];
-
-if (process.env.NODE_ENV === 'production') {
-  plugins.push(new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
-    }
-  }));
-}
 
 module.exports = {
   module: {

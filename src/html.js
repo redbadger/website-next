@@ -11,7 +11,7 @@ export default function (body) {
     </head>
     <body>
       <div id="mount">${body}</div>
-      <script type="text/javascript" src="/client.js"></script>
+      <script type="text/javascript" src="/index.js"></script>
     </body>
   </html>
   `;
