@@ -1,39 +1,32 @@
 import JobOverview from './index';
 import React from 'react';
-import TestHelper from '../../test-helper';
+import { render, hasProp, containsOne, findWithType } from '../../test-helper';
 import { expect } from 'chai';
-import ShallowTestUtils from 'react-shallow-testutils';
 
 describe('Job Overview', () => {
 
   let result;
 
   before(() => {
-    result = TestHelper.render(<JobOverview body="Body" href="TestLink" subtitle="SubTitle" title="Title" />);
+    result = render(<JobOverview body="Body" href="TestLink" subtitle="SubTitle" title="Title" />);
   });
 
   it('renders the title with link', () => {
-    const element = ShallowTestUtils.findWithType(result, 'a');
+    const link = findWithType('a', result);
 
-    expect(element).to.exist;
-    expect(element.props.href).to.equal('TestLink');
-    expect(element.props.children[0]).to.equal('Title');
+    expect(hasProp('href', 'TestLink')(link)).to.equal(true);
+    expect(containsOne('Title', result)).to.equal(true);
   });
 
   it('renders the subtitle with strong', () => {
-    const element = ShallowTestUtils.findAllWithType(result, 'p')[0];
-    const strong = ShallowTestUtils.findWithType(element, 'strong');
+    const strong = findWithType('strong', result);
 
-    expect(element).to.exist;
     expect(strong).to.exist;
-    expect(strong.props.children).to.equal('SubTitle');
+    expect(containsOne('SubTitle', strong)).to.equal(true);
   });
 
   it('renders the body', () => {
-    const element = ShallowTestUtils.findAllWithType(result, 'p')[1];
-
-    expect(element).to.exist;
-    expect(element.props.children).to.equal('Body');
+    expect(containsOne('Body', result)).to.equal(true);
   });
 
 });
