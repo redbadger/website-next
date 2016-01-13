@@ -1,37 +1,39 @@
 import JobOverview from './index';
 import React from 'react';
-import TestUtils from 'react-addons-test-utils';
-import Chai, { expect } from 'chai';
-import jsxChai from 'jsx-chai';
-
-Chai.use(jsxChai);
+import TestHelper from '../../test-helper';
+import { expect } from 'chai';
+import ShallowTestUtils from 'react-shallow-testutils';
 
 describe('Job Overview', () => {
 
   let result;
 
   before(() => {
-    const renderer = TestUtils.createRenderer();
-    renderer.render(<JobOverview body="Body" href="TestLink" subtitle="SubTitle" title="Title" />);
-    result = renderer.getRenderOutput();
+    result = TestHelper.render(<JobOverview body="Body" href="TestLink" subtitle="SubTitle" title="Title" />);
   });
 
   it('renders the title with link', () => {
-    const element = result.props.children[0];
+    const element = ShallowTestUtils.findWithType(result, 'a');
 
-    expect(element.type).to.equal('a');
+    expect(element).to.exist;
     expect(element.props.href).to.equal('TestLink');
     expect(element.props.children[0]).to.equal('Title');
   });
 
   it('renders the subtitle with strong', () => {
-    const element = result.props.children[1];
+    const element = ShallowTestUtils.findAllWithType(result, 'p')[0];
+    const strong = ShallowTestUtils.findWithType(element, 'strong');
 
-    expect(result.props.children[1]).to.include(<p><strong>SubTitle</strong></p>);
+    expect(element).to.exist;
+    expect(strong).to.exist;
+    expect(strong.props.children).to.equal('SubTitle');
   });
 
   it('renders the body', () => {
-    expect(result.props.children[2]).to.include(<p>Body</p>);
+    const element = ShallowTestUtils.findAllWithType(result, 'p')[1];
+
+    expect(element).to.exist;
+    expect(element.props.children).to.equal('Body');
   });
 
 });
