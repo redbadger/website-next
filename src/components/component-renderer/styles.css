@@ -1,15 +1,11 @@
 @value red, turquoise from "../variables/colors.css";
 
-.content {
-
-}
-
-.content a {
+.a {
   color: red;
   white-space: nowrap;
 }
 
-.content a:hover {
+.a:hover {
   color: turquoise;
 }
 
