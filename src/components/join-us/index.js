@@ -111,8 +111,8 @@ class JoinUs extends Component {
   render () {
     return (
       <div>
-        <Container>
-          <Section>
+        <Section>
+          <Container>
             <ComponentRenderer data={titles} />
             <Grid>
               <Cell>
@@ -122,11 +122,13 @@ class JoinUs extends Component {
                 <Video id="110925126" type="vimeo" />
               </Cell>
             </Grid>
-          </Section>
-          <Section className={styles.listings}>
+          </Container>
+        </Section>
+        <Section className={styles.listings}>
+          <Container>
             <ComponentRenderer data={listings} />
-          </Section>
-        </Container>
+          </Container>
+        </Section>
         <Section className={styles.apply}>
           <Container>
             <ComponentRenderer data={apply} />

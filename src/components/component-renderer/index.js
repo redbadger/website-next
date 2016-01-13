@@ -7,8 +7,8 @@ import Title2 from './title2';
 import Title3 from './title3';
 import Content from '../content';
 import JobOverview from '../job-overview';
-import isArray from 'lodash/lang/isArray';
-import isString from 'lodash/lang/isString';
+import isArray from 'lodash/isArray';
+import isString from 'lodash/isString';
 
 const componentIndex = {
   Paragraph: Paragraph,
