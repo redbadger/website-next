@@ -73,9 +73,7 @@ const apply = {
               type: 'Link',
               props: {
                 href: "mailto:jobs@red-badger.com",
-                children: [
-                  "jobs@red-badger.com."
-                ]
+                children: "jobs@red-badger.com."
               }
             }
           ],
@@ -86,22 +84,50 @@ const apply = {
   }
 };
 
+const listings = {
+  type: 'Content',
+  props: {
+    children: [
+      {
+        type: 'Title2',
+        props: {
+          children: 'Current Vacancies'
+        }
+      },
+      {
+        type: 'JobOverview',
+        props: {
+          title: 'Badger Academy Internships',
+          subtitle: 'Badger Academy is a little bit different to most internship programmes.',
+          body: 'At the beginning of each summer we take on a group of students; usually around 6. They spend 2 months with us immersing themselves in life at Red Badger and learning about what it’s really like to work in a professional software workshop.',
+          href: '/badger-academy-internships'
+        }
+      }
+    ]
+  }
+};
+
 class JoinUs extends Component {
   render () {
     return (
       <div>
-        <div>
+        <Section>
+          <Container>
+            <ComponentRenderer data={titles} />
+            <Grid>
+              <Cell>
+                <ComponentRenderer data={join} />
+              </Cell>
+              <Cell>
+                <Video id="110925126" type="vimeo" />
+              </Cell>
+            </Grid>
+          </Container>
+        </Section>
+        <div className={styles.listings}>
           <Section>
             <Container>
-              <ComponentRenderer data={titles} />
-              <Grid>
-                <Cell>
-                  <ComponentRenderer data={join} />
-                </Cell>
-                <Cell>
-                  <Video id="110925126" type="vimeo" />
-                </Cell>
-              </Grid>
+              <ComponentRenderer data={listings} />
             </Container>
           </Section>
         </div>

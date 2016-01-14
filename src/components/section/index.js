@@ -1,14 +1,12 @@
 import React from 'react';
 import styles from './style.css';
 
-export default class Section extends React.Component {
-  render () {
-    return (
-      <section className={styles.section}>
-        {this.props.children}
-      </section>
-    );
-  }
+export default function Section (props) {
+  return (
+    <section className={styles.section}>
+      {props.children}
+    </section>
+  );
 }
 
 Section.propTypes = {

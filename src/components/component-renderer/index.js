@@ -6,8 +6,9 @@ import Title1 from './title1';
 import Title2 from './title2';
 import Title3 from './title3';
 import Content from '../content';
-import isArray from 'lodash/lang/isArray';
-import isString from 'lodash/lang/isString';
+import JobOverview from '../job-overview';
+import isArray from 'lodash/isArray';
+import isString from 'lodash/isString';
 
 const componentIndex = {
   Paragraph: Paragraph,
@@ -16,7 +17,8 @@ const componentIndex = {
   Content: Content,
   Title1: Title1,
   Title2: Title2,
-  Title3: Title3
+  Title3: Title3,
+  JobOverview: JobOverview
 };
 
 export default class ComponentRenderer extends React.Component {

@@ -30,7 +30,7 @@
   "dependencies": {
     "classnames": "^2.2.1",
     "express": "^4.13.3",
-    "lodash": "^3.10.1",
+    "lodash": "^4.0.0",
     "moment": "^2.10.6",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
@@ -69,6 +69,7 @@
     "postcss-loader": "^0.8.0",
     "pre-push": "0.1.1",
     "react-addons-test-utils": "^0.14.5",
+    "react-shallow-testutils": "^0.7.1",
     "rimraf": "2.5.0",
     "url-loader": "^0.5.7",
     "webdriverio": "^3.4.0",
