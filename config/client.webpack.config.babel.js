@@ -4,7 +4,7 @@
 
 const clientConfig = require('./common.webpack.config.js').client;
 
-if (process.env.NODE_ENV === 'development' && process.env.HMR === 'true') {
+if (process.env.NODE_ENV !== 'production' && process.env.HMR === 'true') {
   // The following plugins can't be added to .babelrc as then the server tries to use them
   const babelLoader = clientConfig.module.loaders.find(l => l.loader.startsWith('babel-loader'));
 
@@ -27,8 +27,6 @@ if (process.env.NODE_ENV === 'development' && process.env.HMR === 'true') {
       }]
   ];
 
-  // This doesn't seem to be able to be passed in during `npm run watch:client`
-  clientConfig.output.publicPath = 'http://localhost:8081/';
 }
 
 module.exports = clientConfig;

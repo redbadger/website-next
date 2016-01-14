@@ -15,8 +15,8 @@
     "test:client": "karma start config/karma.config.babel.js",
     "test:e2e": "wdio config/wdio.config.js",
     "test:server": "mocha ./build/test/index.js",
-    "watch:client": "HMR=true webpack-dev-server --config config/client.webpack.config.babel.js --content-base build/client --hot --inline --port 8081",
-    "watch:server": "webpack --config config/server.webpack.config.babel.js --watch & HMR=true nodemon --watch build/server build/server"
+    "watch:client": "HMR=true webpack-dev-server --config config/client.webpack.config.babel.js --content-base build/client --hot --inline --output-public-path http://localhost:8080/ ",
+    "watch:server": "HMR=true webpack --config config/server.webpack.config.babel.js --watch --output-public-path http://localhost:8080/ & HMR=true nodemon --watch build/server build/server"
   },
   "repository": {
     "type": "git",
@@ -78,10 +78,12 @@
     "react-shallow-testutils": "^0.7.1",
     "react-transform-catch-errors": "1.0.1",
     "react-transform-hmr": "1.0.1",
+    "redbox-react": "^1.2.0",
     "rimraf": "2.5.0",
     "url-loader": "^0.5.7",
     "webdriverio": "^3.4.0",
-    "webpack": "^1.12.9"
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.1"
   },
   "engines": {
     "node": "5.3.0"
