@@ -1,5 +1,5 @@
 /*
- * Common config for client
+ * Proxy client config for use in command line
  */
 
 const clientConfig = require('./common.webpack.config.js').client;
