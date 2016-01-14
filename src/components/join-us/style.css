@@ -4,6 +4,9 @@
 
 .listings {
   composes: redLine from "../utils/background.css";
+}
+
+.listings section {
   padding-top: 0;
 }
 

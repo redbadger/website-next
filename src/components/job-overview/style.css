@@ -9,6 +9,10 @@
   width: 30.5%;
 }
 
+.note p:first-of-type {
+    font-weight: bold;
+}
+
 .title {
   composes: heroFont from "../fonts/style.css";
   display: block;
