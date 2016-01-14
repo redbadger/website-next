@@ -6,7 +6,16 @@ import Root from './components/root';
 
 const app = express();
 const root = (<Root />);
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8000;
+
+let path = '';
+
+// When using Hot Module Replacement we need to serve the client-side files
+// from Webpack Dev Server so that the client can be notified of changes and
+// receive them.
+if (process.env.HMR === 'true') {
+  path = 'http://localhost:8080';
+}
 
 app.use(
   express.static('static')
@@ -18,7 +27,7 @@ app.use(
 
 app.get('/',
   (req, res) => {
-    res.send(html(ReactDOMServer.renderToString(root)));
+    res.send(html(ReactDOMServer.renderToString(root), path));
   }
 );
 

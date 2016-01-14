@@ -1,17 +1,6 @@
-const clientConfig = require('./client.webpack.config.js');
+require('babel-core/register');
 
-const webpackConfig = Object.assign({}, clientConfig, {
-  devtool: 'inline-source-map',
-  module: Object.assign({}, clientConfig.module, {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|\.spec\.js)/,
-        loader: 'isparta'
-      }
-    ]
-  })
-});
+const clientConfig = require('./common.webpack.config.js').clientTests;
 
 module.exports = function (config) {
   config.set({
@@ -32,7 +21,7 @@ module.exports = function (config) {
       type: 'lcov',
       dir: '../coverage'
     },
-    webpack: webpackConfig,
+    webpack: clientConfig,
     webpackMiddleware: {
       noInfo: true
     },

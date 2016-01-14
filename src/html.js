@@ -1,4 +1,4 @@
-export default function (body) {
+export default function (body, path) {
   return `
   <!doctype html>
   <html>
@@ -7,11 +7,11 @@ export default function (body) {
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       <title>Join Us | Red Badger</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" type="text/css" href="/style.css" />
+      <link rel="stylesheet" type="text/css" href="${path}/style.css" />
     </head>
     <body>
       <div id="mount">${body}</div>
-      <script type="text/javascript" src="/index.js"></script>
+      <script type="text/javascript" src="${path}/index.js"></script>
     </body>
   </html>
   `;

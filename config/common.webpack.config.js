@@ -2,14 +2,28 @@
  * Common config for webpack
  */
 
-const webpack = require('webpack');
+const cssnext = require('postcss-cssnext');
+const dedupe = require('postcss-discard-duplicates');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const glob = require('glob');
+const webpack = require('webpack');
+
+const tests = glob.sync('./src/**/*.spec.js');
+const postcss = () => [ cssnext, dedupe ];
 
 const plugins = [
   new ExtractTextPlugin('style.css'),
   new webpack.NoErrorsPlugin(),
   new webpack.optimize.DedupePlugin()
 ];
+
+if (process.env.NODE_ENV === 'production') {
+  plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  }));
+}
 
 const loaders = [
   {
@@ -33,7 +47,7 @@ const loaders = [
           'modules',
           // 'minimize',
           'importLoaders=1',
-          'localIdentName=[name]__[local]_[hash:base64:5]'
+          'localIdentName=[name]__[local]_[hash:base64:15]'
         ],
         'postcss-loader'
       ].join('!')
@@ -46,10 +60,84 @@ const loaders = [
   }
 ];
 
-module.exports = {
+const commonClient = {
   module: {
     loaders: loaders
   },
-  plugins: plugins,
-  devtool: 'source-map'
+  plugins: [
+    ...plugins,
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+      }
+    })
+  ],
+  postcss: postcss
+};
+
+const commonServer = {
+  devtool: 'source-map',
+  module: {
+    loaders: loaders
+  },
+  target: 'node',
+  externals: /^[a-z\-0-9]+$/,
+  plugins: [
+    ...plugins,
+    new webpack.BannerPlugin(
+      'require("source-map-support/register");',
+      {
+        raw: true,
+        entryOnly: false
+      }
+    )
+  ]
+};
+
+module.exports = {
+  client: {
+    ...commonClient,
+    name: 'client',
+    devtool: 'source-map',
+    target: 'web',
+    entry: ['./src/client.js'],
+    output: {
+      path: 'build/client',
+      filename: 'index.js'
+    }
+  },
+  clientTests: {
+    ...commonClient,
+    devtool: 'inline-source-map',
+    module: {
+      ...commonClient.module,
+      preLoaders: [
+        {
+          test: /\.js$/,
+          exclude: /(node_modules|\.spec\.js)/,
+          loader: 'isparta'
+        }
+      ]
+    }
+  },
+  server: {
+    ...commonServer,
+    name: 'server',
+    entry: ['./src/server.js'],
+    output: {
+      path: 'build/server',
+      filename: 'index.js',
+      libraryTarget: 'commonjs2'
+    }
+  },
+  serverTests: {
+    ...commonServer,
+    name: 'test',
+    entry: tests,
+    output: {
+      path: 'build/test',
+      filename: 'index.js',
+      libraryTarget: 'commonjs2'
+    }
+  }
 };
