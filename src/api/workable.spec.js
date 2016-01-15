@@ -1,10 +1,10 @@
 import Workable from './workable';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import fixture from '../fixtures/workable'
+import fixture from '../fixtures/workable';
 
 describe('Workable API', () => {
-	describe('getJobs', () => {
+  describe('getJobs', () => {
 
     let api;
     let mockFetch;
@@ -56,12 +56,12 @@ describe('Workable API', () => {
       });
     });
 
-		it('rejects promise if there is an error', (done) => {
+    it('rejects promise if there is an error', (done) => {
       mockFetch.returns(Promise.reject('error'));
       api.getJobs().catch((error) => {
         expect(error).to.equal('error');
         done();
       });
     });
-	});
+  });
 });

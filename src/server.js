@@ -42,7 +42,7 @@ app.get('/api/get-jobs',
   (req, res) => {
     const workable = new WorkableAPI(fetchJSON, 'key');
     workable.getJobs().then((response) => {
-      res.send(response)
+      res.send(response);
     });
   }
 );
