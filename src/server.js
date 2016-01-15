@@ -4,11 +4,14 @@ import ReactDOMServer from 'react-dom/server';
 import html from './html';
 import Root from './components/root';
 import WorkableAPI from './api/workable';
+import API from './api';
 import fetchJSON from './fetch-json';
 
 const app = express();
 const root = (<Root />);
 const port = process.env.PORT || 8000;
+const workable = new WorkableAPI(fetchJSON, process.env.WORKABLE_KEY);
+const api = API(workable);
 
 let path = '';
 
@@ -33,14 +36,7 @@ app.get('/',
   }
 );
 
-app.get('/api/get-jobs',
-  (req, res) => {
-    const workable = new WorkableAPI(fetchJSON, process.env.WORKABLE_KEY);
-    workable.getJobs().then((response) => {
-      res.send(response);
-    });
-  }
-);
+app.use('/api', api);
 
 app.listen(port, function () {
   console.log('Server listening on port', port); //eslint-disable-line
