@@ -6,11 +6,12 @@ import Root from './components/root';
 import WorkableAPI from './api/workable';
 import API from './api';
 import fetchJSON from './fetch-json';
+import fetch from 'node-fetch';
 
 const app = express();
 const root = (<Root />);
 const port = process.env.PORT || 8000;
-const workable = new WorkableAPI(fetchJSON, process.env.WORKABLE_KEY);
+const workable = new WorkableAPI(fetchJSON(fetch), process.env.WORKABLE_KEY);
 const api = API(workable);
 
 let path = '';
