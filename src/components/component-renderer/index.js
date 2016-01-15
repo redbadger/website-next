@@ -6,7 +6,6 @@ import Title1 from './title1';
 import Title2 from './title2';
 import Title3 from './title3';
 import Content from '../content';
-import JobOverview from '../job-overview';
 import isArray from 'lodash/isArray';
 import isString from 'lodash/isString';
 
@@ -17,8 +16,7 @@ const componentIndex = {
   Content: Content,
   Title1: Title1,
   Title2: Title2,
-  Title3: Title3,
-  JobOverview: JobOverview
+  Title3: Title3
 };
 
 export default class ComponentRenderer extends React.Component {
