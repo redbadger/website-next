@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import html from './html';
 import Root from './components/root';
+import WorkableAPI from './api/workable';
 
 const app = express();
 const root = (<Root />);
@@ -28,6 +29,14 @@ app.use(
 app.get('/',
   (req, res) => {
     res.send(html(ReactDOMServer.renderToString(root), path));
+  }
+);
+
+app.get('/api/getJobs',
+  (req, res) => {
+    WorkableAPI.getJobs().then((response) => {
+      res.send(response)
+    });
   }
 );
 
