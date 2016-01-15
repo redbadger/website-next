@@ -85,7 +85,8 @@ const commonServer = {
   plugins: [
     ...plugins,
     new webpack.BannerPlugin(
-      'require("source-map-support/register");',
+      `require("dotenv").load({ silent: true });
+       require("source-map-support/register");`,
       {
         raw: true,
         entryOnly: false

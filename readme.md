@@ -29,6 +29,14 @@ The site can then be accessed at http://localhost:8000.
 
 Any changes you make will be linted and tested on a `git push`. To run linting yourself you can do `npm run lint`.
 
+### .env
+
+We use `dotenv` to configure our environment variables in development. Create a `.env` file in the root folder of the project to make use of this feature. Required keys are outlined below:
+
+```
+WORKABLE_KEY=your_key_here
+```
+
 ## Testing
 
 The project has code that is run on a server, a client and both. We can test

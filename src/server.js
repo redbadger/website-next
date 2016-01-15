@@ -5,7 +5,6 @@ import html from './html';
 import Root from './components/root';
 import WorkableAPI from './api/workable';
 import fetchJSON from './fetch-json';
-import dotenv from 'dotenv';
 
 const app = express();
 const root = (<Root />);
@@ -19,10 +18,6 @@ let path = '';
 if (process.env.HMR === 'true') {
   path = 'http://localhost:8080';
 }
-
-dotenv.load({
-  silent: true
-});
 
 app.use(
   express.static('static')
@@ -40,7 +35,7 @@ app.get('/',
 
 app.get('/api/get-jobs',
   (req, res) => {
-    const workable = new WorkableAPI(fetchJSON, 'key');
+    const workable = new WorkableAPI(fetchJSON, process.env.WORKABLE_KEY);
     workable.getJobs().then((response) => {
       res.send(response);
     });
