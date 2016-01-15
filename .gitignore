@@ -3,3 +3,4 @@ coverage/
 build/
 .eslintcache
 npm-debug.log
+.env
