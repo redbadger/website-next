@@ -4,6 +4,7 @@ import { Grid, Cell } from '../grid';
 import Section from '../section';
 import styles from './style.css';
 import Video from '../video';
+import JobOverview from '../job-overview';
 import ComponentRenderer from '../component-renderer';
 
 const titles = {
@@ -84,26 +85,22 @@ const apply = {
   }
 };
 
-const listings = {
-  type: 'Content',
+const listing = {
+  title: 'Badger Academy Internships',
+  body: '<p>Badger Academy is a little bit different to most internship programmes.</p><p>At the beginning of each summer we take on a group of students; usually around 6. They spend 2 months with us immersing themselves in life at Red Badger and learning about what it’s really like to work in a professional software workshop.</p>',
+  href: '/badger-academy-internships'
+};
+
+const listings = (
+  <div>
+    <JobOverview {...listing} />
+  </div>
+);
+
+const vacancies = {
+  type: 'Title2',
   props: {
-    children: [
-      {
-        type: 'Title2',
-        props: {
-          children: 'Current Vacancies'
-        }
-      },
-      {
-        type: 'JobOverview',
-        props: {
-          title: 'Badger Academy Internships',
-          subtitle: 'Badger Academy is a little bit different to most internship programmes.',
-          body: 'At the beginning of each summer we take on a group of students; usually around 6. They spend 2 months with us immersing themselves in life at Red Badger and learning about what it’s really like to work in a professional software workshop.',
-          href: '/badger-academy-internships'
-        }
-      }
-    ]
+    children: 'Current Vacancies'
   }
 };
 
@@ -127,7 +124,8 @@ class JoinUs extends Component {
         <div className={styles.listings}>
           <Section>
             <Container>
-              <ComponentRenderer data={listings} />
+              <ComponentRenderer data={vacancies} />
+              {listings}
             </Container>
           </Section>
         </div>
