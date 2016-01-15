@@ -30,12 +30,12 @@ describe('Workable API', () => {
         expect(mockFetch.calledWith('https://www.workable.com/spi/v3/accounts/redbadger/jobs?include_fields=description')).to.equal(true);
       });
 
+      it('requests jobs with Content-Type header equal to application/json', () => {
+        expect(mockFetch.lastCall.args[1].headers['Content-Type']).to.equal('application/json');
+      });
+
       it('requests jobs with an authorization header', () => {
-        expect(mockFetch.lastCall.args[1]).to.deep.equal({
-          headers: {
-            authorization: 'Bearer key'
-          }
-        });
+        expect(mockFetch.lastCall.args[1].headers.authorization).to.equal('Bearer key');
       });
 
       it('resolves promise to an array of jobs', (done) => {

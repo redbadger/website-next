@@ -7,7 +7,8 @@ export default class Workable {
   getJobs () {
     return this.fetch('https://www.workable.com/spi/v3/accounts/redbadger/jobs?include_fields=description', {
       headers: {
-        authorization: 'Bearer ' + this.key
+        authorization: 'Bearer ' + this.key,
+        'Content-Type': 'application/json'
       }
     }).then((response) => {
       const filtered = response.jobs.map((job) => {
