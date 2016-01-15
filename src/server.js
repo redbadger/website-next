@@ -4,6 +4,7 @@ import ReactDOMServer from 'react-dom/server';
 import html from './html';
 import Root from './components/root';
 import WorkableAPI from './api/workable';
+import fetchJSON from './fetch-json';
 
 const app = express();
 const root = (<Root />);
@@ -32,9 +33,10 @@ app.get('/',
   }
 );
 
-app.get('/api/getJobs',
+app.get('/api/get-jobs',
   (req, res) => {
-    WorkableAPI.getJobs().then((response) => {
+    const workable = new WorkableAPI(fetchJSON, 'key');
+    workable.getJobs().then((response) => {
       res.send(response)
     });
   }
