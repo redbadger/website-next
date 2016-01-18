@@ -18,7 +18,7 @@ describe('Workable API', () => {
       let result;
 
       beforeEach(() => {
-        mockFetch.returns(Promise.resolve(fixture));
+        mockFetch.returns(Promise.resolve({body: fixture}));
         result = api.getJobs();
       });
 
