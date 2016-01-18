@@ -1,13 +1,23 @@
 import React from 'react';
-import JobOverview from '../job-overview';
+import Note from '../note';
+import HtmlToReact from 'html-to-react';
+import styles from './style.css';
+
+const htmlToReactParser = new HtmlToReact.Parser(React);
 
 export default function Jobs (props) {
   const listings = props.jobs.map((job, index) => {
-    return (<JobOverview body={job.description} href="#" key={index} title={job.title} />);
+    const paragraphs = htmlToReactParser.parse('<div>' + job.description + '</div>');
+    return (
+      <Note key={index}>
+        <a className={styles.title} href="#">{job.title}<span className={styles.icon}></span></a>
+        {paragraphs}
+      </Note>
+    );
   });
 
   return (
-    <div>
+    <div className="jobs">
       {listings}
     </div>
   );
