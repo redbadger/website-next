@@ -3,7 +3,9 @@ import { expect } from 'chai';
 
 describe('HttpError', () => {
   it('extends Error', () => {
-    expect(new HttpError(500)).to.be.an.instanceof(Error);
+    const error = new HttpError(500);
+    expect(error).to.be.an.instanceof(HttpError);
+    expect(error).to.be.an.instanceof(Error);
   });
 
   describe('instance', () => {
