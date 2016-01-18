@@ -13,7 +13,7 @@ describe('Button', () => {
 
   it('is a link if href is passed in props', () => {
     const result = render(<Button href="//red-badger.com" />);
-    
+
     expect(result.type).to.equal('a');
   });
 });

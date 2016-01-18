@@ -2,7 +2,7 @@ import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import html from './html';
-import Root from './components/root';
+import Root from '../shared/components/root';
 import WorkableAPI from './api/workable';
 import API from './api';
 import fetchProxy from './fetch-proxy';

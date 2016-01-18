@@ -1,5 +1,5 @@
 import express from 'express';
-import Routes from './workable/routes';
+import Routes from './routes';
 
 export default function API (workable) {
   const self = express();

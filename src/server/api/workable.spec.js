@@ -1,7 +1,7 @@
-import Workable from './index';
+import Workable from './workable';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import fixture from '../../fixtures/workable';
+import fixture from './workable.fixture';
 
 describe('Workable API', () => {
   describe('getJobs', () => {
