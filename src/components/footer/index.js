@@ -13,7 +13,7 @@ export default class Footer extends React.Component {
     return (
       <footer className={styles.footer}>
         <Container>
-          <Grid>
+          <Grid fit>
 
             <Cell>
               <address className={styles.address}>
