@@ -25,44 +25,47 @@ if (process.env.NODE_ENV === 'production') {
   }));
 }
 
-const loaders = [
-  {
-    test: /\.json$/,
-    loader: 'json-loader'
-  },
-  {
-    test: /\.js$/,
-    exclude: /node_modules/,
-    loader: 'babel-loader',
-    query: {
-      cacheDirectory: true
+function loaders (preset) {
+  return [
+    {
+      test: /\.json$/,
+      loader: 'json-loader'
+    },
+    {
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader',
+      query: {
+        cacheDirectory: true,
+        presets: [ preset, 'react', 'stage-1' ]
+      }
+    },
+    {
+      test: /\.css$/,
+      exclude: /node_modules/,
+      loader: ExtractTextPlugin.extract(
+        [
+          'css-loader?' + [
+            'modules',
+            // 'minimize',
+            'importLoaders=1',
+            'localIdentName=[name]__[local]_[hash:base64:15]'
+          ],
+          'postcss-loader'
+        ].join('!')
+      )
+    },
+    {
+      test: /\.(png|jpe?g|eot|ttf|woff|svg)$/,
+      exclude: /node_modules/,
+      loader: 'file-loader?name=[hash].[ext]'
     }
-  },
-  {
-    test: /\.css$/,
-    exclude: /node_modules/,
-    loader: ExtractTextPlugin.extract(
-      [
-        'css-loader?' + [
-          'modules',
-          // 'minimize',
-          'importLoaders=1',
-          'localIdentName=[name]__[local]_[hash:base64:15]'
-        ],
-        'postcss-loader'
-      ].join('!')
-    )
-  },
-  {
-    test: /\.(png|jpe?g|eot|ttf|woff|svg)$/,
-    exclude: /node_modules/,
-    loader: 'file-loader?name=[hash].[ext]'
-  }
-];
+  ];
+}
 
 const commonClient = {
   module: {
-    loaders: loaders
+    loaders: loaders('es2015')
   },
   plugins: [
     ...plugins,
@@ -78,7 +81,7 @@ const commonClient = {
 const commonServer = {
   devtool: 'source-map',
   module: {
-    loaders: loaders
+    loaders: loaders('node5')
   },
   target: 'node',
   externals: /^[a-z\-0-9]+$/,
