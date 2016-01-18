@@ -1,15 +1,17 @@
 import express from 'express';
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 import html from './html';
-import Root from '../shared/components/root';
+import Root from '../shared/containers/root';
 import WorkableAPI from './api/workable';
 import API from './api';
 import fetchProxy from './fetch-proxy';
 import fetch from 'node-fetch';
+import React from 'react';
+import reducers from './reducers';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { renderToString } from 'react-dom/server';
 
 const app = express();
-const root = (<Root />);
 const port = process.env.PORT || 8000;
 const workable = new WorkableAPI(fetchProxy(fetch), process.env.WORKABLE_KEY);
 const api = API(workable);
@@ -33,7 +35,16 @@ app.use(
 
 app.get('/',
   (req, res) => {
-    res.send(html(ReactDOMServer.renderToString(root), path));
+    const store = createStore(reducers);
+
+    const htmlString = renderToString(
+      <Provider store={store}>
+        <Root />
+      </Provider>
+    );
+
+    const initialState = store.getState();
+    res.send(html(htmlString, initialState, path));
   }
 );
 

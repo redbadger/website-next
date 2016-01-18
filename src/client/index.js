@@ -1,9 +1,18 @@
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+import {render} from 'react-dom';
+import reducers from './reducers';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from '../shared/components/root';
+import Root from '../shared/containers/root';
 
-const element = document.getElementById('mount');
+const initialStateString = document.getElementById('initialState').textContent;
+const initialState = JSON.parse(initialStateString);
+const store = createStore(reducers, initialState);
 
-const page = (<Root />);
-
-ReactDOM.render(page, element);
+render(
+  <Provider store={store}>
+    <Root />
+  </Provider>,
+  document.getElementById('mount')
+);
