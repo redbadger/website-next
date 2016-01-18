@@ -4,8 +4,9 @@ import { Grid, Cell } from '../../components/grid';
 import Section from '../../components/section';
 import styles from './style.css';
 import Video from '../../components/video';
-import JobOverview from '../../components/job-overview';
+import Jobs from '../../components/jobs';
 import ComponentRenderer from '../../components/component-renderer';
+import { connect } from 'react-redux';
 
 const titles = {
   type: 'Content',
@@ -85,17 +86,11 @@ const apply = {
   }
 };
 
-const listing = {
-  title: 'Badger Academy Internships',
-  body: '<p>Badger Academy is a little bit different to most internship programmes.</p><p>At the beginning of each summer we take on a group of students; usually around 6. They spend 2 months with us immersing themselves in life at Red Badger and learning about what it’s really like to work in a professional software workshop.</p>',
-  href: '/badger-academy-internships'
-};
-
-const listings = (
-  <div>
-    <JobOverview {...listing} />
-  </div>
-);
+const Listings = connect((state) => { 
+  return {
+    jobs: state.jobs
+  }; 
+})(Jobs);
 
 const vacancies = {
   type: 'Title2',
@@ -125,7 +120,7 @@ class JoinUs extends Component {
           <Section>
             <Container>
               <ComponentRenderer data={vacancies} />
-              {listings}
+              <Listings />
             </Container>
           </Section>
         </div>
