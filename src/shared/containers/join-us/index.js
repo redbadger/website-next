@@ -34,11 +34,7 @@ const join = {
     children: [{
       type: 'Paragraph',
       props: {
-        children: `We love doing fantastic work for our clients. We do this in integrated teams
-        which are completely open with each other and our customers. It's all about
-        communication and collaboration. It's about being innovative, being inspired,
-        having fun and making magical things happen. Oh, and we're right in the heart
-        of Tech City, Shoreditch so there's no shortage of great coffee shops...`
+        children: "We love doing fantastic work for our clients. We do this in integrated teams which are completely open with each other and our customers. It's all about communication and collaboration. It's about being innovative, being inspired, having fun and making magical things happen. Oh, and we're right in the heart of Tech City, Shoreditch so there's no shortage of great coffee shops..."
       }
     }, {
       type: 'Paragraph',
@@ -67,10 +63,7 @@ const apply = {
         type: 'Paragraph',
         props: {
           children: [
-            `If you'd like more information, you want to apply, or you'd simply like to
-            say 'hello', then please get in touch with your CV, Stackoverflow profile,
-            Github, code, portfolio and anything else you think we might be interested
-            in, at: `,
+            "If you'd like more information, you want to apply, or you'd simply like to say 'hello', then please get in touch with your CV, Stackoverflow profile, Github, code, portfolio and anything else you think we might be interested in, at: ",
             {
               type: 'Link',
               props: {
