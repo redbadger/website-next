@@ -1,3 +1,4 @@
+@value mediaSmall from "../variables/breakpoints.css";
 @value red from "../variables/colors.css";
 
 .note {
@@ -7,6 +8,10 @@
   border: 1px solid #d0d0d0;
   margin-bottom: 40px;
   width: 30.5%;
+}
+
+.note p:first-of-type {
+  font-weight: bold;
 }
 
 .title {
@@ -29,4 +34,10 @@
 
 .paragraph {
   line-height: 1.35;
+}
+
+@media mediaSmall {
+  .note {
+    width: 100%;
+  }
 }
