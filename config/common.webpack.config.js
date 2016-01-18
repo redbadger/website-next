@@ -17,14 +17,6 @@ const plugins = [
   new webpack.optimize.DedupePlugin()
 ];
 
-if (process.env.NODE_ENV === 'production') {
-  plugins.push(new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
-    }
-  }));
-}
-
 const loaders = [
   {
     test: /\.json$/,
@@ -74,6 +66,14 @@ const commonClient = {
   ],
   postcss: postcss
 };
+
+if (process.env.NODE_ENV === 'production') {
+  commonClient.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  }));
+}
 
 const commonServer = {
   devtool: 'source-map',
