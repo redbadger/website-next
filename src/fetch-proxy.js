@@ -15,22 +15,11 @@
  *  to a 500. This is intended to be extended as we encounted more errors.
  */
 
-const errorMap = {
-  401: 'Not Authorised',
-  404: 'Not Found',
-  500: 'Network Error',
-  'default': 'Error'
-};
+import HttpError from './http-error';
 
 function toJSON (response) {
   if (response.status !== 200) {
-    const message = errorMap[response.status] || errorMap.default;
-    return Promise.reject({
-      status: response.status,
-      body: {
-        error: message
-      }
-    });
+    throw new HttpError(response.status);
   }
 
   return response.json().then((data) => {
@@ -42,12 +31,7 @@ function toJSON (response) {
 }
 
 function throwError () {
-  throw {
-    status: 500,
-    body: {
-      error: 'Network Error'
-    }
-  };
+  throw new HttpError(500);
 }
 
 export default function fetchProxy (fetch) {

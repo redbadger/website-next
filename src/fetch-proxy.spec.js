@@ -1,8 +1,9 @@
 import fetchProxy from './fetch-proxy';
+import HttpError from './http-error';
 import { expect } from 'chai';
 import sinon from 'sinon';
 
-describe('Fetch JSON', () => {
+describe('Fetch Proxy', () => {
   it('returns a function', () => {
     expect(fetchProxy()).to.be.a('function');
   });
@@ -29,12 +30,8 @@ describe('Fetch JSON', () => {
       it('rejects with status 500', (done) => {
         fetchFunction.returns(Promise.reject('error'));
         fetchProxy(fetchFunction)().catch((err) => {
-          expect(err).to.deep.equal({
-            status: 500,
-            body: {
-              error: 'Network Error'
-            }
-          });
+          expect(err).to.be.an.instanceof(HttpError);
+          expect(err.status).to.equal(500);
           done();
         });
       });
@@ -45,12 +42,8 @@ describe('Fetch JSON', () => {
         response.status = 401;
         fetchFunction.returns(Promise.resolve(response));
         fetchProxy(fetchFunction)().catch((err) => {
-          expect(err).to.deep.equal({
-            status: 401,
-            body: {
-              error: 'Not Authorised'
-            }
-          });
+          expect(err).to.be.an.instanceof(HttpError);
+          expect(err.status).to.equal(401);
           done();
         });
       });
@@ -59,12 +52,8 @@ describe('Fetch JSON', () => {
         response.status = 404;
         fetchFunction.returns(Promise.resolve(response));
         fetchProxy(fetchFunction)().catch((err) => {
-          expect(err).to.deep.equal({
-            status: 404,
-            body: {
-              error: 'Not Found'
-            }
-          });
+          expect(err).to.be.an.instanceof(HttpError);
+          expect(err.status).to.equal(404);
           done();
         });
       });
@@ -73,12 +62,8 @@ describe('Fetch JSON', () => {
         response.status = 300003;
         fetchFunction.returns(Promise.resolve(response));
         fetchProxy(fetchFunction)().catch((err) => {
-          expect(err).to.deep.equal({
-            status: 300003,
-            body: {
-              error: 'Error'
-            }
-          });
+          expect(err).to.be.an.instanceof(HttpError);
+          expect(err.status).to.equal(300003);
           done();
         });
       });
