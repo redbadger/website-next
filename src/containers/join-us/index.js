@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import Container from '../container';
-import { Grid, Cell } from '../grid';
-import Section from '../section';
+import Container from '../../components/container';
+import { Grid, Cell } from '../../components/grid';
+import Section from '../../components/section';
 import styles from './style.css';
-import Video from '../video';
-import JobOverview from '../job-overview';
-import ComponentRenderer from '../component-renderer';
+import Video from '../../components/video';
+import JobOverview from '../../components/job-overview';
+import ComponentRenderer from '../../components/component-renderer';
 
 const titles = {
   type: 'Content',

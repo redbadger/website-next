@@ -1,11 +1,13 @@
 import express from 'express';
-import React from 'react';
-import ReactDOMServer from 'react-dom/server';
 import html from './html';
-import Root from './components/root';
+import React from 'react';
+import reducers from './reducers';
+import Root from './containers/root';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { renderToString } from 'react-dom/server';
 
 const app = express();
-const root = (<Root />);
 const port = process.env.PORT || 8000;
 
 let path = '';
@@ -27,7 +29,16 @@ app.use(
 
 app.get('/',
   (req, res) => {
-    res.send(html(ReactDOMServer.renderToString(root), path));
+    const store = createStore(reducers);
+
+    const htmlString = renderToString(
+      <Provider store={store}>
+        <Root />
+      </Provider>
+    );
+
+    const initialState = store.getState();
+    res.send(html(htmlString, initialState, path));
   }
 );
 
