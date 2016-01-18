@@ -6,7 +6,7 @@ import API from './api';
 import fetchProxy from './fetch-proxy';
 import fetch from 'node-fetch';
 import React from 'react';
-import reducers from './reducers';
+import reducers from '../shared/reducers';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';

@@ -1,9 +1,8 @@
 import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 import {render} from 'react-dom';
-import reducers from './reducers';
+import reducers from '../shared/reducers';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Root from '../shared/containers/root';
 
 const initialStateString = document.getElementById('initialState').textContent;
