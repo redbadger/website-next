@@ -29,7 +29,7 @@ export default class Nav extends React.Component {
   }
 
   isInView () {
-    return window.scrollY < this.offsetY;
+    return window.pageYOffset < this.offsetY;
   }
 
   handleScroll () {

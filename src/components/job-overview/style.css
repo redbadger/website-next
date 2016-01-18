@@ -1,3 +1,4 @@
+@value mediaSmall from "../variables/breakpoints.css";
 @value red from "../variables/colors.css";
 
 .note {
@@ -33,4 +34,10 @@
 
 .paragraph {
   line-height: 1.35;
+}
+
+@media mediaSmall {
+  .note {
+    width: 100%;
+  }
 }
