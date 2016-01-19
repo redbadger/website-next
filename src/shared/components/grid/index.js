@@ -22,16 +22,13 @@ import classNames from 'classnames';
 import styles from './style.css';
 
 export function Grid (props) {
-  let fitClass;
-  let gridClassNames;
-  if (props.fit) {
-    fitClass = styles.fit;
-  }
-  gridClassNames = classNames(
-   styles.grid,
-   styles.withGutter,
-   fitClass
- );
+  const gridClassNames = classNames(
+    {
+      [styles.grid]: true,
+      [styles.withGutter]: true,
+      [styles.fit]: props.fit
+    }
+  );
   return (
     <div className={gridClassNames}>
       {props.children}
@@ -45,12 +42,12 @@ Grid.propTypes = {
 };
 
 export function Cell (props) {
-  let sizeClass;
-  let cellClassNames;
-  if (props.size) {
-    sizeClass = styles['size' + props.size + 'of12'];
-  }
-  cellClassNames = classNames(styles.cell, sizeClass);
+  const cellClassNames = classNames(
+    {
+      [styles.cell]: true,
+      [styles['size' + props.size + 'of12']]: !!props.size
+    }
+  );
   return (
     <div className={cellClassNames}>
       {props.children}
