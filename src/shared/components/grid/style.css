@@ -186,6 +186,10 @@
 }
 
 @media mediaSmall {
+  .cell {
+    width: 100%;
+  }
+
   .fit > .cell {
     flex-basis: 100%;
   }
