@@ -1,11 +1,14 @@
+import ComponentRenderer from '../../components/component-renderer';
+import Container from '../../components/container';
+import JobOverview from '../../components/job-overview';
 import React from 'react';
-import Container from '../container';
-import { Grid, Cell } from '../grid';
-import Section from '../section';
+import Section from '../../components/section';
 import styles from './style.css';
-import Video from '../video';
-import JobOverview from '../job-overview';
-import ComponentRenderer from '../component-renderer';
+import Video from '../../components/video';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Grid, Cell } from '../../components/grid';
+import { updateContentArea } from '../../content-areas';
 
 const titles = {
   type: 'Content',
@@ -104,7 +107,7 @@ const vacancies = {
   }
 };
 
-export default function JoinUs () {
+function JoinUs () {
   return (
     <div>
       <Section>
@@ -138,3 +141,14 @@ export default function JoinUs () {
     </div>
   );
 }
+
+function mapDispatchToProps (dispatch) {
+  return {
+    actions: bindActionCreators({updateContentArea}, dispatch)
+  };
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(JoinUs);

@@ -1,6 +1,6 @@
 import React from 'react';
-import Layout from '../layout';
 import JoinUs from '../join-us';
+import Layout from '../../components/layout';
 import styles from './style.css';
 
 export default function Root () {

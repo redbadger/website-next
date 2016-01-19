@@ -12,5 +12,5 @@ body {
 }
 
 .root {
-  composes: defaultFontSize defaultFont from "../fonts/style.css";
+  composes: defaultFontSize defaultFont from "../../components/fonts/style.css";
 }
