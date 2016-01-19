@@ -175,13 +175,15 @@
   width: calc(100% * 5 / 6);
 }
 
-
-
 .size11of12 {
   flex-basis: auto; /* 1 */
   width: calc(100% * 11 / 12);
 }
 
+.size12of12 {
+  flex-basis: auto; /* 1 */
+  width: 100%;
+}
 
 @media mediaSmall {
   .fit > .cell {
