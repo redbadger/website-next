@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Container from '../container';
 import { Grid, Cell } from '../grid';
 import Section from '../section';
@@ -104,41 +104,37 @@ const vacancies = {
   }
 };
 
-class JoinUs extends Component {
-  render () {
-    return (
-      <div>
+export default function JoinUs () {
+  return (
+    <div>
+      <Section>
+        <Container>
+          <ComponentRenderer data={titles} />
+          <Grid>
+            <Cell>
+              <ComponentRenderer data={join} />
+            </Cell>
+            <Cell>
+              <Video id="110925126" type="vimeo" />
+            </Cell>
+          </Grid>
+        </Container>
+      </Section>
+      <div className={styles.listings}>
         <Section>
           <Container>
-            <ComponentRenderer data={titles} />
-            <Grid>
-              <Cell>
-                <ComponentRenderer data={join} />
-              </Cell>
-              <Cell>
-                <Video id="110925126" type="vimeo" />
-              </Cell>
-            </Grid>
+            <ComponentRenderer data={vacancies} />
+            {listings}
           </Container>
         </Section>
-        <div className={styles.listings}>
-          <Section>
-            <Container>
-              <ComponentRenderer data={vacancies} />
-              {listings}
-            </Container>
-          </Section>
-        </div>
-        <div className={styles.apply}>
-          <Section>
-            <Container>
-              <ComponentRenderer data={apply} />
-            </Container>
-          </Section>
-        </div>
       </div>
-    );
-  }
+      <div className={styles.apply}>
+        <Section>
+          <Container>
+            <ComponentRenderer data={apply} />
+          </Container>
+        </Section>
+      </div>
+    </div>
+  );
 }
-
-export default JoinUs;

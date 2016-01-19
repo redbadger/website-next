@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './style.css';
 
-export default function Section (props) {
+export default function Section ({children}) {
   return (
     <section className={styles.section}>
-      {props.children}
+      {children}
     </section>
   );
 }

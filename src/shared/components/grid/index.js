@@ -9,28 +9,24 @@ const gridClassNames = classNames(
   styles.fit
 );
 
-export class Grid extends React.Component {
-  render () {
-    return (
-      <div className={gridClassNames}>
-        {this.props.children}
-      </div>
-    );
-  }
+export function Grid ({children}) {
+  return (
+    <div className={gridClassNames}>
+      {children}
+    </div>
+  );
 }
 
 Grid.propTypes = {
   children: React.PropTypes.node
 };
 
-export class Cell extends React.Component {
-  render () {
-    return (
-      <div className={styles.cell}>
-        {this.props.children}
-      </div>
-    );
-  }
+export function Cell ({children}) {
+  return (
+    <div className={styles.cell}>
+      {children}
+    </div>
+  );
 }
 
 Cell.propTypes = {
