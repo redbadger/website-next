@@ -2,11 +2,17 @@ import express from 'express';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import html from './html';
-import Root from './components/root';
+import Root from '../shared/components/root';
+import WorkableAPI from './api/workable';
+import API from './api';
+import fetchProxy from './fetch-proxy';
+import fetch from 'node-fetch';
 
 const app = express();
 const root = (<Root />);
 const port = process.env.PORT || 8000;
+const workable = new WorkableAPI(fetchProxy(fetch), process.env.WORKABLE_KEY);
+const api = API(workable);
 
 let path = '';
 
@@ -30,6 +36,8 @@ app.get('/',
     res.send(html(ReactDOMServer.renderToString(root), path));
   }
 );
+
+app.use('/api', api);
 
 app.listen(port, function () {
   console.log('Server listening on port', port); //eslint-disable-line

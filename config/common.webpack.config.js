@@ -8,7 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const glob = require('glob');
 const webpack = require('webpack');
 
-const tests = glob.sync('./src/**/*.spec.js');
+const serverTests = glob.sync('./src/*(shared|server)/**/*.spec.js');
 const postcss = () => [ cssnext, dedupe ];
 
 const plugins = [
@@ -17,52 +17,47 @@ const plugins = [
   new webpack.optimize.DedupePlugin()
 ];
 
-if (process.env.NODE_ENV === 'production') {
-  plugins.push(new webpack.optimize.UglifyJsPlugin({
-    compress: {
-      warnings: false
+function loaders (preset) {
+  return [
+    {
+      test: /\.json$/,
+      loader: 'json-loader'
+    },
+    {
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader',
+      query: {
+        cacheDirectory: true,
+        presets: [ preset, 'react', 'stage-1' ]
+      }
+    },
+    {
+      test: /\.css$/,
+      exclude: /node_modules/,
+      loader: ExtractTextPlugin.extract(
+        [
+          'css-loader?' + [
+            'modules',
+            // 'minimize',
+            'importLoaders=1',
+            'localIdentName=[name]__[local]_[hash:base64:15]'
+          ],
+          'postcss-loader'
+        ].join('!')
+      )
+    },
+    {
+      test: /\.(png|jpe?g|eot|ttf|woff|svg)$/,
+      exclude: /node_modules/,
+      loader: 'file-loader?name=[hash].[ext]'
     }
-  }));
+  ];
 }
-
-const loaders = [
-  {
-    test: /\.json$/,
-    loader: 'json-loader'
-  },
-  {
-    test: /\.js$/,
-    exclude: /node_modules/,
-    loader: 'babel-loader',
-    query: {
-      cacheDirectory: true
-    }
-  },
-  {
-    test: /\.css$/,
-    exclude: /node_modules/,
-    loader: ExtractTextPlugin.extract(
-      [
-        'css-loader?' + [
-          'modules',
-          // 'minimize',
-          'importLoaders=1',
-          'localIdentName=[name]__[local]_[hash:base64:15]'
-        ],
-        'postcss-loader'
-      ].join('!')
-    )
-  },
-  {
-    test: /\.(png|jpe?g|eot|ttf|woff|svg)$/,
-    exclude: /node_modules/,
-    loader: 'file-loader?name=[hash].[ext]'
-  }
-];
 
 const commonClient = {
   module: {
-    loaders: loaders
+    loaders: loaders('es2015')
   },
   plugins: [
     ...plugins,
@@ -75,17 +70,26 @@ const commonClient = {
   postcss: postcss
 };
 
+if (process.env.NODE_ENV === 'production') {
+  commonClient.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false
+    }
+  }));
+}
+
 const commonServer = {
   devtool: 'source-map',
   module: {
-    loaders: loaders
+    loaders: loaders('node5')
   },
   target: 'node',
   externals: /^[a-z\-0-9]+$/,
   plugins: [
     ...plugins,
     new webpack.BannerPlugin(
-      'require("source-map-support/register");',
+      `require("dotenv").load({ silent: true });
+       require("source-map-support/register");`,
       {
         raw: true,
         entryOnly: false
@@ -100,7 +104,7 @@ module.exports = {
     name: 'client',
     devtool: 'source-map',
     target: 'web',
-    entry: ['./src/client.js'],
+    entry: ['./src/client/index.js'],
     output: {
       path: 'build/client',
       filename: 'index.js'
@@ -123,7 +127,7 @@ module.exports = {
   server: {
     ...commonServer,
     name: 'server',
-    entry: ['./src/server.js'],
+    entry: ['./src/server/index.js'],
     output: {
       path: 'build/server',
       filename: 'index.js',
@@ -133,7 +137,7 @@ module.exports = {
   serverTests: {
     ...commonServer,
     name: 'test',
-    entry: tests,
+    entry: serverTests,
     output: {
       path: 'build/test',
       filename: 'index.js',
