@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import Layout from '../layout';
 import JoinUs from '../join-us';
+import Layout from '../../components/layout';
+import React, {Component} from 'react';
 import styles from './style.css';
 
 class Root extends Component {
