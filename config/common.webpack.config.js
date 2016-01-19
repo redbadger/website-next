@@ -8,7 +8,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const glob = require('glob');
 const webpack = require('webpack');
 
-const tests = glob.sync('./src/*(shared|server)/**/*.spec.js');
+const serverTests = glob.sync('./src/*(shared|server)/**/*.spec.js');
 const postcss = () => [ cssnext, dedupe ];
 
 const plugins = [
@@ -137,7 +137,7 @@ module.exports = {
   serverTests: {
     ...commonServer,
     name: 'test',
-    entry: tests,
+    entry: serverTests,
     output: {
       path: 'build/test',
       filename: 'index.js',
