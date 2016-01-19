@@ -1,12 +1,14 @@
-import React, {Component} from 'react';
+import ComponentRenderer from '../../components/component-renderer';
 import Container from '../../components/container';
-import { Grid, Cell } from '../../components/grid';
+import React, {Component} from 'react';
+import Jobs from '../../components/jobs';
 import Section from '../../components/section';
 import styles from './style.css';
 import Video from '../../components/video';
-import Jobs from '../../components/jobs';
-import ComponentRenderer from '../../components/component-renderer';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Grid, Cell } from '../../components/grid';
+import { updateContentArea } from '../../content-areas';
 
 const titles = {
   type: 'Content',
@@ -129,4 +131,13 @@ class JoinUs extends Component {
   }
 }
 
-export default JoinUs;
+function mapDispatchToProps (dispatch) {
+  return {
+    actions: bindActionCreators({updateContentArea}, dispatch)
+  };
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(JoinUs);

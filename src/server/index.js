@@ -1,12 +1,12 @@
-import express from 'express';
-import html from './html';
-import Root from '../shared/containers/root';
-import WorkableAPI from './api/workable';
 import API from './api';
-import fetchProxy from './fetch-proxy';
+import express from 'express';
 import fetch from 'node-fetch';
+import fetchProxy from './fetch-proxy';
+import html from './html';
 import React from 'react';
 import reducers from '../shared/reducers';
+import Root from '../shared/containers/root';
+import WorkableAPI from './api/workable';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
