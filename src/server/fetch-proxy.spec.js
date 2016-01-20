@@ -73,10 +73,7 @@ describe('Fetch Proxy', () => {
       it('wraps the data, parses them into json and resolves', (done) => {
         fetchFunction.returns(Promise.resolve(response));
         fetchProxy(fetchFunction)().then((res) => {
-          expect(res).to.deep.equal({
-            status: 200,
-            body: 'data'
-          });
+          expect(res).to.deep.equal('data');
           done();
         });
       });

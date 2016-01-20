@@ -22,12 +22,7 @@ function toJSON (response) {
     throw new HttpError(response.status);
   }
 
-  return response.json().then((data) => {
-    return {
-      status: 200,
-      body: data
-    };
-  });
+  return response.json();
 }
 
 function throwError () {

@@ -11,7 +11,7 @@ export default class Workable {
         'Content-Type': 'application/json'
       }
     }).then((response) => {
-      return response.body.jobs.map((job) => {
+      return response.jobs.map((job) => {
         return {
           title: job.title,
           description: job.description
