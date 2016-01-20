@@ -27,7 +27,7 @@ describe('Workable API', () => {
       });
 
       it('requests job with description', () => {
-        expect(mockFetch.calledWith('https://www.workable.com/spi/v3/accounts/redbadger/jobs?include_fields=description')).to.equal(true);
+        expect(mockFetch.calledWithMatch('https://www.workable.com/spi/v3/accounts/redbadger/jobs?include_fields=description')).to.equal(true);
       });
 
       it('requests jobs with Content-Type header equal to application/json', () => {

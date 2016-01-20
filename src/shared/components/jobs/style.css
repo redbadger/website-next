@@ -1,0 +1,25 @@
+.title {
+  composes: heroFont from "../fonts/style.css";
+  display: block;
+  font-size: 1.55em;
+  text-decoration: none;
+  color: #000;
+  line-height: 1.2;
+}
+
+.title:hover {
+  color: red;
+}
+
+.icon {
+  composes: sketchArrowRight from "../icons/style.css";
+  color: red;
+}
+
+.jobs p {
+  line-height: 1.35;
+}
+
+.jobs p:first-of-type {
+  font-weight: bold;
+}

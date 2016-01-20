@@ -35,16 +35,18 @@ app.use(
 
 app.get('/',
   (req, res) => {
-    const store = createStore(reducers);
+    workable.getJobs().then((jobs) => {
+      const initialState = { jobs };
+      const store = createStore(reducers, initialState);
 
-    const htmlString = renderToString(
-      <Provider store={store}>
-        <Root />
-      </Provider>
-    );
+      const htmlString = renderToString(
+        <Provider store={store}>
+          <Root />
+        </Provider>
+      );
 
-    const initialState = store.getState();
-    res.send(html(htmlString, initialState, path));
+      res.send(html(htmlString, store.getState(), path));
+    });
   }
 );
 

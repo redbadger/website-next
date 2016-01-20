@@ -37,3 +37,7 @@ export function containsOne (value, component) {
 export function findWithType (type, component) {
   return ShallowTestUtils.findWithType(component, type);
 }
+
+export function findAllWithType (type, component) {
+  return ShallowTestUtils.findAllWithType(component, type);
+}

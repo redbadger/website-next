@@ -12,7 +12,7 @@ export default function Footer () {
   return (
     <footer className={styles.footer}>
       <Container>
-        <Grid>
+        <Grid fit>
 
           <Cell>
             <address className={styles.address}>
