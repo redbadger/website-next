@@ -95,9 +95,11 @@ const listing = {
 };
 
 const listings = (
-  <div>
-    <JobOverview {...listing} />
-  </div>
+  <Grid>
+    <Cell size={4}>
+      <JobOverview {...listing} />
+    </Cell>
+  </Grid>
 );
 
 const vacancies = {
@@ -114,7 +116,7 @@ class JoinUs extends Component {
         <Section>
           <Container>
             <ComponentRenderer data={titles} />
-            <Grid>
+            <Grid fit>
               <Cell>
                 <ComponentRenderer data={join} />
               </Cell>
