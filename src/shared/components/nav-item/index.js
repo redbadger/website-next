@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './style.css';
 
+import { Link } from 'react-router';
+
 export default function NavItem ({active, href, title}) {
   let activeElement;
 
@@ -10,7 +12,7 @@ export default function NavItem ({active, href, title}) {
 
   return (
     <li className={styles.navItem}>
-      <a className={styles.navItemLink} href={href}>{title}</a>
+      <Link className={styles.navItemLink} to={href}>{title}</Link>
       {activeElement}
     </li>
   );

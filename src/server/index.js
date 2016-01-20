@@ -5,11 +5,12 @@ import fetchProxy from './fetch-proxy';
 import html from './html';
 import React from 'react';
 import reducers from '../shared/reducers';
-import Root from '../shared/containers/root';
 import WorkableAPI from './api/workable';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
+import { match, RouterContext } from 'react-router';
+import routes from '../shared/routes';
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -39,13 +40,15 @@ app.get('/',
       const initialState = { jobs };
       const store = createStore(reducers, initialState);
 
-      const htmlString = renderToString(
-        <Provider store={store}>
-          <Root />
-        </Provider>
-      );
+      match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
+        const htmlString = renderToString(
+          <Provider store={store}>
+            <RouterContext {...renderProps} />
+          </Provider>
+        );
 
-      res.send(html(htmlString, store.getState(), path));
+        res.send(html(htmlString, store.getState(), path));
+      });
     });
   }
 );
