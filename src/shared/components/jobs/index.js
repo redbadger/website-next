@@ -3,14 +3,15 @@ import Note from '../note';
 import HtmlToReact from 'html-to-react';
 import styles from './style.css';
 import { Grid, Cell } from '../grid';
+import { connect } from 'react-redux';
 
 const htmlToReactParser = new HtmlToReact.Parser(React);
 
-export default function Jobs (props) {
+export function Jobs (props) {
   const listings = props.jobs.map((job, index) => {
     const paragraphs = htmlToReactParser.parse('<div>' + job.description + '</div>');
     return (
-      <Cell size={4} key={index}>
+      <Cell key={index} size={4}>
         <Note>
           <a className={styles.title} href="#">{job.title}<span className={styles.icon}></span></a>
           {paragraphs}
@@ -34,3 +35,9 @@ Jobs.propTypes = {
     title: React.PropTypes.string
   }))
 };
+
+export default connect((state) => { 
+  return {
+    jobs: state.jobs
+  }; 
+})(Jobs);

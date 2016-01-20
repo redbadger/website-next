@@ -81,12 +81,6 @@ const apply = {
   }
 };
 
-const Listings = connect((state) => { 
-  return {
-    jobs: state.jobs
-  }; 
-})(Jobs);
-
 const vacancies = {
   type: 'Title2',
   props: {
@@ -115,7 +109,7 @@ class JoinUs extends Component {
           <Section>
             <Container>
               <ComponentRenderer data={vacancies} />
-              <Listings />
+              <Jobs />
             </Container>
           </Section>
         </div>

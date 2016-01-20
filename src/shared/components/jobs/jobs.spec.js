@@ -1,4 +1,4 @@
-import Jobs from './index';
+import { Jobs } from './index';
 import React from 'react';
 import Note from '../note';
 import { render, hasProp, containsOne, findAllWithType, findWithType } from '../../test-helper';
