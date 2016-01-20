@@ -68,7 +68,9 @@ app.get('*',
     .then(renderComponent)
     .then(res.send.bind(res))
     .catch(() => {
-      res.send(html(renderToString(<Root><ErrorPage /></Root>), {}, path)).status(500);
+      res
+        .status(500)
+        .send(html(renderToString(<Root><ErrorPage /></Root>), {}, path));
     });
   }
 );
