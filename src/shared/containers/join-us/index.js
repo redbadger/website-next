@@ -101,7 +101,7 @@ class JoinUs extends Component {
         <Section>
           <Container>
             <ComponentRenderer data={titles} />
-            <Grid>
+            <Grid fit>
               <Cell>
                 <ComponentRenderer data={join} />
               </Cell>
