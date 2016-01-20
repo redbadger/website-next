@@ -34,7 +34,7 @@ app.use(
   express.static('build/client')
 );
 
-app.get('/',
+app.get('*',
   (req, res) => {
     workable.getJobs().then((jobs) => {
       const initialState = { jobs };
