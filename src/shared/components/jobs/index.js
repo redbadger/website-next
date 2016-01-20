@@ -7,8 +7,8 @@ import { connect } from 'react-redux';
 
 const htmlToReactParser = new HtmlToReact.Parser(React);
 
-export function Jobs (props) {
-  const listings = props.jobs.map((job, index) => {
+export function Jobs ({jobs}) {
+  const listings = jobs.map((job, index) => {
     const paragraphs = htmlToReactParser.parse('<div>' + job.description + '</div>');
     return (
       <Cell key={index} size={4}>

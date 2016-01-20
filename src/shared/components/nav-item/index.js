@@ -1,16 +1,16 @@
 import React from 'react';
 import styles from './style.css';
 
-export default function NavItem (props) {
+export default function NavItem ({active, href, title}) {
   let activeElement;
 
-  if (props.active) {
+  if (active) {
     activeElement = <div className={styles.active}></div>;
   }
 
   return (
     <li className={styles.navItem}>
-      <a className={styles.navItemLink} href={props.href}>{props.title}</a>
+      <a className={styles.navItemLink} href={href}>{title}</a>
       {activeElement}
     </li>
   );

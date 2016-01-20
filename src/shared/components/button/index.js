@@ -5,15 +5,16 @@ import styles from './style.css';
 export default function Button (props) {
   let { className, ...other } = props;
   const buttonClass = classNames(className, styles.button);
+  
   if (props.href) {
     return (
       <a {...other} className={buttonClass}></a>
     );
-  } else {
-    return (
-      <button {...other} className={buttonClass}></button>
-    );
   }
+
+  return (
+    <button {...other} className={buttonClass}></button>
+  );
 }
 
 Button.propTypes = {

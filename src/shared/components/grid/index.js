@@ -21,17 +21,17 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from './style.css';
 
-export function Grid (props) {
+export function Grid ({children, fit}) {
   const gridClassNames = classNames(
     {
       [styles.grid]: true,
       [styles.withGutter]: true,
-      [styles.fit]: props.fit
+      [styles.fit]: fit
     }
   );
   return (
     <div className={gridClassNames}>
-      {props.children}
+      {children}
     </div>
   );
 }
@@ -41,16 +41,16 @@ Grid.propTypes = {
   fit: React.PropTypes.bool
 };
 
-export function Cell (props) {
+export function Cell ({children, size}) {
   const cellClassNames = classNames(
     {
       [styles.cell]: true,
-      [styles['size' + props.size + 'of12']]: !!props.size
+      [styles['size' + size + 'of12']]: !!size
     }
   );
   return (
     <div className={cellClassNames}>
-      {props.children}
+      {children}
     </div>
   );
 }

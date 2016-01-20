@@ -2,12 +2,12 @@ import React from 'react';
 // The plan is to only use youtube in future so we declare the styles there.
 import styles from './style.css';
 
-export default function Video (props) {
+export default function Video ({type, id}) {
   const urlMap = {
     vimeo: 'https://player.vimeo.com/video/',
     youtube: 'https://www.youtube.com/embed/'
   };
-  const source = urlMap[props.type] + props.id;
+  const source = urlMap[type] + id;
   return (
     <div className={styles.container}>
       <iframe allowFullScreen className={styles.embed} frameBorder="0" src={source}></iframe>

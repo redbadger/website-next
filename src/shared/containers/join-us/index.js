@@ -1,6 +1,6 @@
 import ComponentRenderer from '../../components/component-renderer';
 import Container from '../../components/container';
-import React, {Component} from 'react';
+import React from 'react';
 import Jobs from '../../components/jobs';
 import Section from '../../components/section';
 import styles from './style.css';
@@ -88,41 +88,39 @@ const vacancies = {
   }
 };
 
-class JoinUs extends Component {
-  render () {
-    return (
-      <div>
+function JoinUs () {
+  return (
+    <div>
+      <Section>
+        <Container>
+          <ComponentRenderer data={titles} />
+          <Grid fit>
+            <Cell>
+              <ComponentRenderer data={join} />
+            </Cell>
+            <Cell>
+              <Video id="110925126" type="vimeo" />
+            </Cell>
+          </Grid>
+        </Container>
+      </Section>
+      <div className={styles.listings}>
         <Section>
           <Container>
-            <ComponentRenderer data={titles} />
-            <Grid fit>
-              <Cell>
-                <ComponentRenderer data={join} />
-              </Cell>
-              <Cell>
-                <Video id="110925126" type="vimeo" />
-              </Cell>
-            </Grid>
+            <ComponentRenderer data={vacancies} />
+            <Jobs />
           </Container>
         </Section>
-        <div className={styles.listings}>
-          <Section>
-            <Container>
-              <ComponentRenderer data={vacancies} />
-              <Jobs />
-            </Container>
-          </Section>
-        </div>
-        <div className={styles.apply}>
-          <Section>
-            <Container>
-              <ComponentRenderer data={apply} />
-            </Container>
-          </Section>
-        </div>
       </div>
-    );
-  }
+      <div className={styles.apply}>
+        <Section>
+          <Container>
+            <ComponentRenderer data={apply} />
+          </Container>
+        </Section>
+      </div>
+    </div>
+  );
 }
 
 function mapDispatchToProps (dispatch) {

@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Content (props) {
+export default function Content ({children}) {
   return (
     <div>
-      {props.children}
+      {children}
     </div>
   );
 }
