@@ -1,4 +1,11 @@
 export default function (body, initialState, path, includeJS) {
+  const scripts = includeJS 
+  ? `<script id="initialState" type="application/json">
+     ${JSON.stringify(initialState)}
+     </script>
+     <script type="text/javascript" src="${path}/index.js"></script>` 
+  : '';
+
   return `
   <!doctype html>
   <html>
@@ -11,8 +18,7 @@ export default function (body, initialState, path, includeJS) {
     </head>
     <body>
       <div id="mount">${body}</div>
-      ${includeJS ? '<script id="initialState" type="application/json">' + JSON.stringify(initialState) + '</script>' +
-      '<script type="text/javascript" src="'+ path + '/index.js"></script>' : ''}
+      ${scripts}
     </body>
   </html>
   `;
