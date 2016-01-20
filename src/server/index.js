@@ -12,6 +12,7 @@ import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from '../shared/routes';
 import ErrorPage from '../shared/containers/errors/generic';
+import Root from '../shared/containers/root';
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -67,7 +68,7 @@ app.get('*',
     .then(renderComponent)
     .then(res.send.bind(res))
     .catch(() => {
-      res.send(html(renderToString(<ErrorPage />), {}, path));
+      res.send(html(renderToString(<Root><ErrorPage /></Root>), {}, path));
     });
   }
 );
