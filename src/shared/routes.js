@@ -3,7 +3,7 @@ import Root from './containers/root';
 import JoinUs from './containers/join-us';
 import Job from './containers/job';
 import { Route } from 'react-router';
-import NotFound from './containers/not-found';
+import NotFound from './containers/errors/not-found';
 
 const routes = (
   <Route component={Root}>

@@ -1,4 +1,4 @@
-export default function (body, initialState, path) {
+export default function (body, initialState, path, includeJS) {
   return `
   <!doctype html>
   <html>
@@ -11,8 +11,8 @@ export default function (body, initialState, path) {
     </head>
     <body>
       <div id="mount">${body}</div>
-      <script id="initialState" type="application/json">${JSON.stringify(initialState)}</script>
-      <script type="text/javascript" src="${path}/index.js"></script>
+      ${includeJS ? '<script id="initialState" type="application/json">' + JSON.stringify(initialState) + '</script>' +
+      '<script type="text/javascript" src="'+ path + '/index.js"></script>' : ''}
     </body>
   </html>
   `;

@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import routes from '../shared/routes';
+import ErrorPage from '../shared/containers/errors/generic';
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -54,7 +55,7 @@ function renderComponent ([ jobs, match ]) {
       <RouterContext {...match.renderProps} />
     </Provider>
   );
-  return html(htmlString, store.getState(), path);
+  return html(htmlString, store.getState(), path, true);
 }
 
 app.get('*',
@@ -64,7 +65,10 @@ app.get('*',
       matchPromise({ routes, location: req.url })
     ])
     .then(renderComponent)
-    .then(res.send.bind(res));
+    .then(res.send.bind(res))
+    .catch(() => {
+      res.send(html(renderToString(<ErrorPage />), {}, path));
+    });
   }
 );
 
