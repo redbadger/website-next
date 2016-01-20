@@ -34,22 +34,37 @@ app.use(
   express.static('build/client')
 );
 
+// Turn React Routers match into a promise api
+function matchPromise (options) {
+  return new Promise(function (resolve, reject) {
+    match(options, (error, redirectLocation, renderProps) => {
+      if (error) {
+        return reject(error);
+      }
+      return resolve({ redirectLocation, renderProps });
+    });
+  });
+}
+
+function renderComponent ([ jobs, match ]) {
+  const initialState = { jobs };
+  const store = createStore(reducers, initialState);
+  const htmlString = renderToString(
+    <Provider store={store}>
+      <RouterContext {...match.renderProps} />
+    </Provider>
+  );
+  return html(htmlString, store.getState(), path);
+}
+
 app.get('*',
   (req, res) => {
-    workable.getJobs().then((jobs) => {
-      const initialState = { jobs };
-      const store = createStore(reducers, initialState);
-
-      match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
-        const htmlString = renderToString(
-          <Provider store={store}>
-            <RouterContext {...renderProps} />
-          </Provider>
-        );
-
-        res.send(html(htmlString, store.getState(), path));
-      });
-    });
+    Promise.all([
+      workable.getJobs(),
+      matchPromise({ routes, location: req.url })
+    ])
+    .then(renderComponent)
+    .then(res.send.bind(res));
   }
 );
 
