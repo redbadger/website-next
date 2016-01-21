@@ -90,6 +90,7 @@
     "redbox-react": "^1.2.0",
     "rimraf": "2.5.0",
     "sinon": "^1.17.2",
+    "sinon-as-promised": "^4.0.0",
     "url-loader": "^0.5.7",
     "webdriverio": "^3.4.0",
     "webpack": "^1.12.9",
