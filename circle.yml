@@ -8,6 +8,7 @@ dependencies:
 
 test:
   override:
+    - npm run security:check
     - npm run lint
     - NODE_ENV=test npm run build:server-tests
     - npm run test:server
