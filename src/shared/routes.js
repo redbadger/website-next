@@ -7,8 +7,8 @@ import NotFound from './containers/errors/not-found';
 
 const routes = (
   <Route component={Root}>
-    <Route component={JoinUs} path="/" />
-    <Route component={Job} path="/:id" />
+    <Route component={JoinUs} path="/about-us/join-us" />
+    <Route component={Job} path="/about-us/join-us/:id" />
     <Route component={NotFound} path="*" />
   </Route>
 );

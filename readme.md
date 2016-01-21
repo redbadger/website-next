@@ -16,7 +16,7 @@ Install your dependencies with `npm install`.
 To build the project run `npm run build`. This will build both the client (`npm run build:client`) and
 server (`npm run build:server`) code to be run.
 
-Run the server with `npm run start` and navigate to `http://localhost:8000`.
+Run the server with `npm start` and navigate to `http://localhost:8000/about-us/join-us`.
 
 ## Developing
 
