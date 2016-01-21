@@ -19,15 +19,6 @@ const port = process.env.PORT || 8000;
 const workable = new WorkableAPI(fetchProxy(fetch), process.env.WORKABLE_KEY);
 const api = API(workable);
 
-let path = '';
-
-// When using Hot Module Replacement we need to serve the client-side files
-// from Webpack Dev Server so that the client can be notified of changes and
-// receive them.
-if (process.env.HMR === 'true') {
-  path = 'http://localhost:8080';
-}
-
 app.use(
   express.static('static')
 );
@@ -56,7 +47,7 @@ function renderComponent ([ jobs, match ]) {
       <RouterContext {...match.renderProps} />
     </Provider>
   );
-  return html(htmlString, store.getState(), path, true);
+  return html(htmlString, store.getState(), true);
 }
 
 app.get('*',
@@ -70,7 +61,7 @@ app.get('*',
     .catch(() => {
       res
         .status(500)
-        .send(html(renderToString(<Root><ErrorPage /></Root>), {}, path));
+        .send(html(renderToString(<Root><ErrorPage /></Root>), {}));
     });
   }
 );

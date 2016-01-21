@@ -1,9 +1,18 @@
-export default function (body, initialState, path, includeJS) {
-  const scripts = includeJS 
+let path = '';
+
+// When using Hot Module Replacement we need to serve the client-side files
+// from Webpack Dev Server so that the client can be notified of changes and
+// receive them.
+if (process.env.HMR === 'true') {
+  path = 'http://localhost:8080';
+}
+
+export default function (body, initialState, includeJS) {
+  const scripts = includeJS
   ? `<script id="initialState" type="application/json">
      ${JSON.stringify(initialState)}
      </script>
-     <script type="text/javascript" src="${path}/index.js"></script>` 
+     <script type="text/javascript" src="${path}/index.js"></script>`
   : '';
 
   return `
