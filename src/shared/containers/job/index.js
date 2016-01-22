@@ -27,7 +27,7 @@ export function Job ({ job }) {
         <Grid>
           <Cell size={8}>
             <h2 className={typography.h2}>{job.title}</h2>
-            <HtmlParser>{job.description}</HtmlParser>
+            <HtmlParser>{job.fullDescription}</HtmlParser>
             <hr />
             <Link className={typography.a} to="/about-us/join-us">See all vacancies</Link>
           </Cell>
