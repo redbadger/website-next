@@ -3,8 +3,10 @@ import styles from './style.css';
 
 export default function Container ({children}) {
   return (
-    <div className={styles.container}>
-      {children}
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        {children}
+      </div>
     </div>
   );
 }

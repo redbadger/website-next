@@ -1,10 +1,13 @@
 @value large, mediaLarge from "../variables/breakpoints.css";
 
+.wrapper {
+  composes: nbfcAlt from "../utils/layout.css";
+}
+
 .container {
-  composes: nbfc from "../utils/layout.css";
   width: 100%;
   max-width: large;
-  padding: 0 20px;
+  padding: 0px 20px;
 }
 
 @media mediaLarge {
