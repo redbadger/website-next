@@ -1,43 +1,23 @@
-@value red, turquoise from "../variables/colors.css";
-
 .a {
-  color: red;
+  composes: a from "../typography/style.css";
   white-space: nowrap;
 }
 
-.a:hover {
-  color: turquoise;
-}
-
 .p {
-  composes: defaultFont from "../fonts/style.css";
-  margin: 1em 0;
-  line-height: 1.35;
+  composes: p from "../typography/style.css";
 }
 
 .h1 {
-  composes: heroFont from "../fonts/style.css";
-  font-size: 2.5em;
-  font-weight: normal;
-  line-height: 1.3em;
-  margin: 0 0 0.6em;
+  composes: h1 from "../typography/style.css";
   text-align: center;
 }
 
 .h2 {
-  composes: heroFont from "../fonts/style.css";
-  font-size: 2.5em;
-  font-weight: normal;
-  line-height: 1;
-  margin: 0 0 0.6em;
+  composes: h2 from "../typography/style.css";
   text-align: center;
 }
 
 .h3 {
-  composes: defaultFont from "../fonts/style.css";
-  font-weight: normal;
-  font-size: 1.375em;
-  line-height: 1.35em;
-  margin: 0 0 0.8em;
+  composes: h3 from "../typography/style.css";
   text-align: center;
 }
