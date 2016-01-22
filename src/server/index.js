@@ -20,9 +20,9 @@ app.use(
   express.static('build/client')
 );
 
-app.get('*', Routes(workable, match));
-
 app.use('/api', api);
+
+app.get('*', Routes(workable, match));
 
 app.listen(port, function () {
   console.log('Server listening on port', port); //eslint-disable-line
