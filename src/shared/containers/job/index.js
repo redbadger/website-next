@@ -30,7 +30,7 @@ export function Job ({ job }) {
             <h2 className={typography.h2}>{job.title}</h2>
             <HtmlParser>{job.fullDescription}</HtmlParser>
             <HR color="grey" />
-            <Link className={typography.a} to="/about-us/join-us">See all vacancies</Link>
+            <Link className={styles.linkBack} to="/about-us/join-us"><span className={styles.linkBackArrow}></span>See all vacancies</Link>
           </Cell>
           <Cell size={4}>
             <Note>
