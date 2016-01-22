@@ -1,0 +1,4 @@
+.noteTitle {
+  composes: h2 from "../../components/typography/style.css";
+  font-size: 1.333em !important;
+}
