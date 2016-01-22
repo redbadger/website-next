@@ -1,0 +1,18 @@
+@value midGrey from "../variables/colors.css";
+
+.hr {
+  border: none;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 100% 14px;
+  height: 1em;
+  margin: 1.5em 0;
+}
+
+.grey {
+  background-image: url("./grey.png");
+}
+
+.red {
+  background-image: url("./red.png");
+}

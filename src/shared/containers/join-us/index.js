@@ -5,6 +5,7 @@ import Jobs from '../../components/jobs';
 import Section from '../../components/section';
 import styles from './style.css';
 import Video from '../../components/video';
+import HR from '../../components/hr';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Grid, Cell } from '../../components/grid';
@@ -102,16 +103,11 @@ function JoinUs () {
               <Video id="110925126" type="vimeo" />
             </Cell>
           </Grid>
+          <HR color="red" />
+          <ComponentRenderer data={vacancies} />
+          <Jobs />
         </Container>
       </Section>
-      <div className={styles.listings}>
-        <Section>
-          <Container>
-            <ComponentRenderer data={vacancies} />
-            <Jobs />
-          </Container>
-        </Section>
-      </div>
       <div className={styles.apply}>
         <Section>
           <Container>
