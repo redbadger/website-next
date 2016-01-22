@@ -4,6 +4,7 @@ import Note from '../note';
 import { render, hasProp, containsOne, findAllWithType, findWithType } from '../../test-helper';
 import { expect } from 'chai';
 import { Link } from 'react-router';
+import HtmlParser from '../html-parser';
 
 describe('Jobs', () => {
 
@@ -38,8 +39,8 @@ describe('Jobs', () => {
   });
 
   it('renders the description', () => {
-    expect(containsOne('First paragraph', note)).to.equal(true);
-    expect(containsOne('Second one', note)).to.equal(true);
+    const parser = findWithType(HtmlParser, note);
+    expect(hasProp('children', listings[0].description)(parser)).to.equal(true);
   });
 
 });
