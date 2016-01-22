@@ -44,6 +44,16 @@ for each intended environment with the following commands:
 
 ### Server
 
+First you will need to build the server tests
+
+`npm run build:server-tests`
+
+Or continuously build them with
+
+`npm run watch:server-tests`
+
+Then you can run them with
+
 `npm run test:server`.
 
 ### Client
