@@ -10,7 +10,7 @@ export default function NavItem ({active, href, title}) {
 
   return (
     <li className={styles.navItem}>
-      <a className={styles.navItemLink} to={href}>{title}</a>
+      <a className={styles.navItemLink} href={href}>{title}</a>
       {activeElement}
     </li>
   );
