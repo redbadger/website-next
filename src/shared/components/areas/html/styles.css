@@ -1,0 +1,43 @@
+@value red, turquoise from "../../variables/colors.css";
+
+.base :global a {
+  color: red;
+  white-space: nowrap;
+}
+
+.base :global a:hover {
+  color: turquoise;
+}
+
+.base p {
+  font-family: "CenturyGothic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin: 1em 0;
+  line-height: 1.35;
+}
+
+.base h1 {
+  font-family: "FranklinGothicHand", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 2.5em;
+  font-weight: normal;
+  line-height: 1.3em;
+  margin: 0 0 0.6em;
+  text-align: center;
+}
+
+.base h2 {
+  font-family: "FranklinGothicHand", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 2.5em;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0 0 0.6em;
+  text-align: center;
+}
+
+.base h3 {
+  font-family: "CenturyGothic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 1.375em;
+  line-height: 1.35em;
+  margin: 0 0 0.8em;
+  text-align: center;
+}
