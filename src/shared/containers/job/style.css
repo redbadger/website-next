@@ -1,0 +1,21 @@
+@value black, red from "../../components/variables/colors.css";
+
+.noteTitle {
+  composes: h2 from "../../components/typography/style.css";
+  font-size: 1.333em !important;
+}
+
+.linkBack {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.linkBack:hover {
+  color: red;
+}
+
+.linkBackArrow {
+  composes: sketchArrowLeft from "../../components/icons/style.css";
+  color: red;
+}

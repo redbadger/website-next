@@ -25,12 +25,3 @@
   left: 0;
   top: -11px;
 }
-
-.redLine:before {
-  content: "";
-  background-image: url("./rule-red.png");
-  height: 14px;
-  display: block;
-  max-width: 920px;
-  margin: 0 auto;
-}

@@ -46,11 +46,12 @@ describe('Workable API', () => {
         });
       });
 
-      it('filters job data to contain only title and description', (done) => {
+      it('filters job data to contain only title, description, fullDescription and slug', (done) => {
         result.then((jobs) => {
           expect(jobs[0]).to.deep.equal({
             title: fixture.jobs[0].title,
             description: fixture.jobs[0].description,
+            fullDescription: fixture.jobs[0].full_description,
             slug: paramCase(fixture.jobs[0].title)
           });
           done();

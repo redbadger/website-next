@@ -42,17 +42,26 @@
   font-style: italic;
 }
 
+/*
+ * Note: These currently do not work 100% with post-css module values. It looks
+ * like it is in the pipeline but for now these values will be parsed to their
+ * first declared value. i.e. "CenturyGothic"
+ * (https://github.com/css-modules/postcss-modules-values/pull/23)
+ */
+@value default: "CenturyGothic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@value hero: "FranklinGothicHand", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
 .defaultFontSize {
   font-size: 16px;
   line-height: 1.4;
 }
 
 .defaultFont {
-  font-family: "CenturyGothic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: default;
   color: font;
 }
 
 .heroFont {
-  font-family: "FranklinGothicHand", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: hero;
   color: font;
 }
