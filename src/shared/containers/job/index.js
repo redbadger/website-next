@@ -11,6 +11,7 @@ import typography from '../../components/typography/style.css';
 import { Link } from 'react-router';
 import { filter, flow, head, property } from 'lodash/fp';
 import isEqual from 'lodash/isEqual'; // lodash fp isEqual is broken in 4.0.0
+import ErrorPage from '../error';
 
 const howToApplyP = (
   <p className={typography.p}>
@@ -22,26 +23,30 @@ const howToApplyP = (
 );
 
 export function Job ({ job }) {
-  return (
-    <Section>
-      <Container>
-        <Grid>
-          <Cell size={8}>
-            <h2 className={typography.h2}>{job.title}</h2>
-            <HtmlParser>{job.fullDescription}</HtmlParser>
-            <HR color="grey" />
-            <Link className={styles.linkBack} to="/about-us/join-us"><span className={styles.linkBackArrow}></span>See all vacancies</Link>
-          </Cell>
-          <Cell size={4}>
-            <Note>
-              <h2 className={styles.noteTitle}>How to Apply</h2>
-              {howToApplyP}
-            </Note>
-          </Cell>
-        </Grid>
-      </Container>
-    </Section>
-  );
+  if (job) {
+    return (
+      <Section>
+        <Container>
+          <Grid>
+            <Cell size={8}>
+              <h2 className={typography.h2}>{job.title}</h2>
+              <HtmlParser>{job.fullDescription}</HtmlParser>
+              <HR color="grey" />
+              <Link className={styles.linkBack} to="/about-us/join-us"><span className={styles.linkBackArrow}></span>See all vacancies</Link>
+            </Cell>
+            <Cell size={4}>
+              <Note>
+                <h2 className={styles.noteTitle}>How to Apply</h2>
+                {howToApplyP}
+              </Note>
+            </Cell>
+          </Grid>
+        </Container>
+      </Section>
+    );
+  } else {
+    return (<ErrorPage>Sorry this job doesn't seem to exist!</ErrorPage>);
+  }
 }
 
 // This can be made much nicer when lodash 4.0.1 is released
