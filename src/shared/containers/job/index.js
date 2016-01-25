@@ -45,7 +45,7 @@ export function Job ({ job }) {
       </Section>
     );
   } else {
-    return (<ErrorPage>Sorry this job doesn't seem to exist!</ErrorPage>);
+    return (<ErrorPage>{"Sorry this job doesn't seem to exist!"}</ErrorPage>);
   }
 }
 

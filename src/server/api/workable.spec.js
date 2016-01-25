@@ -46,7 +46,7 @@ describe('Workable API', () => {
         });
       });
 
-      it('filters job data to contain only title, description, fullDecription and slug', (done) => {
+      it('filters job data to contain only title, description, fullDescription and slug', (done) => {
         result.then((jobs) => {
           expect(jobs[0]).to.deep.equal({
             title: fixture.jobs[0].title,
