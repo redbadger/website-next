@@ -1,3 +1,5 @@
+@value red from "../variables/colors.css";
+
 .title {
   composes: heroFont from "../fonts/style.css";
   display: block;

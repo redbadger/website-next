@@ -28,7 +28,8 @@ describe('match', () => {
   describe('when called bad options', () => {
 
     it('rejects', (done) => {
-      match().catch(() => {
+      match().catch((err) => {
+        expect(err).to.be.an.instanceof(Error);
         done();
       });
     });

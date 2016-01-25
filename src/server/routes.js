@@ -5,7 +5,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { renderToString } from 'react-dom/server';
 import routes from '../shared/routes';
-import ErrorPage from '../shared/containers/errors/generic';
+import ErrorPage from '../shared/containers/error';
 import Root from '../shared/containers/root';
 
 function renderComponent (jobs, children) {
@@ -34,7 +34,7 @@ export default function (workable, match) {
     .catch(() => {
       res
         .status(500)
-        .send(html(renderToString(<Root><ErrorPage /></Root>), {}));
+        .send(html(renderToString(<Root><ErrorPage>Ooops something went wrong!</ErrorPage></Root>), {}));
     });
   };
 }

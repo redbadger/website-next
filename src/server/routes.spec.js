@@ -24,8 +24,7 @@ describe('Routes', () => {
         getJobs: stub()
       };
       workable.getJobs.resolves([]);
-      match = stub();
-      match.resolves(<div/>);
+      match = stub().resolves(<div/>);
       routeHandler = Routes(workable, match);
     });
 
