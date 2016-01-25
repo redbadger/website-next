@@ -1,3 +1,5 @@
+import paramCase from "param-case";
+
 export default class Workable {
   constructor (fetch, key) {
     this.fetch = fetch;
@@ -14,7 +16,8 @@ export default class Workable {
       return response.jobs.map((job) => {
         return {
           title: job.title,
-          description: job.description
+          description: job.description,
+          slug: paramCase(job.title)
         };
       });
     });

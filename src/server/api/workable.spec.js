@@ -2,6 +2,7 @@ import Workable from './workable';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import fixture from './workable.fixture';
+import paramCase from "param-case";
 
 describe('Workable API', () => {
   describe('getJobs', () => {
@@ -49,7 +50,8 @@ describe('Workable API', () => {
         result.then((jobs) => {
           expect(jobs[0]).to.deep.equal({
             title: fixture.jobs[0].title,
-            description: fixture.jobs[0].description
+            description: fixture.jobs[0].description,
+            slug: paramCase(fixture.jobs[0].title)
           });
           done();
         });

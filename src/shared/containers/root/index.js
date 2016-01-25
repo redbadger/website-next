@@ -1,13 +1,12 @@
 import React from 'react';
-import JoinUs from '../join-us';
 import Layout from '../../components/layout';
 import styles from './style.css';
 
-export default function Root () {
+export default function Root ({ children }) {
   return (
     <div className={styles.root}>
       <Layout>
-        <JoinUs />
+        {children}
       </Layout>
     </div>
   );

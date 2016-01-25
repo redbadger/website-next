@@ -4,6 +4,7 @@ import HtmlToReact from 'html-to-react';
 import styles from './style.css';
 import { Grid, Cell } from '../grid';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 const htmlToReactParser = new HtmlToReact.Parser(React);
 
@@ -13,7 +14,7 @@ export function Jobs ({jobs}) {
     return (
       <Cell key={index} size={4}>
         <Note>
-          <a className={styles.title} href="#">{job.title}<span className={styles.icon}></span></a>
+          <Link className={styles.title} to={'/about-us/join-us/' + job.slug}>{job.title}<span className={styles.icon}></span></Link>
           {paragraphs}
         </Note>
       </Cell>
