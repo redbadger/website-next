@@ -13,15 +13,6 @@ import { filter, flow, head, property } from 'lodash/fp';
 import isEqual from 'lodash/isEqual'; // lodash fp isEqual is broken in 4.0.0
 import ErrorPage from '../error';
 
-const howToApplyP = (
-  <p className={typography.p}>
-  If you'd like more information, you want to apply, or you'd simply like to
-  say 'hello', then please get in touch with your CV, Stackoverflow profile,
-  Github, code, portfolio and anything else you think we might be interested in,
-  at:{' '}<a className={typography.a} href="mailto:jobs@red-badger.com">jobs@red-badger.com</a>.
-  </p>
-);
-
 export function Job ({ job }) {
   if (job) {
     return (
@@ -33,11 +24,17 @@ export function Job ({ job }) {
               <HtmlParser>{job.fullDescription}</HtmlParser>
               <HR color="grey" />
               <Link className={styles.linkBack} to="/about-us/join-us"><span className={styles.linkBackArrow}></span>See all vacancies</Link>
+              <a className={styles.apply} href={job.applicationUrl} id="e2eApply" target="_blank">Apply here<span className={styles.applyArrow}></span></a>
             </Cell>
             <Cell size={4}>
               <Note>
                 <h2 className={styles.noteTitle}>How to Apply</h2>
-                {howToApplyP}
+                <p className={typography.p}>
+                  If you'd like more information, you want to apply, or you'd simply like to
+                  say 'hello', then please get in touch with your CV, Stackoverflow profile,
+                  Github, code, portfolio and anything else you think we might be interested in,
+                  at:{' '}<a className={typography.a} href={job.applicationUrl}>Apply here</a>.
+                </p>
               </Note>
             </Cell>
           </Grid>

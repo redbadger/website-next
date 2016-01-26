@@ -15,6 +15,10 @@ describe('Looking for a new job', function () {
       .then(function (title) {
         chai.expect(title).to.include('Software Engineer');
       })
+      .getAttribute('#e2eApply', 'href')
+      .then(function (attr) {
+        chai.expect(attr).to.include('workable.com');
+      })
       .end(done);
   });
 });
