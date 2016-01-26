@@ -33,7 +33,7 @@ export function Job ({ job }) {
                   If you'd like more information, you want to apply, or you'd simply like to
                   say 'hello', then please get in touch with your CV, Stackoverflow profile,
                   Github, code, portfolio and anything else you think we might be interested in,
-                  at:{' '}<a className={typography.a} href={job.applicationUrl}>Apply here</a>.
+                  at:{' '}<a className={typography.a} href={job.applicationUrl} target="_blank">Apply here</a>.
                 </p>
               </Note>
             </Cell>
