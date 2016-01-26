@@ -19,3 +19,13 @@
   composes: sketchArrowLeft from "../../components/icons/style.css";
   color: red;
 }
+
+.apply {
+  composes: linkBack;
+  float: right;
+}
+
+.applyArrow {
+  composes: sketchArrowRight from "../../components/icons/style.css";
+  color: red;
+}

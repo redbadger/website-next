@@ -18,6 +18,7 @@ export default class Workable {
           title: job.title,
           description: job.description,
           fullDescription: job.full_description,
+          applicationUrl: job.application_url,
           slug: paramCase(job.title)
         };
       });
