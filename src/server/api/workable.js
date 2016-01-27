@@ -7,7 +7,7 @@ export default class Workable {
   }
 
   getJobs () {
-    return this.fetch('https://www.workable.com/spi/v3/accounts/redbadger/jobs?include_fields=description,full_description&state=published', {
+    return this.fetch('https://www.workable.com/spi/v3/accounts/redbadger/jobs?include_fields=description,benefits,requirements&state=published', {
       headers: {
         authorization: 'Bearer ' + this.key,
         'Content-Type': 'application/json'
@@ -17,7 +17,7 @@ export default class Workable {
         return {
           title: job.title,
           description: job.description,
-          fullDescription: job.full_description,
+          fullDescription: job.description + job.requirements + job.benefits,
           applicationUrl: job.application_url,
           slug: paramCase(job.title)
         };
