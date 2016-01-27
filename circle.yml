@@ -5,6 +5,7 @@ machine:
 dependencies:
   pre:
     - rm -rf node_modules
+    - sudo pip install awsebcli
 
 test:
   override:
