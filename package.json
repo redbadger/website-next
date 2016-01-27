@@ -12,6 +12,7 @@
     "clean": "rimraf build",
     "lint": "eslint --cache .",
     "security:check": "./node_modules/.bin/nsp check",
+    "prestart": "npm run build",
     "start": "node build/server",
     "test:client": "karma start config/karma.config.babel.js",
     "test:e2e": "wdio config/wdio.config.js",
