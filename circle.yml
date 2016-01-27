@@ -20,7 +20,7 @@ test:
     - npm run test:e2e
 
 deployment:
-  production:
+  staging:
     branch: master
     commands:
-      - git push -f git@heroku.com:redbadger-next.git $CIRCLE_SHA1:master
+      - eb deploy website-next-staging --quiet
