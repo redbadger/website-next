@@ -30,10 +30,8 @@ export function Job ({ job }) {
               <Note>
                 <h2 className={styles.noteTitle}>How to Apply</h2>
                 <p className={typography.p}>
-                  If you'd like more information, you want to apply, or you'd simply like to
-                  say 'hello', then please get in touch with your CV, Stackoverflow profile,
-                  Github, code, portfolio and anything else you think we might be interested in,
-                  at:{' '}<a className={typography.a} href={job.applicationUrl} target="_blank">Apply here</a>.
+                  {"If you'd like to know more or you want to apply please get in touch with your CV, Stackoverflow profile, Github, code, portfolio and anything else you think we might be interested in, at:"}{' '}
+                  <a className={typography.a} href={job.applicationUrl} target="_blank">Apply here</a>.
                 </p>
               </Note>
             </Cell>
