@@ -51,7 +51,7 @@ describe('Workable API', () => {
           expect(jobs[0]).to.deep.equal({
             title: fixture.jobs[0].title,
             description: fixture.jobs[0].description,
-            fullDescription: fixture.jobs[0].description + fixture.jobs[0].benefits + fixture.jobs[0].requirements,
+            fullDescription: fixture.jobs[0].description + fixture.jobs[0].requirements + fixture.jobs[0].benefits,
             applicationUrl: fixture.jobs[0].application_url,
             slug: paramCase(fixture.jobs[0].title)
           });
