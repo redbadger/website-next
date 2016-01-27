@@ -23,4 +23,4 @@ deployment:
   staging:
     branch: master
     commands:
-      - eb deploy website-next-staging --quiet
+      - eb deploy website-next-staging --nohang --quiet
