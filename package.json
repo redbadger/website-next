@@ -14,6 +14,7 @@
     "security:check": "./node_modules/.bin/nsp check",
     "prestart": "npm run build",
     "start": "node build/server",
+    "start:circle": "node build/server",
     "test:client": "karma start config/karma.config.babel.js",
     "test:e2e": "wdio config/wdio.config.js",
     "test:server": "mocha ./build/test/index.js",

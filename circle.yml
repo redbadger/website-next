@@ -15,7 +15,7 @@ test:
     - npm run test:server
     - npm run test:client -- --browsers PhantomJS
     - NODE_ENV=production npm run build
-    - npm start:
+    - npm run start:circle:
         background: true
     - npm run test:e2e
 
