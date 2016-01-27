@@ -12,7 +12,9 @@
     "clean": "rimraf build",
     "lint": "eslint --cache .",
     "security:check": "./node_modules/.bin/nsp check",
+    "prestart": "npm run build",
     "start": "node build/server",
+    "start:circle": "node build/server",
     "test:client": "karma start config/karma.config.babel.js",
     "test:e2e": "wdio config/wdio.config.js",
     "test:server": "mocha ./build/test/index.js",
@@ -100,6 +102,6 @@
     "webpack-dev-server": "^1.14.1"
   },
   "engines": {
-    "node": "5.3.0"
+    "node": "5.1.1"
   }
 }

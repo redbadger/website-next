@@ -1,10 +1,11 @@
 machine:
   node:
-    version: 5.3.0
+    version: 5.1.1
 
 dependencies:
   pre:
     - rm -rf node_modules
+    - sudo pip install awsebcli
 
 test:
   override:
@@ -14,12 +15,12 @@ test:
     - npm run test:server
     - npm run test:client -- --browsers PhantomJS
     - NODE_ENV=production npm run build
-    - npm start:
+    - npm run start:circle:
         background: true
     - npm run test:e2e
 
 deployment:
-  production:
+  staging:
     branch: master
     commands:
-      - git push -f git@heroku.com:redbadger-next.git $CIRCLE_SHA1:master
+      - eb deploy website-next-staging --quiet
