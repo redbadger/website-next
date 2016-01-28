@@ -2,27 +2,25 @@ import React from 'react';
 import Note from '../note';
 import HtmlParser from '../html-parser';
 import styles from './style.css';
-import { Grid, Cell } from '../grid';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import Wall from '../wall';
 
 export function Jobs ({jobs}) {
   const listings = jobs.map((job, index) => {
     return (
-      <Cell key={index} size={4}>
-        <Note>
-          <Link className={styles.title} to={'/about-us/join-us/' + job.slug}>{job.title}<span className={styles.icon}></span></Link>
-          <HtmlParser>{job.description}</HtmlParser>
-        </Note>
-      </Cell>
+      <Note key={index}>
+        <Link className={styles.title} to={'/about-us/join-us/' + job.slug}>{job.title}<span className={styles.icon}></span></Link>
+        <HtmlParser>{job.description}</HtmlParser>
+      </Note>
     );
   });
 
   return (
     <div className="jobs">
-      <Grid>
+      <Wall cols={3}>
         {listings}
-      </Grid>
+      </Wall>
     </div>
   );
 }
@@ -34,8 +32,8 @@ Jobs.propTypes = {
   }))
 };
 
-export default connect((state) => { 
+export default connect((state) => {
   return {
     jobs: state.jobs
-  }; 
+  };
 })(Jobs);
