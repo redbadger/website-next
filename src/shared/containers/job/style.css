@@ -5,27 +5,18 @@
   font-size: 1.333em !important;
 }
 
-.linkBack {
-  color: black;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.linkBack:hover {
-  color: red;
-}
-
 .linkBackArrow {
   composes: sketchArrowLeft from "../../components/icons/style.css";
   color: red;
 }
 
-.apply {
-  composes: linkBack;
-  float: right;
+.externalIcon {
+  composes: sketchExternalLink from "../../components/icons/style.css";
+  color: red;
+  font-size: 14px;
 }
 
-.applyArrow {
-  composes: sketchArrowRight from "../../components/icons/style.css";
-  color: red;
+.applyLink {
+  composes: aBold from '../../components/typography/style.css';
+  float: right;
 }

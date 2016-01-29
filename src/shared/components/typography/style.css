@@ -61,3 +61,14 @@
   line-height: 1.35em;
   margin: 0 0 0.8em;
 }
+
+.aBold {
+  color: font;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.aBold:hover {
+  color: red;
+}
+
