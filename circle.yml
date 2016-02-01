@@ -1,26 +1,31 @@
 machine:
-  node:
-    version: 5.1.1
+  services:
+    - docker
 
 dependencies:
+  cache_directories:
+    - "~/docker"
   pre:
     - rm -rf node_modules
     - sudo pip install awsebcli
+  override:
+    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
+    - docker build -t redbadger/website-next:$CIRCLE_SHA1 .
+    - mkdir -p ~/docker; docker save redbadger/website-next:$CIRCLE_SHA1 > ~/docker/image.tar
 
 test:
   override:
-    - npm run security:check
-    - npm run lint
-    - NODE_ENV=test npm run build:server-tests
-    - npm run test:server
-    - npm run test:client -- --browsers PhantomJS
-    - NODE_ENV=production npm run build
-    - npm run start:circle:
-        background: true
-    - npm run test:e2e
+    - docker run --name security redbadger/website-next:$CIRCLE_SHA1 npm run security:check
+    - docker run --name lint redbadger/website-next:$CIRCLE_SHA1 npm run lint
+    - docker run --name server redbadger/website-next:$CIRCLE_SHA1 sh -c 'NODE_ENV=test npm run build:server-tests && npm run test:server'
+    - docker run --name client redbadger/website-next:$CIRCLE_SHA1 npm run test:client -- --browsers PhantomJS
+    - docker run --name e2e -e WORKABLE_KEY=$WORKABLE_KEY redbadger/website-next:$CIRCLE_SHA1 sh -c '(npm start &) && (npm run test:e2e)'
 
 deployment:
   staging:
     branch: master
     commands:
-      - eb deploy website-next-staging --nohang
+      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASS -e $DOCKER_EMAIL
+      - docker push redbadger/website-next:$CIRCLE_SHA1
+      - sed -i -e "s/latest/$CIRCLE_SHA1/g" Dockerrun.aws.json
+      - eb deploy website-next-staging --nohang --timeout 20
