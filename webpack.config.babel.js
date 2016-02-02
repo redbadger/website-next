@@ -84,15 +84,15 @@ const webpackConfig = [
     output: {
       path: 'build/client',
       publicPath: '/',
-      filename: 'index.js',
-      libraryTarget: 'commonjs2'
+      filename: 'index.js'
     },
     module: {
       loaders: [
         ...baseConfig.module.loaders,
         babelLoader('es2015-webpack')
       ]
-    }
+    },
+    target: "web"
   }
 ];
 

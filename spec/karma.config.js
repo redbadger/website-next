@@ -1,6 +1,13 @@
-require('babel-core/register');
+const webpackConfig = require('../webpack.config.js').find(c => c.name === 'client');
 
-const clientConfig = require('./common.webpack.config.js').clientTests;
+webpackConfig.devtool = 'inline-source-map';
+webpackConfig.module.preLoaders = [
+  {
+    test: /\.js$/,
+    exclude: /(node_modules|\.spec\.js)/,
+    loader: 'isparta'
+  }
+];
 
 module.exports = function (config) {
   config.set({
@@ -8,10 +15,10 @@ module.exports = function (config) {
     frameworks: [ 'mocha' ],
     files: [
       '../node_modules/phantomjs-polyfill/bind-polyfill.js',
-      './tests.webpack.js'
+      './karma-context.js'
     ],
     preprocessors: {
-      './tests.webpack.js': [ 'webpack', 'sourcemap' ]
+      './webpack-context-helper.js': [ 'webpack', 'sourcemap' ]
     },
     reporters: [
       'mocha',
@@ -19,9 +26,9 @@ module.exports = function (config) {
     ],
     coverageReporter: {
       type: 'lcov',
-      dir: '../coverage'
+      dir: './coverage'
     },
-    webpack: clientConfig,
+    webpack: webpackConfig,
     webpackMiddleware: {
       noInfo: true
     },
