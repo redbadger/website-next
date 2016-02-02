@@ -18,7 +18,7 @@ module.exports = function (config) {
       './karma-context.js'
     ],
     preprocessors: {
-      './webpack-context-helper.js': [ 'webpack', 'sourcemap' ]
+      './karma-context.js': [ 'webpack', 'sourcemap' ]
     },
     reporters: [
       'mocha',

@@ -10,6 +10,7 @@
     "lint": "eslint --cache .",
     "security:check": "./node_modules/.bin/nsp check",
     "start": "node build/server",
+    "test": "npm run test:server && npm run test:client && npm run test:e2e",
     "test:client": "karma start spec/karma.config.js",
     "test:e2e": "wdio spec/wdio.config.js",
     "test:server": "mocha --compilers js:babel-core/register --require spec/mocha-helper.js --recursive --reporter spec $(find src -name *spec.js)",
