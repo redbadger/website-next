@@ -9,6 +9,7 @@ export default class Container extends Component {
   };
 
   static defaultProps = {
+    background: "none",
     children: []
   };
 
@@ -16,6 +17,7 @@ export default class Container extends Component {
     const outerClass = classnames(styles.wrapper, {
       [styles['error-background']]: this.props.background === "error"
     });
+
     return (
       <div className={outerClass}>
         <div className={styles.container}>
