@@ -1,3 +1,4 @@
+import * as config from './config';
 import API from './api';
 import express from 'express';
 import fetch from '../shared/util/fetch-proxy';
@@ -5,8 +6,7 @@ import WorkableAPI from './api/workable';
 import router from './router';
 
 const app = express();
-const port = process.env.PORT || 8000;
-const workable = new WorkableAPI(fetch(), process.env.WORKABLE_KEY);
+const workable = new WorkableAPI(fetch(), config.workable.key);
 const api = API(workable);
 
 app.use(express.static('static'));
@@ -17,6 +17,6 @@ app.use('/api', api);
 
 app.use(router);
 
-app.listen(port, function () {
-  console.log('Server listening on port', port);
+app.listen(config.port, function () {
+  console.log('Server listening on port', config.port);
 });
