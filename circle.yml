@@ -22,7 +22,6 @@ test:
   override:
     - npm run security:check
     - npm run lint
-    - NODE_ENV=test npm run build:server-tests
     - npm run test:server
     - npm run test:client -- --browsers PhantomJS
     - export CIRCLE_IP=`ifconfig eth0 | grep -oP 'inet addr:\K\S+'` && docker run -d -p 80:80 -e APP_HOST=$CIRCLE_IP -e APP_PORT=8000 redbadger/website-next-proxy
