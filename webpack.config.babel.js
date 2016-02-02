@@ -84,7 +84,8 @@ const webpackConfig = [
     output: {
       path: 'build/client',
       publicPath: '/',
-      filename: 'index.js'
+      filename: 'index.js',
+      libraryTarget: 'commonjs2'
     },
     module: {
       loaders: [
