@@ -2,7 +2,7 @@
 
 require('babel-core/register');
 const childProcess = require('child_process');
-const phantomjs = require('phantomjs');
+const phantomjs = require('phantomjs-prebuilt');
 
 let phantomProcess;
 

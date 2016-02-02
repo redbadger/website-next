@@ -9,7 +9,7 @@ export const babelLoader = (preset) => {
     exclude: /node_modules/,
     query: {
       cacheDirectory: true,
-      presets: [ preset, "react", "stage-1" ]
+      presets: [ preset, "react", "stage-0" ]
     }
   };
 };
@@ -75,6 +75,17 @@ const webpackConfig = [
         babelLoader('node5')
       ]
     },
+    plugins: [
+      ...baseConfig.plugins,
+      new webpack.BannerPlugin(
+        `require("dotenv").load({ silent: true });
+         require("source-map-support/register");`,
+        {
+          raw: true,
+          entryOnly: false
+        }
+      )
+    ],
     target: "node"
   },
   { // Client build configuration
