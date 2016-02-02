@@ -1,0 +1,8 @@
+- type: parallel
+  services:
+    - app
+  steps:
+    - command: npm run security:check
+    - command: npm run lint
+    - command: NODE_ENV=test npm run build:server-tests && npm run test:server
+    - command: npm run test:client -- --browsers PhantomJS

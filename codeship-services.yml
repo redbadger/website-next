@@ -1,0 +1,7 @@
+app:
+  build:
+    image: app
+    dockerfile_path: Dockerfile
+  cached: true
+  environment:
+    WORKABLE_KEY: $WORKABLE_KEY
