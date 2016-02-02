@@ -4,9 +4,9 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import * as config from './src/server/config';
 
 const webpackConfig = {
-  entry: [ path.join(__dirname, 'src/client/index.js') ],
+  entry: path.join(__dirname, 'src/client/index.js'),
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'build', 'client'),
     filename: 'main.js'
   },
   module: {
@@ -33,12 +33,6 @@ const webpackConfig = {
         loader: 'file-loader?name=[hash].[ext]'
       }
     ]
-  },
-  resolve: {
-    fallback: path.join(__dirname, 'node_modules')
-  },
-  resolveLoader: {
-    fallback:  path.join(__dirname, 'node_modules')
   },
   postcss: () => [
     require('postcss-modules-values'),
