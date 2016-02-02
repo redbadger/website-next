@@ -34,7 +34,7 @@ export default function (workable, match) {
     .catch(() => {
       res
         .status(500)
-        .send(html(renderToString(<Root><ErrorPage code={500} /></Root>), {}));
+        .send(html(renderToString(<Root background="error"><ErrorPage code={500} /></Root>), {}));
     });
   };
 }

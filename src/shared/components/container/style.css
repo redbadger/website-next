@@ -10,10 +10,6 @@
   padding: 0px 20px;
 }
 
-.error-background {
-  background: url('./error_doodle.png') repeat center top;
-}
-
 @media mediaLarge {
   .container {
     width: large;
