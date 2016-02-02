@@ -5,9 +5,7 @@
   "description": "Red Badger's website",
   "main": "build/server",
   "scripts": {
-    "build": "npm run clean && npm run build:server && npm run build:client",
-    "build:client": "webpack --config config/client.webpack.config.babel.js",
-    "build:server": "webpack --config config/server.webpack.config.babel.js",
+    "build": "npm run clean && webpack",
     "clean": "rimraf build",
     "lint": "eslint --cache .",
     "security:check": "./node_modules/.bin/nsp check",
