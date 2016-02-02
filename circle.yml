@@ -29,3 +29,8 @@ deployment:
       - docker push redbadger/website-next:$CIRCLE_SHA1
       - sed -i -e "s/latest/$CIRCLE_SHA1/g" Dockerrun.aws.json
       - eb deploy website-next-staging --nohang --timeout 20
+  production:
+    tag: /v[0-9]+(\.[0-9]+)*/
+    commands:
+      - sed -i -e "s/latest/$CIRCLE_SHA1/g" Dockerrun.aws.json
+      - eb deploy website-next-prod --nohang --timeout 20
