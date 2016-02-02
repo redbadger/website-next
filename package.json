@@ -29,7 +29,6 @@
   "homepage": "https://github.com/redbadger/website-next",
   "pre-push": [
     "lint",
-    "build:server-tests",
     "test:server"
   ],
   "dependencies": {
