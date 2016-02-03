@@ -28,7 +28,7 @@ export default function (body, initialState, includeJS) {
   ? `<script id="initialState" type="application/json">
      ${JSON.stringify(initialState)}
      </script>
-     <script type="text/javascript" src="${path}/index.js"></script>`
+     <script type="text/javascript" src="${path}/assets/index.js"></script>`
   : '';
 
   return `
@@ -39,7 +39,7 @@ export default function (body, initialState, includeJS) {
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       <title>Join Us | Red Badger</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" type="text/css" href="${path}/style.css" />
+      <link rel="stylesheet" type="text/css" href="${path}/assets/style.css" />
       <link rel="apple-touch-icon" sizes="57x57" href="${appleIcon57}">
       <link rel="apple-touch-icon" sizes="60x60" href="${appleIcon60}">
       <link rel="apple-touch-icon" sizes="72x72" href="${appleIcon72}">
