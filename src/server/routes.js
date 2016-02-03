@@ -11,6 +11,7 @@ import Root from '../shared/containers/root';
 function renderComponent (jobs, children) {
   const initialState = { jobs };
   const store = createStore(reducers, initialState);
+  
   const htmlString = renderToString(
     <Provider store={store}>
       {children}
