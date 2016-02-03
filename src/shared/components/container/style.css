@@ -1,4 +1,4 @@
-@value large, mediaLarge from "../variables/breakpoints.css";
+@value mediaLarge, large from "../variables/breakpoints.css";
 
 .wrapper {
   composes: nbfcAlt from "../utils/layout.css";

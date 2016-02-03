@@ -23,16 +23,18 @@ export function Job ({ job }) {
               <h2 className={typography.h2}>{job.title}</h2>
               <HtmlParser>{job.fullDescription}</HtmlParser>
               <HR color="grey" />
-              <Link className={styles.linkBack} to="/about-us/join-us"><span className={styles.linkBackArrow}></span>See all vacancies</Link>
-              <a className={styles.apply} href={job.applicationUrl} id="e2eApply" target="_blank">Apply here<span className={styles.applyArrow}></span></a>
+              <Link className={typography.aBold} to="/about-us/join-us"><span className={styles.linkBackArrow}></span>See all vacancies</Link>
+              <a className={styles.applyLink} href={job.applicationUrl} id="e2eApply" target="_blank">Apply here<span className={styles.externalIcon}></span></a>
             </Cell>
             <Cell size={4}>
               <div className={styles.noteWrapper}>
                 <Note>
                   <h2 className={styles.noteTitle}>How to Apply</h2>
                   <p className={typography.p}>
-                    {"If you'd like to know more or you want to apply please get in touch with your CV, Stackoverflow profile, Github, code, portfolio and anything else you think we might be interested in, at:"}{' '}
-                    <a className={typography.a} href={job.applicationUrl} target="_blank">Apply here</a>.
+                    {"If you'd like to know more or you want to apply please get in touch with your CV, Stackoverflow profile, Github, code, portfolio and anything else you think we might be interested in."}
+                  </p>
+                  <p>
+                    <a className={typography.aBold} href={job.applicationUrl} target="_blank">Apply here <span className={styles.externalIcon}></span></a>
                   </p>
                 </Note>
               </div>

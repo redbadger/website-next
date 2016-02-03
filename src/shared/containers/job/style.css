@@ -1,19 +1,9 @@
-@value black, red from "../../components/variables/colors.css";
 @value mediaSmall from "../../components/variables/breakpoints.css";
+@value black, red from "../../components/variables/colors.css";
 
 .noteTitle {
   composes: h2 from "../../components/typography/style.css";
   font-size: 1.333em !important;
-}
-
-.linkBack {
-  color: black;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.linkBack:hover {
-  color: red;
 }
 
 .linkBackArrow {
@@ -21,18 +11,19 @@
   color: red;
 }
 
-.apply {
-  composes: linkBack;
+.externalIcon {
+  composes: sketchExternalLink from "../../components/icons/style.css";
+  color: red;
+  font-size: 14px;
+}
+
+.applyLink {
+  composes: aBold from '../../components/typography/style.css';
   float: right;
 }
 
-.applyArrow {
-  composes: sketchArrowRight from "../../components/icons/style.css";
-  color: red;
-}
-
 @media mediaSmall {
-  .apply {
+  .applyLink {
     display: none;
   }
 
