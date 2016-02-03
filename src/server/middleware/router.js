@@ -1,29 +1,16 @@
-import React from 'react';
-import { renderToString } from 'react-dom/server';
 import qs from 'query-string';
-import serialize from 'serialize-javascript';
-import html from '../html';
 
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { Router, match } from 'react-router';
+import { createStore, applyMiddleware } from 'redux';
+import { match, createMemoryHistory } from 'react-router';
+import { syncHistory } from 'react-router-redux';
 
 import reducers from '../../shared/reducers';
 import getRoutes from '../../shared/routes';
 
-const renderMarkup = (store) => {
-  const body = renderToString(
-    <Provider key="provider" store={store}>
-      <Router routes={getRoutes(store)}/>
-    </Provider>
-  );
-
-  return html(body, serialize(store.getState()), true);
-};
-
 export default((req, res) => {
-  // const history = createMemoryHistory();
-  const store = createStore(reducers);
+  const history = createMemoryHistory();
+  const reduxRouterMiddleware = syncHistory(history);
+  const store = applyMiddleware(reduxRouterMiddleware)(createStore)(reducers);
 
   const query = qs.stringify(req.query);
   const url = req.path + (query.length ? '?' + query : '');
@@ -37,7 +24,7 @@ export default((req, res) => {
     } else if (!routerState) {
       res.status(400).send('Not Found');
     } else {
-      res.status(200).send(renderMarkup(store));
+      res.status(200).send('Route found!');
     }
   }));
 });
