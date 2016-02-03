@@ -5,7 +5,6 @@ import fetchProxy from './fetch-proxy';
 import WorkableAPI from './api/workable';
 import router from './middleware/router';
 
-
 const app = express();
 const port = process.env.PORT || 8000;
 const workable = new WorkableAPI(fetchProxy(fetch), process.env.WORKABLE_KEY);
