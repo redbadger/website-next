@@ -6,6 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { match, createMemoryHistory, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
 import { syncHistory } from 'react-router-redux';
+import thunk from 'redux-thunk';
 import html from '../html';
 
 import reducers from '../../shared/reducers';
@@ -24,7 +25,7 @@ const renderMarkup = (store, routerProps) => {
 export default((req, res) => {
   const history = createMemoryHistory();
   const reduxRouterMiddleware = syncHistory(history);
-  const store = applyMiddleware(reduxRouterMiddleware)(createStore)(reducers);
+  const store = applyMiddleware(thunk, reduxRouterMiddleware)(createStore)(reducers);
 
   const query = qs.stringify(req.query);
   const url = req.path + (query.length ? '?' + query : '');

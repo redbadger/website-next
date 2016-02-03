@@ -8,12 +8,13 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistory } from 'react-router-redux';
+import thunk from 'redux-thunk';
 
 const initialStateString = document.getElementById('initialState').textContent;
 const initialState = JSON.parse(initialStateString);
 
 const reduxRouterMiddleware = syncHistory(browserHistory);
-const createStoreWithMiddleware = applyMiddleware(reduxRouterMiddleware)(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunk, reduxRouterMiddleware)(createStore);
 const store = createStoreWithMiddleware(reducers, initialState);
 
 const rootComponent = (

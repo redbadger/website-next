@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import isFunction from 'lodash/isFunction';
 import noop from 'lodash/noop';
-import HttpError from '../http-error';
+import HttpError from '../../shared/util/http-error';
 
 describe('Workable Routes', () => {
   describe('getJobs', () => {

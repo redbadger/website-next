@@ -6,10 +6,10 @@ import Section from '../../components/section';
 import styles from './style.css';
 import Video from '../../components/video';
 import HR from '../../components/hr';
-import { bindActionCreators } from 'redux';
+import { bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import { Grid, Cell } from '../../components/grid';
-import { updateContentArea } from '../../content-areas';
+import { fetchJobs as fetchJobsCreator } from '../../actions/jobs';
 
 const titles = {
   type: 'Content',
@@ -89,9 +89,10 @@ const vacancies = {
   }
 };
 
-function JoinUs () {
+function JoinUs ({ actions }) {
   return (
     <div>
+      <button onClick={actions.fetchJobs}>Get Jobs!</button>
       <Section>
         <Container>
           <ComponentRenderer data={titles} />
@@ -121,7 +122,7 @@ function JoinUs () {
 
 function mapDispatchToProps (dispatch) {
   return {
-    actions: bindActionCreators({updateContentArea}, dispatch)
+    actions: bindActionCreators({ fetchJobs: fetchJobsCreator }, dispatch)
   };
 }
 

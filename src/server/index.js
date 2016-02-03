@@ -1,13 +1,12 @@
 import API from './api';
 import express from 'express';
-import fetch from 'node-fetch';
-import fetchProxy from './fetch-proxy';
+import fetch from '../shared/util/fetch-proxy';
 import WorkableAPI from './api/workable';
 import router from './middleware/router';
 
 const app = express();
 const port = process.env.PORT || 8000;
-const workable = new WorkableAPI(fetchProxy(fetch), process.env.WORKABLE_KEY);
+const workable = new WorkableAPI(fetch(), process.env.WORKABLE_KEY);
 const api = API(workable);
 
 app.use(express.static('static'));
