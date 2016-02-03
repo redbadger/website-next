@@ -8,19 +8,21 @@ dependencies:
   cache_directories:
     - "~/docker"
   pre:
+    - rm -rf node_modules
+    - npm install
     - sudo pip install awsebcli
   override:
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build -t redbadger/website-next:$CIRCLE_SHA1 .
     - mkdir -p ~/docker; docker save redbadger/website-next:$CIRCLE_SHA1 > ~/docker/image.tar
-    - npm install webdriverio babel-core babel-preset-node5 babel-preset-react phantomjs mocha chai
 
 test:
   override:
-    - docker run --name security redbadger/website-next:$CIRCLE_SHA1 npm run security:check
-    - docker run --name lint redbadger/website-next:$CIRCLE_SHA1 npm run lint
-    - docker run --name server redbadger/website-next:$CIRCLE_SHA1 sh -c 'NODE_ENV=test npm run build:server-tests && npm run test:server'
-    - docker run --name client redbadger/website-next:$CIRCLE_SHA1 npm run test:client -- --browsers PhantomJS
+    - npm run security:check
+    - npm run lint
+    - NODE_ENV=test npm run build:server-tests
+    - npm run test:server
+    - npm run test:client -- --browsers PhantomJS
     - docker run --name e2e -d -p 8000:8000 -e WORKABLE_KEY=$WORKABLE_KEY redbadger/website-next:$CIRCLE_SHA1
     - npm run test:e2e
 
