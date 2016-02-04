@@ -3,7 +3,6 @@ import Root from './containers/root';
 import JoinUs from './containers/join-us';
 import Job from './containers/job';
 import { Route } from 'react-router';
-// import ErrorPage from './containers/error';
 
 const routeFn = (store, args, ...children) => {
   if (args.component && args.component.fetchData) {

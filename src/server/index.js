@@ -18,5 +18,5 @@ app.use('/api', api);
 app.use(router);
 
 app.listen(port, function () {
-  console.log('Server listening on port', port); //eslint-disable-line
+  console.log('Server listening on port', port);
 });

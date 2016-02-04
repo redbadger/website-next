@@ -1,14 +1,13 @@
-import fetch from '../../util/fetch-proxy';
-export const FETCH_JOBS_SUCCESS = 'FETCH_JOBS_SUCCESS';
-export const FETCH_JOBS_FAIL = 'FETCH_JOBS_FAIL';
+import actions from '../actions';
+import { apiEndpoint } from '../../config';
 
 const initialState = [];
 
 export default function reducer (state = initialState, action) {
   switch (action.type) {
-    case FETCH_JOBS_SUCCESS:
+    case actions.FETCH_JOBS_SUCCESS:
       return action.jobs;
-    case FETCH_JOBS_FAIL:
+    case actions.FETCH_JOBS_FAIL:
       return [];
     default:
       return state;
@@ -17,19 +16,19 @@ export default function reducer (state = initialState, action) {
 
 export function fetchSuccessful (jobs) {
   return {
-    type: FETCH_JOBS_SUCCESS,
+    type: actions.FETCH_JOBS_SUCCESS,
     jobs
   };
 }
 
 export function fetchFailure (error) {
   return {
-    type: FETCH_JOBS_FAIL,
+    type: actions.FETCH_JOBS_FAIL,
     error
   };
 }
 
-export const fetchJobs = () => (
+export const fetchJobs = (fetch) => (
   (dispatch, getState) => {
     const jobs = getState().jobs;
 
@@ -37,7 +36,7 @@ export const fetchJobs = () => (
       return Promise.resolve(jobs);
     }
 
-    return fetch()('http://localhost:8000/api/jobs')
+    return fetch(apiEndpoint + '/jobs')
       .then(jobs => dispatch(fetchSuccessful(jobs)))
       .catch(e => dispatch(fetchFailure(e)));
   }

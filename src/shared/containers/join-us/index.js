@@ -8,6 +8,7 @@ import Video from '../../components/video';
 import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import { fetchJobs } from '../../actions/jobs';
+import fetch from '../../util/fetch-proxy';
 
 const titles = {
   type: 'Content',
@@ -117,6 +118,6 @@ function JoinUs () {
   );
 }
 
-JoinUs.fetchData = fetchJobs();
+JoinUs.fetchData = fetchJobs(fetch());
 
 export default JoinUs;

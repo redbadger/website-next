@@ -12,6 +12,7 @@ import { Link } from 'react-router';
 import { filter, flow, head, property } from 'lodash/fp';
 import isEqual from 'lodash/isEqual'; // lodash fp isEqual is broken in 4.0.0
 import ErrorPage from '../error';
+import fetch from '../../util/fetch-proxy';
 import { fetchJobs } from '../../actions/jobs';
 
 export function Job ({ job }) {
@@ -59,7 +60,7 @@ function firstWithSlug (slug) {
   );
 }
 
-Job.fetchData = fetchJobs();
+Job.fetchData = fetchJobs(fetch());
 
 // I think connect should be moved to make this component just care about
 // getting a job. React router should be doing a level of this so that
