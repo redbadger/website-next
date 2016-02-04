@@ -1,6 +1,6 @@
 import fetch from '../../util/fetch-proxy';
-export const FETCH_JOBS_SUCCESS = Symbol();
-export const FETCH_JOBS_FAIL = Symbol();
+export const FETCH_JOBS_SUCCESS = 'FETCH_JOBS_SUCCESS';
+export const FETCH_JOBS_FAIL = 'FETCH_JOBS_FAIL';
 
 const initialState = [];
 
