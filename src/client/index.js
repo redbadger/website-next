@@ -2,11 +2,11 @@ import getRoutes from '../shared/routes';
 import reducers from '../shared/reducers';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
+import { Router, browserHistory, match } from 'react-router';
 import { syncHistory } from 'react-router-redux';
 import thunk from 'redux-thunk';
 
@@ -17,14 +17,11 @@ const reduxRouterMiddleware = syncHistory(browserHistory);
 const createStoreWithMiddleware = applyMiddleware(thunk, reduxRouterMiddleware)(createStore);
 const store = createStoreWithMiddleware(reducers, initialState);
 
-const rootComponent = (
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      {getRoutes(store)}
-    </Router>
-  </Provider>
-);
-
 const mountNode = document.getElementById('mount');
 
-ReactDOM.render(rootComponent, mountNode);
+match({ routes: getRoutes(store), location: window.location, history: browserHistory }, (error, redirectLocation, renderProps) => {
+  render(
+    <Provider store={store}>
+      <Router {...renderProps} history={browserHistory} />
+    </Provider>, mountNode);
+});

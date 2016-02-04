@@ -30,8 +30,14 @@ export function fetchFailure (error) {
 }
 
 export const fetchJobs = () => (
-  dispatch => {
-    return fetch()('http:/localhost:8000/api/jobs')
+  (dispatch, getState) => {
+    const jobs = getState().jobs;
+
+    if (jobs && jobs.length > 0) {
+      return Promise.resolve(jobs);
+    }
+
+    return fetch()('http://localhost:8000/api/jobs')
       .then(jobs => dispatch(fetchSuccessful(jobs)))
       .catch(e => dispatch(fetchFailure(e)));
   }
