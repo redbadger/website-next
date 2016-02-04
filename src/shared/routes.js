@@ -22,14 +22,12 @@ const routeFn = (store, args, ...children) => {
   );
 };
 
-const routes = (store) => {
+export default function routes (store) {
   const route = routeFn.bind(null, store);
   return (
-    route({ path: '/', component: Root },
+      route({ component: Root, path: '/' },
       route({ component: JoinUs, path: '/about-us/join-us' }),
       route({ component: Job, path: '/about-us/join-us/:id' })
     )
   );
-};
-
-export default routes;
+}

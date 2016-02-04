@@ -2,7 +2,7 @@ import API from './api';
 import express from 'express';
 import fetch from '../shared/util/fetch-proxy';
 import WorkableAPI from './api/workable';
-import router from './middleware/router';
+import router from './router';
 
 const app = express();
 const port = process.env.PORT || 8000;
