@@ -11,9 +11,11 @@ dependencies:
     - rm -rf node_modules
     - npm install
     - sudo pip install awsebcli
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASS -e $DOCKER_EMAIL
   override:
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build -t redbadger/website-next:$CIRCLE_SHA1 .
+    - docker build -t redbadger/website-next:latest .
     - mkdir -p ~/docker; docker save redbadger/website-next:$CIRCLE_SHA1 > ~/docker/image.tar
 
 test:
@@ -23,15 +25,16 @@ test:
     - NODE_ENV=test npm run build:server-tests
     - npm run test:server
     - npm run test:client -- --browsers PhantomJS
-    - docker run --name e2e -d -p 8000:8000 -e WORKABLE_KEY=$WORKABLE_KEY redbadger/website-next:$CIRCLE_SHA1
-    - npm run test:e2e
+    - export CIRCLE_IP=`ifconfig eth0 | grep -oP 'inet addr:\K\S+'` && docker run -d -p 80:80 -e APP_HOST=$CIRCLE_IP -e APP_PORT=8000 redbadger/website-next-proxy
+    - docker run -d -p 8000:8000 -e WORKABLE_KEY=$WORKABLE_KEY redbadger/website-next
+    - npm run test:e2e -- --baseUrl "http://localhost"
 
 deployment:
   staging:
     branch: master
     commands:
-      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASS -e $DOCKER_EMAIL
       - docker push redbadger/website-next:$CIRCLE_SHA1
+      - docker push redbadger/website-next:latest
       - sed -i -e "s/latest/$CIRCLE_SHA1/g" Dockerrun.aws.json
       - eb deploy website-next-staging --nohang --timeout 20
   production:
