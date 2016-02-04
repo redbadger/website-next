@@ -17,6 +17,7 @@ app.use(
 );
 
 app.use(
+  '/assets',
   express.static('build/client')
 );
 

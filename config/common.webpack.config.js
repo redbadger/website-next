@@ -107,7 +107,7 @@ module.exports = {
     entry: ['./src/client/index.js'],
     output: {
       path: 'build/client',
-      publicPath: '/',
+      publicPath: '/assets/',
       filename: 'index.js'
     }
   },
@@ -131,7 +131,7 @@ module.exports = {
     entry: ['./src/server/index.js'],
     output: {
       path: 'build/server',
-      publicPath: '/',
+      publicPath: '/assets/',
       filename: 'index.js',
       libraryTarget: 'commonjs2'
     }
@@ -142,7 +142,7 @@ module.exports = {
     entry: serverTests,
     output: {
       path: 'build/test',
-      publicPath: '/',
+      publicPath: '/assets/',
       filename: 'index.js',
       libraryTarget: 'commonjs2'
     }
