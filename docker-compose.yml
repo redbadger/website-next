@@ -10,4 +10,4 @@ proxy:
     - "80:80"
   environment:
     - APP_HOST=${APP_HOST}
-    - APP_PORT=${APP_PORT}
+    - APP_PORT=8000
