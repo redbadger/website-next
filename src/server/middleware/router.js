@@ -39,7 +39,13 @@ export default((req, res) => {
     } else if (!routerProps) {
       res.status(404).send('Not Found');
     } else {
-      res.status(200).send(renderMarkup(store, routerProps));
+      const actions = routerProps.components
+        .filter(c => c.fetchData)
+        .map(c => c.fetchData(store.dispatch));
+
+      Promise.all(actions)
+        .then(() => res.status(200).send(renderMarkup(store, routerProps)))
+        .catch(e => console.log(e));
     }
   });
 });
