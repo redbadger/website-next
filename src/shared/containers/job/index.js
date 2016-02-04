@@ -27,15 +27,17 @@ export function Job ({ job }) {
               <a className={styles.applyLink} href={job.applicationUrl} id="e2eApply" target="_blank">Apply here<span className={styles.externalIcon}></span></a>
             </Cell>
             <Cell size={4}>
-              <Note>
-                <h2 className={styles.noteTitle}>How to Apply</h2>
-                <p className={typography.p}>
-                  {"If you'd like to know more or you want to apply please get in touch with your CV, Stackoverflow profile, Github, code, portfolio and anything else you think we might be interested in."}
-                </p>
-                <p>
-                  <a className={typography.aBold} href={job.applicationUrl} target="_blank">Apply here <span className={styles.externalIcon}></span></a>
-                </p>
-              </Note>
+              <div className={styles.noteWrapper}>
+                <Note>
+                  <h2 className={styles.noteTitle}>How to Apply</h2>
+                  <p className={typography.p}>
+                    {"If you'd like to know more or you want to apply please get in touch with your CV, Stackoverflow profile, Github, code, portfolio and anything else you think we might be interested in."}
+                  </p>
+                  <p>
+                    <a className={typography.aBold} href={job.applicationUrl} target="_blank">Apply here <span className={styles.externalIcon}></span></a>
+                  </p>
+                </Note>
+              </div>
             </Cell>
           </Grid>
         </Container>
