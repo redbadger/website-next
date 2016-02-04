@@ -14,5 +14,8 @@ COPY . /usr/src/app
 # Build assets
 RUN npm run build
 
+# Prune dev dependencies
+RUN npm prune --production
+
 EXPOSE 8000
 CMD [ "npm", "start" ]
