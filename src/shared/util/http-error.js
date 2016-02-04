@@ -5,13 +5,14 @@ const errorMap = {
   'default': 'Error'
 };
 
-export default class HttpError extends Error {
-  constructor (status) {
-    const message = errorMap[status] || errorMap.default;
-    super(message);
-    this.name = 'HttpError';
-    this.message = message;
-    this.status = status;
-    Error.captureStackTrace(this, this.name);
-  }
+function HttpError (status) {
+  const message = errorMap[status] || errorMap.default;
+  this.name = 'HttpError';
+  this.message = message;
+  this.status = status;
+  if (typeof Error.captureStackTrace === 'function') Error.captureStackTrace(this, this.name);
 }
+
+HttpError.prototype = new Error;
+
+export default HttpError;
