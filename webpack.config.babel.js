@@ -46,25 +46,38 @@ const baseConfig = {
   ]
 };
 
+let clientPlugins = [
+  ...baseConfig.plugins,
+  new webpack.DefinePlugin({
+    process: {
+      env: {
+        NODE_ENV: JSON.stringify(config.env)
+      }
+    }
+  })
+];
+
 if (config.env === 'production') {
-  baseConfig.plugins = [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    }),
-    ...baseConfig.plugins
-  ];
+  clientPlugins.push(new webpack.optimize.UglifyJsPlugin({
+    mangle: true,
+    compress: {
+      dead_code: true,
+      unused: true,
+      warnings: false
+    }
+  }));
 } else {
-  baseConfig.devtool = '#eval-source-map';
+  baseConfig.devtool = 'source-map'; // Generate
 }
 
 const webpackConfig = [
   { // Server build configuration
     ...baseConfig,
     name: 'server',
-    entry: ['./src/server/index.js'],
+    entry: './src/server/index.js',
     output: {
       path: 'build/server',
-      publicPath: '/',
+      publicPath: '/assets/',
       filename: 'index.js',
       libraryTarget: 'commonjs2'
     },
@@ -86,15 +99,17 @@ const webpackConfig = [
         }
       )
     ],
-    target: "node"
+    target: "node",
+    externals: /^[a-z\/\-0-9]+$/i
   },
   { // Client build configuration
     ...baseConfig,
     name: 'client',
-    entry: ['./src/client/index.js'],
+    plugins: clientPlugins,
+    entry: './src/client/index.js',
     output: {
       path: 'build/client',
-      publicPath: '/',
+      publicPath: '/assets/',
       filename: 'index.js'
     },
     module: {
