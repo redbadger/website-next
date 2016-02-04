@@ -16,6 +16,7 @@
  */
 
 import HttpError from './http-error';
+import isoFetch from 'isomorphic-fetch';
 
 function toJSON (response) {
   if (response.status !== 200) {
@@ -29,7 +30,7 @@ function throwError () {
   throw new HttpError(500);
 }
 
-export default function fetchProxy (fetch) {
+export default function fetchProxy (fetch = isoFetch) {
   return (...args) => {
     return fetch(...args).catch(throwError).then(toJSON);
   };

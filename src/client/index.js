@@ -1,20 +1,21 @@
-import {createStore} from 'redux';
-import {Provider} from 'react-redux';
-import {render} from 'react-dom';
-import reducers from '../shared/reducers';
+import getRoutes from '../shared/routes';
+import createStore from '../shared/create-store';
+
 import React from 'react';
-import { Router, browserHistory } from 'react-router';
-import routes from '../shared/routes';
+import { render } from 'react-dom';
+
+import { Provider } from 'react-redux';
+import { Router, browserHistory, match } from 'react-router';
 
 const initialStateString = document.getElementById('initialState').textContent;
 const initialState = JSON.parse(initialStateString);
-const store = createStore(reducers, initialState);
+const store = createStore(browserHistory, initialState);
 
-render(
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      {routes}
-    </Router>
-  </Provider>,
-  document.getElementById('mount')
-);
+const mountNode = document.getElementById('mount');
+
+match({ routes: getRoutes(store), location: window.location, history: browserHistory }, (error, redirectLocation, renderProps) => {
+  render(
+    <Provider store={store}>
+      <Router {...renderProps} history={browserHistory} />
+    </Provider>, mountNode);
+});

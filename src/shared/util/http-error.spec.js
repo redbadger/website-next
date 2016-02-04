@@ -9,7 +9,6 @@ describe('HttpError', () => {
   });
 
   describe('instance', () => {
-
     it('has name property', () => {
       const error = new HttpError(500);
       expect(error.name).to.equal('HttpError');

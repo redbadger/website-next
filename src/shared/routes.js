@@ -3,14 +3,30 @@ import Root from './containers/root';
 import JoinUs from './containers/join-us';
 import Job from './containers/job';
 import { Route } from 'react-router';
-import ErrorPage from './containers/error';
 
-const routes = (
-  <Route component={Root}>
-    <Route component={JoinUs} path="/about-us/join-us" />
-    <Route component={Job} path="/about-us/join-us/:id" />
-    <Route component={ErrorPage} path="*" />
-  </Route>
-);
+const routeFn = (store, args, ...children) => {
+  if (args.component && args.component.fetchData) {
+    args = {
+      ...args,
+      onEnter: (nextState, replaceState, done) => {
+        args.component
+          .fetchData(store.dispatch, store.getState)
+          .then(() => done());
+      }
+    };
+  }
 
-export default routes;
+  return (
+    <Route key={args.path} {...args}>{children}</Route>
+  );
+};
+
+export default function routes (store) {
+  const route = routeFn.bind(null, store);
+  return (
+      route({ component: Root, path: '/' },
+      route({ component: JoinUs, path: '/about-us/join-us' }),
+      route({ component: Job, path: '/about-us/join-us/:id' })
+    )
+  );
+}

@@ -6,10 +6,9 @@ import Section from '../../components/section';
 import styles from './style.css';
 import Video from '../../components/video';
 import HR from '../../components/hr';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { Grid, Cell } from '../../components/grid';
-import { updateContentArea } from '../../content-areas';
+import { fetchJobs } from '../../actions/jobs';
+import fetch from '../../util/fetch-proxy';
 
 const titles = {
   type: 'Content',
@@ -119,13 +118,6 @@ function JoinUs () {
   );
 }
 
-function mapDispatchToProps (dispatch) {
-  return {
-    actions: bindActionCreators({updateContentArea}, dispatch)
-  };
-}
+JoinUs.fetchData = fetchJobs(fetch());
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(JoinUs);
+export default JoinUs;
