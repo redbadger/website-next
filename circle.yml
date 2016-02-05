@@ -25,8 +25,7 @@ test:
     - NODE_ENV=test npm run build:server-tests
     - npm run test:server
     - npm run test:client -- --browsers PhantomJS
-    - export CIRCLE_IP=`ifconfig eth0 | grep -oP 'inet addr:\K\S+'` && docker run -d -p 80:80 -e APP_HOST=$CIRCLE_IP -e APP_PORT=8000 redbadger/website-next-proxy
-    - docker run -d -p 8000:8000 -e WORKABLE_KEY=$WORKABLE_KEY redbadger/website-next
+    - export APP_HOST=`ifconfig eth0 | grep -oP 'inet addr:\K\S+'` && docker-compose up -d
     - npm run test:e2e -- --baseUrl "http://localhost"
 
 deployment:
