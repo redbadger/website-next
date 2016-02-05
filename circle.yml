@@ -22,7 +22,6 @@ test:
   override:
     - npm run security:check
     - npm run lint
-    - NODE_ENV=test npm run build:server-tests
     - npm run test:server
     - npm run test:client -- --browsers PhantomJS
     - export APP_HOST=`ifconfig eth0 | grep -oP 'inet addr:\K\S+'` && docker-compose up -d

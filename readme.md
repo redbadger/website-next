@@ -13,17 +13,15 @@ Install your dependencies with `npm install`.
 
 ## Running
 
-To build the project run `npm run build`. This will build both the client (`npm run build:client`) and
-server (`npm run build:server`) code to be run.
+To build the project run `npm run build`.
 
 Run the server with `npm start` and navigate to `http://localhost:8000/about-us/join-us`.
 
 ## Developing
 
-Run the following in separate terminals:
+Run the following:
 
-* `npm run watch:server` - Sets up a Webpack watch along with [nodemon](https://github.com/remy/nodemon) to restart on changes
-* `npm run watch:client` - Sets up a Webpack Dev Server with Hot Module Reloading for React components
+* `npm run local`
 
 The site can then be accessed at http://localhost:8000.
 
@@ -44,17 +42,9 @@ for each intended environment with the following commands:
 
 ### Server
 
-First you will need to build the server tests
+You can run the server tests with:
 
-`npm run build:server-tests`
-
-Or continuously build them with
-
-`npm run watch:server-tests`
-
-Then you can run them with
-
-`npm run test:server`.
+`npm run test:server`
 
 ### Client
 
@@ -63,4 +53,4 @@ Then you can run them with
 ### End to end
 
 We also have end to end tests that only test the 'Golden Paths' for the
-website. These can be run with `npm run test:e2e`
+website. These can be run with `npm run test:e2e`. Note that they require a running server.

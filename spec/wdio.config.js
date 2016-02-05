@@ -2,7 +2,7 @@
 
 require('babel-core/register');
 const childProcess = require('child_process');
-const phantomjs = require('phantomjs');
+const phantomjs = require('phantomjs-prebuilt');
 
 let phantomProcess;
 
@@ -18,7 +18,7 @@ exports.config = {
   // directory is where your package.json resides, so `wdio` will be called from there.
   //
   specs: [
-    'e2e/**/*.e2e.js'
+    'spec/features/**.js'
   ],
   // Patterns to exclude.
   exclude: [
