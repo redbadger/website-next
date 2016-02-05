@@ -30,7 +30,7 @@ export default class ErrorPage extends Component {
     }
 
     return (
-      <Root>
+      <Root background="error">
         <Container>
           <div className={styles.wrapper}>
             <h1 className={typography.h1}>Oops, sorry!</h1>
