@@ -8,15 +8,13 @@
     "build": "npm run clean && webpack --progress",
     "clean": "rimraf build",
     "lint": "eslint --cache .",
+    "local": "HOT=true node server.dev.js",
     "security:check": "./node_modules/.bin/nsp check",
     "start": "node build/server",
     "test": "npm run test:server && npm run test:client && npm run security:check && npm run lint && npm run test:e2e",
     "test:client": "karma start spec/karma.config.js",
     "test:e2e": "wdio spec/wdio.config.js",
-    "test:server": "mocha --compilers js:babel-core/register --require spec/mocha-helper.js --recursive --reporter spec $(find src -name *spec.js)",
-    "watch:client": "HMR=true webpack-dev-server --config config/client.webpack.config.babel.js --content-base build/client --hot --inline --output-public-path http://localhost:8080/ ",
-    "watch:server": "HMR=true webpack --config config/server.webpack.config.babel.js --watch --output-public-path http://localhost:8080/ & HMR=true nodemon --watch build/server build/server",
-    "watch:server-tests": "webpack --config config/server-tests.webpack.config.babel.js --watch"
+    "test:server": "mocha --compilers js:babel-core/register --require spec/mocha-helper.js --recursive --reporter spec $(find src -name *spec.js)"
   },
   "repository": {
     "type": "git",
@@ -32,6 +30,7 @@
     "test:server"
   ],
   "dependencies": {
+    "chalk": "^1.1.1",
     "classnames": "^2.2.3",
     "dotenv": "^2.0.0",
     "express": "^4.13.4",
@@ -41,14 +40,14 @@
     "moment": "^2.11.1",
     "param-case": "^1.1.2",
     "query-string": "^3.0.0",
-    "react-router-redux": "^3.0.0",
-    "redux-devtools": "3.0.2",
-    "redux-thunk": "^1.0.3",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-redux": "4.2.1",
     "react-router": "^2.0.0-rc5",
+    "react-router-redux": "^3.0.0",
     "redux": "3.2.1",
+    "redux-devtools": "3.0.2",
+    "redux-thunk": "^1.0.3",
     "serialize-javascript": "^1.1.2",
     "source-map-support": "^0.4.0"
   },
@@ -68,6 +67,7 @@
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.16.1",
     "extract-text-webpack-plugin": "^1.0.1",
+    "fake-file-loader": "^1.0.0",
     "file-loader": "^0.8.5",
     "glob": "^6.0.4",
     "isparta-loader": "^2.0.0",
@@ -97,10 +97,13 @@
     "redbox-react": "^1.2.2",
     "rimraf": "2.5.1",
     "sinon": "^2.0.0-pre",
+    "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webdriverio": "^3.4.0",
     "webpack": "^1.12.12",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-middleware": "^1.5.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.6.4"
   },
   "engines": {
     "node": "5.5.0"

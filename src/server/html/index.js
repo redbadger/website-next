@@ -14,21 +14,12 @@ import favIcon192 from './android-chrome-192x192.png';
 import favIcon194 from './favicon-194x194.png';
 import msIcon from './mstile-144x144.png';
 
-let path = '';
-
-// When using Hot Module Replacement we need to serve the client-side files
-// from Webpack Dev Server so that the client can be notified of changes and
-// receive them.
-if (process.env.HMR === 'true') {
-  path = 'http://localhost:8080';
-}
-
 export default function (body, initialState, includeJS) {
   const scripts = includeJS
   ? `<script id="initialState" type="application/json">
      ${JSON.stringify(initialState)}
      </script>
-     <script type="text/javascript" src="${path}/assets/index.js"></script>`
+     <script type="text/javascript" src="/assets/client.js"></script>`
   : '';
 
   return `
@@ -39,7 +30,7 @@ export default function (body, initialState, includeJS) {
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       <title>Join Us | Red Badger</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" type="text/css" href="${path}/assets/style.css" />
+      <link rel="stylesheet" type="text/css" href="/assets/style.css" />
       <link rel="apple-touch-icon" sizes="57x57" href="${appleIcon57}">
       <link rel="apple-touch-icon" sizes="60x60" href="${appleIcon60}">
       <link rel="apple-touch-icon" sizes="72x72" href="${appleIcon72}">

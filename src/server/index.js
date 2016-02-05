@@ -11,12 +11,16 @@ const api = API(workable);
 
 app.use(express.static('static'));
 
-app.use('/assets', express.static('build/client'));
+app.use('/assets', express.static('build/assets'));
 
 app.use('/api', api);
 
 app.use(router);
 
-app.listen(config.port, function () {
-  console.log('Server listening on port', config.port);
-});
+if (!config.hot) {
+  app.listen(config.port, function () {
+    console.log('Server listening on port', config.port);
+  });
+}
+
+export default app;

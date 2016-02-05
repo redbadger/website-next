@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.load();
+
 export const workable = {
   key: process.env.WORKABLE_KEY
 };
