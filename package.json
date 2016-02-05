@@ -14,7 +14,8 @@
     "test": "npm run test:server && npm run test:client && npm run security:check && npm run lint && npm run test:e2e",
     "test:client": "karma start spec/karma.config.js",
     "test:e2e": "wdio spec/wdio.config.js",
-    "test:server": "mocha --compilers js:babel-core/register --require spec/mocha-helper.js --recursive --reporter spec $(find src -name *spec.js)"
+    "test:server": "mocha --compilers js:babel-core/register --require spec/mocha-helper.js --recursive --reporter spec $(find src -name *spec.js)",
+    "pre-push": "npm run lint; npm run test:server"
   },
   "repository": {
     "type": "git",
@@ -89,7 +90,6 @@
     "postcss-cssnext": "^2.4.0",
     "postcss-discard-duplicates": "^2.0.0",
     "postcss-loader": "^0.8.0",
-    "pre-push": "0.1.1",
     "react-addons-test-utils": "^0.14.7",
     "react-shallow-testutils": "^0.7.1",
     "react-transform-catch-errors": "1.0.2",
