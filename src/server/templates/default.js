@@ -29,7 +29,7 @@ export default class DefaultTemplate extends Component {
     children: [],
     initialState: {},
     js: true,
-    title: 'Red Badger'
+    title: 'Join Us | Red Badger'
   };
 
   renderMeta () {
