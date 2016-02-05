@@ -23,7 +23,7 @@ const renderMarkup = (store, routerProps) => {
 
 const renderErrorPage = (error) => {
   const htmlString = renderToString(
-      <ErrorPage code={error.status} />
+      <ErrorPage status={error.status} />
   );
 
   return html(htmlString, {});

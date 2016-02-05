@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import Container from '../../components/container';
+import Root from '../root';
 import typography from '../../components/typography/style.css';
 import image from './missing_badger.png';
 import styles from './style.css';
 
 export default class ErrorPage extends Component {
   static propTypes = {
-    code: React.propTypes.number
+    status: React.propTypes.number
   }
 
   render () {
     let text;
 
-    if (this.props.code === 500) {
+    if (status === 500) {
       text = (
         <div>
-          <p>{"We're working on it - really!"}</p>
+          <p>{"Our server seems to be having a little strop."}</p>
+          <p>{"Please try reloading the page or come back later."}</p>
         </div>
       );
     } else {
@@ -28,13 +30,15 @@ export default class ErrorPage extends Component {
     }
 
     return (
-      <Container>
-        <div className={styles.wrapper}>
-          <h1 className={typography.h1}>Oops, sorry!</h1>
-          <img alt="Missing Badger" src={image} />
-          {text}
-        </div>
-      </Container>
+      <Root>
+        <Container>
+          <div className={styles.wrapper}>
+            <h1 className={typography.h1}>Oops, sorry!</h1>
+            <img alt="Missing Badger" src={image} />
+            {text}
+          </div>
+        </Container>
+      </Root>
     );
   }
 }
