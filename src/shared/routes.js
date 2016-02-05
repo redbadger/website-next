@@ -3,27 +3,25 @@ import Root from './containers/root';
 import JoinUs from './containers/join-us';
 import Job from './containers/job';
 import { Route } from 'react-router';
+import HttpError from './util/http-error';
 
-<<<<<<< 6c4f0ad51fed80e901329f66816906f63d5de6ea
 const routeFn = (store, args, ...children) => {
   if (args.component && args.component.fetchData) {
     args = {
       ...args,
       onEnter: (nextState, replaceState, done) => {
         args.component
-          .fetchData(store.dispatch, store.getState)
-          .then(() => done());
+          .fetchData(store.dispatch, store.getState, nextState)
+          .then((response) => {
+            if (response instanceof HttpError) {
+              done(response);
+            } else {
+              done();
+            }
+          });
       }
     };
   }
-=======
-const routes = (
-  <Route component={Root}>
-    <Route component={JoinUs} path="/about-us/join-us" />
-    <Route component={Job} path="/about-us/join-us/:id" />
-  </Route>
-);
->>>>>>> Move error background to Root container
 
   return (
     <Route key={args.path} {...args}>{children}</Route>
