@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './style.css';
 
-export default function Section ({children}) {
-  return (
-    <section className={styles.section}>
-      {children}
-    </section>
-  );
-}
+export default class Section extends Component {
+  static propTypes = {
+    children: React.PropTypes.node
+  };
 
-Section.propTypes = {
-  children: React.PropTypes.node
-};
+  render () {
+    return (
+      <section className={styles.section}>
+        {this.props.children}
+      </section>
+    );
+  }
+}

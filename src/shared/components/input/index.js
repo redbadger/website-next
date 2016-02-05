@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import styles from './style.css';
 
-export default function Input ({ className, ...other }) {
-  const inputClass = classNames(className, styles.input);
+export default class Input extends Component {
+  render () {
+    const {className, ...other} = this.props;
+    const inputClass = classNames(className, styles.input);
 
-  return (
-    <input {...other} className={inputClass}></input>
-  );
+    return (
+      <input {...other} className={inputClass}></input>
+    );
+  }
 }
 
 Input.propTypes = {

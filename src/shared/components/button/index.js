@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import styles from './style.css';
 
-export default function Button (props) {
-  let { className, ...other } = props;
-  const buttonClass = classNames(className, styles.button);
-  
-  if (props.href) {
+export default class Button extends Component {
+  static propTypes = {
+    className: React.PropTypes.string,
+    href: React.PropTypes.string
+  };
+
+  render () {
+    let { className, ...other } = this.props;
+    const buttonClass = classNames(className, styles.button);
+
+    if (this.props.href) {
+      return (
+        <a {...other} className={buttonClass}></a>
+      );
+    }
+
     return (
-      <a {...other} className={buttonClass}></a>
+      <button {...other} className={buttonClass}></button>
     );
   }
 
-  return (
-    <button {...other} className={buttonClass}></button>
-  );
 }
-
-Button.propTypes = {
-  className: React.PropTypes.string,
-  href: React.PropTypes.string
-};

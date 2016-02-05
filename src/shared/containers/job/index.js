@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HtmlParser from '../../components/html-parser';
 import { Grid, Cell } from '../../components/grid';
@@ -11,42 +11,47 @@ import typography from '../../components/typography/style.css';
 import { Link } from 'react-router';
 import { filter, flow, head, property } from 'lodash/fp';
 import isEqual from 'lodash/isEqual'; // lodash fp isEqual is broken in 4.0.0
-import ErrorPage from '../error';
 import fetch from '../../util/fetch-proxy';
 import { fetchJobs } from '../../actions/jobs';
 
-export function Job ({ job }) {
-  if (job) {
+export class Job extends Component {
+  static propTypes = {
+    job: React.PropTypes.shape({
+      title: React.PropTypes.string,
+      fullDescription: React.PropTypes.string,
+      applicationUrl: React.PropTypes.string
+    })
+  };
+
+  static fetchData = fetchJobs(fetch());
+
+  render () {
     return (
       <Section>
         <Container>
           <Grid>
             <Cell size={8}>
-              <h2 className={typography.h2}>{job.title}</h2>
-              <HtmlParser>{job.fullDescription}</HtmlParser>
+              <h2 className={typography.h2}>{this.props.job.title}</h2>
+              <HtmlParser>{this.props.job.fullDescription}</HtmlParser>
               <HR color="grey" />
               <Link className={typography.aBold} to="/about-us/join-us"><span className={styles.linkBackArrow}></span>See all vacancies</Link>
-              <a className={styles.applyLink} href={job.applicationUrl} id="e2eApply" target="_blank">Apply here<span className={styles.externalIcon}></span></a>
+              <a className={styles.applyLink} href={this.props.job.applicationUrl} id="e2eApply" target="_blank">Apply here<span className={styles.externalIcon}></span></a>
             </Cell>
             <Cell size={4}>
-              <div className={styles.noteWrapper}>
-                <Note>
-                  <h2 className={styles.noteTitle}>How to Apply</h2>
-                  <p className={typography.p}>
-                    {"If you'd like to know more or you want to apply please get in touch with your CV, Stackoverflow profile, Github, code, portfolio and anything else you think we might be interested in."}
-                  </p>
-                  <p>
-                    <a className={typography.aBold} href={job.applicationUrl} target="_blank">Apply here <span className={styles.externalIcon}></span></a>
-                  </p>
-                </Note>
-              </div>
+              <Note>
+                <h2 className={styles.noteTitle}>How to Apply</h2>
+                <p className={typography.p}>
+                  {"If you'd like to know more or you want to apply please get in touch with your CV, Stackoverflow profile, Github, code, portfolio and anything else you think we might be interested in."}
+                </p>
+                <p>
+                  <a className={typography.aBold} href={this.props.job.applicationUrl} target="_blank">Apply here <span className={styles.externalIcon}></span></a>
+                </p>
+              </Note>
             </Cell>
           </Grid>
         </Container>
       </Section>
     );
-  } else {
-    return (<ErrorPage>{"Sorry this job doesn't seem to exist!"}</ErrorPage>);
   }
 }
 
@@ -59,8 +64,6 @@ function firstWithSlug (slug) {
     head
   );
 }
-
-Job.fetchData = fetchJobs(fetch());
 
 // I think connect should be moved to make this component just care about
 // getting a job. React router should be doing a level of this so that

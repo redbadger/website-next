@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default function Content ({children}) {
-  return (
-    <div>
-      {children}
-    </div>
-  );
+export default class Content extends Component {
+  static propTypes = {
+    children: React.PropTypes.node
+  };
+
+  render () {
+    return (
+      <div>
+        {this.props.children}
+      </div>
+    );
+  }
 }
-
-Content.propTypes = {
-  children: React.PropTypes.node
-};

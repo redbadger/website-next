@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from './style.css';
 
-export default function Badge () {
-  return (
-    <span className={styles.badge}></span>
-  );
+export default class Badge extends Component {
+  render () {
+    return (
+      <span className={styles.badge}></span>
+    );
+  }
 }

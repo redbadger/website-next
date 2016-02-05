@@ -1,6 +1,6 @@
 import ComponentRenderer from '../../components/component-renderer';
 import Container from '../../components/container';
-import React from 'react';
+import React, { Component } from 'react';
 import Jobs from '../../components/jobs';
 import Section from '../../components/section';
 import styles from './style.css';
@@ -88,36 +88,36 @@ const vacancies = {
   }
 };
 
-function JoinUs () {
-  return (
-    <div>
-      <Section>
-        <Container>
-          <ComponentRenderer data={titles} />
-          <Grid fit>
-            <Cell>
-              <ComponentRenderer data={join} />
-            </Cell>
-            <Cell>
-              <Video id="110925126" type="vimeo" />
-            </Cell>
-          </Grid>
-          <HR color="red" />
-          <ComponentRenderer data={vacancies} />
-          <Jobs />
-        </Container>
-      </Section>
-      <div className={styles.apply}>
+export default class JoinUs extends Component {
+  static fetchData = fetchJobs(fetch());
+
+  render () {
+    return (
+      <div>
         <Section>
           <Container>
-            <ComponentRenderer data={apply} />
+            <ComponentRenderer data={titles} />
+            <Grid fit>
+              <Cell>
+                <ComponentRenderer data={join} />
+              </Cell>
+              <Cell>
+                <Video id="110925126" type="vimeo" />
+              </Cell>
+            </Grid>
+            <HR color="red" />
+            <ComponentRenderer data={vacancies} />
+            <Jobs />
           </Container>
         </Section>
+        <div className={styles.apply}>
+          <Section>
+            <Container>
+              <ComponentRenderer data={apply} />
+            </Container>
+          </Section>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
-
-JoinUs.fetchData = fetchJobs(fetch());
-
-export default JoinUs;

@@ -53,19 +53,22 @@ if (hot) {
     loaders: commonLoaders({
       'babel-loader': {
         query: {
-          presets: [ "es2015-webpack", "react", "stage-0" ]
-        },
-        plugins: ['react-transform', {
-          transforms: [{
-            transform: 'react-transform-hmr',
-            imports: ['react'],
-            // this is important for Webpack HMR:
-            locals: ['module']
-          }, {
-            transform: require.resolve('react-transform-catch-errors'),
-            imports: ['react', require.resolve('redbox-react')]
-          }]
-        }]
+          presets: [ "es2015-webpack", "react", "stage-0" ],
+          plugins: [['react-transform', {
+            transforms: [
+              {
+                transform: 'react-transform-hmr',
+                imports: ['react'],
+                // this is important for Webpack HMR:
+                locals: ['module']
+              },
+              {
+                transform: require.resolve('react-transform-catch-errors'),
+                imports: ['react', require.resolve('redbox-react')]
+              }
+            ]
+          }]]
+        }
       }
     }, [
       { test: /\.css$/, loader: 'style-loader!css-loader?modules&importLoaders=1&localIdentName=[name]-[local]-[hash:base64:5]!postcss-loader' }
