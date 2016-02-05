@@ -17,45 +17,31 @@
  */
 
 /*eslint react/no-multi-comp:0*/
-import React from 'react';
+import React, { Component } from 'react';
 import classNames from 'classnames';
 import styles from './style.css';
 
-export function Grid ({children, fit}) {
-  const gridClassNames = classNames(
-    {
-      [styles.grid]: true,
-      [styles.withGutter]: true,
-      [styles.fit]: fit
-    }
-  );
-  return (
-    <div className={gridClassNames}>
-      {children}
-    </div>
-  );
+export class Grid extends Component {
+  static propTypes = {
+    children: React.PropTypes.node,
+    fit: React.PropTypes.bool
+  };
+
+  render () {
+    const gridClassNames = classNames(
+      {
+        [styles.grid]: true,
+        [styles.withGutter]: true,
+        [styles.fit]: this.props.fit
+      }
+    );
+
+    return (
+      <div className={gridClassNames}>
+        {this.props.children}
+      </div>
+    );
+  }
 }
 
-Grid.propTypes = {
-  children: React.PropTypes.node,
-  fit: React.PropTypes.bool
-};
-
-export function Cell ({children, size}) {
-  const cellClassNames = classNames(
-    {
-      [styles.cell]: true,
-      [styles['size' + size + 'of12']]: !!size
-    }
-  );
-  return (
-    <div className={cellClassNames}>
-      {children}
-    </div>
-  );
-}
-
-Cell.propTypes = {
-  children: React.PropTypes.node,
-  size: React.PropTypes.number
-};
+export Cell from './cell.js';

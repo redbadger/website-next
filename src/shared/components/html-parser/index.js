@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import HtmlToReact from 'html-to-react';
 import styles from '../typography/style.css';
 
 const { parse } = new HtmlToReact.Parser(React);
 
-export default function HtmlParser ({children}) {
-  const content = parse('<div class="' + styles.typography + '">' + children + '</div>');
-  return content;
-}
+export default class HtmlParser extends Component {
+  static propTypes = {
+    children: React.PropTypes.string.isRequired
+  };
 
-HtmlParser.propTypes = {
-  children: React.PropTypes.string.isRequired
-};
+  render () {
+    return parse('<div class="' + styles.typography + '">' + this.props.children + '</div>');
+  }
+}

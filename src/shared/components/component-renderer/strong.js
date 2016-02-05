@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default function Paragraph (props) {
-  return <strong>{props.children}</strong>;
+export default class Paragraph extends Component {
+  static propTypes = {
+    children: React.PropTypes.node.isRequired
+  };
+
+  render () {
+    return <strong>{this.props.children}</strong>;
+  }
 }
-
-Paragraph.propTypes = {
-  children: React.PropTypes.node.isRequired
-};

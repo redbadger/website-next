@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Paragraph from './paragraph';
 import Link from './link';
 import Strong from './strong';
@@ -19,7 +19,13 @@ const componentIndex = {
   Title3: Title3
 };
 
-export default class ComponentRenderer extends React.Component {
+export default class ComponentRenderer extends Component {
+  static propTypes = {
+    data: React.PropTypes.shape({
+      type: React.PropTypes.string
+    }).isRequired
+  };
+
   build (data) {
     const componentName = data.type;
     const Component = componentIndex[componentName];
@@ -47,9 +53,3 @@ export default class ComponentRenderer extends React.Component {
     return this.build(this.props.data);
   }
 }
-
-ComponentRenderer.propTypes = {
-  data: React.PropTypes.shape({
-    type: React.PropTypes.string
-  }).isRequired
-};

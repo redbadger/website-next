@@ -1,12 +1,12 @@
 /*eslint react/no-set-state:0*/
 /* eslint react/no-did-mount-set-state: 0 */
-import React from 'react';
+import React, { Component } from 'react';
 import Badge from '../badge';
 import NavItem from '../nav-item';
 import styles from './style.css';
 import classNames from 'classnames';
 
-export default class Nav extends React.Component {
+export default class Nav extends Component {
   constructor (props) {
     super(props);
 
