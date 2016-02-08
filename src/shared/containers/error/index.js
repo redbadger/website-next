@@ -7,13 +7,13 @@ import styles from './style.css';
 
 export default class ErrorPage extends Component {
   static propTypes = {
-    status: React.propTypes.number
-  }
+    status: React.PropTypes.number
+  };
 
   render () {
     let text;
 
-    if (status === 500) {
+    if (this.props.status === 500) {
       text = (
         <div>
           <p>{"Our server seems to be having a little strop."}</p>

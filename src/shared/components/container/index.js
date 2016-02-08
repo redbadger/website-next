@@ -4,11 +4,11 @@ import styles from './style.css';
 export default class Container extends Component {
   static propTypes = {
     children: React.PropTypes.node
-  }
+  };
 
   static defaultProps = {
     children: []
-  }
+  };
 
   render () {
     return (
