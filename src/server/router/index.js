@@ -1,32 +1,40 @@
 import qs from 'query-string';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import createStore from '../../shared/create-store';
 
 import { match, createMemoryHistory, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
-import html from '../html';
 import HttpError from '../../shared/util/http-error';
 import ErrorPage from '../../shared/containers/error';
+import DefaultTemplate from '../templates/default';
 
 import getRoutes from '../../shared/routes';
 
 const renderMarkup = (store, routerProps) => {
-  const htmlString = renderToString(
+  const application = renderToString(
     <Provider store={store}>
       <RouterContext {...routerProps}/>
     </Provider>
   );
 
-  return html(htmlString, store.getState(), true);
+  return renderToStaticMarkup(
+    <DefaultTemplate initialState={store.getState()}>
+      {application}
+    </DefaultTemplate>
+  );
 };
 
 const renderErrorPage = (error) => {
-  const htmlString = renderToString(
-      <ErrorPage status={error.status} />
+  const application = renderToString(
+    <ErrorPage status={error.status} />
   );
 
-  return html(htmlString, {});
+  return renderToStaticMarkup(
+    <DefaultTemplate js={false}>
+      {application}
+    </DefaultTemplate>
+  );
 };
 
 const handleError = (error, res) => {
