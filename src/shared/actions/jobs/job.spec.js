@@ -77,7 +77,7 @@ describe('job actions', () => {
         fetchFn(dispatch, getState, nextState)
           .then((err) => {
             expect(dispatch.calledWithMatch(fetchFailure(new HttpError(404)))).to.equal(true);
-            expect(err).to.be.an.instanceof(HttpError);
+            expect(err.error).to.be.an.instanceof(HttpError);
             done();
           });
       });
