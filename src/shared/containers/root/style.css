@@ -14,3 +14,7 @@ body {
 .root {
   composes: defaultFontSize defaultFont from "../../components/fonts/style.css";
 }
+
+.error-background {
+  background: url('./error_doodle.png') repeat center top;
+}

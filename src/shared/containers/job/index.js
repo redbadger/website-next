@@ -12,7 +12,7 @@ import { Link } from 'react-router';
 import { filter, flow, head, property } from 'lodash/fp';
 import isEqual from 'lodash/isEqual'; // lodash fp isEqual is broken in 4.0.0
 import fetch from '../../util/fetch-proxy';
-import { fetchJobs } from '../../actions/jobs';
+import { fetchJob } from '../../actions/jobs/job';
 
 export class Job extends Component {
   static propTypes = {
@@ -23,7 +23,7 @@ export class Job extends Component {
     })
   };
 
-  static fetchData = fetchJobs(fetch());
+  static fetchData = fetchJob(fetch());
 
   render () {
     return (

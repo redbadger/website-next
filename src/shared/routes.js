@@ -3,6 +3,8 @@ import Root from './containers/root';
 import JoinUs from './containers/join-us';
 import Job from './containers/job';
 import { Route } from 'react-router';
+import HttpError from './util/http-error';
+import './containers/error';
 
 const routeFn = (store, args, ...children) => {
   if (args.component && args.component.fetchData) {
@@ -10,8 +12,14 @@ const routeFn = (store, args, ...children) => {
       ...args,
       onEnter: (nextState, replaceState, done) => {
         args.component
-          .fetchData(store.dispatch, store.getState)
-          .then(() => done());
+          .fetchData(store.dispatch, store.getState, nextState)
+          .then((response) => {
+            if (response && ((response instanceof HttpError) || response.error)) {
+              done(response.error || response);
+            } else {
+              done();
+            }
+          });
       }
     };
   }
