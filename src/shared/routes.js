@@ -14,7 +14,7 @@ const routeFn = (store, args, ...children) => {
         args.component
           .fetchData(store.dispatch, store.getState, nextState)
           .then((response) => {
-            if (response instanceof HttpError || response.error) {
+            if (response && ((response instanceof HttpError) || response.error)) {
               done(response.error || response);
             } else {
               done();

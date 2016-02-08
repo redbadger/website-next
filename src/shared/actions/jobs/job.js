@@ -31,15 +31,16 @@ export function fetchFailure (error) {
 
 export const fetchJob = (fetch) => (
   (dispatch, getState, nextState) => {
-    return fetchJobs(fetch)(dispatch, getState).then(() => {
-      const job = getState().jobs.find(j => j.slug === nextState.params.id);
-      if (job) {
-        dispatch(fetchSuccessful(job));
-      } else {
-        const error = new HttpError(404);
-        dispatch(fetchFailure(error));
-        return error;
-      }
-    });
+    return fetchJobs(fetch)(dispatch, getState)
+      .then(() => {
+        const job = getState().jobs.find(j => j.slug === nextState.params.id);
+        if (job) {
+          dispatch(fetchSuccessful(job));
+        } else {
+          const error = new HttpError(404);
+          dispatch(fetchFailure(error));
+          return { error };
+        }
+      });
   }
 );
