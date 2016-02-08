@@ -1,22 +1,26 @@
 import qs from 'query-string';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
+import { renderToString, renderToStaticMarkup } from 'react-dom/server';
 import createStore from '../../shared/create-store';
 
 import { match, createMemoryHistory, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
-import html from '../html';
+import DefaultTemplate from '../templates/default';
 
 import getRoutes from '../../shared/routes';
 
 const renderMarkup = (store, routerProps) => {
-  const htmlString = renderToString(
+  const application = renderToString(
     <Provider store={store}>
       <RouterContext {...routerProps}/>
     </Provider>
   );
 
-  return html(htmlString, store.getState(), true);
+  return renderToStaticMarkup(
+    <DefaultTemplate initialState={store.getState()}>
+      {application}
+    </DefaultTemplate>
+  );
 };
 
 export const requestHandler = (req, res, store, render) => {
