@@ -4,6 +4,7 @@ build/
 .eslintcache
 npm-debug.log
 .env
+.DS_Store
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

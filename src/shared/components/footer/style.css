@@ -1,5 +1,5 @@
-@value white, grey, midGrey, lightGrey, cyan, lightCyan, green, lightGreen from "../variables/colors.css";
 @value mediaSmall from "../variables/breakpoints.css";
+@value white, grey, midGrey, lightGrey, cyan, lightCyan, green, lightGreen from "../variables/colors.css";
 
 .footer {
   composes: blackPaper from "../utils/background.css";
@@ -100,5 +100,6 @@
 
   .links {
     margin-bottom: 15px;
+    margin-left: -10px;
   }
 }
