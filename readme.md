@@ -19,10 +19,6 @@ Run the server with `npm start` and navigate to `http://localhost:8000/about-us/
 
 ## Developing
 
-The project uses [git lfs]("https://git-lfs.github.com/"") to manage assets.
-
-You can install it using `brew install git-lfs` on OSX, or by following the instructions on the link above for other platforms. 
-
 Run the following:
 
 * `npm run local`
