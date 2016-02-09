@@ -10,3 +10,9 @@
   width: 100%;
   margin-bottom: 40px;
 }
+
+@media mediaSmall {
+  .note {
+    margin-top: 25px;
+  }
+}
