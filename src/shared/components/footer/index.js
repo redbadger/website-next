@@ -24,7 +24,7 @@ export default class Footer extends Component {
                 <span>London EC1Y 8RQ</span>
                 <br/>
                 <a className={styles.contactUsLink} href="/about-us/contact-us">
-                  Contact us >
+                  Contact us <span className={styles.contactUsIcon}></span>
                 </a>
               </address>
             </Cell>

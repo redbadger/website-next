@@ -1,3 +1,4 @@
+@value mediaSmall from "../variables/breakpoints.css";
 @value white, grey, midGrey, lightGrey, cyan, lightCyan, green, lightGreen from "../variables/colors.css";
 
 .footer {
@@ -21,6 +22,11 @@
 
 .contactUsLink:hover {
   color: lightCyan;
+}
+
+.contactUsIcon {
+  composes: sketchArrowRight from "../icons/style.css";
+  color: cyan;
 }
 
 .links {
@@ -52,7 +58,7 @@
 
 .newsletterHeading {
   margin-top: 4px;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   text-transform: uppercase;
 }
 
@@ -85,4 +91,15 @@
 
 .inputSubmit:hover {
   background-color: green;
+}
+
+@media mediaSmall {
+  .address {
+    margin-bottom: 15px;
+  }
+
+  .links {
+    margin-bottom: 15px;
+    margin-left: -10px;
+  }
 }
