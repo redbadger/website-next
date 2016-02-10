@@ -1,4 +1,4 @@
-@value mediaSmall from "../../components/variables/breakpoints.css";
+@value tablet from "../../components/variables/breakpoints.css";
 @value black, red from "../../components/variables/colors.css";
 
 .noteTitle {
@@ -20,15 +20,19 @@
 .applyLink {
   composes: aBold from '../../components/typography/style.css';
   float: right;
+  display: none;
+
+  @media tablet {
+    display: inline;
+  }
 }
 
-@media mediaSmall {
-  .linkBack {
-    display: block;
-    margin-bottom: 25px;
-  }
+.linkBack {
+  display: block;
+  margin-bottom: 25px;
 
-  .applyLink {
-    display: none;
+  @media tablet {
+    display: inline;
+    margin-bottom: 0;
   }
 }
