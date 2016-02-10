@@ -13,6 +13,7 @@ import { filter, flow, head, property } from 'lodash/fp';
 import isEqual from 'lodash/isEqual'; // lodash fp isEqual is broken in 4.0.0
 import fetch from '../../util/fetch-proxy';
 import { fetchJob } from '../../actions/jobs/job';
+import classnames from 'classnames';
 
 export class Job extends Component {
   static propTypes = {
@@ -34,7 +35,7 @@ export class Job extends Component {
               <h2 className={typography.h2}>{this.props.job.title}</h2>
               <HtmlParser>{this.props.job.fullDescription}</HtmlParser>
               <HR color="grey" />
-              <Link className={typography.aBold} to="/about-us/join-us"><span className={styles.linkBackArrow}></span>See all vacancies</Link>
+              <Link className={classnames(typography.aBold, styles.linkBack)} to="/about-us/join-us"><span className={styles.linkBackArrow}></span>See all vacancies</Link>
               <a className={styles.applyLink} href={this.props.job.applicationUrl} id="e2eApply" target="_blank">Apply here<span className={styles.externalIcon}></span></a>
             </Cell>
             <Cell size={4}>
