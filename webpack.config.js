@@ -9,6 +9,7 @@ const hot = process.env.HOT;
 const buildPath = path.join(__dirname, 'build');
 const publicPath = '/assets/';
 const outputPath = path.join(buildPath, publicPath);
+const production = process.env.NODE_ENV === 'production';
 
 const postcssPlugins = [
   require('postcss-cssnext')
@@ -53,21 +54,7 @@ if (hot) {
     loaders: commonLoaders({
       'babel-loader': {
         query: {
-          presets: [ "es2015-webpack", "react", "stage-0" ],
-          plugins: [['react-transform', {
-            transforms: [
-              {
-                transform: 'react-transform-hmr',
-                imports: ['react'],
-                // this is important for Webpack HMR:
-                locals: ['module']
-              },
-              {
-                transform: require.resolve('react-transform-catch-errors'),
-                imports: ['react', require.resolve('redbox-react')]
-              }
-            ]
-          }]]
+          presets: [ "es2015-webpack", "react", "stage-0", "react-hmre" ]
         }
       }
     }, [
@@ -88,6 +75,16 @@ if (hot) {
       { test: /\.css$/, loader: ExtractCSSPlugin.extract('css-loader?modules&importLoaders=1&localIdentName=[name]-[local]-[hash:base64:5]!postcss-loader') }
     ])
   };
+}
+
+clientConfig.plugins.push(
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': process.env.NODE_ENV || "development"
+  })
+);
+
+if (production) {
+  clientConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false }}));
 }
 
 const serverConfig = {
