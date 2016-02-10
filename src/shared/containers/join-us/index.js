@@ -23,7 +23,7 @@ const titles = {
       {
         type: 'Title3',
         props: {
-          children: "Are we what you're looking for?*"
+          children: <span>Are we what you're looking <span className={styles.noWrap}>for?*</span></span>
         }
       }
     ]
