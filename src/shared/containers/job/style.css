@@ -23,6 +23,11 @@
 }
 
 @media mediaSmall {
+  .linkBack {
+    display: block;
+    margin-bottom: 25px;
+  }
+
   .applyLink {
     display: none;
   }
