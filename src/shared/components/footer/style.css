@@ -1,4 +1,4 @@
-@value mediaSmall from "../variables/breakpoints.css";
+@value tablet from "../variables/breakpoints.css";
 @value white, grey, midGrey, lightGrey, cyan, lightCyan, green, lightGreen from "../variables/colors.css";
 
 .footer {
@@ -10,6 +10,11 @@
 .address {
   font-style: normal;
   margin-top: 4px;
+  margin-bottom: 15px;
+
+  @media tablet {
+    margin-bottom: 0;
+  }
 }
 
 .footer a {
@@ -30,9 +35,13 @@
 }
 
 .links {
-  margin: 0;
+  margin: 0 0 15px -10px;
   padding: 0;
   list-style: none;
+
+  @media tablet {
+    margin: 0;
+  }
 }
 
 .contactLink,
@@ -91,15 +100,4 @@
 
 .inputSubmit:hover {
   background-color: green;
-}
-
-@media mediaSmall {
-  .address {
-    margin-bottom: 15px;
-  }
-
-  .links {
-    margin-bottom: 15px;
-    margin-left: -10px;
-  }
 }

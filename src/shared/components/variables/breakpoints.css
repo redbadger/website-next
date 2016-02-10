@@ -1,4 +1,9 @@
-@value small: 767px;
-@value mediaSmall: (max-width: small);
-@value large: 960px;
-@value mediaLarge: (min-width: large);
+/* Try not to use the mobile breakpoint, bad practice! Instead, go mobile-first! */
+@value mobileMaxWidth: 767px;
+@value mobile: (max-width: mobileMaxWidth);
+
+@value tabletMinWidth: 768px;
+@value tablet: (min-width: tabletMinWidth);
+
+@value desktopMinWidth: 960px;
+@value desktop: (min-width: desktopMinWidth);

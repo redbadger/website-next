@@ -1,4 +1,4 @@
-@value mediaLarge, large from "../variables/breakpoints.css";
+@value desktop, desktopMinWidth from "../variables/breakpoints.css";
 
 .wrapper {
   composes: nbfcAlt from "../utils/layout.css";
@@ -10,9 +10,9 @@
   padding: 0px 20px;
 }
 
-@media mediaLarge {
+@media desktop {
   .container {
-    width: large;
+    width: desktopMinWidth;
     margin: 0 auto;
   }
 }

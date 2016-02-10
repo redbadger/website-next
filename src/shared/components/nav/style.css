@@ -1,4 +1,4 @@
-@value mediaLarge from "../variables/breakpoints.css";
+@value desktop from "../variables/breakpoints.css";
 
 .navWrapper {
   min-height: 40px;
@@ -27,7 +27,7 @@
   transition: opacity 0.2s linear;
 }
 
-@media mediaLarge {
+@media desktop {
   .fixed {
     position: fixed;
     top: 0;

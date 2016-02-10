@@ -1,7 +1,7 @@
-@value mediaSmall from "../variables/breakpoints.css";
+@value mobile from "../variables/breakpoints.css";
 @value gutterSize: 40px;
 
-/**
+/**a
  * Core grid component
  *
  * Taken from https://github.com/suitcss/components-grid
@@ -185,7 +185,7 @@
   width: 100%;
 }
 
-@media mediaSmall {
+@media mobile {
   .cell {
     width: 100%;
   }
