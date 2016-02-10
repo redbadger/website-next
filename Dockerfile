@@ -12,7 +12,7 @@ RUN npm install
 COPY . /usr/src/app
 
 # Build assets
-RUN npm run build
+RUN NODE_ENV=production npm run build
 
 # Prune dev dependencies
 RUN npm prune --production
