@@ -1,4 +1,4 @@
-@value desktop from "../variables/breakpoints.css";
+@value tablet, desktop, mobileLandscape from "../variables/breakpoints.css";
 
 .navWrapper {
   min-height: 40px;
@@ -13,7 +13,17 @@
 .navList {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
+  max-width: 26em;
+  font-size: 0.8em;
+
+  @media mobileLandscape {
+    font-size: 1em;
+  }
+
+  @media tablet {
+    max-width: auto;
+  }
 }
 
 .badge {
