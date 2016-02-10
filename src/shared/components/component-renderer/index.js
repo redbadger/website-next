@@ -42,6 +42,8 @@ export default class ComponentRenderer extends Component {
         }
         return child;
       });
+    } else if (React.isValidElement(componentChildren)) {
+      childNodes = componentChildren;
     } else if (isString(componentChildren)) {
       text = componentChildren;
     }
