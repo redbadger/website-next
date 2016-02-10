@@ -89,7 +89,9 @@ const vacancies = {
 };
 
 export default class JoinUs extends Component {
-  static fetchData = fetchJobs(fetch());
+  static onEnter = (store) => (nextState, replace, done) => {
+    return store.dispatch(fetchJobs(fetch())).then(() => done());
+  };
 
   render () {
     return (

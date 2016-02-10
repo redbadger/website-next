@@ -24,7 +24,7 @@ export class Job extends Component {
     })
   };
 
-  static fetchData = fetchJob(fetch());
+  static onEnter = (store) => (nextState, _, done) => store.dispatch(fetchJob(fetch(), nextState)).then(() => done());
 
   render () {
     return (

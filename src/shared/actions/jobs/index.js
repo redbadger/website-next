@@ -1,4 +1,5 @@
 import actions from '../actions';
+import { httpError } from '../errors';
 import { apiEndpoint } from '../../config';
 
 const initialState = [];
@@ -38,6 +39,9 @@ export const fetchJobs = (fetch) => (
 
     return fetch(apiEndpoint + '/jobs')
       .then(jobs => dispatch(fetchSuccessful(jobs)))
-      .catch(e => dispatch(fetchFailure(e)));
+      .catch(e => {
+        dispatch(fetchFailure(e));
+        dispatch(httpError(e.status));
+      });
   }
 );

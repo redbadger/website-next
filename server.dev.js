@@ -23,7 +23,7 @@ app.use(webpackHotMw(clientCompiler));
 
 const serverConfig = webpackConfigs[1];
 const serverCompiler = webpack(serverConfig);
-const serverFile = path.join(serverConfig.output.path, '..', 'server.js');
+const serverFile = path.join(serverConfig.output.path, serverConfig.output.filename);
 
 serverCompiler.watch({}, (err) => {
   if (err) {
