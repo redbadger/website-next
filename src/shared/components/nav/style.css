@@ -22,7 +22,7 @@
   }
 
   @media tablet {
-    max-width: auto;
+    max-width: none;
   }
 }
 
