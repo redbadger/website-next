@@ -4,7 +4,7 @@
 .footer {
   composes: blackPaper from "../utils/background.css";
   color: lightGrey;
-  padding: 1.5em 0;
+  padding: 1em 0 2.5em 0;
 }
 
 .address {
