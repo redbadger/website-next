@@ -2,7 +2,7 @@
 @value mobileMaxWidth: 767px;
 @value mobile: (max-width: mobileMaxWidth);
 
-@value mobileLandscape: (min-width: 350px);
+@value mobileLandscape: (min-width: 400px);
 
 @value tabletMinWidth: 768px;
 @value tablet: (min-width: tabletMinWidth);
