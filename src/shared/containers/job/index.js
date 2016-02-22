@@ -11,7 +11,6 @@ import typography from '../../components/typography/style.css';
 import { Link } from 'react-router';
 import { filter, flow, head, property } from 'lodash/fp';
 import isEqual from 'lodash/isEqual'; // lodash fp isEqual is broken in 4.0.0
-import fetch from '../../util/fetch-proxy';
 import { fetchJob } from '../../actions/jobs/job';
 import classnames from 'classnames';
 
@@ -24,7 +23,7 @@ export class Job extends Component {
     })
   };
 
-  static onEnter = (store) => (nextState, _, done) => store.dispatch(fetchJob(fetch(), nextState)).then(() => done());
+  static onEnter = fetchJob;
 
   render () {
     return (

@@ -8,7 +8,6 @@ import Video from '../../components/video';
 import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import { fetchJobs } from '../../actions/jobs';
-import fetch from '../../util/fetch-proxy';
 
 const titles = {
   type: 'Content',
@@ -89,9 +88,7 @@ const vacancies = {
 };
 
 export default class JoinUs extends Component {
-  static onEnter = (store) => (nextState, replace, done) => {
-    return store.dispatch(fetchJobs(fetch())).then(() => done());
-  };
+  static onEnter = fetchJobs;
 
   render () {
     return (
