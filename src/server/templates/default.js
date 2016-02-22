@@ -44,20 +44,20 @@ export default class DefaultTemplate extends Component {
 
   renderAssets () {
     const assets = [
-      <link key={appleIcon57} rel="apple-touch-icon" type="image/png" sizes="57x57" href={appleIcon57}/>,
-      <link key={appleIcon60} rel="apple-touch-icon" type="image/png" sizes="60x60" href={appleIcon60}/>,
-      <link key={appleIcon72} rel="apple-touch-icon" type="image/png" sizes="72x72" href={appleIcon72}/>,
-      <link key={appleIcon76} rel="apple-touch-icon" type="image/png" sizes="76x76" href={appleIcon76}/>,
-      <link key={appleIcon114} rel="apple-touch-icon" type="image/png" sizes="114x114" href={appleIcon114}/>,
-      <link key={appleIcon120} rel="apple-touch-icon" type="image/png" sizes="120x120" href={appleIcon120}/>,
-      <link key={appleIcon144} rel="apple-touch-icon" type="image/png" sizes="144x144" href={appleIcon144}/>,
-      <link key={appleIcon152} rel="apple-touch-icon" type="image/png" sizes="152x152" href={appleIcon152}/>,
-      <link key={appleIcon180} rel="apple-touch-icon" type="image/png" sizes="180x180" href={appleIcon180}/>,
-      <link key={favIcon16} rel="icon" type="image/png" sizes="16x16" href={favIcon16}/>,
-      <link key={favIcon32} rel="icon" type="image/png" sizes="32x32" href={favIcon32}/>,
-      <link key={favIcon96} rel="icon" type="image/png" sizes="96x96" href={favIcon96}/>,
-      <link key={favIcon192} rel="icon" type="image/png" sizes="192x192" href={favIcon192}/>,
-      <link key={favIcon194} rel="icon" type="image/png" sizes="194x194" href={favIcon194}/>
+      <link key="apple57" rel="apple-touch-icon" type="image/png" sizes="57x57" href={appleIcon57}/>,
+      <link key="apple60" rel="apple-touch-icon" type="image/png" sizes="60x60" href={appleIcon60}/>,
+      <link key="apple72" rel="apple-touch-icon" type="image/png" sizes="72x72" href={appleIcon72}/>,
+      <link key="apple76" rel="apple-touch-icon" type="image/png" sizes="76x76" href={appleIcon76}/>,
+      <link key="apple114" rel="apple-touch-icon" type="image/png" sizes="114x114" href={appleIcon114}/>,
+      <link key="apple120" rel="apple-touch-icon" type="image/png" sizes="120x120" href={appleIcon120}/>,
+      <link key="apple144" rel="apple-touch-icon" type="image/png" sizes="144x144" href={appleIcon144}/>,
+      <link key="apple152" rel="apple-touch-icon" type="image/png" sizes="152x152" href={appleIcon152}/>,
+      <link key="apple180" rel="apple-touch-icon" type="image/png" sizes="180x180" href={appleIcon180}/>,
+      <link key="fav16" rel="icon" type="image/png" sizes="16x16" href={favIcon16}/>,
+      <link key="fav32" rel="icon" type="image/png" sizes="32x32" href={favIcon32}/>,
+      <link key="fav96" rel="icon" type="image/png" sizes="96x96" href={favIcon96}/>,
+      <link key="fav192" rel="icon" type="image/png" sizes="192x192" href={favIcon192}/>,
+      <link key="fav194" rel="icon" type="image/png" sizes="194x194" href={favIcon194}/>
     ];
 
     if (!hot) {

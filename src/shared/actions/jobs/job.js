@@ -32,14 +32,14 @@ export function fetchFailure (error) {
 export const fetchJob = (fetch, nextState) => (
   (dispatch, getState) => {
     return dispatch(fetchJobs(fetch))
-    .then(() => {
-      const job = getState().jobs.find(j => j.slug === nextState.params.id);
-      if (job) {
-        dispatch(fetchSuccessful(job));
-      } else {
-        dispatch(fetchFailure());
-        return dispatch(httpError(404));
-      }
-    });
+      .then(() => {
+        const job = getState().jobs.find(j => j.slug === nextState.params.id);
+        if (job) {
+          dispatch(fetchSuccessful(job));
+        } else {
+          dispatch(fetchFailure());
+          return dispatch(httpError(404));
+        }
+      });
   }
 );
