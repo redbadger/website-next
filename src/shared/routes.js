@@ -14,7 +14,7 @@ function onEnter (store, fn) {
 
 export default function routes (store) {
   return (
-    <Route component={Root} path="/">
+    <Route component={Root}>
       <Route component={JoinUs} onEnter={onEnter(store, JoinUs.onEnter)} path="/about-us/join-us" />
       <Route component={Job} onEnter={onEnter(store, Job.onEnter)} path="/about-us/join-us/:id" />
     </Route>

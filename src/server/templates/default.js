@@ -60,7 +60,7 @@ export default class DefaultTemplate extends Component {
       <link key="fav194" rel="icon" type="image/png" sizes="194x194" href={favIcon194}/>
     ];
 
-    if (!hot) {
+    if (!hot || !this.props.js) {
       assets.push(<link key="stylesheet" rel="stylesheet" type="text/css" href="/assets/style.css" />);
     }
 
