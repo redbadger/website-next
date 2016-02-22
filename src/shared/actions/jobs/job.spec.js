@@ -2,8 +2,8 @@ import reducer from './job';
 import { fetchSuccessful, fetchFailure, fetchJob } from './job';
 import actions from '../actions';
 import { expect } from 'chai';
-import HttpError from '../../util/http-error';
 import sinon from 'sinon';
+import { httpError } from '../errors';
 
 describe('job actions', () => {
   describe('fetch success', () => {
@@ -25,11 +25,14 @@ describe('job actions', () => {
   });
 
   describe('fetch job', () => {
-    let fetchFn, fetch;
+    let fetchFn, fetch, nextState;
 
     beforeEach(() => {
+      nextState = {
+        params: {}
+      };
       fetch = sinon.stub();
-      fetchFn = fetchJob(fetch);
+      fetchFn = fetchJob(fetch, nextState);
     });
 
     it('returns a function', () => {
@@ -37,10 +40,10 @@ describe('job actions', () => {
     });
 
     describe('inner function', () => {
-      let getState, dispatch, state, nextState;
+      let getState, dispatch, state;
 
       beforeEach(() => {
-        dispatch = sinon.spy();
+        dispatch = sinon.stub();
         state = {
           jobs: [{
             slug: 'hello'
@@ -48,23 +51,20 @@ describe('job actions', () => {
             slug: 'there'
           }]
         };
-        nextState = {
-          params: {}
-        };
         getState = () => state;
       });
 
       it('returns a promise', () => {
-        fetch.returns(Promise.resolve());
+        dispatch.returns(Promise.resolve());
 
-        expect(fetchFn(dispatch, getState, nextState).then).to.be.a('function');
+        expect(fetchFn(dispatch, getState).then).to.be.a('function');
       });
 
       it('dispatches success action if the job exists', (done) => {
         nextState.params.id = 'hello';
-        fetch.returns(Promise.resolve());
+        dispatch.returns(Promise.resolve());
 
-        fetchFn(dispatch, getState, nextState)
+        fetchFn(dispatch, getState)
           .then(() => {
             expect(dispatch.calledWithMatch(fetchSuccessful(state.jobs[0]))).to.equal(true);
             done();
@@ -72,12 +72,11 @@ describe('job actions', () => {
       });
 
       it('dispatches fail action if the job does not exist, resolving with a 404 error', (done) => {
-        fetch.returns(Promise.resolve());
+        dispatch.returns(Promise.resolve());
 
-        fetchFn(dispatch, getState, nextState)
-          .then((err) => {
-            expect(dispatch.calledWithMatch(fetchFailure(new HttpError(404)))).to.equal(true);
-            expect(err.error).to.be.an.instanceof(HttpError);
+        fetchFn(dispatch, getState)
+          .then(() => {
+            expect(dispatch.calledWithMatch(httpError(404))).to.equal(true);
             done();
           });
       });

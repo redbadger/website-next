@@ -1,6 +1,6 @@
 import actions from '../actions';
 import { fetchJobs } from './';
-import HttpError from '../../util/http-error';
+import { httpError } from '../errors';
 
 const initialState = {};
 
@@ -29,17 +29,16 @@ export function fetchFailure (error) {
   };
 }
 
-export const fetchJob = (fetch) => (
-  (dispatch, getState, nextState) => {
-    return fetchJobs(fetch)(dispatch, getState)
+export const fetchJob = (fetch, nextState) => (
+  (dispatch, getState) => {
+    return dispatch(fetchJobs(fetch))
       .then(() => {
         const job = getState().jobs.find(j => j.slug === nextState.params.id);
         if (job) {
           dispatch(fetchSuccessful(job));
         } else {
-          const error = new HttpError(404);
-          dispatch(fetchFailure(error));
-          return { error };
+          dispatch(fetchFailure());
+          return dispatch(httpError(404));
         }
       });
   }

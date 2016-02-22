@@ -41,13 +41,19 @@ const handleError = (error, res) => {
   if (error instanceof HttpError) {
     res.status(error.status).send(renderErrorPage(error));
   } else {
-    console.error('Server error:', error);
-    res.status(500).send(renderErrorPage(new HttpError(500)));
+    console.error('Unhandled exception: ', error);
+    handleError(new HttpError(500), res);
   }
 };
 
 export const requestHandler = (req, res, store, render) => {
   return (error, redirectLocation, routerProps) => {
+    const state = store.getState();
+
+    if (state.errors && state.errors.length > 1) {
+      return handleError(state.errors[state.errors.length], res);
+    }
+
     if (error) {
       handleError(error, res);
     } else if (redirectLocation) {
