@@ -35,6 +35,8 @@ We use `dotenv` to configure our environment variables in development. Create a 
 WORKABLE_KEY=your_key_here
 ```
 
+Workable API key is only accessible on Workable site to Becca Evans - but you can also ping @asavin for the key.
+
 ## Testing
 
 The project has code that is run on a server, a client and both. We can test
