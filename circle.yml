@@ -10,7 +10,7 @@ dependencies:
   pre:
     - rm -rf node_modules
     - npm install
-    - sudo pip install awsebcli
+    - sudo pip install awsebcli --upgrade --ignore-installed six
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASS -e $DOCKER_EMAIL
   override:
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
@@ -25,7 +25,7 @@ test:
     - npm run test:server
     - npm run test:client -- --browsers PhantomJS
     - export APP_HOST=`ifconfig eth0 | grep -oP 'inet addr:\K\S+'` && docker-compose up -d
-    - npm run test:e2e -- --baseUrl "http://localhost"
+    - npm run test:e2e
 
 deployment:
   staging:
