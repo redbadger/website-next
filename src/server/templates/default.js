@@ -17,6 +17,8 @@ import { hot } from '../config';
 
 import React, { Component } from 'react';
 
+import { AllHtmlEntities as htmlEntities } from 'html-entities';
+
 export default class DefaultTemplate extends Component {
   static propTypes = {
     children: React.PropTypes.node,
@@ -70,7 +72,7 @@ export default class DefaultTemplate extends Component {
   renderScripts () {
     if (this.props.js) {
       return [
-        <script key="state" id="initialState" type="application/json" dangerouslySetInnerHTML={{__html: JSON.stringify(this.props.initialState)}} />,
+        <script key="state" id="initialState" type="application/json" dangerouslySetInnerHTML={{__html: htmlEntities.decode(JSON.stringify(this.props.initialState))}} />,
         <script key="bundle" type="text/javascript" src="/assets/client.js" />
       ];
     }
@@ -85,7 +87,7 @@ export default class DefaultTemplate extends Component {
           {this.renderAssets()}
         </head>
         <body>
-          <div id="mount" dangerouslySetInnerHTML={{__html: this.props.children}} />
+          <div id="mount" dangerouslySetInnerHTML={{__html: htmlEntities.decode(this.props.children)}} />
           {this.renderScripts()}
         </body>
       </html>

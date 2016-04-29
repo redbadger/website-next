@@ -22,6 +22,8 @@ export default class Workable {
           slug: paramCase(job.title)
         };
       });
+    }).catch((err) => {
+      console.log('ERROR fetching jobs from Workable', err);
     });
   }
 }
