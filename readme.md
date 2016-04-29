@@ -54,3 +54,9 @@ You can run the server tests with:
 
 We also have end to end tests that only test the 'Golden Paths' for the
 website. These can be run with `npm run test:e2e`. Note that they require a running server.
+
+## Deploying
+
+Pushing and merging into `master` branch will automatically trigger CircleCI builds and will deploy the app to [http://www-staging.red-badger.com/about-us/join-us](http://www-staging.red-badger.com/about-us/join-us).
+
+In order to promote staging build to production you have to create and publish new release tag in the format of `v0.1.2`. This will initialise new CircleCI build and it will deploy app to production on success.
