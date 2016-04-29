@@ -10,7 +10,7 @@ dependencies:
   pre:
     - rm -rf node_modules
     - npm install
-    - sudo pip install awsebcli
+    - sudo pip install awsebcli --upgrade --ignore-installed six
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASS -e $DOCKER_EMAIL
   override:
     - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
