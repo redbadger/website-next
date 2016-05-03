@@ -2,6 +2,7 @@ import React from 'react';
 import Root from './containers/root';
 import JoinUs from './containers/join-us';
 import Job from './containers/job';
+import Events from './containers/events';
 import { Route } from 'react-router';
 import HttpError from './util/http-error';
 import './containers/error';
@@ -34,7 +35,8 @@ export default function routes (store) {
   return (
       route({ component: Root, path: '/' },
       route({ component: JoinUs, path: '/about-us/join-us' }),
-      route({ component: Job, path: '/about-us/join-us/:id' })
+      route({ component: Job, path: '/about-us/join-us/:id' }),
+      route({ component: Events, path: '/about-us/events' }),
     )
   );
 }
