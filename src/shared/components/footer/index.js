@@ -68,7 +68,7 @@ export default class Footer extends Component {
               <h4 className={styles.newsletterHeading}>Join our newsletter</h4>
               <form action="//red-badger.us6.list-manage.com/subscribe/post?u=0ab76cd515&amp;amp;id=b20af1dc4e" className={styles.todo} method="post" >
                 <label>
-                  Suscribe to receive news, ideas and lessons learned from Red Badger
+                  Subscribe to receive news, ideas and lessons learned from Red Badger
                 </label>
                 <div className={styles.inputContainer}>
                   <Input className={styles.inputText} name="EMAIL" placeholder="Enter your email" type="text"/>
