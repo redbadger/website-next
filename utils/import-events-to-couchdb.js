@@ -11,8 +11,12 @@
 
 var mdToCouch = require('md-to-couch');
 var nano = require('nano')('http://127.0.0.1:5984');
+var path = __dirname + '/../src/md/events';
 
-var couchJson = mdToCouch.default(__dirname + '/../src/md/events');
+var couchJson = mdToCouch.default({
+  dirname: path,
+  parseDate: true
+});
 
 var couchCookie = nano.auth(process.env.DB_USERNAME, process.env.DB_PASSWORD, function (err, body, headers) {
   if (err) {
