@@ -11,6 +11,19 @@ nvm use
 
 Install your dependencies with `npm install`.
 
+### CouchDB
+
+Install [CouchDB](http://couchdb.apache.org/) on your machine. Make sure that it is running and available on `http://127.0.0.1:5984`.
+
+Navigate to [admin panel](http://127.0.0.1:5984/_utils/) and create admin user.
+
+In the root of this project create `.env` file (or amend existing one). Add CouchDB admin user / password in the following format:
+
+> export DB_USERNAME=admin
+> export DB_PASSWORD=password
+
+Run `npm run populate` to create new db and populate it with the fixtures data for events.
+
 ## Running
 
 To build the project run `npm run build`.
