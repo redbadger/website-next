@@ -17,7 +17,7 @@ export default function reducer (state = initialState, action) {
 export function fetchSuccessful (events) {
   return {
     type: actions.FETCH_EVENTS_SUCCESS,
-    events
+    events: events.list
   };
 }
 
