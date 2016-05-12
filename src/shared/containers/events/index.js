@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 
 import HR from '../../components/hr';
 import Link from '../../components/component-renderer/link';
+import DateBubble from '../../components/date-bubble';
 
 export class Events extends Component {
   static fetchData = fetchEvents(fetch());
@@ -25,6 +26,11 @@ export class Events extends Component {
                   return (
                     <li key={`event_${event.id}`}>
                       <HR color="grey" />
+                      <DateBubble
+                        date={event.doc.datetime.date}
+                        month={event.doc.datetime.month}
+                        year={event.doc.datetime.year}
+                      />
                       <Link href="#">
                         {event.doc.attributes.title}
                       </Link>
