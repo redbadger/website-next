@@ -20,7 +20,7 @@ export default class Routes {
         return response.json();
       })
       .then((events) => {
-        res.send({list: events.rows});
+        res.send({list: events.rows.reverse()});
       })
       .catch((err) => {
         res.status(err.status).send(err.message);

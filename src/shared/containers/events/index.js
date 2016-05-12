@@ -6,14 +6,10 @@ import styles from './style.css';
 import fetch from '../../util/fetch-proxy';
 import { connect } from 'react-redux';
 
+import HR from '../../components/hr';
+import Link from '../../components/component-renderer/link';
+
 export class Events extends Component {
-  // static propTypes = {
-  //   event: React.PropTypes.shape({
-  //     title: React.PropTypes.string,
-  //     fullDescription: React.PropTypes.string,
-  //     applicationUrl: React.PropTypes.string
-  //   })
-  // };
   static fetchData = fetchEvents(fetch());
 
   render () {
@@ -28,7 +24,16 @@ export class Events extends Component {
                 this.props.events.map((event) => {
                   return (
                     <li key={`event_${event.id}`}>
-                      {`${event.doc.attributes.title}, ${event.doc.datetime.locale}`}
+                      <HR color="grey" />
+                      <Link href="#">
+                        {event.doc.attributes.title}
+                      </Link>
+                      <div>
+                        {event.doc.attributes.strapline}
+                      </div>
+                      <Link href="#">
+                        For full details please visit
+                      </Link>
                     </li>
                     );
                 })
