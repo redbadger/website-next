@@ -12,7 +12,9 @@
   -webkit-border-radius: 5px;
   border-radius: 5px;
   line-height: 1.25em;
-
+  position: absolute;
+  left: -60px;
+  top: 0;
 }
 
 .date {

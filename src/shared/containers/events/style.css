@@ -1,0 +1,44 @@
+.h1 {
+  composes: h1 from "../../components/typography/style.css";
+  text-align: center;
+}
+
+.eventsList {
+  font-size: 1em;
+}
+
+.eventItem {
+  position: relative;
+  list-style-type: none;
+}
+
+.eventTitle {
+  composes: h2 from "../../components/typography/style.css";
+  font-size: 1.6em;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 0 20px 0;
+}
+
+.eventTitle:hover, .eventTitle:active, .eventTitle:focus {
+  color: #be1414;
+}
+
+.arrow {
+  font-size: 1.2em;
+}
+
+.fullDetailsLink {
+  composes: aBold from "../../components/typography/style.css";
+  color: black;
+  display: block;
+  text-decoration: none;
+  margin-top: 0.8em;
+  position: relative;
+}
+
+.externalLinkIcon {
+  font-size: 1em;
+  color: #be1414;
+  position: absolute;
+}

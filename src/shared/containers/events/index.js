@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 import { fetchEvents } from '../../actions/events';
 import Section from '../../components/section';
 import styles from './style.css';
+import icons from '../../components/icons/style.css';
 import fetch from '../../util/fetch-proxy';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 
 import HR from '../../components/hr';
 import Link from '../../components/component-renderer/link';
@@ -19,27 +21,40 @@ export class Events extends Component {
         <div className={styles.apply}>
           <Section>
             <Container>
-              <h2>Events</h2>
-              <ul>
+              <h1 className={styles.h1}>Events</h1>
+              <ul className={styles.eventsList}>
               {
                 this.props.events.map((event) => {
                   return (
-                    <li key={`event_${event.id}`}>
+                    <li key={`event_${event.id}`} className={styles.eventItem}>
                       <HR color="grey" />
                       <DateBubble
-                        date={event.doc.datetime.date}
-                        month={event.doc.datetime.month}
-                        year={event.doc.datetime.year}
+                          date={event.doc.datetime.date}
+                          month={event.doc.datetime.month}
+                          year={event.doc.datetime.year}
                       />
                       <Link href="#">
-                        {event.doc.attributes.title}
+                        <h2 className={styles.eventTitle}>
+                          {event.doc.attributes.title}
+                        </h2>
+                        <span className={classNames(
+                          {
+                            [styles.arrow]: true,
+                            [icons.sketchArrowRight]: true
+                          })}
+                        />
                       </Link>
                       <div>
                         {event.doc.attributes.strapline}
                       </div>
-                      <Link href="#">
-                        For full details please visit
-                      </Link>
+                      <a href="#" className={styles.fullDetailsLink}>
+                          <span>For full details please visit</span>
+                          <span className={classNames({
+                            [icons.sketchExternalLink]: true,
+                            [styles.externalLinkIcon]: true
+                          })}
+                          />
+                      </a>
                     </li>
                     );
                 })
