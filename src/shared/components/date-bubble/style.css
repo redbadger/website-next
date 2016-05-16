@@ -1,3 +1,5 @@
+@value mobile from "../variables/breakpoints.css";
+
 .dateBubble {
   background: #be1414;
   display: inline-block;
@@ -24,4 +26,19 @@
 }
 
 .year {
+}
+
+@media mobile {
+  .dateBubble {
+    padding: 0.3em;
+  }
+
+  .date, .month, .year {
+    display: inline-block;
+    margin: 0 2px;
+  }
+
+  .date {
+    font-size: 1em;
+  }
 }

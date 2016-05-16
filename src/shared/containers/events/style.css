@@ -12,11 +12,15 @@
   list-style-type: none;
 }
 
+.eventTitleLink {
+  text-decoration: none;
+}
+
 .eventTitle {
   composes: h2 from "../../components/typography/style.css";
   font-size: 1.6em;
   text-decoration: none;
-  display: inline-block;
+  display: inline;
   margin: 0 0 20px 0;
 }
 
@@ -26,6 +30,7 @@
 
 .arrow {
   font-size: 1.2em;
+  color: black;
 }
 
 .fullDetailsLink {
@@ -35,6 +40,10 @@
   text-decoration: none;
   margin-top: 0.8em;
   position: relative;
+}
+
+.eventDescription {
+  margin-top: 10px;
 }
 
 .externalLinkIcon {

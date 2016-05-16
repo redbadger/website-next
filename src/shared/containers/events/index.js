@@ -40,7 +40,7 @@ export class Events extends Component {
                         <HR color="grey" />
                         <Grid fit={false}>
                           <Cell size={8} key='event_description'>
-                            <Link href="#">
+                            <a className={styles.eventTitleLink} href="#">
                               <h2 className={styles.eventTitle}>
                                 {event.doc.attributes.title}
                               </h2>
@@ -50,8 +50,8 @@ export class Events extends Component {
                                   [icons.sketchArrowRight]: true
                                 })}
                               />
-                            </Link>
-                            <div>
+                            </a>
+                            <div className={styles.eventDescription}>
                               {event.doc.attributes.strapline}
                             </div>
                             <a href="#" className={styles.fullDetailsLink}>
