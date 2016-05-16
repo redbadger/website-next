@@ -10,7 +10,6 @@ import classNames from 'classnames';
 
 import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
-import Link from '../../components/component-renderer/link';
 import DateBubble from '../../components/date-bubble';
 import { imageAssetsEndpoint } from '../../config';
 
@@ -28,18 +27,18 @@ export class Events extends Component {
               this.props.events.map((event) => {
                 return (
                   <li key={`event_${event.id}`} className={styles.eventItem}>
-                    <Grid fit={false} >
-                      <Cell size={1}>
+                    <Grid fit={false}>
+                      <Cell size={1} breakOn="mobile">
                         <DateBubble
                             date={event.doc.datetime.date}
                             month={event.doc.datetime.month}
                             year={event.doc.datetime.year}
                         />
                       </Cell>
-                      <Cell size={11}>
+                      <Cell size={11} breakOn="mobile">
                         <HR color="grey" />
                         <Grid fit={false}>
-                          <Cell size={8} key='event_description'>
+                          <Cell size={8} key='event_description' breakOn="mobileS">
                             <a className={styles.eventTitleLink} href="#">
                               <h2 className={styles.eventTitle}>
                                 {event.doc.attributes.title}
@@ -63,7 +62,7 @@ export class Events extends Component {
                                 />
                             </a>
                           </Cell>
-                          <Cell size={4} key='event_picture'>
+                          <Cell size={4} key='event_picture' breakOn="mobileS">
                             <div className={styles.imgBorder}>
                               <div className={styles.imgWrapper}>
                                 <a href='#'>

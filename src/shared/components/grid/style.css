@@ -1,4 +1,5 @@
 @value mobile from "../variables/breakpoints.css";
+@value mobileS from "../variables/breakpoints.css";
 @value gutterSize: 40px;
 
 /**
@@ -186,11 +187,21 @@
 }
 
 @media mobile {
-  .cell {
+  .responsive-cell-mobile {
     width: 100%;
   }
 
-  .fit > .cell {
+  .fit > .cell.mobile {
+    flex-basis: 100%;
+  }
+}
+
+@media mobileS {
+  .responsive-cell-mobileS {
+    width: 100%;
+  }
+
+  .cell.mobileS {
     flex-basis: 100%;
   }
 }
