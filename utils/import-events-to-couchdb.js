@@ -10,13 +10,32 @@
 /* eslint-disable no-console, no-unused-vars */
 
 var mdToCouch = require('md-to-couch');
-var nano = require('nano')('http://127.0.0.1:5984');
-var path = __dirname + '/../src/md/events';
+var path = require('path');
 
-var couchJson = mdToCouch.default({
-  dirname: path,
+var nano = require('nano')('http://127.0.0.1:5984');
+var eventsPath = __dirname + '/../src/md/events';
+
+var initialCouchJson = mdToCouch.default({
+  dirname: eventsPath,
   parseDate: true
 });
+
+
+// We need to extrapolate filename from the metadata
+// so it can be re-used with external image hosting service
+var defaultEventImage = 'red-badger-event.jpg';
+var couchJson = {
+  docs: initialCouchJson.docs.map(function (event) {
+    if (event.attributes.featureImage) {
+      var filename = path.basename(event.attributes.featureImage);
+      event.attributes.featureImageFilename = filename ? filename : defaultEventImage;
+    } else {
+      event.attributes.featureImageFilename = defaultEventImage;
+    }
+
+    return event;
+  })
+};
 
 var couchCookie = nano.auth(process.env.DB_USERNAME, process.env.DB_PASSWORD, function (err, body, headers) {
   if (err) {
