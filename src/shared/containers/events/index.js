@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
+import EventImage from '../../components/event-image';
 import { imageAssetsEndpoint } from '../../config';
 
 export class Events extends Component {
@@ -29,14 +30,18 @@ export class Events extends Component {
                   <li key={`event_${event.id}`} className={styles.eventItem}>
                     <Grid fit={false}>
                       <Cell size={1} breakOn="mobile">
+                        <HR color="grey" customClassName={styles.mobileHorizontalLine} />
                         <DateBubble
                             date={event.doc.datetime.date}
                             month={event.doc.datetime.month}
                             year={event.doc.datetime.year}
                         />
                       </Cell>
+                      <Cell size={1} key="event_picture_mobile" hideOn="mobileSM">
+                        <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href="#" />
+                      </Cell>
                       <Cell size={11} breakOn="mobile">
-                        <HR color="grey" />
+                        <HR color="grey" customClassName={styles.wideHorizontalLine} />
                         <Grid fit={false}>
                           <Cell size={8} key='event_description' breakOn="mobileS">
                             <a className={styles.eventTitleLink} href="#">
@@ -62,14 +67,8 @@ export class Events extends Component {
                                 />
                             </a>
                           </Cell>
-                          <Cell size={4} key='event_picture' breakOn="mobileS">
-                            <div className={styles.imgBorder}>
-                              <div className={styles.imgWrapper}>
-                                <a href='#'>
-                                  <img className={styles.eventPicture} src={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } />
-                                </a>
-                              </div>
-                            </div>
+                          <Cell size={4} key='event_picture' breakOn="mobileS" hideOn="mobileS">
+                            <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href="#" />
                           </Cell>
                         </Grid>
                       </Cell>

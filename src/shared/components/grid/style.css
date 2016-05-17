@@ -1,5 +1,7 @@
 @value mobile from "../variables/breakpoints.css";
 @value mobileS from "../variables/breakpoints.css";
+@value mobileSM from "../variables/breakpoints.css";
+@value tablet from "../variables/breakpoints.css";
 @value gutterSize: 40px;
 
 /**
@@ -194,6 +196,10 @@
   .fit > .cell.mobile {
     flex-basis: 100%;
   }
+
+  .hideOnmobile {
+    display: none;
+  }
 }
 
 @media mobileS {
@@ -203,5 +209,21 @@
 
   .cell.mobileS {
     flex-basis: 100%;
+  }
+
+  .hideOnmobileS {
+    display: none;
+  }
+}
+
+@media mobileSM {
+  .hideOnmobileSM {
+    display: none;
+  }
+}
+
+@media tablet {
+  .hideOntablet {
+    display: none;
   }
 }

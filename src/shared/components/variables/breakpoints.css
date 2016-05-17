@@ -1,6 +1,9 @@
 @value mobileSMaxWidth: 570px;
 @value mobileS: (max-width: mobileSMaxWidth);
 
+@value mobileSMinWidth: 571px;
+@value mobileSM: (min-width: mobileSMinWidth);
+
 @value mobileMaxWidth: 767px;
 @value mobile: (max-width: mobileMaxWidth);
 
