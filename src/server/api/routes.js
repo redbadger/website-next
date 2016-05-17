@@ -1,5 +1,4 @@
-import { couchDb } from '../../shared/config';
-
+import { couchDbLocal, couchDbRemote } from '../../shared/config';
 
 export default class Routes {
   constructor (workable) {
@@ -15,7 +14,7 @@ export default class Routes {
   };
 
   getEvents = (req, res) => {
-    fetch(couchDb + '/events/_all_docs?include_docs=true')
+    fetch((process.env.NODE_ENV === 'production' ? couchDbRemote : couchDbLocal) + '/events/_all_docs?include_docs=true')
       .then((response) => {
         return response.json();
       })

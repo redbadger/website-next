@@ -11,8 +11,12 @@
 
 var mdToCouch = require('md-to-couch');
 var path = require('path');
+var couchEndpoint;
 
-var nano = require('nano')('http://127.0.0.1:5984');
+var localCouchEndpoint = 'http://localhost:5984';
+var remoteCouchEndpoint = 'http://ec2-54-229-76-71.eu-west-1.compute.amazonaws.com:5984/';
+
+var nano = require('nano')(process.env.NODE_ENV === 'production' ? remoteCouchEndpoint : localCouchEndpoint);
 var eventsPath = __dirname + '/../src/md/events';
 
 var initialCouchJson = mdToCouch.default({
@@ -45,7 +49,7 @@ var couchCookie = nano.auth(process.env.DB_USERNAME, process.env.DB_PASSWORD, fu
   if (headers && headers['set-cookie']) {
     console.log("CouchDB cookies acquired", headers['set-cookie']);
     var cookieNano = require('nano')(
-      { url : 'http://localhost:5984/', cookie: headers['set-cookie'] });
+      { url : (process.env.NODE_ENV === 'production' ? remoteCouchEndpoint : localCouchEndpoint), cookie: headers['set-cookie'] });
 
     cookieNano.db.destroy('events', function (err) {
       console.log('events DB destroyed');
