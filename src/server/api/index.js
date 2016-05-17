@@ -6,6 +6,7 @@ export default function API (workable) {
   const routes = new Routes(workable);
 
   self.get('/jobs', routes.getJobs);
+  self.get('/events', routes.getEvents);
 
   return self;
 }

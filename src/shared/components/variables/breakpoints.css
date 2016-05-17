@@ -1,4 +1,9 @@
-/* Try not to use the mobile breakpoint, bad practice! Instead, go mobile-first! */
+@value mobileSMaxWidth: 570px;
+@value mobileS: (max-width: mobileSMaxWidth);
+
+@value mobileSMinWidth: 571px;
+@value mobileSM: (min-width: mobileSMinWidth);
+
 @value mobileMaxWidth: 767px;
 @value mobile: (max-width: mobileMaxWidth);
 

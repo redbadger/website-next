@@ -1,4 +1,7 @@
 @value mobile from "../variables/breakpoints.css";
+@value mobileS from "../variables/breakpoints.css";
+@value mobileSM from "../variables/breakpoints.css";
+@value tablet from "../variables/breakpoints.css";
 @value gutterSize: 40px;
 
 /**
@@ -186,11 +189,41 @@
 }
 
 @media mobile {
-  .cell {
+  .responsive-cell-mobile {
     width: 100%;
   }
 
-  .fit > .cell {
+  .fit > .cell.mobile {
     flex-basis: 100%;
+  }
+
+  .hideOnmobile {
+    display: none;
+  }
+}
+
+@media mobileS {
+  .responsive-cell-mobileS {
+    width: 100%;
+  }
+
+  .cell.mobileS {
+    flex-basis: 100%;
+  }
+
+  .hideOnmobileS {
+    display: none;
+  }
+}
+
+@media mobileSM {
+  .hideOnmobileSM {
+    display: none;
+  }
+}
+
+@media tablet {
+  .hideOntablet {
+    display: none;
   }
 }
