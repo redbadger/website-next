@@ -24,6 +24,7 @@ test:
     - npm run lint
     - npm run test:server
     - npm run test:client -- --browsers PhantomJS
+    - docker login -u $DOCKER_USERNAME -p $DOCKER_PASS -e $DOCKER_EMAIL
     - export APP_HOST=`ifconfig eth0 | grep -oP 'inet addr:\K\S+'` && docker-compose up -d
     - npm run test:e2e
 
