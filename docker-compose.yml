@@ -4,6 +4,8 @@ app:
     - "8000:8000"
   environment:
     - WORKABLE_KEY=${WORKABLE_KEY}
+    - DB_USERNAME=${DB_USERNAME}
+    - DB_PASSWORD=${DB_PASSWORD}
 proxy:
   image: redbadger/website-next-proxy
   ports:
