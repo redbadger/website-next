@@ -24,12 +24,13 @@ test:
     - npm run lint
     - npm run test:server
     - npm run test:client -- --browsers PhantomJS
+    - export APP_HOST=`ifconfig eth0 | grep -oP 'inet addr:\K\S+'` && docker-compose up -d
+    - npm run test:e2e
 
 deployment:
   staging:
     branch: master
     commands:
-      - docker login -u $DOCKER_USERNAME -p $DOCKER_PASS -e $DOCKER_EMAIL
       - docker push redbadger/website-next:$CIRCLE_SHA1
       - docker push redbadger/website-next:latest
       - sed -i -e "s/latest/$CIRCLE_SHA1/g" Dockerrun.aws.json
