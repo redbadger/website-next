@@ -85,7 +85,7 @@
     "karma-phantomjs-launcher": "^1.0.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.7.0",
-    "md-to-couch": "0.2.1",
+    "md-to-couch": "0.3.0",
     "mocha": "^2.4.5",
     "node-hook": "^0.2.0",
     "nodemon": "1.8.1",
