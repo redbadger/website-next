@@ -20,35 +20,29 @@ export class Event extends Component {
   render () {
     return (
       <div>
-        <h1>{this.props.event.doc.attributes.title}</h1>
         <Section>
           <Container>
             <Grid fit={false}>
-              {/*<Cell size={1} breakOn="mobile">
+              <Cell size={1} breakOn="mobile">
                 <HR color="grey" customClassName={styles.mobileHorizontalLine} />
                 <DateBubble
-                    date={event.doc.datetime.date}
-                    month={event.doc.datetime.month}
-                    year={event.doc.datetime.year}
+                    date={this.props.event.doc.datetime.date}
+                    month={this.props.event.doc.datetime.monthSym}
+                    year={this.props.event.doc.datetime.year}
                 />
               </Cell>
               <Cell size={11} breakOn="mobile">
                 <HR color="grey" customClassName={styles.wideHorizontalLine} />
                 <Grid fit={false}>
                   <Cell size={8} key='event_description' breakOn="mobileS">
-                    <a className={styles.eventTitleLink} href="#">
-                      <h2 className={styles.eventTitle}>
-                        {event.doc.attributes.title}
-                      </h2>
-                      <span className={classNames(
-                        {
-                          [styles.arrow]: true,
-                          [icons.sketchArrowRight]: true
-                        })}
-                      />
-                    </a>
+                    <h2 className={styles.eventTitle}>
+                      {this.props.event.doc.attributes.title}
+                    </h2>
                     <div className={styles.eventDescription}>
-                      {event.doc.attributes.strapline}
+                      {this.props.event.doc.attributes.strapline}
+                    </div>
+                    <div>
+                      {this.props.event.doc.body}
                     </div>
                     <a href="#" className={styles.fullDetailsLink}>
                         <span>For full details please visit</span>
@@ -60,8 +54,11 @@ export class Event extends Component {
                     </a>
                   </Cell>
                 </Grid>
+                <HR color="grey" />
+                <div>
+                  <a href="/about-us/events">More events</a>
+                </div>
               </Cell>
-              */}
             </Grid>
           </Container>
         </Section>

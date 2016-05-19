@@ -26,7 +26,7 @@ export class Events extends Component {
             <ul className={styles.eventsList}>
             {
               this.props.events.map((event) => {
-                const eventHref = `${event.doc.datetime.year}/${event.doc.datetime.month}/${event.doc.datetime.date}/${event.doc.slug}`;
+                const eventHref = `events/${event.doc.datetime.year}/${event.doc.datetime.month}/${event.doc.datetime.date}/${event.doc.slug}`;
 
                 return (
                   <li key={`event_${event.id}`} className={styles.eventItem}>
@@ -35,7 +35,7 @@ export class Events extends Component {
                         <HR color="grey" customClassName={styles.mobileHorizontalLine} />
                         <DateBubble
                             date={event.doc.datetime.date}
-                            month={event.doc.datetime.month}
+                            month={event.doc.datetime.monthSym}
                             year={event.doc.datetime.year}
                         />
                       </Cell>
