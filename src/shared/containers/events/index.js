@@ -26,6 +26,7 @@ export class Events extends Component {
             <ul className={styles.eventsList}>
             {
               this.props.events.map((event) => {
+                const eventHref = `${event.doc.datetime.year}/${event.doc.datetime.month}/${event.doc.datetime.date}/${event.doc.slug}`;
                 return (
                   <li key={`event_${event.id}`} className={styles.eventItem}>
                     <Grid fit={false}>
@@ -38,13 +39,13 @@ export class Events extends Component {
                         />
                       </Cell>
                       <Cell size={1} key="event_picture_mobile" hideOn="mobileSM">
-                        <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href="#" />
+                        <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href={eventHref} />
                       </Cell>
                       <Cell size={11} breakOn="mobile">
                         <HR color="grey" customClassName={styles.wideHorizontalLine} />
                         <Grid fit={false}>
                           <Cell size={8} key='event_description' breakOn="mobileS">
-                            <a className={styles.eventTitleLink} href="#">
+                            <a className={styles.eventTitleLink} href={eventHref}>
                               <h2 className={styles.eventTitle}>
                                 {event.doc.attributes.title}
                               </h2>

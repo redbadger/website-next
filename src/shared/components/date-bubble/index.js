@@ -5,9 +5,9 @@ import styles from './style.css';
 
 export default class DateBubble extends Component {
   static propTypes = {
-    date: React.PropTypes.number,
+    date: React.PropTypes.string,
     month: React.PropTypes.string,
-    year: React.PropTypes.number
+    year: React.PropTypes.string
   };
 
   render () {
