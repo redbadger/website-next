@@ -27,6 +27,7 @@ export class Events extends Component {
             {
               this.props.events.map((event) => {
                 const eventHref = `${event.doc.datetime.year}/${event.doc.datetime.month}/${event.doc.datetime.date}/${event.doc.slug}`;
+
                 return (
                   <li key={`event_${event.id}`} className={styles.eventItem}>
                     <Grid fit={false}>
