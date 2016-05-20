@@ -1,4 +1,5 @@
 import { couchDbLocal, couchDbRemote } from '../../shared/config';
+import http from 'http';
 
 export default class Routes {
   constructor (workable) {
@@ -33,29 +34,33 @@ export default class Routes {
 
     console.log('$$$ newEvent : ', newEvent)
 
-    var JSONObj =  JSON.stringify({ "title ":"test1", "description":'test2' });
+    // An object of options to indicate where to post to
+    var post_options = {
+      host: '127.0.0.1',
+      port: '5984',
+      path: '/events',
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Content-Length": Buffer.byteLength(newEvent)
+      }
+    };
 
-    var myHeaders = {
-      "Accept": "application/json",
-      "Content-Length": 81,
-      "Content-Type": "application/json"
-    }
-
-    fetch((process.env.NODE_ENV === 'production' ? couchDbRemote : couchDbLocal) + '/events/', {
-      "method": "POST",
-      "headers": myHeaders,
-      "body": JSONObj
-    })
-    .then((response) => {
-      console.log('response: ', response)
-      return response.json();
-    })
-    // .then((events) => {
-    //   res.send({list: events.rows.reverse()});
-    // })
-    .catch((err) => {
-      console.log('err: ', err)
-      res.status(err.status).send(err.message);
+    // Set up the request
+    var post_req = http.request(post_options, function (res) {
+      res.setEncoding('utf8');
+      res.on('data', function (chunk) {
+        console.log('Response: ' + chunk);
+        if (chunk.ok) {
+          // Success!
+        } else {
+          // Error
+        }
+      });
     });
+
+    // post the data
+    post_req.write(newEvent);
+    post_req.end();
   }
 }
