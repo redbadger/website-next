@@ -35,15 +35,17 @@ export default class Routes {
 
     var JSONObj =  JSON.stringify({ "title ":"test1", "description":'test2' });
 
-
+    var myHeaders = {
+      "Accept": "application/json",
+      "Content-Length": 81,
+      "Content-Type": "application/json"
+    }
 
     fetch((process.env.NODE_ENV === 'production' ? couchDbRemote : couchDbLocal) + '/events/', {
       "method": "POST",
-      "Accept": "application/json",
-      "Content-Length": 81,
-      "Content-Type": "application/json",
-      "body": JSONObj }
-    )
+      "headers": myHeaders,
+      "body": JSONObj
+    })
     .then((response) => {
       console.log('response: ', response)
       return response.json();
@@ -52,6 +54,7 @@ export default class Routes {
     //   res.send({list: events.rows.reverse()});
     // })
     .catch((err) => {
+      console.log('err: ', err)
       res.status(err.status).send(err.message);
     });
   }
