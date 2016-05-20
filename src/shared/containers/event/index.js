@@ -14,6 +14,8 @@ import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
 
+import marked from 'marked';
+
 export class Event extends Component {
   static fetchData = fetchEvent(fetch());
 
@@ -42,7 +44,7 @@ export class Event extends Component {
                       {this.props.event.doc.attributes.strapline}
                     </div>
                     <div>
-                      {this.props.event.doc.body}
+                      {marked(this.props.event.doc.body)}
                     </div>
                     <a href="#" className={styles.fullDetailsLink}>
                         <span>For full details please visit</span>
