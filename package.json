@@ -32,6 +32,7 @@
     "test:server"
   ],
   "dependencies": {
+    "body-parser": "^1.15.1",
     "chalk": "^1.1.1",
     "classnames": "^2.2.3",
     "dotenv": "^2.0.0",

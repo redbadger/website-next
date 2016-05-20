@@ -25,4 +25,34 @@ export default class Routes {
         res.status(err.status).send(err.message);
       });
   };
+
+  postNewEvent = (req, res) => {
+
+
+    const newEvent = JSON.stringify(req.body)
+
+    console.log('$$$ newEvent : ', newEvent)
+
+    var JSONObj =  JSON.stringify({ "title ":"test1", "description":'test2' });
+
+
+
+    fetch((process.env.NODE_ENV === 'production' ? couchDbRemote : couchDbLocal) + '/events/', {
+      "method": "POST",
+      "Accept": "application/json",
+      "Content-Length": 81,
+      "Content-Type": "application/json",
+      "body": JSONObj }
+    )
+    .then((response) => {
+      console.log('response: ', response)
+      return response.json();
+    })
+    // .then((events) => {
+    //   res.send({list: events.rows.reverse()});
+    // })
+    .catch((err) => {
+      res.status(err.status).send(err.message);
+    });
+  }
 }
