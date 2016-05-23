@@ -15,4 +15,4 @@ Joe will also run a workshop on "Sketching - An Important Part Of Being A UX'r".
 
 When: 11th May
 
-Where: [Wyndham Grand İstanbul Levent](https://www.google.com.tr/maps/place/Wyndham+Grand+%C4%B0stanbul+Levent/@41.077168,29.012801,15z/data=!4m2!3m1!1s0x0:0xa0af309a39981950?shorturl=1)
+Where: [Wyndham Grand Istanbul Levent](https://www.google.com.tr/maps/place/Wyndham+Grand+%C4%B0stanbul+Levent/@41.077168,29.012801,15z/data=!4m2!3m1!1s0x0:0xa0af309a39981950?shorturl=1)
