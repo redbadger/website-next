@@ -20,7 +20,10 @@ export default class Routes {
         return response.json();
       })
       .then((events) => {
-        res.send({list: events.rows.reverse()});
+        res.send({list: events.rows.sort(function (a, b) {
+          // also sort all events by date
+          return new Date(b.doc.datetime.iso) - new Date(a.doc.datetime.iso);
+        })});
       })
       .catch((err) => {
         res.status(err.status).send(err.message);

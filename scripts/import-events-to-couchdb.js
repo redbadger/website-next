@@ -30,6 +30,9 @@ var initialCouchJson = mdToCouch.default({
 var defaultEventImage = 'red-badger-event.jpg';
 var couchJson = {
   docs: initialCouchJson.docs.map(function (event) {
+    var baseFilename = path.basename(event.filename, '.html.md');
+    event.slug = baseFilename.split('-').slice(3).join('-');
+
     if (event.attributes.featureImage) {
       var filename = path.basename(event.attributes.featureImage);
       event.attributes.featureImageFilename = filename ? filename : defaultEventImage;
