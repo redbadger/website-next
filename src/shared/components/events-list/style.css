@@ -30,23 +30,8 @@
   color: black;
 }
 
-.fullDetailsLink {
-  composes: aBold from "../../components/typography/style.css";
-  color: black;
-  display: block;
-  text-decoration: none;
-  margin-top: 0.8em;
-  position: relative;
-}
-
 .eventDescription {
   margin-top: 10px;
-}
-
-.externalLinkIcon {
-  font-size: 1em;
-  color: #be1414;
-  position: absolute;
 }
 
 .mobileHorizontalLine {
