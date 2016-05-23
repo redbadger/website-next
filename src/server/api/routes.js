@@ -31,6 +31,7 @@ export default class Routes {
   };
 
   postNewEvent = (req, res) => {
+    var clientRes = res;
 
     var newEvent = {
       "attributes": {
@@ -79,9 +80,11 @@ export default class Routes {
         chunk = JSON.parse(chunk)
         if (chunk.ok) {
           console.log('$$$ Chunk ok!')
-          console.log('res: ', res)
+          console.log('res: ', res);
+          clientRes.status(200).send('OK');
         } else {
           console.log('$$$ Chunk not ok!')
+          clientRes.status(500).send('NOT OK');
           // Error
         }
       });
