@@ -29,8 +29,31 @@ export default class Routes {
 
   postNewEvent = (req, res) => {
 
+    var newEvent = {
+      "attributes": {
+        "title": req.body.title,
+        "strapline": req.body.strapline,
+        "internalLinks": [
+          {
+            "title": "This is a test Link",
+            "url": "/about-us/news/2010/08/31/introducing-xpf-a-layout-framework-for-xna/"
+          }
+        ],
+        "featureImageFilename": "red-badger-event.jpg"
+      },
+      "body": req.body.body,
+      "datetime": {
+        "locale": "Wed Oct 06 2016 00:00:00 GMT+0100",
+        "iso": "2016-10-05T23:00:00.000Z",
+        "date": 6,
+        "month": "Oct",
+        "year": 2016
+      },
+      "filename": "2010-10-06-windows-phone-user-group-xpf.html.md"
+    };
 
-    const newEvent = JSON.stringify(req.body)
+    newEvent = JSON.stringify(newEvent);
+
 
     console.log('$$$ newEvent : ', newEvent)
 
@@ -50,10 +73,12 @@ export default class Routes {
     var post_req = http.request(post_options, function (res) {
       res.setEncoding('utf8');
       res.on('data', function (chunk) {
-        console.log('Response: ' + chunk);
+        chunk = JSON.parse(chunk)
         if (chunk.ok) {
-          // Success!
+          console.log('$$$ Chunk ok!')
+          console.log('res: ', res)
         } else {
+          console.log('$$$ Chunk not ok!')
           // Error
         }
       });
