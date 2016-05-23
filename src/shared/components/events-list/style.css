@@ -1,0 +1,65 @@
+@value mobile from "../variables/breakpoints.css";
+
+.eventsList {
+  font-size: 1em;
+}
+
+.eventItem {
+  position: relative;
+  list-style-type: none;
+}
+
+.eventTitleLink {
+  text-decoration: none;
+}
+
+.eventTitle {
+  composes: h2 from "../../components/typography/style.css";
+  font-size: 1.6em;
+  text-decoration: none;
+  display: inline;
+  margin: 0 0 20px 0;
+}
+
+.eventTitle:hover, .eventTitle:active, .eventTitle:focus {
+  color: #be1414;
+}
+
+.arrow {
+  font-size: 1.2em;
+  color: black;
+}
+
+.fullDetailsLink {
+  composes: aBold from "../../components/typography/style.css";
+  color: black;
+  display: block;
+  text-decoration: none;
+  margin-top: 0.8em;
+  position: relative;
+}
+
+.eventDescription {
+  margin-top: 10px;
+}
+
+.externalLinkIcon {
+  font-size: 1em;
+  color: #be1414;
+  position: absolute;
+}
+
+.mobileHorizontalLine {
+  display: none;
+  margin: 1.5em 0 0 0;
+}
+
+@media mobile {
+  .wideHorizontalLine {
+    display: none;
+  }
+
+  .mobileHorizontalLine {
+    display: block;
+  }
+}
