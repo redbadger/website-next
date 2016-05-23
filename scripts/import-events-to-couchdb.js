@@ -14,7 +14,7 @@ var path = require('path');
 var couchEndpoint;
 
 var localCouchEndpoint = 'http://localhost:5984';
-var remoteCouchEndpoint = 'http://ec2-54-229-76-71.eu-west-1.compute.amazonaws.com:5984/';
+var remoteCouchEndpoint = "http://" +  process.env.DB_USERNAME + ":" + process.env.DB_PASSWORD + "@ec2-54-229-76-71.eu-west-1.compute.amazonaws.com:5984/";
 
 var nano = require('nano')(process.env.NODE_ENV === 'production' ? remoteCouchEndpoint : localCouchEndpoint);
 var eventsPath = __dirname + '/../src/md/events';
