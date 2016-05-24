@@ -26,22 +26,29 @@ export default class EventsList extends Component {
   render () {
     const today = new Date();
 
-    const relevantEvents = this.props.events.filter(function(event) {
+    let yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
+
+    let tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+
+    const relevantEvents = this.props.events.filter(function (event)
+    {
       const d = new Date(event.doc.datetime.iso);
 
       if (this.props.timeline === 'today') {
         return (d.toDateString() === today.toDateString());
       } else if (this.props.timeline === 'past') {
-        return (d < today);
+        return (d < yesterday);
       } else {
-        return (d > today);
+        return (d > tomorrow);
       }
     }, this);
 
-    return (
-      <div>
-          {(() => {
-            if (relevantEvents.length > 0) {
+    if (relevantEvents.length > 0) {
+      return (
+        <div>
+            {(() => {
               switch (this.props.timeline) {
                 case "past":
                   return (
@@ -64,14 +71,10 @@ export default class EventsList extends Component {
                 default:
                   return null;
               }
-            }
-          })()}
-        <ul className={styles.eventsList}>
-          {
-            relevantEvents.map((event) => {
-              const eventDate = new Date(event.doc.datetime.iso);
-              if (this.props.timeline === 'past' ?  eventDate < today : eventDate > today) {
-
+            })()}
+          <ul className={styles.eventsList}>
+            {
+              relevantEvents.map((event) => {
                 return (
                   <li key={`event_${event.id}`} className={styles.eventItem}>
                     <Grid fit={false}>
@@ -125,10 +128,11 @@ export default class EventsList extends Component {
                     </Grid>
                   </li>
                   );
-              }})
-          }
-        </ul>
-      </div>
-    );
+              })
+            }
+          </ul>
+        </div>
+      );
+    } else { return null; }
   }
 }
