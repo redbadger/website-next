@@ -32,7 +32,7 @@ export default class EventsList extends Component {
     let tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
 
-    const relevantEvents = this.props.events.filter(function (event)
+    let relevantEvents = this.props.events.filter(function (event)
     {
       const d = new Date(event.doc.datetime.iso);
 
@@ -44,6 +44,10 @@ export default class EventsList extends Component {
         return (d > tomorrow);
       }
     }, this);
+
+    if (relevantEvents.length > 1 && this.props.timeline === 'future') {
+      relevantEvents = relevantEvents.reverse();
+    }
 
     if (relevantEvents.length > 0) {
       return (
