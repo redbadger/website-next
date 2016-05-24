@@ -14,6 +14,7 @@ import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
 import EventsRecentList from '../../components/events-recent-list';
+import EventExternalLinksList from '../../components/event-external-links-list';
 
 import marked from 'marked';
 
@@ -22,7 +23,7 @@ export class Event extends Component {
 
   render () {
     return (
-      <div>
+      <div className={styles.eventContainer}>
         <Section>
           <Container>
             <Grid fit={false}>
@@ -44,22 +45,25 @@ export class Event extends Component {
                     <div className={styles.eventDescription}>
                       {this.props.event.doc.attributes.strapline}
                     </div>
-                    <div>
+                    <div className={styles.eventBody}>
                       {marked(this.props.event.doc.body)}
                     </div>
-                    <a href="#" className={styles.fullDetailsLink}>
-                        <span>For full details please visit</span>
-                        <span className={classNames({
-                          [icons.sketchExternalLink]: true,
-                          [styles.externalLinkIcon]: true
-                        })}
-                        />
-                    </a>
+                    <div>
+                    {
+                      this.props.event.doc.attributes.externalLinks ?
+                        <EventExternalLinksList
+                          linkList={this.props.event.doc.attributes.externalLinks} />
+                        : null
+                    }
+                    </div>
                   </Cell>
                 </Grid>
                 <HR color="grey" />
-                <div>
-                  <a href="/about-us/events">More events</a>
+                <div className={styles.moreEvents}>
+                  <a href="/about-us/events">
+                    <span className={styles.arrowBack} />
+                    <span>More events</span>
+                  </a>
                 </div>
               </Cell>
               <Cell size={3} breakOn="mobile">
