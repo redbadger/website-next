@@ -54,6 +54,14 @@ export class Event extends Component {
                         : null
                     }
                     </div>
+                    <div>
+                    {
+                      this.props.event.doc.attributes.internalLinks ?
+                        <EventExternalLinksList
+                          linkList={this.props.event.doc.attributes.internalLinks} />
+                        : null
+                    }
+                    </div>
                   </Cell>
                 </Grid>
                 <HR color="grey" />

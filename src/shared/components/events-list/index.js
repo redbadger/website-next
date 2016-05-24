@@ -70,6 +70,12 @@ export default class EventsList extends Component {
                                 linkList={event.doc.attributes.externalLinks} />
                               : null
                           }
+                          {
+                            event.doc.attributes.internalLinks ?
+                              <EventExternalLinksList
+                                linkList={event.doc.attributes.internalLinks} />
+                              : null
+                          }
                         </Cell>
                         <Cell size={4} key='event_picture' breakOn="mobileS" hideOn="mobileS">
                           <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href={eventHref(event)} />
