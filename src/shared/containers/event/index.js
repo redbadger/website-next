@@ -53,8 +53,6 @@ export class Event extends Component {
                           linkList={this.props.event.doc.attributes.externalLinks} />
                         : null
                     }
-                    </div>
-                    <div>
                     {
                       this.props.event.doc.attributes.internalLinks ?
                         <EventExternalLinksList

@@ -17,9 +17,8 @@ export class Events extends Component {
         <Section>
           <Container>
             <h1 className={styles.h1}>Events</h1>
-            <h2>Upcoming events</h2>
+            <EventsList events={this.props.events} timeline="today" />
             <EventsList events={this.props.events} timeline="future" />
-            <h2 className={styles.pastEventsTitle}>Past events</h2>
             <EventsList events={this.props.events} timeline="past" />
           </Container>
         </Section>
