@@ -1,0 +1,28 @@
+@value black from '../variables/colors.css';
+@value lightGrey2 from '../variables/colors.css';
+
+.eventsRecentList {
+  font-size: 0.875em;
+  padding: 1em;
+  background: lightGrey2;
+  border-radius: 5px;
+  margin-top: 1.5em;
+}
+
+.eventsRecentListTitle {
+  text-transform: uppercase;
+}
+
+.eventsRecentList ul {
+  padding: 0;
+}
+
+.eventsRecentList li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.eventsRecentList a {
+  text-decoration: none;
+  color: black;
+}

@@ -1,9 +1,9 @@
 ---
-title: 'April London React User Group'
+title: 'June London React User Group'
 strapline: Join us for an evening of great conversation around React
 featureImage: '/images/content/events/react-poster.jpg'
 externalLinks:
-  - {title: 'For full details please visit', url: 'http://www.meetup.com/London-React-User-Group/events/230113962/'}
+  - {title: 'For more info please visit the meetup page', url: 'http://www.meetup.com/London-React-User-Group/events/230114076/'}
 ---
 6:30 - Doors open for pizza and beers
 
@@ -13,4 +13,4 @@ externalLinks:
 
 8:30 / 9:00 - Everyone is welcome to stay for another drink
 
-Location: [Code Node](https://www.google.co.uk/maps?biw=1600&bih=803&q=Codenode,+10+South+Place,+London,+EC2M+2RB&bav=on.2,or.r_cp.&bvm=bv.119408272,d.ZWU&um=1&ie=UTF-8&sa=X&ved=0ahUKEwiEv7yFvIvMAhUGnQ4KHaOeBy8Q_AUIBigB)
+Location: [Facebook’s London offices](https://www.google.co.uk/maps/place/Facebook+London/@51.5257892,-0.142239,17z/data=!3m1!4b1!4m5!3m4!1s0x487604ccdc5b4b3f:0x683757fbe5e59ea4!8m2!3d51.5257892!4d-0.1400503)

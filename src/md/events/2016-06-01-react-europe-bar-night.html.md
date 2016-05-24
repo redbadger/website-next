@@ -1,5 +1,5 @@
 ---
-title: 'React Europe Bar Night'
+title: 'ReactEurope Bar Night'
 strapline: Kick off React Europe 2016 with us! Join us at The Frog at Bercy Village, a brewery located 15 minutes walk from the conference venue.
 featureImage: '/images/content/events/react-europe.jpg'
 externalLinks:
