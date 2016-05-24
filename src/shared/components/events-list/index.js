@@ -15,6 +15,8 @@ import icons from '../icons/style.css';
 
 import EventExternalLinksList from '../event-external-links-list';
 
+import {eventHref} from '../../util/event';
+
 export default class EventsList extends Component {
   static propTypes = {
     events: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
@@ -29,7 +31,6 @@ export default class EventsList extends Component {
           this.props.events.map((event) => {
             const eventDate = new Date(event.doc.datetime.iso);
             if (this.props.timeline === 'past' ?  eventDate < today : eventDate > today) {
-              const eventHref = `events/${event.doc.datetime.year}/${event.doc.datetime.month}/${event.doc.datetime.date}/${event.doc.slug}`;
 
               return (
                 <li key={`event_${event.id}`} className={styles.eventItem}>
@@ -43,13 +44,13 @@ export default class EventsList extends Component {
                       />
                     </Cell>
                     <Cell size={1} key="event_picture_mobile" hideOn="mobileSM">
-                      <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href={eventHref} />
+                      <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href={eventHref(event)} />
                     </Cell>
                     <Cell size={11} breakOn="mobile">
                       <HR color="grey" customClassName={styles.wideHorizontalLine} />
                       <Grid fit={false}>
                         <Cell size={8} key='event_description' breakOn="mobileS">
-                          <a className={styles.eventTitleLink} href={eventHref}>
+                          <a className={styles.eventTitleLink} href={eventHref(event)}>
                             <h2 className={styles.eventTitle}>
                               {event.doc.attributes.title}
                             </h2>
@@ -71,7 +72,7 @@ export default class EventsList extends Component {
                           }
                         </Cell>
                         <Cell size={4} key='event_picture' breakOn="mobileS" hideOn="mobileS">
-                          <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href={eventHref} />
+                          <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href={eventHref(event)} />
                         </Cell>
                       </Grid>
                     </Cell>

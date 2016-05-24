@@ -16,6 +16,8 @@ import DateBubble from '../../components/date-bubble';
 
 import marked from 'marked';
 
+import {eventHref} from '../../util/event';
+
 export class Event extends Component {
   static fetchData = fetchEvent(fetch());
 
@@ -33,7 +35,7 @@ export class Event extends Component {
                     year={this.props.event.doc.datetime.year}
                 />
               </Cell>
-              <Cell size={11} breakOn="mobile">
+              <Cell size={8} breakOn="mobile">
                 <HR color="grey" customClassName={styles.wideHorizontalLine} />
                 <Grid fit={false}>
                   <Cell size={8} key='event_description' breakOn="mobileS">
@@ -54,6 +56,24 @@ export class Event extends Component {
                         })}
                         />
                     </a>
+                  </Cell>
+                  <Cell size={3} breakOn="mobile">
+                    <div>
+                      Recent events
+                    </div>
+                    <ul>
+                      {
+                        this.props.recentEvents.map((event) => {
+                          return (
+                            <li>
+                              <a href={eventHref(event)}>
+                                {event.doc.attributes.title}
+                              </a>
+                            </li>
+                          );
+                        })
+                      }
+                    </ul>
                   </Cell>
                 </Grid>
                 <HR color="grey" />
@@ -81,7 +101,8 @@ function firstWithSlug (slug) {
 
 function mapStateToProps (state, { routeParams }) {
   return {
-    event: firstWithSlug(routeParams.slug)(state.events)
+    event: firstWithSlug(routeParams.slug)(state.events),
+    recentEvents: state.events.slice(0, 9)
   };
 }
 

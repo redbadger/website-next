@@ -18,7 +18,7 @@ export default class EventExternalLinksList extends Component {
           {
             this.props.linkList.map((eventLink) => {
               return (
-                <a href={eventLink.url} className={styles.fullDetailsLink} target="_blank">
+                <a href={eventLink.url} className={styles.fullDetailsLink} target="_blank" key={eventLink.url}>
                   <span>{eventLink.title}</span>
                   <span className={classNames({
                     [icons.sketchExternalLink]: true,
