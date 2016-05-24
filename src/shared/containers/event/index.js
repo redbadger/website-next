@@ -13,10 +13,9 @@ import isEqual from 'lodash/isEqual'; // lodash fp isEqual is broken in 4.0.0
 import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
+import EventsRecentList from '../../components/events-recent-list';
 
 import marked from 'marked';
-
-import {eventHref} from '../../util/event';
 
 export class Event extends Component {
   static fetchData = fetchEvent(fetch());
@@ -38,7 +37,7 @@ export class Event extends Component {
               <Cell size={8} breakOn="mobile">
                 <HR color="grey" customClassName={styles.wideHorizontalLine} />
                 <Grid fit={false}>
-                  <Cell size={8} key='event_description' breakOn="mobileS">
+                  <Cell size={11} key='event_description' breakOn="mobileS">
                     <h2 className={styles.eventTitle}>
                       {this.props.event.doc.attributes.title}
                     </h2>
@@ -57,29 +56,14 @@ export class Event extends Component {
                         />
                     </a>
                   </Cell>
-                  <Cell size={3} breakOn="mobile">
-                    <div>
-                      Recent events
-                    </div>
-                    <ul>
-                      {
-                        this.props.recentEvents.map((event) => {
-                          return (
-                            <li>
-                              <a href={eventHref(event)}>
-                                {event.doc.attributes.title}
-                              </a>
-                            </li>
-                          );
-                        })
-                      }
-                    </ul>
-                  </Cell>
                 </Grid>
                 <HR color="grey" />
                 <div>
                   <a href="/about-us/events">More events</a>
                 </div>
+              </Cell>
+              <Cell size={3} breakOn="mobile">
+                <EventsRecentList events={this.props.recentEvents} />
               </Cell>
             </Grid>
           </Container>
