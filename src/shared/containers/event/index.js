@@ -3,10 +3,8 @@ import React, { Component } from 'react';
 import { fetchEvent } from '../../actions/events/event';
 import Section from '../../components/section';
 import styles from './style.css';
-import icons from '../../components/icons/style.css';
 import fetch from '../../util/fetch-proxy';
 import { connect } from 'react-redux';
-import classNames from 'classnames';
 import { filter, flow, head, property } from 'lodash/fp';
 import isEqual from 'lodash/isEqual'; // lodash fp isEqual is broken in 4.0.0
 
@@ -90,7 +88,7 @@ function firstWithSlug (slug) {
 function mapStateToProps (state, { routeParams }) {
   return {
     event: firstWithSlug(routeParams.slug)(state.events),
-    recentEvents: state.events.slice(0, 9)
+    recentEvents: state.events.slice(0, 10)
   };
 }
 
