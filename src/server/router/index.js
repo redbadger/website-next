@@ -21,12 +21,27 @@ const renderMarkup = (store, routerProps) => {
   return renderToStaticMarkup(
     <DefaultTemplate
         initialState={store.getState()}
-        title={routerProps.location.pathname === '/about-us/events' ? 'Events | Red Badger' : 'Join Us | Red Badger'}
+        title={mapRouteToPageTitle(routerProps.location.pathname)}
     >
       {application}
     </DefaultTemplate>
   );
 };
+
+function mapRouteToPageTitle (path) {
+  const eventsRegex = new RegExp('events', 'gi');
+  const joinRegex = new RegExp('join-us', 'gi');
+
+  if (eventsRegex.test(path)) {
+    return "Events | Red Badger";
+  }
+
+  if (joinRegex.test(path)) {
+    return "Join Us | Red Badger";
+  }
+
+  return "Red Badger";
+}
 
 const renderErrorPage = (error) => {
   const application = renderToString(

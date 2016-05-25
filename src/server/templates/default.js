@@ -31,7 +31,7 @@ export default class DefaultTemplate extends Component {
     children: [],
     initialState: {},
     js: true,
-    title: 'Join Us | Red Badger'
+    title: 'Red Badger'
   };
 
   renderMeta () {
