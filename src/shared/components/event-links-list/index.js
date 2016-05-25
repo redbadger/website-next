@@ -6,9 +6,10 @@ import styles from './style.css';
 import classNames from 'classnames';
 import icons from '../icons/style.css';
 
-export default class EventExternalLinksList extends Component {
+export default class EventLinksList extends Component {
   static propTypes = {
-    linkList: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+    linkList: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    listType: React.PropTypes.oneOf(['external', 'internal']).isRequired
   };
 
   render () {
@@ -18,10 +19,16 @@ export default class EventExternalLinksList extends Component {
           {
             this.props.linkList.map((eventLink) => {
               return (
-                <a href={eventLink.url} className={styles.fullDetailsLink} target="_blank" key={eventLink.url}>
+                <a
+                    className={styles.fullDetailsLink}
+                    href={eventLink.url}
+                    key={eventLink.url}
+                    target={this.props.listType === 'external' ? '_blank' : null}
+                >
                   <span>{eventLink.title}</span>
                   <span className={classNames({
-                    [icons.sketchExternalLink]: true,
+                    [icons.sketchExternalLink]: this.props.listType === 'external',
+                    [icons.sketchArrowRight]: this.props.listType === 'internal',
                     [styles.externalLinkIcon]: true
                   })}
                   />

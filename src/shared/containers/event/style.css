@@ -48,6 +48,7 @@
 
 .eventDescription {
   margin-top: 10px;
+  font-weight: bold;
 }
 
 .externalLinkIcon {
@@ -65,6 +66,10 @@
   color: black;
   text-decoration: none;
   font-weight: bold;
+}
+
+.moreEvents a:hover, .moreEvents a:focus {
+  color: red;
 }
 
 .arrowBack {
