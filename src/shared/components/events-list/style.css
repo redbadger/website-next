@@ -1,4 +1,5 @@
 @value mobile from "../variables/breakpoints.css";
+@value red from "../variables/colors.css";
 
 .eventsList {
   font-size: 1em;
@@ -22,12 +23,12 @@
 }
 
 .eventTitle:hover, .eventTitle:active, .eventTitle:focus {
-  color: #be1414;
+  color: red;
 }
 
 .arrow {
   font-size: 1.2em;
-  color: black;
+  color: red;
 }
 
 .eventDescription {
