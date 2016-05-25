@@ -48,4 +48,8 @@
   .mobileHorizontalLine {
     display: block;
   }
+
+  .eventsList {
+    padding: 0;
+  }
 }
