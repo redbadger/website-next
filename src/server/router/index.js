@@ -21,7 +21,7 @@ const renderMarkup = (store, routerProps) => {
   return renderToStaticMarkup(
     <DefaultTemplate
         initialState={store.getState()}
-        title={routerProps.location.pathname === '/about-us/events' ? 'Events | Red Badger' : 'Join Us | Red Badger'}
+        title="Red Badger"
     >
       {application}
     </DefaultTemplate>

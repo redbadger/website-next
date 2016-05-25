@@ -15,6 +15,7 @@ import EventsRecentList from '../../components/events-recent-list';
 import EventLinksList from '../../components/event-links-list';
 
 import marked from 'marked';
+import Helmet from 'react-helmet';
 
 export class Event extends Component {
   static fetchData = fetchEvent(fetch());
@@ -22,6 +23,7 @@ export class Event extends Component {
   render () {
     return (
       <div className={styles.eventContainer}>
+        <Helmet title={`${this.props.event.doc.attributes.title} | Red Badger`} />
         <Section>
           <Container>
             <Grid fit={false}>

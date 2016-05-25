@@ -9,6 +9,7 @@ import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import { fetchJobs } from '../../actions/jobs';
 import fetch from '../../util/fetch-proxy';
+import Helmet from 'react-helmet';
 
 const titles = {
   type: 'Content',
@@ -94,6 +95,7 @@ export default class JoinUs extends Component {
   render () {
     return (
       <div>
+        <Helmet title="Join Us | Red Badger" />
         <Section>
           <Container>
             <ComponentRenderer data={titles} />
