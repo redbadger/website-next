@@ -12,5 +12,10 @@
 @value tabletMinWidth: 768px;
 @value tablet: (min-width: tabletMinWidth);
 
+@value desktopMaxWidth: 959px;
+@value desktopM: (max-width: desktopMaxWidth);
+
 @value desktopMinWidth: 960px;
 @value desktop: (min-width: desktopMinWidth);
+
+
