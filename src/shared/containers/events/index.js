@@ -7,7 +7,6 @@ import fetch from '../../util/fetch-proxy';
 import { connect } from 'react-redux';
 
 import EventsList from '../../components/events-list';
-import Helmet from 'react-helmet';
 
 export class Events extends Component {
   static fetchData = fetchEvents(fetch());
@@ -15,7 +14,6 @@ export class Events extends Component {
   render () {
     return (
       <div>
-        <Helmet title="Events | Red Badger" />
         <Section>
           <Container>
             <h1 className={styles.h1}>Events</h1>
