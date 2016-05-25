@@ -13,7 +13,7 @@ import { Grid, Cell } from '../grid';
 import classNames from 'classnames';
 import icons from '../icons/style.css';
 
-import EventExternalLinksList from '../event-external-links-list';
+import EventLinksList from '../event-links-list';
 
 import {eventHref} from '../../util/event';
 
@@ -113,14 +113,16 @@ export default class EventsList extends Component {
                             </div>
                             {
                               event.doc.attributes.externalLinks ?
-                                <EventExternalLinksList
-                                  linkList={event.doc.attributes.externalLinks} />
+                                <EventLinksList
+                                  linkList={event.doc.attributes.externalLinks}
+                                  listType="external" />
                                 : null
                             }
                             {
                               event.doc.attributes.internalLinks ?
-                                <EventExternalLinksList
-                                  linkList={event.doc.attributes.internalLinks} />
+                                <EventLinksList
+                                  linkList={event.doc.attributes.internalLinks}
+                                  listType="internal" />
                                 : null
                             }
                           </Cell>

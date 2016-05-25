@@ -12,7 +12,7 @@ import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
 import EventsRecentList from '../../components/events-recent-list';
-import EventExternalLinksList from '../../components/event-external-links-list';
+import EventLinksList from '../../components/event-links-list';
 
 import marked from 'marked';
 
@@ -49,14 +49,16 @@ export class Event extends Component {
                     <div>
                     {
                       this.props.event.doc.attributes.externalLinks ?
-                        <EventExternalLinksList
-                          linkList={this.props.event.doc.attributes.externalLinks} />
+                        <EventLinksList
+                          linkList={this.props.event.doc.attributes.externalLinks}
+                          listType="external" />
                         : null
                     }
                     {
                       this.props.event.doc.attributes.internalLinks ?
-                        <EventExternalLinksList
-                          linkList={this.props.event.doc.attributes.internalLinks} />
+                        <EventLinksList
+                          linkList={this.props.event.doc.attributes.internalLinks}
+                          listType="internal" />
                         : null
                     }
                     </div>
