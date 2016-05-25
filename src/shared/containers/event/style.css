@@ -67,6 +67,10 @@
   font-weight: bold;
 }
 
+.moreEvents a:hover, .moreEvents a:focus {
+  color: red;
+}
+
 .arrowBack {
   composes: sketchArrowLeft from "../../components/icons/style.css";
   color: red;
