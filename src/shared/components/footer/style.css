@@ -94,6 +94,10 @@ form {
   height: 30px;
 }
 
+.inputSubmit {
+  max-width: 120px;
+}
+
 .inputText {
   width: 65%;
   margin-right: 1%;
