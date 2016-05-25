@@ -1,8 +1,17 @@
 @value mobile from "../variables/breakpoints.css";
 @value red from "../variables/colors.css";
 
+.eventsListTimelineSection {
+  margin-bottom: 50px;
+}
+
+.eventsListTimelineSection h2 {
+  margin-bottom: 0;
+}
+
 .eventsList {
   font-size: 1em;
+  margin-top: 0;
 }
 
 .eventItem {

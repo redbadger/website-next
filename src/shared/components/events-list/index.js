@@ -51,7 +51,7 @@ export default class EventsList extends Component {
 
     if (relevantEvents.length > 0) {
       return (
-        <div>
+        <div className={styles.eventsListTimelineSection}>
             {(() => {
               switch (this.props.timeline) {
                 case "past":
