@@ -15,7 +15,7 @@ export default class EventLinksList extends Component {
   render () {
     if (this.props.linkList.length > 0) {
       return (
-        <div>
+        <div className={styles.eventLinkList}>
           {
             this.props.linkList.map((eventLink) => {
               return (
