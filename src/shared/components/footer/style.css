@@ -54,6 +54,10 @@ form {
   }
 }
 
+.links a {
+  white-space: nowrap;
+}
+
 .contactLink,
 .socialLink {
   color: white;
