@@ -1,7 +1,18 @@
 @value mobile from "../variables/breakpoints.css";
+@value red from "../variables/colors.css";
+
+.eventsListTimelineSection {
+  margin-bottom: 50px;
+}
+
+.eventsListTimelineSection h2 {
+  margin-bottom: 0;
+  text-align: center;
+}
 
 .eventsList {
   font-size: 1em;
+  margin-top: 0;
 }
 
 .eventItem {
@@ -22,31 +33,16 @@
 }
 
 .eventTitle:hover, .eventTitle:active, .eventTitle:focus {
-  color: #be1414;
+  color: red;
 }
 
 .arrow {
   font-size: 1.2em;
-  color: black;
-}
-
-.fullDetailsLink {
-  composes: aBold from "../../components/typography/style.css";
-  color: black;
-  display: block;
-  text-decoration: none;
-  margin-top: 0.8em;
-  position: relative;
+  color: red;
 }
 
 .eventDescription {
   margin-top: 10px;
-}
-
-.externalLinkIcon {
-  font-size: 1em;
-  color: #be1414;
-  position: absolute;
 }
 
 .mobileHorizontalLine {
@@ -61,5 +57,9 @@
 
   .mobileHorizontalLine {
     display: block;
+  }
+
+  .eventsList {
+    padding: 0;
   }
 }

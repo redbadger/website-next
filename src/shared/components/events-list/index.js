@@ -13,74 +13,132 @@ import { Grid, Cell } from '../grid';
 import classNames from 'classnames';
 import icons from '../icons/style.css';
 
+import EventLinksList from '../event-links-list';
+
+import {eventHref} from '../../util/event';
+
 export default class EventsList extends Component {
   static propTypes = {
     events: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-    timeline: React.PropTypes.oneOf(['past', 'future'])
+    timeline: React.PropTypes.oneOf(['past', 'future', 'today'])
   };
 
   render () {
     const today = new Date();
-    return (
-      <ul className={styles.eventsList}>
-        {
-          this.props.events.map((event) => {
-            const eventDate = new Date(event.doc.datetime.iso);
-            if (this.props.timeline === 'past' ?  eventDate < today : eventDate > today) {
-              const eventHref = `${event.doc.datetime.year}/${event.doc.datetime.month}/${event.doc.datetime.date}/${event.doc.slug}`;
 
-              return (
-                <li key={`event_${event.id}`} className={styles.eventItem}>
-                  <Grid fit={false}>
-                    <Cell size={1} breakOn="mobile">
-                      <HR color="grey" customClassName={styles.mobileHorizontalLine} />
-                      <DateBubble
-                          date={event.doc.datetime.date}
-                          month={event.doc.datetime.monthSym}
-                          year={event.doc.datetime.year}
-                      />
-                    </Cell>
-                    <Cell size={1} key="event_picture_mobile" hideOn="mobileSM">
-                      <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href={eventHref} />
-                    </Cell>
-                    <Cell size={11} breakOn="mobile">
-                      <HR color="grey" customClassName={styles.wideHorizontalLine} />
-                      <Grid fit={false}>
-                        <Cell size={8} key='event_description' breakOn="mobileS">
-                          <a className={styles.eventTitleLink} href={eventHref}>
-                            <h2 className={styles.eventTitle}>
-                              {event.doc.attributes.title}
-                            </h2>
-                            <span className={classNames(
-                              {
-                                [styles.arrow]: true,
-                                [icons.sketchArrowRight]: true
-                              })}
-                            />
-                          </a>
-                          <div className={styles.eventDescription}>
-                            {event.doc.attributes.strapline}
-                          </div>
-                          <a href="#" className={styles.fullDetailsLink}>
-                              <span>For full details please visit</span>
-                              <span className={classNames({
-                                [icons.sketchExternalLink]: true,
-                                [styles.externalLinkIcon]: true
-                              })}
+    let yesterday = new Date();
+    yesterday.setDate(today.getDate() - 1);
+
+    let tomorrow = new Date();
+    tomorrow.setDate(today.getDate() + 1);
+
+    let relevantEvents = this.props.events.filter(function (event)
+    {
+      const d = new Date(event.doc.datetime.iso);
+
+      if (this.props.timeline === 'today') {
+        return (d.toDateString() === today.toDateString());
+      } else if (this.props.timeline === 'past') {
+        return (d < yesterday);
+      } else {
+        return (d > tomorrow);
+      }
+    }, this);
+
+    if (relevantEvents.length > 1 && this.props.timeline === 'future') {
+      relevantEvents = relevantEvents.reverse();
+    }
+
+    if (relevantEvents.length > 0) {
+      return (
+        <div className={styles.eventsListTimelineSection}>
+            {(() => {
+              switch (this.props.timeline) {
+                case "past":
+                  return (
+                    <h2>
+                      Past events
+                    </h2>
+                  );
+                case "future":
+                  return (
+                    <h2>
+                    Upcoming events
+                    </h2>
+                  );
+                case "today":
+                  return (
+                    <h2>
+                      Today
+                    </h2>
+                  );
+                default:
+                  return null;
+              }
+            })()}
+          <ul className={styles.eventsList}>
+            {
+              relevantEvents.map((event) => {
+                return (
+                  <li key={`event_${event.id}`} className={styles.eventItem}>
+                    <Grid fit={false}>
+                      <Cell size={1} breakOn="mobile">
+                        <HR color="grey" customClassName={styles.mobileHorizontalLine} />
+                        <DateBubble
+                            date={event.doc.datetime.date}
+                            month={event.doc.datetime.monthSym}
+                            year={event.doc.datetime.year}
+                        />
+                      </Cell>
+                      <Cell size={1} key="event_picture_mobile" hideOn="mobileSM">
+                        <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href={eventHref(event)} />
+                      </Cell>
+                      <Cell size={11} breakOn="mobile">
+                        <HR color="grey" customClassName={styles.wideHorizontalLine} />
+                        <Grid fit={false}>
+                          <Cell size={8} key='event_description' breakOn="mobileS">
+                            <a className={styles.eventTitleLink} href={eventHref(event)}>
+                              <h2 className={styles.eventTitle}>
+                                {event.doc.attributes.title}
+                              </h2>
+                              <span className={classNames(
+                                {
+                                  [styles.arrow]: true,
+                                  [icons.sketchArrowRight]: true
+                                })}
                               />
-                          </a>
-                        </Cell>
-                        <Cell size={4} key='event_picture' breakOn="mobileS" hideOn="mobileS">
-                          <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href="#" />
-                        </Cell>
-                      </Grid>
-                    </Cell>
-                  </Grid>
-                </li>
-                );
-            }})
-        }
-      </ul>
-    );
+                            </a>
+                            <div className={styles.eventDescription}>
+                              {event.doc.attributes.strapline}
+                            </div>
+                            {
+                              event.doc.attributes.externalLinks ?
+                                <EventLinksList
+                                  linkList={event.doc.attributes.externalLinks}
+                                  listType="external" />
+                                : null
+                            }
+                            {
+                              event.doc.attributes.internalLinks ?
+                                <EventLinksList
+                                  linkList={event.doc.attributes.internalLinks}
+                                  listType="internal" />
+                                : null
+                            }
+                          </Cell>
+                          <Cell size={4} key='event_picture' breakOn="mobileS" hideOn="mobileS">
+                            <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href={eventHref(event)} />
+                          </Cell>
+                        </Grid>
+                      </Cell>
+                    </Grid>
+                  </li>
+                  );
+              })
+            }
+          </ul>
+        </div>
+      );
+    } else { return null; }
   }
 }

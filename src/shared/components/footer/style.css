@@ -1,4 +1,6 @@
 @value tablet from "../variables/breakpoints.css";
+@value mobile from "../variables/breakpoints.css";
+@value desktopM from "../variables/breakpoints.css";
 @value white, grey, midGrey, lightGrey, cyan, lightCyan, green, lightGreen from "../variables/colors.css";
 
 form {
@@ -101,6 +103,8 @@ form {
 }
 
 .inputSubmit {
+  max-width: 120px;
+  min-width: 80px;
   width: 34%;
   background-color: lightGreen;
   color: white;
@@ -108,4 +112,25 @@ form {
 
 .inputSubmit:hover {
   background-color: green;
+}
+
+@media desktopM {
+  .inputSubmit {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .inputText {
+    width: 100%;
+  }
+}
+
+@media mobile {
+  .inputText {
+    width: 65%;
+  }
+
+  .inputSubmit {
+    max-width: 120px;
+  }
 }

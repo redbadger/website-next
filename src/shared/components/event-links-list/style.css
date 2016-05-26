@@ -1,0 +1,15 @@
+.fullDetailsLink {
+  composes: aBold from "../../components/typography/style.css";
+  color: black;
+  display: block;
+  text-decoration: none;
+  margin-top: 0.8em;
+  position: relative;
+  text-decoration: none;
+}
+
+.externalLinkIcon {
+  font-size: 1em;
+  color: #be1414;
+  margin-bottom: 3px;
+}

@@ -13,9 +13,9 @@ export default class Footer extends Component {
     return (
       <footer className={styles.footer}>
         <Container>
-          <Grid fit>
+          <Grid>
 
-            <Cell>
+            <Cell breakOn="mobileS" size={4}>
               <address className={styles.address}>
                 <strong>Red Badger Consulting Limited</strong>
                 <br/>
@@ -29,7 +29,7 @@ export default class Footer extends Component {
               </address>
             </Cell>
 
-            <Cell>
+            <Cell breakOn="mobileS" size={4}>
               <ul className={styles.links} >
                 <li>
                   <a className={styles.contactLink} href="mailto:hello@red-badger.com">
@@ -64,7 +64,7 @@ export default class Footer extends Component {
               </ul>
             </Cell>
 
-            <Cell>
+            <Cell breakOn="mobile" size={4}>
               <h4 className={styles.newsletterHeading}>Join our newsletter</h4>
               <form action="//red-badger.us6.list-manage.com/subscribe/post?u=0ab76cd515&amp;amp;id=b20af1dc4e" className={styles.todo} method="post" >
                 <label>

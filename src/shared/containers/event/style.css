@@ -1,4 +1,9 @@
 @value mobile from "../../components/variables/breakpoints.css";
+@value red from "../../components/variables/colors.css";
+
+.eventBody a {
+  color: red;
+}
 
 .h1 {
   composes: h1 from "../../components/typography/style.css";
@@ -24,10 +29,7 @@
   text-decoration: none;
   display: inline;
   margin: 0 0 20px 0;
-}
-
-.eventTitle:hover, .eventTitle:active, .eventTitle:focus {
-  color: #be1414;
+  color: red;
 }
 
 .arrow {
@@ -46,17 +48,33 @@
 
 .eventDescription {
   margin-top: 10px;
+  font-weight: bold;
 }
 
 .externalLinkIcon {
   font-size: 1em;
-  color: #be1414;
+  color: red;
   position: absolute;
 }
 
 .mobileHorizontalLine {
   display: none;
   margin: 1.5em 0 0 0;
+}
+
+.moreEvents a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.moreEvents a:hover, .moreEvents a:focus {
+  color: red;
+}
+
+.arrowBack {
+  composes: sketchArrowLeft from "../../components/icons/style.css";
+  color: red;
 }
 
 @media mobile {

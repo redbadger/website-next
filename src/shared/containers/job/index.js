@@ -14,6 +14,7 @@ import isEqual from 'lodash/isEqual'; // lodash fp isEqual is broken in 4.0.0
 import fetch from '../../util/fetch-proxy';
 import { fetchJob } from '../../actions/jobs/job';
 import classnames from 'classnames';
+import Helmet from 'react-helmet';
 
 export class Job extends Component {
   static propTypes = {
@@ -29,6 +30,7 @@ export class Job extends Component {
   render () {
     return (
       <Section>
+        <Helmet title={`${this.props.job.title} | Red Badger`} />
         <Container>
           <Grid>
             <Cell size={8}>
