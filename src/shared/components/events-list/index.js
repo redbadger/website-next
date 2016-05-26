@@ -99,14 +99,16 @@ export default class EventsList extends Component {
                           <Cell size={8} key='event_description' breakOn="mobileS">
                             <a className={styles.eventTitleLink} href={eventHref(event)}>
                               <h2 className={styles.eventTitle}>
-                                {event.doc.attributes.title}
+                                <span>
+                                  {event.doc.attributes.title}
+                                </span>
+                                <span className={classNames(
+                                  {
+                                    [styles.arrow]: true,
+                                    [icons.sketchArrowRight]: true
+                                  })}
+                                />
                               </h2>
-                              <span className={classNames(
-                                {
-                                  [styles.arrow]: true,
-                                  [icons.sketchArrowRight]: true
-                                })}
-                              />
                             </a>
                             <div className={styles.eventDescription}>
                               {event.doc.attributes.strapline}
