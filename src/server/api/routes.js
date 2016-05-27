@@ -47,7 +47,7 @@ export default class Routes {
       internalTitle,
       internalUrl } = req.body;
 
-    var eventDateTime = moment(eventDate + ' ' + eventTime , "YYYY-MM-DD HH-mm")
+    var eventDateTime = moment(eventDate + ' ' + eventTime , "YYYY-MM-DD HH-mm");
     var slug = slugify(title);
     var internalLinks = [];
     var externalLinks = [];
