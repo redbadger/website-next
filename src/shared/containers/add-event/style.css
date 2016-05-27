@@ -58,6 +58,15 @@
   position: absolute;
 }
 
+.eventInputBox {
+  width: 50%;
+}
+
+.eventTextArea {
+  width: 50%;
+  min-height: 100px;
+}
+
 .mobileHorizontalLine {
   display: none;
   margin: 1.5em 0 0 0;
