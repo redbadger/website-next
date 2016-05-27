@@ -1,4 +1,4 @@
-import { couchDbLocal, couchDbRemote } from '../../shared/config';
+import { couchDb } from '../../shared/config';
 import http from 'http';
 import qs from 'qs';
 import moment from 'moment';
@@ -18,7 +18,7 @@ export default class Routes {
   };
 
   getEvents = (req, res) => {
-    fetch((process.env.NODE_ENV === 'production' ? couchDbRemote : couchDbLocal) + '/events/_all_docs?include_docs=true')
+    fetch(couchDb.remote.protocol + (process.env.NODE_ENV === 'production' ? (couchDb.remote.host + ':' + couchDb.remote.port) : (couchDb.local.host + ':' + couchDb.local.port)) + '/events/_all_docs?include_docs=true')
       .then((response) => {
         return response.json();
       })
@@ -89,9 +89,10 @@ export default class Routes {
     var newEventString = JSON.stringify(newEvent);
 
     // An object of options to indicate where to post to
+
     var post_options = {
-      host: '127.0.0.1',
-      port: '5984',
+      host: (process.env.NODE_ENV === 'production' ? couchDb.remote.host  : couchDb.local.host),
+      port: (process.env.NODE_ENV === 'production' ? couchDb.remote.port  : couchDb.local.port),
       path: '/events',
       method: 'POST',
       headers: {
