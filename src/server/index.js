@@ -1,3 +1,4 @@
+import newrelic from 'newrelic'; // eslint-disable-line
 import * as config from './config';
 import API from './api';
 import express from 'express';
