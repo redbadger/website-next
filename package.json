@@ -6,7 +6,7 @@
   "main": "build/server",
   "scripts": {
     "build": "npm run clean && webpack --progress",
-    "populate": "source .env && node utils/import-events-to-couchdb.js",
+    "populate": "source .env && node scripts/import-events-to-couchdb.js",
     "clean": "rimraf build",
     "lint": "eslint --cache .",
     "local": "NODE_ENV=development HOT=true node server.dev.js",
