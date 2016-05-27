@@ -1,5 +1,8 @@
 import { couchDbLocal, couchDbRemote } from '../../shared/config';
 import http from 'http';
+import qs from 'qs';
+import moment from 'moment';
+import slugify from 'slug';
 
 export default class Routes {
   constructor (workable) {
@@ -33,33 +36,57 @@ export default class Routes {
   postNewEvent = (req, res) => {
     var clientRes = res;
 
+    var { title,
+      strapline,
+      featureImageFilename,
+      body,
+      eventDate,
+      eventTime,
+      externalTitle,
+      externalUrl,
+      internalTitle,
+      internalUrl } = req.body;
+
+    var eventDateTime = moment(eventDate + ' ' + eventTime , "YYYY-MM-DD HH-mm")
+    var slug = slugify(title);
+    var internalLinks = [];
+    var externalLinks = [];
+
+    if (internalTitle && internalUrl) {
+      internalLinks = [{
+        "title": internalTitle,
+        "url": internalUrl
+      }];
+    }
+
+    if (externalTitle && externalUrl) {
+      externalLinks = [{
+        "title": externalTitle,
+        "url": externalUrl
+      }];
+    }
+
     var newEvent = {
       "attributes": {
-        "title": req.body.title,
-        "strapline": req.body.strapline,
-        "internalLinks": [
-          {
-            "title": "This is a test Link",
-            "url": "/about-us/news/2010/08/31/introducing-xpf-a-layout-framework-for-xna/"
-          }
-        ],
-        "featureImageFilename": "red-badger-event.jpg"
+        "title": title,
+        "strapline": strapline,
+        "internalLinks": internalLinks,
+        "externalLinks": externalLinks,
+        "featureImageFilename": featureImageFilename
       },
-      "body": req.body.body,
+      "body": body,
       "datetime": {
-        "locale": "Wed Oct 06 2016 00:00:00 GMT+0100",
-        "iso": "2016-10-05T23:00:00.000Z",
-        "date": 6,
-        "month": "Oct",
-        "year": 2016
+        "iso": eventDateTime.format(),
+        "date": eventDateTime.format("D"),
+        "monthSym": eventDateTime.format("MMM"),
+        "month": eventDateTime.format("MM"),
+        "year": eventDateTime.format("YYYY"),
+        "time": eventDateTime.format("HH:mm")
       },
-      "filename": "2010-10-06-windows-phone-user-group-xpf.html.md"
+      "slug": slug
     };
 
-    newEvent = JSON.stringify(newEvent);
-
-
-    console.log('$$$ newEvent : ', newEvent)
+    var newEventString = JSON.stringify(newEvent);
 
     // An object of options to indicate where to post to
     var post_options = {
@@ -69,7 +96,7 @@ export default class Routes {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
-        "Content-Length": Buffer.byteLength(newEvent)
+        "Content-Length": Buffer.byteLength(newEventString)
       }
     };
 
@@ -77,21 +104,18 @@ export default class Routes {
     var post_req = http.request(post_options, function (res) {
       res.setEncoding('utf8');
       res.on('data', function (chunk) {
-        chunk = JSON.parse(chunk)
+        chunk = JSON.parse(chunk);
         if (chunk.ok) {
-          console.log('$$$ Chunk ok!')
-          console.log('res: ', res);
-          clientRes.status(200).send('OK');
+          clientRes.redirect('/about-us/events');
         } else {
-          console.log('$$$ Chunk not ok!')
-          clientRes.status(500).send('NOT OK');
-          // Error
+          var qSError = qs.stringify({error: 'Something Went wrong'});
+          clientRes.redirect('/about-us/events/add/?' + qSError);
         }
       });
     });
 
     // post the data
-    post_req.write(newEvent);
+    post_req.write(newEventString);
     post_req.end();
   }
 }
