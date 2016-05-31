@@ -36,7 +36,7 @@ export class AddEvents extends Component {
               <h4>Feature-Image Filename (or cloudinary link):</h4>
               <input className={styles.eventInputBox} name="featureImageFilename" type="text"></input><br/><br/>
               <h4>Body:</h4>
-              <EventBody name="body" />
+              <EventBody name="body" options={['bold', 'italic']} />
               <h4>Date and Time:</h4>
               <input name="eventDate"  type="date"></input><input name="eventTime" type="time"></input><br/><br/>
               <h4>External link:</h4>

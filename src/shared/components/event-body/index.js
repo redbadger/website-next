@@ -8,12 +8,17 @@ const getStyle = () => styles.editor;
 export default class EventBody extends Component {
 
   static propTypes = {
+    options: React.PropTypes.arrayOf(React.PropTypes.string)
   };
 
   constructor (props) {
     super(props);
     this.state = { editorState: EditorState.createEmpty() };
     this.onChange = (editorState) => this.setState({ editorState });
+  }
+
+  capitalize (string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   onStyleChange (style) {
@@ -27,8 +32,9 @@ export default class EventBody extends Component {
     return (
       <div className={styles.editContainer}>
         <div className={styles.editButtons}>
-          <button onClick={this.onStyleChange.bind(this)("bold")}>Bold</button>
-          <button onClick={this.onStyleChange.bind(this)("italic")}>Italic</button>
+          {this.props.options.map((option, i) =>
+            <button key={i} onClick={this.onStyleChange.bind(this)(option)}>{this.capitalize(option)}</button>
+          )}
         </div>
         <Editor
             blockStyleFn={getStyle}
