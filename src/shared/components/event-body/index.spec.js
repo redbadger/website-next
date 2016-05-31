@@ -1,15 +1,12 @@
 import React from 'react';
-import { render } from '../../test-helper.js';
+import { render, findAllWithType } from '../../test-helper.js';
 import { expect } from 'chai';
-
+import { Editor } from 'draft-js';
 import EventBody from './index';
-import styles from './styles.css';
 
 describe.only('EventBody component', () => {
-  it('renders a text area', () => {
+  it('renders a draft-js Editor', () => {
     const body = render(<EventBody />);
-    expect(body.props.children[0]).to.deep.eq(
-      <textarea className={styles.eventTextArea} name="body" type="text"></textarea>
-    );
+    expect(findAllWithType(Editor, body).length).to.eq(1);
   });
 });
