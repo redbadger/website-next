@@ -1,10 +1,19 @@
 import Container from '../../components/container';
 import React, { Component } from 'react';
 import Section from '../../components/section';
+import EventBody from '../../components/event-body';
 import styles from './style.css';
 import { connect } from 'react-redux';
 
 export class AddEvents extends Component {
+
+  static propTypes = {
+    location: React.PropTypes.shape({
+      query: React.PropTypes.shape({
+        error: React.PropTypes.string
+      })
+    })
+  }
 
   render () {
 
@@ -27,7 +36,7 @@ export class AddEvents extends Component {
               <h4>Feature-Image Filename (or cloudinary link):</h4>
               <input className={styles.eventInputBox} name="featureImageFilename" type="text"></input><br/><br/>
               <h4>Body:</h4>
-              <textarea className={styles.eventTextArea} name="body" type="text"></textarea><br/><br/>
+              <EventBody name="body" />
               <h4>Date and Time:</h4>
               <input name="eventDate"  type="date"></input><input name="eventTime" type="time"></input><br/><br/>
               <h4>External link:</h4>
