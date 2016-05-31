@@ -1,6 +1,6 @@
 /* eslint react/no-set-state: 0 */
 import React, { Component } from 'react';
-import { Editor, EditorState } from 'draft-js';
+import { Editor, EditorState, RichUtils } from 'draft-js';
 import styles from './styles.css';
 
 const getStyle = () => styles.editor;
@@ -16,13 +16,27 @@ export default class EventBody extends Component {
     this.onChange = (editorState) => this.setState({ editorState });
   }
 
+  onStyleChange (style) {
+    return (function (event) {
+      event.preventDefault();
+      this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, style.toUpperCase()));
+    }).bind(this);
+  }
+
   render () {
     return (
-      <Editor
-          blockStyleFn={getStyle}
-          editorState={this.state.editorState}
-          onChange={this.onChange}
-      />
+      <div className={styles.editContainer}>
+        <div className={styles.editButtons}>
+          <button onClick={this.onStyleChange.bind(this)("bold")}>Bold</button>
+          <button onClick={this.onStyleChange.bind(this)("italic")}>Italic</button>
+        </div>
+        <Editor
+            blockStyleFn={getStyle}
+            editorState={this.state.editorState}
+            onChange={this.onChange}
+            suppressContentEditableWarning
+        />
+      </div>
     );
   }
 }

@@ -1,5 +1,25 @@
-.editor {
+.editContainer {
   width: 50%;
   min-height: 100px;
+  height: 100%;
   background-color: white;
+}
+
+.editButtons {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
+  & > button {
+    background-color: white;
+    border-radius: 0em;
+    border: none;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.editor {
+  min-height: 100px;
+  padding: 5px;
 }
