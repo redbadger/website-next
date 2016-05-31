@@ -3,6 +3,7 @@
 
 const chalk = require('chalk');
 const express = require('express');
+const authSetup  = require('./src/server/authSetup');
 const path = require('path');
 const webpack = require('webpack');
 const webpackDevMw = require('webpack-dev-middleware');
@@ -10,7 +11,7 @@ const webpackHotMw = require('webpack-hot-middleware');
 const webpackConfigs = require('./webpack.config');
 
 const port = process.env.PORT || 8000;
-const app = express();
+const app = authSetup(express());
 const clientConfig = webpackConfigs[0];
 const clientCompiler = webpack(clientConfig);
 
