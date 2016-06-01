@@ -5,8 +5,8 @@ import Section from '../../components/section';
 import styles from './style.css';
 import fetch from '../../util/fetch-proxy';
 import { connect } from 'react-redux';
-
 import EventsList from '../../components/events-list';
+import BannerReactConf from '../../components/banner-react-conf';
 
 export class Events extends Component {
   static fetchData = fetchEvents(fetch());
@@ -14,9 +14,10 @@ export class Events extends Component {
   render () {
     return (
       <div>
+        <h1 className={styles.h1}>Events</h1>
+        <BannerReactConf />
         <Section>
           <Container>
-            <h1 className={styles.h1}>Events</h1>
             <EventsList events={this.props.events} timeline="today" />
             <EventsList events={this.props.events} timeline="future" />
             <EventsList events={this.props.events} timeline="past" />
