@@ -42,6 +42,11 @@ const authSetup = app => {
     }
   );
 
+  app.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+  });
+
   return app;
 };
 

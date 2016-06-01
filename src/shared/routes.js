@@ -14,8 +14,8 @@ function authenticate (nextState, replaceState, callback) {
   if (typeof window !== 'undefined') {
     request
       .get('/api/check-login')
-      .end((err) => {
-        if (err) {
+      .end((err, res) => {
+        if (err || !res.ok) {
           window.location.href = '/login';
         } else {
           callback();
