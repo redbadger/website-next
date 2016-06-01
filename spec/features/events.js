@@ -13,7 +13,7 @@ describe('Checking for Events', () => {
   after(() => client.end());
 
   it('will be able to view upcoming events', () => client
-    .url('http://localhost:8000/about-us/events')
+    .url('/about-us/events')
     .getTitle()
     .then(function (title) {
       chai.expect(title).to.equal('Events | Red Badger');

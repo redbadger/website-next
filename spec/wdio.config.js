@@ -1,10 +1,6 @@
 "use strict";
 
 require('babel-core/register');
-const childProcess = require('child_process');
-const phantomjs = require('phantomjs-prebuilt');
-
-let phantomProcess;
 
 exports.config = {
 
@@ -22,7 +18,7 @@ exports.config = {
   ],
   // Patterns to exclude.
   exclude: [
-      // 'path/to/excluded/files'
+    // 'path/to/excluded/files'
   ],
   //
   // ============
@@ -112,36 +108,24 @@ exports.config = {
   //
   // Gets executed before all workers get launched.
   onPrepare: function () {
-    const binPath = phantomjs.path;
-
-    const childArgs = [
-      '--webdriver=4444'
-    ];
-
-    return new Promise((resolve) => {
-      phantomProcess = childProcess.execFile(binPath, childArgs);
-      phantomProcess.stdout.once('data', () => {
-        // We need to wait for Phantom to initialize
-        resolve();
-      });
-    });
+    // do something
   },
   //
   // Gets executed before test execution begins. At this point you will have access to all global
   // variables like `browser`. It is the perfect place to define custom commands.
   before: function () {
-      // do something
+    // do something
   },
   //
   // Gets executed after all tests are done. You still have access to all global variables from
   // the test.
   after: function () {
-      // do something
+    // do something
   },
   //
   // Gets executed after all workers got shut down and the process is about to exit. It is not
   // possible to defer the end of the process using a promise.
   onComplete: function () {
-    phantomProcess.kill();
+    // do something
   }
 };
