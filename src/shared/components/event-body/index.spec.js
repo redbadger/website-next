@@ -6,8 +6,14 @@ import EventBody from './index';
 
 describe('EventBody component', () => {
   it('renders a draft-js Editor and some styling buttons', () => {
-    const options = ['bold', 'italic'];
-    const body = render(<EventBody options={options}/>);
+    const props = {
+      editorState: {},
+      onChange: () => ({}),
+      onStyleChange: () => ({}),
+      options: ['bold', 'italic']
+    };
+    
+    const body = render(<EventBody {...props} />);
     expect(findAllWithType(Editor, body).length).to.eq(1);
 
     const buttons = findAllWithType('button', body);
