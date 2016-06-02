@@ -1,7 +1,6 @@
 export const apiEndpoint = process.env.API_ENDPOINT || 'http://localhost:8000/api';
 export const env = process.env.NODE_ENV;
 
-
 export const couchDb = {
   local: {
     host: '127.0.0.1',
@@ -14,4 +13,5 @@ export const couchDb = {
     port: '5984'
   }
 };
+
 export const imageAssetsEndpoint = 'http://res.cloudinary.com/red-badger-assets/image/upload/events/';

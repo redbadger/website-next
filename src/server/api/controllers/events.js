@@ -1,22 +1,10 @@
-import { couchDb } from '../../shared/config';
+import { couchDb } from '../../../shared/config';
 import http from 'http';
 import qs from 'qs';
 import moment from 'moment';
 import slugify from 'slug';
 
-export default class Routes {
-  constructor (workable) {
-    this.workable = workable;
-  }
-
-  getJobs = (req, res) => {
-    this.workable.getJobs()
-      .then(res.send.bind(res))
-      .catch((err) => {
-        res.status(err.status).send(err.message);
-      });
-  };
-
+export default class EventsController {
   getEvents = (req, res) => {
     fetch(couchDb.remote.protocol + (process.env.NODE_ENV === 'production' ? (couchDb.remote.host + ':' + couchDb.remote.port) : (couchDb.local.host + ':' + couchDb.local.port)) + '/events/_all_docs?include_docs=true')
       .then((response) => {
