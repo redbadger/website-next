@@ -40,8 +40,7 @@ const authSetup = app => {
       { failureRedirect: 'http://www.red-badger.com' }
     ),
     (req, res) => {
-      res.redirect(req.session.returnTo || '/');
-      delete req.session.returnTo;
+      res.redirect('/about-us/events/add');
     }
   );
 
