@@ -1,4 +1,7 @@
-import newrelic from 'newrelic'; // eslint-disable-line
+if (process.env.NEWRELIC_LICENSE) {
+   require('newrelic'); // eslint-disable-line
+}
+
 import * as config from './config';
 import API from './api';
 import express from 'express';

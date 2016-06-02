@@ -1,31 +1,17 @@
-import webdriverio from 'webdriverio';
 import chai from 'chai';
-import { config } from '../wdio.config';
 
-// @TODO FIX ME! These tests work on my local machine, but not in Circle CI :(
-xdescribe('Checking for Events', () => {
-  let client;
+const browser = global.browser; // comes from wdio
 
-  before(() => {
-    client = webdriverio.remote(config);
-    return client.init();
-  });
-
-  after(() => client.end());
-
-  it('will be able to view upcoming events', () => client
+describe('Checking for Events', () => {
+  it('will be able to view upcoming events', (done) => {
+    browser
     .url('/about-us/events')
     .getTitle()
-    .then(function (title) {
-      chai.expect(title).to.equal('Events | Red Badger');
+    .then(title => {
+      return chai.expect(title).to.equal('Events | Red Badger');
     })
-  );
-
-  it('redirects to Google login page, when you try to add an event and are not logged in', () => client
-    .url('/about-us/events/add')
-    .getTitle()
-    .then(function (title) {
-      chai.expect(title).to.equal('Sign in - Google Accounts');
-    })
-  );
+    .then(() => {
+      done();
+    });
+  });
 });

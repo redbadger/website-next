@@ -1,0 +1,29 @@
+app:
+  image: redbadger/website-next
+  ports:
+    - "8000:8000"
+  links:
+    - couchdb:couchdb
+  environment:
+    - WORKABLE_KEY=${WORKABLE_KEY}
+    - DB_HOST=couchdb
+    - DB_USERNAME=${DB_USERNAME}
+    - DB_PASSWORD=${DB_PASSWORD}
+    - PASSPORT_GOOGLE_ALLOWEDDOMAINNAMES
+    - PASSPORT_SESSIONSECRET
+    - PASSPORT_GOOGLE_CLIENTID
+    - PASSPORT_GOOGLE_CLIENTSECRET
+couchdb:
+  image: couchdb:1.6
+  ports:
+    - "5984:5984"
+  environment:
+    - COUCHDB_USER=${DB_USERNAME}
+    - COUCHDB_PASSWORD=${DB_PASSWORD}
+proxy:
+  image: redbadger/website-next-proxy
+  ports:
+    - "80:80"
+  environment:
+    - APP_HOST=${APP_HOST}
+    - APP_PORT=8000

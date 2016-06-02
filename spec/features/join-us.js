@@ -17,8 +17,10 @@ describe('Looking for a new job', function () {
       })
       .getAttribute('#e2eApply', 'href')
       .then(function (attr) {
-        chai.expect(attr).to.include('workable.com');
+        return chai.expect(attr).to.include('workable.com');
       })
-      .end(done);
+      .then(function () {
+        done();
+      });
   });
 });
