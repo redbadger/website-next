@@ -5,8 +5,9 @@ import express from 'express';
 import fetch from '../shared/util/fetch-proxy';
 import WorkableAPI from './api/workable';
 import router from './router';
+import authSetup from './authSetup';
 
-const app = express();
+const app = authSetup(express());
 const workable = new WorkableAPI(fetch(), config.workable.key);
 const api = API(workable);
 
