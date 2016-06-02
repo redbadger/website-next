@@ -48,7 +48,7 @@ describe('router middleware', () => {
       expect(send.called).to.be.true;
     });
 
-    it('redirects to login if needsAuth React Router prop exisits and not logged in', () => {
+    it('redirects to login if needsAuth React Router prop exists and not logged in', () => {
       const req = { isAuthenticated: sinon.stub().returns(false) };
       const res = { redirect: sinon.stub() };
       const handle = requestHandler(req, res, null, null); //req, res, store, render
