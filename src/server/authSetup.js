@@ -1,10 +1,13 @@
 let passport = require('passport');
 let GoogleStrategy = require('passport-google-oauth20').Strategy;
 let session = require('express-session');
-let serverConfig = require('./serverConfig');
 
 const authSetup = app => {
-  app.use(session({ secret: serverConfig.sessionSecret, resave: true, saveUninitialized: true }));
+  app.use(session({
+    secret: process.env.PASSPORT_SESSIONSECRET,
+    resave: true,
+    saveUninitialized: true
+  }));
   app.use(passport.initialize());
   app.use(passport.session());
 
@@ -14,12 +17,12 @@ const authSetup = app => {
   passport.use(
     new GoogleStrategy(
       {
-        clientSecret: serverConfig.credentials.clientSecret,
-        clientID: serverConfig.credentials.clientID,
+        clientSecret: process.env.PASSPORT_GOOGLE_CLIENTSECRET,
+        clientID: process.env.PASSPORT_GOOGLE_CLIENTID,
         callbackURL: '/login/callback'
       },
       (token, refreshToken, profile, done) => {
-        if (serverConfig.allowedDomainNames.includes(profile._json.domain)) {
+        if (process.env.PASSPORT_GOOGLE_ALLOWEDDOMAINNAMES === profile._json.domain) {
           return done(null, profile);
         } else {
           return done();
