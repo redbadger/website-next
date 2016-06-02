@@ -28,9 +28,11 @@ export default class EventsList extends Component {
 
     let yesterday = new Date();
     yesterday.setDate(today.getDate() - 1);
+    yesterday.setHours(23, 59, 59);
 
     let tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
+    tomorrow.setHours(0, 0, 0);
 
     let relevantEvents = this.props.events.filter(function (event)
     {
