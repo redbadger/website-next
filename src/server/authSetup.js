@@ -1,6 +1,6 @@
-let passport = require('passport');
-let GoogleStrategy = require('passport-google-oauth20').Strategy;
-let session = require('express-session');
+var passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
+var session = require('express-session');
 
 const authSetup = app => {
   app.use(session({
