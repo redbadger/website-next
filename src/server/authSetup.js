@@ -19,7 +19,7 @@ const authSetup = app => {
       {
         clientSecret: process.env.PASSPORT_GOOGLE_CLIENTSECRET,
         clientID: process.env.PASSPORT_GOOGLE_CLIENTID,
-        callbackURL: '/login/callback'
+        callbackURL: '/auth/login/callback'
       },
       (token, refreshToken, profile, done) => {
         if (process.env.PASSPORT_GOOGLE_ALLOWEDDOMAINNAMES === profile._json.domain) {
@@ -31,10 +31,10 @@ const authSetup = app => {
     )
   );
 
-  app.get('/login', passport.authenticate('google', { scope: ['profile', 'email'] }));
+  app.get('/auth/login', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
   app.get(
-    '/login/callback',
+    '/auth/login/callback',
     passport.authenticate(
       'google',
       { failureRedirect: 'http://www.red-badger.com' }
@@ -44,7 +44,7 @@ const authSetup = app => {
     }
   );
 
-  app.get('/logout', (req, res) => {
+  app.get('/auth/logout', (req, res) => {
     req.logout();
     res.redirect('/');
   });

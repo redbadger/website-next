@@ -6,7 +6,7 @@ import authSetup from '../authSetup';
 
 const ensureAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) return next();
-  res.sendStatus(403).send('You are not logged in. Please use: /login');
+  res.sendStatus(403).send('You are not logged in. Please use: /auth/login');
 };
 
 export default function API (workable) {

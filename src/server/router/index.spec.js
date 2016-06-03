@@ -53,7 +53,7 @@ describe('router middleware', () => {
       const res = { redirect: sinon.stub() };
       const handle = requestHandler(req, res, null, null); //req, res, store, render
       handle(null, null, { routes: [{ needsAuth: true }] });
-      expect(res.redirect.calledWith(302, '/login')).to.be.true;
+      expect(res.redirect.calledWith(302, '/auth/login')).to.be.true;
     });
   });
 });

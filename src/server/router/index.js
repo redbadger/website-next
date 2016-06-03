@@ -70,7 +70,7 @@ export const requestHandler = (req, res, store, render) => {
     if (routerProps && routerProps.routes) {
       let needsAuth = routerProps.routes.reduce((prev, curr) => 'needsAuth' in curr || prev, false);
       if (needsAuth && !req.isAuthenticated()) {
-        redirectLocation = { pathname: '/login', search: '' };
+        redirectLocation = { pathname: '/auth/login', search: '' };
       }
     }
 

@@ -3,10 +3,10 @@ app:
   ports:
     - "8000:8000"
   environment:
-    - WORKABLE_KEY=${WORKABLE_KEY}
+    - WORKABLE_KEY
     - DB_HOST=couchdb
-    - DB_USERNAME=${DB_USERNAME}
-    - DB_PASSWORD=${DB_PASSWORD}
+    - DB_USERNAME
+    - DB_PASSWORD
     - PASSPORT_GOOGLE_ALLOWEDDOMAINNAMES
     - PASSPORT_SESSIONSECRET
     - PASSPORT_GOOGLE_CLIENTID
@@ -16,5 +16,5 @@ proxy:
   ports:
     - "80:80"
   environment:
-    - APP_HOST=${APP_HOST}
+    - APP_HOST
     - APP_PORT=8000
