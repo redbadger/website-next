@@ -17,7 +17,7 @@ Install [CouchDB](http://couchdb.apache.org/) on your machine. Make sure that it
 
 Navigate to [admin panel](http://127.0.0.1:5984/_utils/) and create admin user.
 
-In the root of this project create `.env` file (or amend existing one). Add CouchDB admin user / password in the following format:
+In the root of this project make a copy of `.env.example` and call it `.env`. Amend the existing values and add CouchDB admin user / password in the following format:
 
 > export DB_USERNAME=admin
 > export DB_PASSWORD=password

@@ -1,15 +1,15 @@
-import Routes from './routes';
+import JobsController from './jobs';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import isFunction from 'lodash/isFunction';
 import noop from 'lodash/noop';
-import HttpError from '../../shared/util/http-error';
+import HttpError from '../../../shared/util/http-error';
 
-describe('Workable Routes', () => {
+describe('Job Workable Routes', () => {
   describe('getJobs', () => {
 
     let mockWorkable;
-    let routes;
+    let jobsController;
     let req;
     let res;
 
@@ -19,11 +19,11 @@ describe('Workable Routes', () => {
       mockWorkable = {
         getJobs: sinon.stub()
       };
-      routes = new Routes(mockWorkable);
+      jobsController = new JobsController(mockWorkable);
     });
 
     it('is a function', () => {
-      expect(isFunction(routes.getJobs)).to.be.true;
+      expect(isFunction(jobsController.getJobs)).to.be.true;
     });
 
     describe('when workable.getJobs resolves', () => {
@@ -34,7 +34,7 @@ describe('Workable Routes', () => {
           done();
         };
         mockWorkable.getJobs.returns(Promise.resolve('test'));
-        routes.getJobs(req, res);
+        jobsController.getJobs(req, res);
       });
 
     });
@@ -55,7 +55,7 @@ describe('Workable Routes', () => {
           expect(value).to.equal(error.status);
           done();
         };
-        routes.getJobs(req, res);
+        jobsController.getJobs(req, res);
       });
 
       it('calls response.send with error message', (done) => {
@@ -63,10 +63,8 @@ describe('Workable Routes', () => {
           expect(value).to.equal(error.message);
           done();
         };
-        routes.getJobs(req, res);
+        jobsController.getJobs(req, res);
       });
-
     });
-
   });
 });

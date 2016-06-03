@@ -3,6 +3,7 @@
 require('babel-core/register');
 const childProcess = require('child_process');
 const phantomjs = require('phantomjs-prebuilt');
+const webdriverio = require('webdriverio');
 
 let phantomProcess;
 
@@ -118,6 +119,9 @@ exports.config = {
       '--webdriver=4444'
     ];
 
+    global.browser = webdriverio.remote(this);
+    global.browser.init();
+
     return new Promise((resolve) => {
       phantomProcess = childProcess.execFile(binPath, childArgs);
       phantomProcess.stdout.once('data', () => {
@@ -142,6 +146,7 @@ exports.config = {
   // Gets executed after all workers got shut down and the process is about to exit. It is not
   // possible to defer the end of the process using a promise.
   onComplete: function () {
+    global.browser.end();
     phantomProcess.kill();
   }
 };
