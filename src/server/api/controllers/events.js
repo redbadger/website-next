@@ -1,8 +1,8 @@
 import { couchDb } from '../../../shared/config';
-import http from 'http';
 import qs from 'qs';
 import moment from 'moment';
 import slugify from 'slug';
+import request from 'request';
 
 export default class EventsController {
   getEvents = (req, res) => {
@@ -74,37 +74,24 @@ export default class EventsController {
       "slug": slug
     };
 
-    var newEventString = JSON.stringify(newEvent);
-
     // An object of options to indicate where to post to
 
-    var post_options = {
+    var postOptions = {
       host: (process.env.NODE_ENV === 'production' ? couchDb.remote.host  : couchDb.local.host),
       port: (process.env.NODE_ENV === 'production' ? couchDb.remote.port  : couchDb.local.port),
-      path: '/events',
-      method: 'POST',
-      headers: {
-        "Content-Type": "application/json",
-        "Content-Length": Buffer.byteLength(newEventString)
-      }
+      path: '/events'
     };
 
-    // Set up the request
-    var post_req = http.request(post_options, function (res) {
-      res.setEncoding('utf8');
-      res.on('data', function (chunk) {
-        chunk = JSON.parse(chunk);
-        if (chunk.ok) {
-          clientRes.redirect('/about-us/events');
-        } else {
-          var qSError = qs.stringify({error: 'Something Went wrong'});
-          clientRes.redirect('/about-us/events/add/?' + qSError);
-        }
-      });
+    request.post({
+      url: `http://${postOptions.host}:${postOptions.port}${postOptions.path}`,
+      json: newEvent
+    }, function (err) {
+      if (!err) {
+        clientRes.redirect('/about-us/events');
+      } else {
+        var qSError = qs.stringify({error: 'Something Went wrong'});
+        clientRes.redirect('/about-us/events/add/?' + qSError);
+      }
     });
-
-    // post the data
-    post_req.write(newEventString);
-    post_req.end();
   }
 }
