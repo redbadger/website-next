@@ -11,7 +11,7 @@
     "lint": "eslint --cache .",
     "local": "source .env && NODE_ENV=development HOT=true node server.dev.js",
     "security:check": "./node_modules/.bin/nsp check",
-    "start": "env && node build/server",
+    "start": "node build/server",
     "test": "npm run test:server && npm run test:client && npm run security:check && npm run lint && npm run test:e2e",
     "test:client": "karma start spec/karma.config.js",
     "test:e2e": "wdio spec/wdio.config.js",
