@@ -15,4 +15,4 @@ export const couchDb = {
   }
 };
 
-export const imageAssetsEndpoint = 'http://res.cloudinary.com/red-badger-assets/image/upload/events/';
+export const imageAssetsEndpoint = '//res.cloudinary.com/red-badger-assets/image/upload/events/';
