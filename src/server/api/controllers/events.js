@@ -6,14 +6,13 @@ import request from 'request';
 
 export default class EventsController {
   getEvents = (req, res) => {
-    // fetch(badgerBrain.remote.protocol + (process.env.NODE_ENV === 'production' ? (badgerBrain.remote.host + ':' + badgerBrain.remote.port) : (badgerBrain.local.host + ':' + badgerBrain.local.port)) + '/graphql?query= { allEvents { id, slug, title, strapline, internalLinks { title, url }, externalLinks { title, url }, datetime { iso, date, month, monthSym, year }, body { type, text } }}')
-    fetch('http://127.0.0.1:3001/graphql?query={allEvents{id,slug,title,strapline,internalLinks{title,url},externalLinks{title,url},datetime{iso,date,month,monthSym,year},body{type,text}}}')
+    fetch('http://127.0.0.1:3001/graphql?query={allEvents{id,slug,title,strapline,internalLinks{title,url},externalLinks{title,url},datetime{iso,date,month,monthSym,year},body{type,text},featureImageFilename}}')
       .then((response) => {
         return response.json();
       })
       .then((events) => {
         console.log('@@@events: ', events);
-        res.send({list: events});
+        res.send({list: events.data.allEvents});
       })
       .catch((err) => {
         res.status(err.status).send(err.message);

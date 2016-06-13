@@ -39,7 +39,7 @@ export default class EventsList extends Component {
 
     let relevantEvents = this.props.events.filter(function (event)
     {
-      const d = new Date(event.doc.datetime.iso);
+      const d = new Date(event.datetime.iso);
 
       if (this.props.timeline === 'today') {
         return (d.toDateString() === today.toDateString());
@@ -53,6 +53,8 @@ export default class EventsList extends Component {
     if (relevantEvents.length > 1 && this.props.timeline === 'future') {
       relevantEvents = relevantEvents.reverse();
     }
+
+    console.log('RELEVANT EVENTS', relevantEvents);
 
     if (relevantEvents.length > 0) {
       return (
@@ -90,13 +92,13 @@ export default class EventsList extends Component {
                       <Cell size={1} breakOn="mobile">
                         <HR color="grey" customClassName={styles.mobileHorizontalLine} />
                         <DateBubble
-                            date={event.doc.datetime.date}
-                            month={event.doc.datetime.monthSym}
-                            year={event.doc.datetime.year}
+                            date={event.datetime.date}
+                            month={event.datetime.monthSym}
+                            year={event.datetime.year}
                         />
                       </Cell>
                       <Cell size={1} key="event_picture_mobile" hideOn="mobileSM">
-                        <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href={eventHref(event)} />
+                        <EventImage imgPath={ imageAssetsEndpoint + event.featureImageFilename } href={eventHref(event)} />
                       </Cell>
                       <Cell size={11} breakOn="mobile">
                         <HR color="grey" customClassName={styles.wideHorizontalLine} />
@@ -105,7 +107,7 @@ export default class EventsList extends Component {
                             <a className={styles.eventTitleLink} href={eventHref(event)}>
                               <h2 className={styles.eventTitle}>
                                 <span>
-                                  {event.doc.attributes.title}
+                                  {event.title}
                                 </span>
                                 <span className={classNames(
                                   {
@@ -116,25 +118,25 @@ export default class EventsList extends Component {
                               </h2>
                             </a>
                             <div className={styles.eventDescription}>
-                              {event.doc.attributes.strapline}
+                              {event.strapline}
                             </div>
                             {
-                              event.doc.attributes.externalLinks ?
+                              event.externalLinks ?
                                 <EventLinksList
-                                  linkList={event.doc.attributes.externalLinks}
+                                  linkList={event.externalLinks}
                                   listType="external" />
                                 : null
                             }
                             {
-                              event.doc.attributes.internalLinks ?
+                              event.internalLinks ?
                                 <EventLinksList
-                                  linkList={event.doc.attributes.internalLinks}
+                                  linkList={event.internalLinks}
                                   listType="internal" />
                                 : null
                             }
                           </Cell>
                           <Cell size={4} key='event_picture' breakOn="mobileS" hideOn="mobileS">
-                            <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href={eventHref(event)} />
+                            <EventImage imgPath={ imageAssetsEndpoint + event.featureImageFilename } href={eventHref(event)} />
                           </Cell>
                         </Grid>
                       </Cell>
