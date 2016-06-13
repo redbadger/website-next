@@ -24,6 +24,9 @@ export default class EventsList extends Component {
   };
 
   render () {
+
+    console.log('@@@ inside events list');
+
     const today = new Date();
 
     let yesterday = new Date();

@@ -1,4 +1,4 @@
-import { couchDb } from '../../../shared/config';
+import { badgerBrain } from '../../../shared/config';
 import qs from 'qs';
 import moment from 'moment';
 import slugify from 'slug';
@@ -6,15 +6,14 @@ import request from 'request';
 
 export default class EventsController {
   getEvents = (req, res) => {
-    fetch(couchDb.remote.protocol + (process.env.NODE_ENV === 'production' ? (couchDb.remote.host + ':' + couchDb.remote.port) : (couchDb.local.host + ':' + couchDb.local.port)) + '/events/_all_docs?include_docs=true')
+    // fetch(badgerBrain.remote.protocol + (process.env.NODE_ENV === 'production' ? (badgerBrain.remote.host + ':' + badgerBrain.remote.port) : (badgerBrain.local.host + ':' + badgerBrain.local.port)) + '/graphql?query= { allEvents { id, slug, title, strapline, internalLinks { title, url }, externalLinks { title, url }, datetime { iso, date, month, monthSym, year }, body { type, text } }}')
+    fetch('http://127.0.0.1:3001/graphql?query={allEvents{id,slug,title,strapline,internalLinks{title,url},externalLinks{title,url},datetime{iso,date,month,monthSym,year},body{type,text}}}')
       .then((response) => {
         return response.json();
       })
       .then((events) => {
-        res.send({list: events.rows.sort(function (a, b) {
-          // also sort all events by date
-          return new Date(b.doc.datetime.iso) - new Date(a.doc.datetime.iso);
-        })});
+        console.log('@@@events: ', events);
+        res.send({list: events});
       })
       .catch((err) => {
         res.status(err.status).send(err.message);
@@ -77,8 +76,8 @@ export default class EventsController {
     // An object of options to indicate where to post to
 
     var postOptions = {
-      host: (process.env.NODE_ENV === 'production' ? couchDb.remote.host  : couchDb.local.host),
-      port: (process.env.NODE_ENV === 'production' ? couchDb.remote.port  : couchDb.local.port),
+      host: (process.env.NODE_ENV === 'production' ? badgerBrain.remote.host  : badgerBrain.local.host),
+      port: (process.env.NODE_ENV === 'production' ? badgerBrain.remote.port  : badgerBrain.local.port),
       path: '/events'
     };
 

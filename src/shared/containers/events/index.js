@@ -8,21 +8,18 @@ import { connect } from 'react-redux';
 import EventsList from '../../components/events-list';
 import BannerReactConf from '../../components/banner-react-conf';
 
+
 export class Events extends Component {
   static fetchData = fetchEvents(fetch());
 
   render () {
+
+    console.log('@@@fetchdata', fetchData);
+
     return (
       <div>
         <h1 className={styles.h1}>Events</h1>
-        <BannerReactConf />
-        <Section>
-          <Container>
-            <EventsList events={this.props.events} timeline="today" />
-            <EventsList events={this.props.events} timeline="future" />
-            <EventsList events={this.props.events} timeline="past" />
-          </Container>
-        </Section>
+        <div>{this.props}</div>
       </div>
     );
   }

@@ -15,4 +15,17 @@ export const couchDb = {
   }
 };
 
+export const badgerBrain = {
+  local: {
+    host: '127.0.0.1',
+    protocol: 'http://',
+    port: '3001'
+  },
+  remote: {
+    host: process.env.DB_HOST || '127.0.0.1',
+    protocol: 'http://',
+    port: '3001'
+  }
+};
+
 export const imageAssetsEndpoint = '//res.cloudinary.com/red-badger-assets/image/upload/events/';
