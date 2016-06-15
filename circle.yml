@@ -21,7 +21,6 @@ dependencies:
 test:
   override:
     - npm run security:check
-    - npm run lint
     - npm run test:server
     - npm run test:client -- --browsers PhantomJS
     - export APP_HOST=`ifconfig eth0 | grep -oP 'inet addr:\K\S+'` && COMPOSE_FILE=docker-compose-test.yml docker-compose up -d
