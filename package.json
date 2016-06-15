@@ -16,9 +16,7 @@
     "test-full": "npm run test:server && npm run test:client && npm run security:check && npm run lint && npm run test:e2e",
     "test:client": "karma start spec/karma.config.js",
     "test:e2e": "wdio spec/wdio.config.js",
-    "test:server": "mocha --compilers js:babel-core/register --require spec/mocha-helper.js --recursive --reporter spec $(find src -name *spec.js)",
-    "pre-push": "npm run lint; npm run test:server",
-    "commit": "commit-wizard"
+    "test:server": "mocha --compilers js:babel-core/register --require spec/mocha-helper.js --recursive --reporter spec $(find src -name *spec.js)"
   },
   "repository": {
     "type": "git",
