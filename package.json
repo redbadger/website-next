@@ -8,7 +8,7 @@
     "build": "npm run clean && webpack --progress",
     "populate": "source .env && node scripts/import-events-to-couchdb.js",
     "clean": "rimraf build",
-    "lint": "eslint --cache .",
+    "lint": "eslint",
     "local": "source .env && NODE_ENV=development HOT=true node server.dev.js",
     "security:check": "./node_modules/.bin/nsp check",
     "start": "node build/server",
@@ -110,7 +110,7 @@
     "postcss-cssnext": "^2.4.0",
     "postcss-discard-duplicates": "^2.0.0",
     "postcss-loader": "^0.8.0",
-    "pre-git": "^3.9.0",
+    "pre-git": "^3.9.1",
     "react-addons-test-utils": "^0.14.7",
     "react-shallow-testutils": "^0.7.1",
     "rimraf": "2.5.1",
@@ -129,7 +129,8 @@
   "config": {
     "pre-git": {
       "pre-commit": [
-        "npm t"
+        "npm t",
+        "git diff --cached --name-only --diff-filter=ACM | grep '.js$' | xargs npm run lint || { exit 1; }"
       ],
       "pre-push": [],
       "post-commit": [],
