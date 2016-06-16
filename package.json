@@ -8,15 +8,15 @@
     "build": "npm run clean && webpack --progress",
     "populate": "source .env && node scripts/import-events-to-couchdb.js",
     "clean": "rimraf build",
-    "lint": "eslint --cache .",
+    "lint": "eslint",
     "local": "source .env && NODE_ENV=development HOT=true node server.dev.js",
     "security:check": "./node_modules/.bin/nsp check",
     "start": "node build/server",
-    "test": "npm run test:server && npm run test:client && npm run security:check && npm run lint && npm run test:e2e",
+    "test": "npm run test:server && npm run security:check",
+    "test-full": "npm run test:server && npm run test:client && npm run security:check && npm run lint && npm run test:e2e",
     "test:client": "karma start spec/karma.config.js",
     "test:e2e": "wdio spec/wdio.config.js",
-    "test:server": "mocha --compilers js:babel-core/register --require spec/mocha-helper.js --recursive --reporter spec $(find src -name *spec.js)",
-    "pre-push": "npm run lint; npm run test:server"
+    "test:server": "mocha --compilers js:babel-core/register --require spec/mocha-helper.js --recursive --reporter spec $(find src -name *spec.js)"
   },
   "repository": {
     "type": "git",
@@ -27,10 +27,6 @@
     "url": "https://github.com/redbadger/website-next/issues"
   },
   "homepage": "https://github.com/redbadger/website-next",
-  "pre-push": [
-    "lint",
-    "test:server"
-  ],
   "dependencies": {
     "body-parser": "^1.15.1",
     "chalk": "^1.1.1",
@@ -68,21 +64,24 @@
     "source-map-support": "^0.4.0"
   },
   "devDependencies": {
-    "babel-core": "^6.4.5",
-    "babel-eslint": "^4.1.8",
+    "babel-core": "^6.9.1",
+    "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.1",
     "babel-plugin-react-transform": "2.0.0",
-    "babel-polyfill": "^6.3.14",
+    "babel-polyfill": "^6.9.1",
     "babel-preset-es2015-webpack": "^6.3.13",
     "babel-preset-node5": "^10.5.0",
     "babel-preset-react": "^6.3.13",
     "babel-preset-react-hmre": "^1.1.0",
-    "babel-preset-stage-0": "^6.3.13",
+    "babel-preset-stage-0": "^6.5.0",
     "chai": "^3.5.0",
     "css-loader": "^0.23.1",
     "css-modules-require-hook": "^2.1.0",
-    "eslint": "^1.10.3",
-    "eslint-plugin-react": "^3.16.1",
+    "eslint": "^2.12.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^1.4.2",
+    "eslint-plugin-react": "^5.1.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "fake-file-loader": "^1.0.0",
     "file-loader": "^0.8.5",
@@ -107,6 +106,7 @@
     "postcss-cssnext": "^2.4.0",
     "postcss-discard-duplicates": "^2.0.0",
     "postcss-loader": "^0.8.0",
+    "pre-git": "^3.9.1",
     "react-addons-test-utils": "^0.14.7",
     "react-shallow-testutils": "^0.7.1",
     "rimraf": "2.5.1",
@@ -121,5 +121,17 @@
   },
   "engines": {
     "node": "5.5.0"
+  },
+  "config": {
+    "pre-git": {
+      "pre-commit": [
+        "npm t",
+        "git diff --cached --name-only --diff-filter=ACM | grep '.js$' | xargs npm run lint || { exit 1; }"
+      ],
+      "pre-push": [],
+      "post-commit": [],
+      "post-checkout": [],
+      "post-merge": []
+    }
   }
 }
