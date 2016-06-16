@@ -26,5 +26,6 @@
   "rules": {
     "guard-for-in": 0,
     "no-unused-vars": [2, {"args": "after-used", "varsIgnorePattern": "^React"}],
+    "react/jsx-uses-vars": 2,
   }
 }
