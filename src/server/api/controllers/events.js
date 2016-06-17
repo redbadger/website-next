@@ -44,7 +44,9 @@ export default class EventsController {
     fetch(endpoint, fetchInit)
       .then((response) => response.json())
       .then((events) => {
-        res.send({ list: events.data.allEvents });
+        res.send({ list: events.data.allEvents.sort((a, b) =>
+          new Date(b.datetime.iso) - new Date(a.datetime.iso)
+        ) });
       })
       .catch((err) => {
         res.status(err.status).send(err.message);
