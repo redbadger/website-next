@@ -17,14 +17,13 @@ const titles = {
       {
         type: 'Title1',
         props: {
-          children: 'Join us',
+          children: `Join us`,
         },
       },
       {
         type: 'Title3',
         props: {
-          children: `<span>Are we what you're looking
-          <span className={styles.noWrap}>for?*</span></span>`,
+          children: <span>Are we what you're looking <span className={styles.noWrap}>for?*</span></span>
         },
       },
     ],

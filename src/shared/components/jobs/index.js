@@ -10,11 +10,11 @@ export class Jobs extends Component {
   static propTypes = {
     jobs: React.PropTypes.arrayOf(React.PropTypes.shape({
       description: React.PropTypes.string,
-      title: React.PropTypes.string
+      title: React.PropTypes.string,
     }))
   };
 
-  render () {
+  render() {
     const listings = this.props.jobs.map((job, index) => {
       return (
         <Note key={index}>
@@ -34,8 +34,6 @@ export class Jobs extends Component {
   }
 }
 
-export default connect((state) => {
-  return {
-    jobs: state.jobs
-  };
-})(Jobs);
+export default connect(state => ({
+  jobs: state.jobs
+}))(Jobs);

@@ -3,7 +3,7 @@ import { apiEndpoint } from '../../config';
 
 const initialState = [];
 
-export default function reducer (state = initialState, action) {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case actions.FETCH_JOBS_SUCCESS:
       return action.jobs;
@@ -14,17 +14,17 @@ export default function reducer (state = initialState, action) {
   }
 }
 
-export function fetchSuccessful (jobs) {
+export function fetchSuccessful(jobs) {
   return {
     type: actions.FETCH_JOBS_SUCCESS,
-    jobs
+    jobs,
   };
 }
 
-export function fetchFailure (error) {
+export function fetchFailure(error) {
   return {
     type: actions.FETCH_JOBS_FAIL,
-    error
+    error,
   };
 }
 

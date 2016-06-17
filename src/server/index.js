@@ -3,7 +3,7 @@ if (process.env.NEWRELIC_LICENSE) {
 }
 
 import * as config from './config';
-import * as createApi from './api';
+import createApi from './api';
 import express from 'express';
 import fetch from '../shared/util/fetch-proxy';
 import WorkableAPI from './api/workable';
