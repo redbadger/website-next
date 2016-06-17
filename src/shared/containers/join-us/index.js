@@ -17,39 +17,49 @@ const titles = {
       {
         type: 'Title1',
         props: {
-          children: 'Join us'
-        }
+          children: 'Join us',
+        },
       },
       {
         type: 'Title3',
         props: {
-          children: <span>Are we what you're looking <span className={styles.noWrap}>for?*</span></span>
-        }
-      }
-    ]
-  }
+          children: `<span>Are we what you're looking
+          <span className={styles.noWrap}>for?*</span></span>`,
+        },
+      },
+    ],
+  },
 };
 
 const join = {
   type: 'Content',
   props: {
-    children: [{
-      type: 'Paragraph',
-      props: {
-        children: "We love doing fantastic work for our clients. We do this in integrated teams which are completely open with each other and our customers. It's all about communication and collaboration. It's about being innovative, being inspired, having fun and making magical things happen."
-      }
-    }, {
-      type: 'Paragraph',
-      props: {
-        children: [{
-          type: 'Strong',
-          props: {
-            children: "* And vice versa"
-          }
-        }]
-      }
-    }]
-  }
+    children: [
+      {
+        type: 'Paragraph',
+        props: {
+          children: `We love doing fantastic work for our clients. We do this
+          in integrated teams which are completely open with each other and our
+          customers. It's all about communication and collaboration. It's about
+          being innovative, being inspired, having fun and making magical
+          things happen.`,
+        },
+      },
+      {
+        type: 'Paragraph',
+        props: {
+          children: [
+            {
+              type: 'Strong',
+              props: {
+                children: '* And vice versa',
+              },
+            },
+          ],
+        },
+      },
+    ],
+  },
 };
 
 const apply = {
@@ -59,39 +69,43 @@ const apply = {
       {
         type: 'Title2',
         props: {
-          children: 'How to Apply'
-        }
-      }, {
+          children: 'How to Apply',
+        },
+      },
+      {
         type: 'Paragraph',
         props: {
           children: [
-            "If you'd like more information, you want to apply, or you'd simply like to say 'hello', then please get in touch with your CV, Stackoverflow profile, Github, code, portfolio and anything else you think we might be interested in, at: ",
+            `If you'd like more information, you want to apply, or you'd simply
+            like to say 'hello', then please get in touch with your CV,
+            Stackoverflow profile, Github, code, portfolio and anything else
+            you think we might be interested in, at: `,
             {
               type: 'Link',
               props: {
-                href: "mailto:jobs@red-badger.com",
-                children: "jobs@red-badger.com."
-              }
-            }
+                href: 'mailto:jobs@red-badger.com',
+                children: 'jobs@red-badger.com.',
+              },
+            },
           ],
-          align: 'center'
-        }
-      }
-    ]
-  }
+          align: 'center',
+        },
+      },
+    ],
+  },
 };
 
 const vacancies = {
   type: 'Title2',
   props: {
-    children: 'Current Vacancies'
-  }
+    children: 'Current Vacancies',
+  },
 };
 
 export default class JoinUs extends Component {
   static fetchData = fetchJobs(fetch());
 
-  render () {
+  render() {
     return (
       <div>
         <Section>

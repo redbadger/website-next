@@ -1,5 +1,9 @@
 import { expect } from 'chai';
-import { HTML_CONTENT, UPDATE_CONTENT_AREA, reducer, updateContentArea } from './';
+import {
+  HTML_CONTENT,
+  UPDATE_CONTENT_AREA,
+  reducer,
+  updateContentArea } from './';
 
 describe('updateContentArea action', () => {
   it('creates the correct properties', () => {
@@ -8,7 +12,7 @@ describe('updateContentArea action', () => {
     expect(action).to.eql({
       type: UPDATE_CONTENT_AREA,
       id: 1,
-      content: '<p>test</p>'
+      content: '<p>test</p>',
     });
   });
 });
@@ -28,7 +32,7 @@ describe('Content areas reducer', () => {
     expect(state).to.include({
       id: 1,
       content: '<p>I have been updated</p>',
-      type: HTML_CONTENT
+      type: HTML_CONTENT,
     });
   });
 });

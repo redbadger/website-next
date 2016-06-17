@@ -1,5 +1,4 @@
-import reducer from './job';
-import { fetchSuccessful, fetchFailure, fetchJob } from './job';
+import reducer, { fetchSuccessful, fetchFailure, fetchJob } from './job';
 import actions from '../actions';
 import { expect } from 'chai';
 import HttpError from '../../util/http-error';
@@ -10,7 +9,7 @@ describe('job actions', () => {
     it('returns an object containing job and correct type', () => {
       expect(fetchSuccessful('job')).to.deep.equal({
         type: actions.FETCH_JOB_SUCCESS,
-        job: 'job'
+        job: 'job',
       });
     });
   });
@@ -19,13 +18,14 @@ describe('job actions', () => {
     it('returns an object containing error and correct type', () => {
       expect(fetchFailure('error')).to.deep.equal({
         type: actions.FETCH_JOB_FAIL,
-        error: 'error'
+        error: 'error',
       });
     });
   });
 
   describe('fetch job', () => {
-    let fetchFn, fetch;
+    let fetchFn;
+    let fetch;
 
     beforeEach(() => {
       fetch = sinon.stub();
@@ -37,19 +37,21 @@ describe('job actions', () => {
     });
 
     describe('inner function', () => {
-      let getState, dispatch, state, nextState;
+      let getState;
+      let dispatch;
+      let state;
+      let nextState;
 
       beforeEach(() => {
         dispatch = sinon.spy();
         state = {
-          jobs: [{
-            slug: 'hello'
-          }, {
-            slug: 'there'
-          }]
+          jobs: [
+            { slug: 'hello' },
+            { slug: 'there' },
+          ],
         };
         nextState = {
-          params: {}
+          params: {},
         };
         getState = () => state;
       });
@@ -93,7 +95,7 @@ describe('job reducer', () => {
   it('updates jobs if fetch was successful', () => {
     const action = {
       type: actions.FETCH_JOB_SUCCESS,
-      job: 'job'
+      job: 'job',
     };
     expect(reducer(undefined, action)).to.equal('job');
   });
@@ -101,7 +103,7 @@ describe('job reducer', () => {
   it('updates jobs if fetch failed', () => {
     const action = {
       type: actions.FETCH_JOB_FAIL,
-      error: 'error'
+      error: 'error',
     };
     expect(reducer(undefined, action)).to.deep.equal({});
   });
