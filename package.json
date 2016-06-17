@@ -27,10 +27,6 @@
     "url": "https://github.com/redbadger/website-next/issues"
   },
   "homepage": "https://github.com/redbadger/website-next",
-  "pre-push": [
-    "lint",
-    "test:server"
-  ],
   "dependencies": {
     "body-parser": "^1.15.1",
     "chalk": "^1.1.1",
