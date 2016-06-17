@@ -23,4 +23,4 @@ export default function createApi(workable) {
   api.get('/check-login', ensureAuthenticated, (req, res) => res.send('OK'));
 
   return api;
-}
+};

@@ -33,14 +33,14 @@ function mapRouteToPageTitle (path) {
   const joinRegex = new RegExp('join-us', 'gi');
 
   if (eventsRegex.test(path)) {
-    return "Events | Red Badger";
+    return 'Events | Red Badger';
   }
 
   if (joinRegex.test(path)) {
-    return "Join Us | Red Badger";
+    return 'Join Us | Red Badger';
   }
 
-  return "Red Badger";
+  return 'Red Badger';
 }
 
 const renderErrorPage = (error) => {
