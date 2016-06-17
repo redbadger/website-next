@@ -6,10 +6,10 @@ import classNames from 'classnames';
 export default class Paragraph extends Component {
   static propTypes = {
     align: React.PropTypes.oneOf(['center', 'left', 'right']),
-    children: React.PropTypes.node
+    children: React.PropTypes.node,
   };
 
-  render () {
+  render() {
     const pClass = classNames(textStyles[this.props.align], styles.p);
     return <p className={pClass}>{this.props.children}</p>;
   }

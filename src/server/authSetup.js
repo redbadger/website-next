@@ -1,12 +1,12 @@
-var passport = require('passport');
-var GoogleStrategy = require('passport-google-oauth20').Strategy;
-var session = require('express-session');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const session = require('express-session');
 
 const authSetup = app => {
   app.use(session({
     secret: process.env.PASSPORT_SESSIONSECRET,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
   }));
   app.use(passport.initialize());
   app.use(passport.session());
@@ -19,14 +19,14 @@ const authSetup = app => {
       {
         clientSecret: process.env.PASSPORT_GOOGLE_CLIENTSECRET,
         clientID: process.env.PASSPORT_GOOGLE_CLIENTID,
-        callbackURL: '/auth/login/callback'
+        callbackURL: '/auth/login/callback',
       },
       (token, refreshToken, profile, done) => {
+        /* eslint no-underscore-dangle: ["error", { "allow": ["_json"] }] */
         if (process.env.PASSPORT_GOOGLE_ALLOWEDDOMAINNAMES === profile._json.domain) {
           return done(null, profile);
-        } else {
-          return done();
         }
+        return done();
       }
     )
   );

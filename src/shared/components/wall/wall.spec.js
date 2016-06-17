@@ -9,7 +9,7 @@ describe('Wall', () => {
   let cells;
 
   beforeEach(() => {
-    element = render(<Wall cols={4}>{[1,2,3,4,5,6,7,8,9]}</Wall>);
+    element = render(<Wall cols={4}>{[1, 2, 3, 4, 5, 6, 7, 8, 9]}</Wall>);
     cells = findAllWithType(Cell, element);
   });
 
