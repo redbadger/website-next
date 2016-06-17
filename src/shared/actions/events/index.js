@@ -15,9 +15,6 @@ export default function reducer (state = initialState, action) {
 }
 
 export function fetchSuccessful (events) {
-
-  console.log('@@@ inside fetch successfull');
-
   return {
     type: actions.FETCH_EVENTS_SUCCESS,
     events: events.list

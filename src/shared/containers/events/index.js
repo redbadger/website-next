@@ -12,8 +12,6 @@ export class Events extends Component {
   static fetchData = fetchEvents(fetch());
 
   render () {
-    console.log('RENDERING CONTAINER');
-    console.log('PROPS', this.props.events);
     return (
       <div>
         <h1 className={styles.h1}>Events</h1>

@@ -20,19 +20,19 @@ import Helmet from 'react-helmet';
 export class Event extends Component {
   static fetchData = fetchEvent(fetch());
 
-  render () {
+  render() {
     return (
       <div className={styles.eventContainer}>
-        <Helmet title={`${this.props.event.doc.attributes.title} | Red Badger`} />
+        <Helmet title={`${this.props.event.title} | Red Badger`} />
         <Section>
           <Container>
             <Grid fit={false}>
               <Cell size={1} breakOn="mobile">
                 <HR color="grey" customClassName={styles.mobileHorizontalLine} />
                 <DateBubble
-                    date={this.props.event.doc.datetime.date}
-                    month={this.props.event.doc.datetime.monthSym}
-                    year={this.props.event.doc.datetime.year}
+                    date={this.props.event.datetime.date}
+                    month={this.props.event.datetime.monthSym}
+                    year={this.props.event.datetime.year}
                 />
               </Cell>
               <Cell size={8} breakOn="mobile">
@@ -40,26 +40,32 @@ export class Event extends Component {
                 <Grid fit={false}>
                   <Cell size={11} key='event_description' breakOn="mobileS">
                     <h2 className={styles.eventTitle}>
-                      {this.props.event.doc.attributes.title}
+                      {this.props.event.title}
                     </h2>
                     <div className={styles.eventDescription}>
-                      {this.props.event.doc.attributes.strapline}
+                      {this.props.event.strapline}
                     </div>
                     <div className={styles.eventBody}>
-                      {marked(this.props.event.doc.body)}
+                      {
+                        this.props.event.body.map((el, i) =>
+                          (<p key={i}>
+                            {marked(el.text)}
+                          </p>)
+                        )
+                      }
                     </div>
                     <div>
                     {
-                      this.props.event.doc.attributes.externalLinks ?
+                      this.props.event.externalLinks ?
                         <EventLinksList
-                          linkList={this.props.event.doc.attributes.externalLinks}
+                          linkList={this.props.event.externalLinks}
                           listType="external" />
                         : null
                     }
                     {
-                      this.props.event.doc.attributes.internalLinks ?
+                      this.props.event.internalLinks ?
                         <EventLinksList
-                          linkList={this.props.event.doc.attributes.internalLinks}
+                          linkList={this.props.event.internalLinks}
                           listType="internal" />
                         : null
                     }
@@ -86,19 +92,17 @@ export class Event extends Component {
 }
 
 // This can be made much nicer when lodash 4.0.1 is released
-function firstWithSlug (slug) {
+function firstWithSlug(slug) {
   return flow(
-    filter((event) => {
-      return isEqual(slug, property('slug')(event.doc));
-    }),
+    filter((event) => isEqual(slug, property('slug')(event))),
     head
   );
 }
 
-function mapStateToProps (state, { routeParams }) {
+function mapStateToProps(state, { routeParams }) {
   return {
     event: firstWithSlug(routeParams.slug)(state.events),
-    recentEvents: state.events.slice(0, 10)
+    recentEvents: state.events.slice(0, 10),
   };
 }
 

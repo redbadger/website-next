@@ -5,6 +5,7 @@ import HttpError from '../../util/http-error';
 const initialState = {};
 
 export default function reducer (state = initialState, action) {
+  console.log('ACTION', action);
   switch (action.type) {
     case actions.FETCH_EVENT_SUCCESS:
       return action.event;
@@ -33,7 +34,9 @@ export const fetchEvent = (fetch) => (
   (dispatch, getState, nextState) => {
     return fetchEvents(fetch)(dispatch, getState)
       .then(() => {
-        const event = getState().events.find(j => j.slug === nextState.params.id);
+        const event = getState().events.find(j => {
+          return j.slug === nextState.params.slug;
+        });
         if (event) {
           dispatch(fetchSuccessful(event));
         } else {
