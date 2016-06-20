@@ -36,7 +36,8 @@ export const fetchJobs = (fetch) => (
       return Promise.resolve(jobs);
     }
 
-    return fetch(apiEndpoint + '/jobs')
+    return fetch(`${apiEndpoint}/jobs`)
+      // eslint-disable-next-line no-shadow
       .then(jobs => dispatch(fetchSuccessful(jobs)))
       .catch(e => dispatch(fetchFailure(e)));
   }

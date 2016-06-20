@@ -4,7 +4,7 @@ import HttpError from '../../util/http-error';
 
 const initialState = {};
 
-export default function reducer (state = initialState, action) {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case actions.FETCH_JOB_SUCCESS:
       return action.job;
@@ -15,24 +15,24 @@ export default function reducer (state = initialState, action) {
   }
 }
 
-export function fetchSuccessful (job) {
+export function fetchSuccessful(job) {
   return {
     type: actions.FETCH_JOB_SUCCESS,
-    job
+    job,
   };
 }
 
-export function fetchFailure (error) {
+export function fetchFailure(error) {
   return {
     type: actions.FETCH_JOB_FAIL,
-    error
+    error,
   };
 }
 
 export const fetchJob = (fetch) => (
-  (dispatch, getState, nextState) => {
-    return fetchJobs(fetch)(dispatch, getState)
-      .then(() => {
+  (dispatch, getState, nextState) => (
+    fetchJobs(fetch)(dispatch, getState)
+      .then(() => { // eslint-disable-line consistent-return
         const job = getState().jobs.find(j => j.slug === nextState.params.id);
         if (job) {
           dispatch(fetchSuccessful(job));
@@ -41,6 +41,6 @@ export const fetchJob = (fetch) => (
           dispatch(fetchFailure(error));
           return { error };
         }
-      });
-  }
+      })
+  )
 );
