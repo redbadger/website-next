@@ -2,6 +2,8 @@
 // You can request only displaying events of past or future
 // with the `timeline` prop
 
+/* eslint-disable max-len */
+
 import React, { Component } from 'react';
 import styles from './style.css';
 
@@ -15,23 +17,22 @@ import icons from '../icons/style.css';
 
 import EventLinksList from '../event-links-list';
 
-import {eventHref} from '../../util/event';
+import { eventHref } from '../../util/event';
 
 export default class EventsList extends Component {
   static propTypes = {
     events: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-    timeline: React.PropTypes.oneOf(['past', 'future', 'today'])
+    timeline: React.PropTypes.oneOf(['past', 'future', 'today']),
   };
 
-  render () {
-
+  render() {
     const today = new Date();
 
-    let yesterday = new Date();
+    const yesterday = new Date();
     yesterday.setDate(today.getDate() - 1);
     yesterday.setHours(23, 59, 59);
 
-    let tomorrow = new Date();
+    const tomorrow = new Date();
     tomorrow.setDate(today.getDate() + 1);
     tomorrow.setHours(0, 0, 0);
 
@@ -39,14 +40,15 @@ export default class EventsList extends Component {
     {
       const d = new Date(event.datetime.iso);
 
-      if (this.props.timeline === 'today') {
-        return (d.toDateString() === today.toDateString());
-      } else if (this.props.timeline === 'past') {
-        return (d < yesterday);
-      } else {
-        return (d > tomorrow);
+      switch (this.props.timeline) {
+        case 'today':
+          return (date.toDateString() === today.toDateString());
+        case 'past':
+          return (date < yesterday);
+        default:
+          return (date > tomorrow);
       }
-    }, this);
+    });
 
     if (relevantEvents.length > 1 && this.props.timeline === 'future') {
       relevantEvents = relevantEvents.reverse();
@@ -57,24 +59,12 @@ export default class EventsList extends Component {
         <div className={styles.eventsListTimelineSection}>
             {(() => {
               switch (this.props.timeline) {
-                case "past":
-                  return (
-                    <h2>
-                      Past events
-                    </h2>
-                  );
-                case "future":
-                  return (
-                    <h2>
-                    Upcoming events
-                    </h2>
-                  );
-                case "today":
-                  return (
-                    <h2>
-                      Today
-                    </h2>
-                  );
+                case 'past':
+                  return (<h2>Past events</h2>);
+                case 'future':
+                  return (<h2>Upcoming events</h2>);
+                case 'today':
+                  return (<h2>Today</h2>);
                 default:
                   return null;
               }
@@ -144,6 +134,8 @@ export default class EventsList extends Component {
           </ul>
         </div>
       );
-    } else { return null; }
+    }
+
+    return null;
   }
 }

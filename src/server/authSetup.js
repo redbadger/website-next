@@ -1,12 +1,12 @@
-var passport = require('passport');
-var GoogleStrategy = require('passport-google-oauth20').Strategy;
-var session = require('express-session');
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const session = require('express-session');
 
 const authSetup = app => {
   app.use(session({
     secret: process.env.PASSPORT_SESSIONSECRET,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
   }));
   app.use(passport.initialize());
   app.use(passport.session());
@@ -19,29 +19,27 @@ const authSetup = app => {
       {
         clientSecret: process.env.PASSPORT_GOOGLE_CLIENTSECRET,
         clientID: process.env.PASSPORT_GOOGLE_CLIENTID,
-        callbackURL: '/auth/login/callback'
+        callbackURL: '/auth/login/callback',
       },
       (token, refreshToken, profile, done) => {
+        // eslint-disable-next-line max-len, no-underscore-dangle
         if (process.env.PASSPORT_GOOGLE_ALLOWEDDOMAINNAMES === profile._json.domain) {
           return done(null, profile);
-        } else {
-          return done();
         }
+        return done();
       }
     )
   );
 
-  app.get('/auth/login', passport.authenticate('google', { scope: ['profile', 'email'] }));
+  app.get('/auth/login', passport.authenticate('google', {
+    scope: ['profile', 'email'],
+  }));
 
-  app.get(
-    '/auth/login/callback',
-    passport.authenticate(
-      'google',
-      { failureRedirect: 'http://www.red-badger.com' }
-    ),
-    (req, res) => {
-      res.redirect('/about-us/events/add');
-    }
+  app.get('/auth/login/callback',
+    passport.authenticate('google', {
+      failureRedirect: 'http://www.red-badger.com',
+    }),
+    (req, res) => res.redirect('/about-us/events/add')
   );
 
   app.get('/auth/logout', (req, res) => {

@@ -3,14 +3,14 @@
 import React, { Component } from 'react';
 import styles from './style.css';
 
-import {eventHref} from '../../util/event';
+import { eventHref } from '../../util/event';
 
 export default class EventsRecentList extends Component {
   static propTypes = {
-    events: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+    events: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   };
 
-  render () {
+  render() {
     return (
       <div className={styles.eventsRecentList}>
         <div className={styles.eventsRecentListTitle}>

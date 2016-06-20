@@ -3,7 +3,7 @@ if (process.env.NEWRELIC_LICENSE) {
 }
 
 import * as config from './config';
-import API from './api';
+import createApi from './api';
 import express from 'express';
 import fetch from '../shared/util/fetch-proxy';
 import WorkableAPI from './api/workable';
@@ -12,7 +12,7 @@ import authSetup from './authSetup';
 
 const app = authSetup(express());
 const workable = new WorkableAPI(fetch(), config.workable.key);
-const api = API(workable);
+const api = createApi(workable);
 
 app.use(express.static('static'));
 
@@ -23,7 +23,7 @@ app.use('/api', api);
 app.use(router);
 
 if (!config.hot) {
-  app.listen(config.port, function () {
+  app.listen(config.port, () => {
     console.log('Server listening on port', config.port);
   });
 }

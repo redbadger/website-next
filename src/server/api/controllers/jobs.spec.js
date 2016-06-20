@@ -7,7 +7,6 @@ import HttpError from '../../../shared/util/http-error';
 
 describe('Job Workable Routes', () => {
   describe('getJobs', () => {
-
     let mockWorkable;
     let jobsController;
     let req;
@@ -17,17 +16,16 @@ describe('Job Workable Routes', () => {
       req = {};
       res = {};
       mockWorkable = {
-        getJobs: sinon.stub()
+        getJobs: sinon.stub(),
       };
       jobsController = new JobsController(mockWorkable);
     });
 
     it('is a function', () => {
-      expect(isFunction(jobsController.getJobs)).to.be.true;
+      expect(isFunction(jobsController.getJobs)).to.equal(true);
     });
 
     describe('when workable.getJobs resolves', () => {
-
       it('calls response.send with resolved value', (done) => {
         res.send = (value) => {
           expect(value).to.equal('test');
@@ -36,16 +34,14 @@ describe('Job Workable Routes', () => {
         mockWorkable.getJobs.returns(Promise.resolve('test'));
         jobsController.getJobs(req, res);
       });
-
     });
 
     describe('when workable.getJobs rejects', () => {
-
       let error;
 
       beforeEach(() => {
         error = new HttpError(500);
-        res.status = () => { return res; };
+        res.status = () => res;
         res.send = noop;
         mockWorkable.getJobs.returns(Promise.reject(error));
       });

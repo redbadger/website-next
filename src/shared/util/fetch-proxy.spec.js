@@ -16,7 +16,7 @@ describe('Fetch Proxy', () => {
       fetchFunction = sinon.stub();
       response = {
         json: sinon.stub().returns(Promise.resolve('data')),
-        status: 200
+        status: 200,
       };
     });
 

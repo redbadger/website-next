@@ -4,25 +4,23 @@ import EventsController from './controllers/events';
 import bodyParser from 'body-parser';
 import authSetup from '../authSetup';
 
+// eslint-disable-next-line consistent-return
 const ensureAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) return next();
   res.sendStatus(403).send('You are not logged in. Please use: /auth/login');
-  return null;
 };
 
-export default function API(workable) {
-  const self = authSetup(express());
+export default function createApi(workable) {
+  const api = authSetup(express());
   const jobsController = new JobsController(workable);
   const eventsController = new EventsController();
 
-  self.use(bodyParser.json());       // to support JSON-encoded bodies
-  self.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-    extended: true,
-  }));
+  api.use(bodyParser.json());
+  api.use(bodyParser.urlencoded({ extended: true }));
 
-  self.get('/jobs', jobsController.getJobs);
-  self.get('/events', eventsController.getEvents);
-  self.get('/check-login', ensureAuthenticated, (req, res) => res.send('OK'));
+  api.get('/jobs', jobsController.getJobs);
+  api.get('/events', eventsController.getEvents);
+  api.get('/check-login', ensureAuthenticated, (req, res) => res.send('OK'));
 
-  return self;
+  return api;
 }

@@ -3,14 +3,14 @@ import styles from './style.css';
 
 export default class Container extends Component {
   static propTypes = {
-    children: React.PropTypes.node
+    children: React.PropTypes.node,
   };
 
   static defaultProps = {
-    children: []
+    children: [],
   };
 
-  render () {
+  render() {
     return (
       <div className={styles.wrapper}>
         <div className={styles.container}>

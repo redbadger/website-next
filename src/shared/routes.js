@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import React from 'react';
 import Root from './containers/root';
 import JoinUs from './containers/join-us';
@@ -11,19 +13,17 @@ import './containers/error';
 
 const routeFn = (store, args, ...children) => {
   if (args.component && args.component.fetchData) {
-    args = {
-      ...args,
-      onEnter: (nextState, replaceState, done) => {
-        args.component
-          .fetchData(store.dispatch, store.getState, nextState)
-          .then((response) => {
-            if (response && ((response instanceof HttpError) || response.error)) {
-              done(response.error || response);
-            } else {
-              done();
-            }
-          });
-      }
+    // eslint-disable-next-line no-param-reassign
+    args.onEnter = (nextState, replaceState, done) => {
+      args.component
+        .fetchData(store.dispatch, store.getState, nextState)
+        .then((response) => {
+          if (response && ((response instanceof HttpError) || response.error)) {
+            done(response.error || response);
+          } else {
+            done();
+          }
+        });
     };
   }
 
@@ -32,7 +32,7 @@ const routeFn = (store, args, ...children) => {
   );
 };
 
-export default function routes (store) {
+export default function routes(store) {
   const route = routeFn.bind(null, store);
   return (
       route({ component: Root, path: '/' },

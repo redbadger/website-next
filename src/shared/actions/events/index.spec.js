@@ -1,18 +1,17 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { fetchSuccessful, fetchFailure, fetchEvents } from './';
-import reducer from './';
+import reducer, { fetchSuccessful, fetchFailure, fetchEvents } from './';
 import actions from '../actions';
 
 describe('events actions', () => {
   describe('fetch success', () => {
     it('returns an object containing events and correct type', () => {
       const events = {
-        list: []
+        list: [],
       };
       expect(fetchSuccessful(events)).to.deep.equal({
         type: actions.FETCH_EVENTS_SUCCESS,
-        events: events.list
+        events: events.list,
       });
     });
   });
@@ -21,13 +20,14 @@ describe('events actions', () => {
     it('returns an object containing error and correct type', () => {
       expect(fetchFailure('error')).to.deep.equal({
         type: actions.FETCH_EVENTS_FAIL,
-        error: 'error'
+        error: 'error',
       });
     });
   });
 
   describe('fetch events', () => {
-    let fetchFn, fetch;
+    let fetchFn;
+    let fetch;
 
     beforeEach(() => {
       fetch = sinon.stub();
@@ -39,12 +39,14 @@ describe('events actions', () => {
     });
 
     describe('inner function', () => {
-      let getState, dispatch, state;
+      let getState;
+      let dispatch;
+      let state;
 
       beforeEach(() => {
         dispatch = sinon.stub();
         state = {
-          events: []
+          events: [],
         };
         getState = () => state;
       });
@@ -104,7 +106,7 @@ describe('events reducer', () => {
   it('updates events if fetch was successful', () => {
     const action = {
       type: actions.FETCH_EVENTS_SUCCESS,
-      events: 'events'
+      events: 'events',
     };
     expect(reducer(undefined, action)).to.equal('events');
   });
@@ -112,7 +114,7 @@ describe('events reducer', () => {
   it('updates events if fetch failed', () => {
     const action = {
       type: actions.FETCH_EVENTS_FAIL,
-      error: 'error'
+      error: 'error',
     };
     expect(reducer(undefined, action)).to.deep.equal([]);
   });

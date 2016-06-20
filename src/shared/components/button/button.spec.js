@@ -4,7 +4,6 @@ import { render } from '../../test-helper';
 import { expect } from 'chai';
 
 describe('Button', () => {
-
   it('is a button if href is not passed in props', () => {
     const result = render(<Button />);
 

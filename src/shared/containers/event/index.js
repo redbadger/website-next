@@ -28,7 +28,8 @@ export class Event extends Component {
           <Container>
             <Grid fit={false}>
               <Cell size={1} breakOn="mobile">
-                <HR color="grey" customClassName={styles.mobileHorizontalLine} />
+                <HR color="grey"
+                  customClassName={styles.mobileHorizontalLine} />
                 <DateBubble
                     date={this.props.event.datetime.date}
                     month={this.props.event.datetime.monthSym}
@@ -109,4 +110,3 @@ function mapStateToProps(state, { routeParams }) {
 export default connect(
   mapStateToProps
 )(Event);
-
