@@ -4,10 +4,10 @@ import Footer from '../footer';
 
 export default class Layout extends Component {
   static propTypes = {
-    children: React.PropTypes.node
+    children: React.PropTypes.node,
   };
 
-  render () {
+  render() {
     return (
       <div>
         <Header />

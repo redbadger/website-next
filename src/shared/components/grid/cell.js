@@ -12,26 +12,29 @@ export default class Cell extends Component {
 
     // Using breakpoint definitions from breakpoints.css
     // to allow this cell content to be hidden when needed
-    hideOn: React.PropTypes.oneOf(['mobileS', 'mobileSM', 'mobile', 'tablet', 'dont']),
+    hideOn: React.PropTypes.oneOf([
+      'mobileS',
+      'mobileSM',
+      'mobile',
+      'tablet',
+      'dont',
+    ]),
 
-    size: React.PropTypes.number
-
+    size: React.PropTypes.number,
   };
 
   static defaultProps = {
     breakOn: 'mobile',
-    hideOn: 'dont'
+    hideOn: 'dont',
   };
 
-  render () {
-    const cellClassNames = classNames(
-      {
-        [styles[`responsive-cell-${this.props.breakOn}`]]: true,
-        [styles.cell]: true,
-        [styles['size' + this.props.size + 'of12']]: !!this.props.size,
-        [styles[`hideOn${this.props.hideOn}`]]: true
-      }
-    );
+  render() {
+    const cellClassNames = classNames({
+      [styles[`responsive-cell-${this.props.breakOn}`]]: true,
+      [styles.cell]: true,
+      [styles[`size${this.props.size}of12`]]: !!this.props.size,
+      [styles[`hideOn${this.props.hideOn}`]]: true,
+    });
 
     return (
       <div className={cellClassNames}>

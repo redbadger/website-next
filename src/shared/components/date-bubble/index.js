@@ -7,10 +7,10 @@ export default class DateBubble extends Component {
   static propTypes = {
     date: React.PropTypes.string,
     month: React.PropTypes.string,
-    year: React.PropTypes.string
+    year: React.PropTypes.string,
   };
 
-  render () {
+  render() {
     return (
       <div className={styles.dateBubble}>
         <div className={styles.date}>

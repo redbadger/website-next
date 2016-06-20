@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import Container from '../container';
@@ -9,7 +11,7 @@ import * as icons from '../icons/style.css';
 import * as display from '../utils/display.css';
 
 export default class Footer extends Component {
-  render () {
+  render() {
     return (
       <footer className={styles.footer}>
         <Container>

@@ -5,11 +5,11 @@ import styles from './style.css';
 export default class Button extends Component {
   static propTypes = {
     className: React.PropTypes.string,
-    href: React.PropTypes.string
+    href: React.PropTypes.string,
   };
 
-  render () {
-    let { className, ...other } = this.props;
+  render() {
+    const { className, ...other } = this.props;
     const buttonClass = classNames(className, styles.button);
 
     if (this.props.href) {
@@ -22,5 +22,4 @@ export default class Button extends Component {
       <button {...other} className={buttonClass}></button>
     );
   }
-
 }
