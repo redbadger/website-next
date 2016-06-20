@@ -7,10 +7,10 @@ import styles from './style.css';
 
 export default class ErrorPage extends Component {
   static propTypes = {
-    status: React.PropTypes.number
+    status: React.PropTypes.number,
   };
 
-  render () {
+  render() {
     let text;
 
     if (this.props.status === 500) {
