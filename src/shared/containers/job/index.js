@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import HtmlParser from '../../components/html-parser';
@@ -21,13 +23,13 @@ export class Job extends Component {
     job: React.PropTypes.shape({
       title: React.PropTypes.string,
       fullDescription: React.PropTypes.string,
-      applicationUrl: React.PropTypes.string
-    })
+      applicationUrl: React.PropTypes.string,
+    }),
   };
 
   static fetchData = fetchJob(fetch());
 
-  render () {
+  render() {
     return (
       <Section>
         <Helmet title={`${this.props.job.title} | Red Badger`} />
@@ -59,21 +61,19 @@ export class Job extends Component {
 }
 
 // This can be made much nicer when lodash 4.0.1 is released
-function firstWithSlug (slug) {
+function firstWithSlug(slug) {
   return flow(
-    filter((job) => {
-      return isEqual(slug, property('slug')(job));
-    }),
-    head
+    filter(job => isEqual(slug, property('slug')(job))),
+    head,
   );
 }
 
 // I think connect should be moved to make this component just care about
 // getting a job. React router should be doing a level of this so that
 // we can send a 404 when the job does not exist.
-function mapStateToProps (state, { routeParams }) {
+function mapStateToProps(state, { routeParams }) {
   return {
-    job: firstWithSlug(routeParams.id)(state.jobs)
+    job: firstWithSlug(routeParams.id)(state.jobs),
   };
 }
 

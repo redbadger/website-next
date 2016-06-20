@@ -17,12 +17,13 @@ const titles = {
       {
         type: 'Title1',
         props: {
-          children: `Join us`,
+          children: 'Join us',
         },
       },
       {
         type: 'Title3',
         props: {
+          // eslint-disable-next-line max-len, comma-dangle
           children: <span>Are we what you're looking <span className={styles.noWrap}>for?*</span></span>
         },
       },

@@ -3,8 +3,8 @@ import classNames from 'classnames';
 import styles from './style.css';
 
 export default class Input extends Component {
-  render () {
-    const {className, ...other} = this.props;
+  render() {
+    const { className, ...other } = this.props;
     const inputClass = classNames(className, styles.input);
 
     return (
@@ -14,5 +14,5 @@ export default class Input extends Component {
 }
 
 Input.propTypes = {
-  className: React.PropTypes.string
+  className: React.PropTypes.string,
 };

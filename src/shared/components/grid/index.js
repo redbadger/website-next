@@ -20,7 +20,7 @@
  *
  */
 
-/*eslint react/no-multi-comp:0*/
+/* eslint react/no-multi-comp: 0 */
 import React, { Component } from 'react';
 import classNames from 'classnames';
 import styles from './style.css';
@@ -30,23 +30,21 @@ export class Grid extends Component {
     breakOn: React.PropTypes.string,
     children: React.PropTypes.node,
     extraClassName: React.PropTypes.string,
-    fit: React.PropTypes.bool
+    fit: React.PropTypes.bool,
   };
 
   defaultProps = {
     extraClassName: 'grid',
-    breakOn: 'mobile'
+    breakOn: 'mobile',
   };
 
-  render () {
-    const gridClassNames = classNames(
-      {
-        [styles.grid]: true,
-        [styles.withGutter]: true,
-        [styles.fit]: this.props.fit,
-        [`responsive-grid-${this.props.breakOn}`]: true
-      }
-    );
+  render() {
+    const gridClassNames = classNames({
+      [styles.grid]: true,
+      [styles.withGutter]: true,
+      [styles.fit]: this.props.fit,
+      [`responsive-grid-${this.props.breakOn}`]: true,
+    });
 
     return (
       <div className={gridClassNames}>

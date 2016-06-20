@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   contentAreas,
   jobs,
   events,
-  routing: routeReducer
+  routing: routeReducer,
 });
 
 export default rootReducer;

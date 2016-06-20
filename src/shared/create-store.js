@@ -6,9 +6,10 @@ import { env } from './config';
 
 export default (history, initialState) => {
   const reduxRouterMiddleware = syncHistory(history);
+
   if (env === 'development') {
     return applyMiddleware(thunk, reduxRouterMiddleware)(createStore)(reducers, initialState, typeof window === 'object' && typeof window.devToolsExtension !== 'undefined' ? window.devToolsExtension() : f => f);
-  } else {
-    return applyMiddleware(thunk, reduxRouterMiddleware)(createStore)(reducers, initialState);
   }
+
+  return applyMiddleware(thunk, reduxRouterMiddleware)(createStore)(reducers, initialState);
 };

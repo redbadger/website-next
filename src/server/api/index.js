@@ -4,6 +4,7 @@ import EventsController from './controllers/events';
 import bodyParser from 'body-parser';
 import authSetup from '../authSetup';
 
+// eslint-disable-next-line consistent-return
 const ensureAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) return next();
   res.sendStatus(403).send('You are not logged in. Please use: /auth/login');
@@ -23,4 +24,4 @@ export default function createApi(workable) {
   api.get('/check-login', ensureAuthenticated, (req, res) => res.send('OK'));
 
   return api;
-};
+}

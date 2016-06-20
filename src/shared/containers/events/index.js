@@ -11,7 +11,7 @@ import BannerReactConf from '../../components/banner-react-conf';
 export class Events extends Component {
   static fetchData = fetchEvents(fetch());
 
-  render () {
+  render() {
     return (
       <div>
         <h1 className={styles.h1}>Events</h1>
@@ -28,9 +28,9 @@ export class Events extends Component {
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
-    events: state.events
+    events: state.events,
   };
 }
 
