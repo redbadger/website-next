@@ -35,7 +35,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "html-entities": "^1.2.0",
-    "html-to-react": "^0.1.2",
+    "html-to-react": "^1.0.0",
     "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.2.0",
     "lodash-addons": "^0.3.1",
