@@ -22,7 +22,7 @@ const authSetup = app => {
         callbackURL: '/auth/login/callback',
       },
       (token, refreshToken, profile, done) => {
-        /* eslint no-underscore-dangle: ["error", { "allow": ["_json"] }] */
+        // eslint-disable-next-line max-len, no-underscore-dangle
         if (process.env.PASSPORT_GOOGLE_ALLOWEDDOMAINNAMES === profile._json.domain) {
           return done(null, profile);
         }
@@ -31,17 +31,15 @@ const authSetup = app => {
     )
   );
 
-  app.get('/auth/login', passport.authenticate('google', { scope: ['profile', 'email'] }));
+  app.get('/auth/login', passport.authenticate('google', {
+    scope: ['profile', 'email'],
+  }));
 
-  app.get(
-    '/auth/login/callback',
-    passport.authenticate(
-      'google',
-      { failureRedirect: 'http://www.red-badger.com' }
-    ),
-    (req, res) => {
-      res.redirect('/about-us/events/add');
-    }
+  app.get('/auth/login/callback',
+    passport.authenticate('google', {
+      failureRedirect: 'http://www.red-badger.com',
+    }),
+    (req, res) => res.redirect('/about-us/events/add')
   );
 
   app.get('/auth/logout', (req, res) => {

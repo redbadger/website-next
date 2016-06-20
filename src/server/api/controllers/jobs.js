@@ -1,5 +1,5 @@
 export default class JobsController {
-  constructor (workable) {
+  constructor(workable) {
     this.workable = workable;
   }
 

@@ -11,6 +11,20 @@ import DefaultTemplate from '../templates/default';
 
 import getRoutes from '../../shared/routes';
 
+const mapRouteToPageTitle = (path) => {
+  const defaultTitle = 'Red Badger';
+
+  if ((/events/gi).test(path)) {
+    return `Events | ${defaultTitle}`;
+  }
+
+  if ((/join-us/gi).test(path)) {
+    return `Join Us | ${defaultTitle}`;
+  }
+
+  return defaultTitle;
+};
+
 const renderMarkup = (store, routerProps) => {
   const application = renderToString(
     <Provider store={store}>
@@ -27,21 +41,6 @@ const renderMarkup = (store, routerProps) => {
     </DefaultTemplate>
   );
 };
-
-function mapRouteToPageTitle (path) {
-  const eventsRegex = new RegExp('events', 'gi');
-  const joinRegex = new RegExp('join-us', 'gi');
-
-  if (eventsRegex.test(path)) {
-    return 'Events | Red Badger';
-  }
-
-  if (joinRegex.test(path)) {
-    return 'Join Us | Red Badger';
-  }
-
-  return 'Red Badger';
-}
 
 const renderErrorPage = (error) => {
   const application = renderToString(
@@ -64,34 +63,41 @@ const handleError = (error, res) => {
   }
 };
 
-export const requestHandler = (req, res, store, render) => {
-  return (error, redirectLocation, routerProps) => {
+export const requestHandler = (req, res, store, render) => (
+  (error, redirectLocation, routerProps) => {
+    let redirect = redirectLocation && { ...redirectLocation };
+
     // Check if React router has needsAuth prop if so check they're logged in
     if (routerProps && routerProps.routes) {
-      let needsAuth = routerProps.routes.reduce((prev, curr) => 'needsAuth' in curr || prev, false);
+      const needsAuth = routerProps.routes.reduce((prev, curr) => (
+        'needsAuth' in curr || prev
+      ), false);
       if (needsAuth && !req.isAuthenticated()) {
-        redirectLocation = { pathname: '/auth/login', search: '' };
+        redirect = { pathname: '/auth/login', search: '' };
       }
     }
 
     if (error) {
       handleError(error, res);
-    } else if (redirectLocation) {
-      res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+    } else if (redirect) {
+      res.redirect(302, `${redirect.pathname}${redirect.search}`);
     } else if (!routerProps) {
       handleError(new HttpError(404), res);
     } else {
       res.status(200).send(render(store, routerProps));
     }
-  };
-};
+  }
+);
 
 export default((req, res) => {
   const history = createMemoryHistory();
   const store = createStore(history);
 
   const query = qs.stringify(req.query);
-  const url = req.path + (query.length ? '?' + query : '');
+  const url = req.path + (query.length ? `?${query}` : '');
 
-  match({ routes: getRoutes(store), location: url }, requestHandler(req, res, store, renderMarkup));
+  match({
+    routes: getRoutes(store),
+    location: url,
+  }, requestHandler(req, res, store, renderMarkup));
 });
