@@ -20,6 +20,7 @@ dependencies:
 
 test:
   override:
+    - npm run lint src
     - npm run security:check
     - npm run test:server
     - npm run test:client -- --browsers PhantomJS

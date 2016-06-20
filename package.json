@@ -126,7 +126,7 @@
     "pre-git": {
       "pre-commit": [
         "npm t",
-        "git diff --cached --name-only --diff-filter=ACM | grep '.js$' | xargs npm run lint || { exit 1; }"
+        "git diff --cached --name-only --diff-filter=ACM | grep '.js$' | xargs npm run lint src || { exit 1; }"
       ],
       "pre-push": [],
       "post-commit": [],
