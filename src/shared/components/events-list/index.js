@@ -17,6 +17,8 @@ import EventLinksList from '../event-links-list';
 
 import {eventHref} from '../../util/event';
 
+import {splitEvents} from '../../util/split-events';
+
 export default class EventsList extends Component {
   static propTypes = {
     events: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
@@ -25,32 +27,7 @@ export default class EventsList extends Component {
 
   render () {
 
-    const today = new Date();
-
-    let yesterday = new Date();
-    yesterday.setDate(today.getDate() - 1);
-    yesterday.setHours(23, 59, 59);
-
-    let tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1);
-    tomorrow.setHours(0, 0, 0);
-
-    let relevantEvents = this.props.events.filter(function (event)
-    {
-      const d = new Date(event.datetime.iso);
-
-      if (this.props.timeline === 'today') {
-        return (d.toDateString() === today.toDateString());
-      } else if (this.props.timeline === 'past') {
-        return (d < yesterday);
-      } else {
-        return (d > tomorrow);
-      }
-    }, this);
-
-    if (relevantEvents.length > 1 && this.props.timeline === 'future') {
-      relevantEvents = relevantEvents.reverse();
-    }
+    let relevantEvents = splitEvents(this.props.events, this.props.timeline, {reverse: this.props.timeline === 'future'})
 
     if (relevantEvents.length > 0) {
       return (
