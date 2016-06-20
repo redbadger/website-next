@@ -8,7 +8,7 @@
     "build": "npm run clean && webpack --progress",
     "populate": "source .env && node scripts/import-events-to-couchdb.js",
     "clean": "rimraf build",
-    "lint": "eslint",
+    "lint": "eslint ./src",
     "local": "source .env && NODE_ENV=development HOT=true node server.dev.js",
     "security:check": "./node_modules/.bin/nsp check",
     "start": "node build/server",
@@ -126,7 +126,7 @@
     "pre-git": {
       "pre-commit": [
         "npm t",
-        "git diff --cached --name-only --diff-filter=ACM | grep '.js$' | xargs npm run lint src || { exit 1; }"
+        "npm run lint || { exit 1; }"
       ],
       "pre-push": [],
       "post-commit": [],
