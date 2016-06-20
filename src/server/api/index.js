@@ -9,20 +9,18 @@ const ensureAuthenticated = (req, res, next) => {
   res.sendStatus(403).send('You are not logged in. Please use: /auth/login');
 };
 
-export default function API (workable) {
-  const self = authSetup(express());
+export default function createApi(workable) {
+  const api = authSetup(express());
   const jobsController = new JobsController(workable);
   const eventsController = new EventsController();
 
-  self.use( bodyParser.json() );       // to support JSON-encoded bodies
-  self.use( bodyParser.urlencoded({     // to support URL-encoded bodies
-    extended: true
-  }));
+  api.use(bodyParser.json());
+  api.use(bodyParser.urlencoded({ extended: true }));
 
-  self.get('/jobs', jobsController.getJobs);
-  self.get('/events', eventsController.getEvents);
-  self.post('/new-event', ensureAuthenticated, eventsController.postNewEvent);
-  self.get('/check-login', ensureAuthenticated, (req, res) => res.send('OK'));
+  api.get('/jobs', jobsController.getJobs);
+  api.get('/events', eventsController.getEvents);
+  api.post('/new-event', ensureAuthenticated, eventsController.postNewEvent);
+  api.get('/check-login', ensureAuthenticated, (req, res) => res.send('OK'));
 
-  return self;
-}
+  return api;
+};

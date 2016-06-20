@@ -6,9 +6,8 @@ import { expect } from 'chai';
 describe('Video', () => {
   it('adds an iframe', () => {
     const result = render(<Video id="1" type="youtube" />);
-    const iframe = findWithType('iframe', result);
 
-    expect(iframe).to.exist;
+    expect(() => findWithType('iframe', result)).to.not.throw();
   });
 
   it('adds a youtube iframe if the type is youtube', () => {

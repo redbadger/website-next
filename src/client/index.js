@@ -13,16 +13,23 @@ const store = createStore(browserHistory, initialState);
 
 const mountNode = document.getElementById('mount');
 
-match({ routes: getRoutes(store), location: window.location, history: browserHistory }, (error, redirectLocation, renderProps) => {
+match({
+  routes: getRoutes(store),
+  location: window.location,
+  history: browserHistory,
+}, (error, redirectLocation, renderProps) => {
   const routerUpdate = () => {
     if (renderProps && !(store.getState().routing.location.hash)) {
-      window.scrollTo(0, 0); // Scroll to top when a hash doesn't exist, and we're on a valid route.
+      // Scroll to top when a hash doesn't exist, and we're on a valid route.
+      window.scrollTo(0, 0);
     }
   };
 
   const Application = (
     <Provider store={store}>
-      <Router {...renderProps} history={browserHistory} onUpdate={routerUpdate} />
+      <Router {...renderProps}
+        history={browserHistory}
+        onUpdate={routerUpdate} />
     </Provider>
   );
 
