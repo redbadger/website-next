@@ -26,10 +26,6 @@ export class Event extends Component {
     let futureEvents = splitEvents(this.props.events, "future", {reverse: true});
     let todayEvents = splitEvents(this.props.events, "today");
 
-    console.log('@@@ todayEvents: ', todayEvents)
-    console.log('@@@ !!todayEvents: ', !!todayEvents)
-    console.log('@@@ typeof(todayEvents): ', typeof(todayEvents))
-
     return (
       <div className={styles.eventContainer}>
         <Helmet title={`${this.props.event.title} | Red Badger`} />
