@@ -4,23 +4,22 @@ import moment from 'moment';
 import slugify from 'slug';
 import request from 'request';
 
-const getDbConfig = () => {
+const db = (() => {
   const config = (process.env.NODE_ENV === 'production')
     ? couchDb.remote
     : couchDb.local;
 
   return {
     ...config,
-    buildUrl: (path, includeProtocol) => {
-      const url = `${config.host}:${config.port}/${path}`;
-      return includeProtocol ? `${config.protocol}${url}` : url;
-    },
+    buildUrl: path => (
+      `${config.protocol}${config.host}:${config.port}/${path}`
+    ),
   };
-};
+})();
 
 export default class EventsController {
   getEvents = (req, res) => {
-    fetch(getDbConfig().buildUrl('events/_all_docs?include_docs=true', true))
+    fetch(db.buildUrl('events/_all_docs?include_docs=true', true))
       .then(response => response.json())
       .then((events) => {
         res.send({
@@ -81,14 +80,14 @@ export default class EventsController {
     };
 
     request.post({
-      url: getDbConfig().buildUrl('events', true),
+      url: db.buildUrl('events', true),
       json: newEvent,
     }, (err) => {
       if (!err) {
         res.redirect('/about-us/events');
       } else {
-        const qSError = qs.stringify({ error: 'Something Went wrong' });
-        res.redirect(`/about-us/events/add/?${qSError}`);
+        const errorQueryStr = qs.stringify({ error: 'Something Went wrong' });
+        res.redirect(`/about-us/events/add/?${errorQueryStr}`);
       }
     });
   }
