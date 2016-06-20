@@ -19,7 +19,7 @@ const db = (() => {
 
 export default class EventsController {
   getEvents = (req, res) => {
-    fetch(db.buildUrl('events/_all_docs?include_docs=true', true))
+    fetch(db.buildUrl('events/_all_docs?include_docs=true'))
       .then(response => response.json())
       .then((events) => {
         res.send({
@@ -80,7 +80,7 @@ export default class EventsController {
     };
 
     request.post({
-      url: db.buildUrl('events', true),
+      url: db.buildUrl('events'),
       json: newEvent,
     }, (err) => {
       if (!err) {
