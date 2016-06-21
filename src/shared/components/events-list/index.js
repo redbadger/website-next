@@ -36,9 +36,8 @@ export default class EventsList extends Component {
     tomorrow.setDate(today.getDate() + 1);
     tomorrow.setHours(0, 0, 0);
 
-    let relevantEvents = this.props.events.filter(function (event)
-    {
-      const d = new Date(event.datetime.iso);
+    let relevantEvents = this.props.events.filter((event) => {
+      const date = new Date(event.datetime.iso);
 
       switch (this.props.timeline) {
         case 'today':
@@ -71,8 +70,7 @@ export default class EventsList extends Component {
             })()}
           <ul className={styles.eventsList}>
             {
-              relevantEvents.map((event) => {
-                return (
+              relevantEvents.map((event) => (
                   <li key={`event_${event.id}`} className={styles.eventItem}>
                     <Grid fit={false}>
                       <Cell size={1} breakOn="mobile">
@@ -98,7 +96,7 @@ export default class EventsList extends Component {
                                 <span className={classNames(
                                   {
                                     [styles.arrow]: true,
-                                    [icons.sketchArrowRight]: true
+                                    [icons.sketchArrowRight]: true,
                                   })}
                                 />
                               </h2>
@@ -128,8 +126,7 @@ export default class EventsList extends Component {
                       </Cell>
                     </Grid>
                   </li>
-                  );
-              })
+              ))
             }
           </ul>
         </div>
