@@ -24,16 +24,8 @@ describe('Preview route', () => {
   it('connects to the Red Badger API endpoint', () => {
     enableDocumentPreview(app);
 
-    expect(Prismic.init.firstCall.args[0].apiEndPoint)
+    expect(Prismic.init.firstCall.args[0].apiEndpoint)
       .to.equal('https://rb-website.prismic.io/api');
-  });
-
-  it('provides a default link resolver', () => {
-    enableDocumentPreview(app);
-
-    const linkResolver = Prismic.init.firstCall.args[0].linkResolver;
-
-    expect(linkResolver()).to.equal(false);
   });
 
   it('applies the preview route to the provided express app', () => {
@@ -41,5 +33,32 @@ describe('Preview route', () => {
 
     expect(app.get.firstCall.args[0]).to.equal('/preview');
     expect(app.get.firstCall.args[1]).to.equal(Prismic.preview);
+  });
+
+  describe('link resolution', () => {
+    let linkResolver;
+
+    beforeEach(() => {
+      enableDocumentPreview(app);
+      linkResolver = Prismic.init.firstCall.args[0].linkResolver;
+    });
+
+    it('returns the correct url path for events', () => {
+      const resolvedPath = linkResolver({
+        uid: 'my-event-title',
+        type: 'event',
+        data: {
+          'event.timestamp': {
+            value: '2016-10-22T08:00:00.000Z',
+          },
+        },
+      });
+      expect(resolvedPath).to.equal('/about-us/events/2016/10/22/my-event-title');
+    });
+
+    it('returns the root path if the document type is not known', () => {
+      const resolvedPath = linkResolver({ type: 'wibble' });
+      expect(resolvedPath).to.equal('/');
+    });
   });
 });
