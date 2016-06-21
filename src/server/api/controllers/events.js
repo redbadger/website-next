@@ -39,7 +39,8 @@ export default class EventsController {
       `,
     };
 
-    const endpoint = process.env.NODE_ENV === 'production' ? badgerBrain.remote : badgerBrain.local;
+    const endpoint = process.env.NODE_ENV === 'production' ?
+      badgerBrain.remote : badgerBrain.local;
 
     fetch(endpoint, fetchInit)
       .then((response) => response.json())

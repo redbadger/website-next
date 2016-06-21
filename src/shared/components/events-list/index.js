@@ -19,7 +19,7 @@ import EventLinksList from '../event-links-list';
 
 import { eventHref } from '../../util/event';
 
-import {splitEvents} from '../../util/split-events';
+import { splitEvents } from '../../util/split-events';
 
 export default class EventsList extends Component {
   static propTypes = {
@@ -28,7 +28,7 @@ export default class EventsList extends Component {
   };
 
   render() {
-    let relevantEvents = splitEvents(this.props.events, this.props.timeline, {reverse: this.props.timeline === 'future'})
+    const relevantEvents = splitEvents(this.props.events, this.props.timeline, { reverse: this.props.timeline === 'future' });
 
 
     if (relevantEvents.length > 0) {

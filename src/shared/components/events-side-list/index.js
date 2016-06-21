@@ -18,15 +18,15 @@ export default class EventsSideList extends Component {
         </div>
         <ul>
           {
-            this.props.events.map((event, i) => {
-              return (
+            this.props.events.map((event, i) =>
+              (
                 <li key={i}>
                   <a href={eventHref(event)} key={i}>
                     {event.title}
                   </a>
                 </li>
-              );
-            })
+              )
+            )
           }
         </ul>
       </div>

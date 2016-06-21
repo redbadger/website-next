@@ -13,7 +13,7 @@ import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
 import EventsSideList from '../../components/events-side-list';
 import EventLinksList from '../../components/event-links-list';
-import {splitEvents} from '../../util/split-events';
+import { splitEvents } from '../../util/split-events';
 
 import marked from 'marked';
 import Helmet from 'react-helmet';
@@ -22,9 +22,8 @@ export class Event extends Component {
   static fetchData = fetchEvent(fetch());
 
   render() {
-
-    let futureEvents = splitEvents(this.props.events, "future", {reverse: true});
-    let todayEvents = splitEvents(this.props.events, "today");
+    let futureEvents = splitEvents(this.props.events, 'future', { reverse: true });
+    let todayEvents = splitEvents(this.props.events, 'today');
 
     return (
       <div className={styles.eventContainer}>
@@ -116,7 +115,7 @@ function firstWithSlug(slug) {
 function mapStateToProps(state, { routeParams }) {
   return {
     event: firstWithSlug(routeParams.slug)(state.events),
-    events: state.events
+    events: state.events,
   };
 }
 
