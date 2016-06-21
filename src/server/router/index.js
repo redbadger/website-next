@@ -65,22 +65,11 @@ const handleError = (error, res) => {
 
 export const requestHandler = (req, res, store, render) => (
   (error, redirectLocation, routerProps) => {
-    let redirect = redirectLocation && { ...redirectLocation };
-
-    // Check if React router has needsAuth prop if so check they're logged in
-    if (routerProps && routerProps.routes) {
-      const needsAuth = routerProps.routes.reduce((prev, curr) => (
-        'needsAuth' in curr || prev
-      ), false);
-      if (needsAuth && !req.isAuthenticated()) {
-        redirect = { pathname: '/auth/login', search: '' };
-      }
-    }
-
     if (error) {
       handleError(error, res);
-    } else if (redirect) {
-      res.redirect(302, `${redirect.pathname}${redirect.search}`);
+    } else if (redirectLocation) {
+      res.redirect(302,
+        `${redirectLocation.pathname}${redirectLocation.search}`);
     } else if (!routerProps) {
       handleError(new HttpError(404), res);
     } else {

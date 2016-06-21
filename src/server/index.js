@@ -8,10 +8,9 @@ import express from 'express';
 import fetch from '../shared/util/fetch-proxy';
 import WorkableAPI from './api/workable';
 import router from './router';
-import authSetup from './authSetup';
 import enableDocumentPreview from './preview';
 
-const app = authSetup(express());
+const app = express();
 const workable = new WorkableAPI(fetch(), config.workable.key);
 const api = createApi(workable);
 
