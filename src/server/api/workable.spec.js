@@ -2,11 +2,10 @@ import Workable from './workable';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import fixture from './workable.fixture';
-import paramCase from "param-case";
+import paramCase from 'param-case';
 
 describe('Workable API', () => {
   describe('getJobs', () => {
-
     let api;
     let mockFetch;
 
@@ -51,9 +50,13 @@ describe('Workable API', () => {
           expect(jobs[0]).to.deep.equal({
             title: fixture.jobs[0].title,
             description: fixture.jobs[0].description,
-            fullDescription: fixture.jobs[0].description + fixture.jobs[0].requirements + fixture.jobs[0].benefits,
+            fullDescription: [
+              fixture.jobs[0].description,
+              fixture.jobs[0].requirements,
+              fixture.jobs[0].benefits,
+            ].join(''),
             applicationUrl: fixture.jobs[0].application_url,
-            slug: paramCase(fixture.jobs[0].title)
+            slug: paramCase(fixture.jobs[0].title),
           });
           done();
         });

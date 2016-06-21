@@ -7,15 +7,14 @@ import { Link } from 'react-router';
 import HtmlParser from '../html-parser';
 
 describe('Jobs', () => {
-
   const listings = [{
     title: 'Title1',
     description: '<p>First paragraph</p><p>Second one</p>',
-    slug: 'title-1'
+    slug: 'title-1',
   }, {
     title: 'Title2',
     description: '<p>Third paragraph</p><p>Fourth one</p>',
-    slug: 'title-2'
+    slug: 'title-2',
   }];
   let result;
   let notes;
@@ -34,7 +33,7 @@ describe('Jobs', () => {
   it('renders the title with link', () => {
     const link = findWithType(Link, note);
 
-    expect(hasProp('to', '/about-us/join-us/' + listings[0].slug)(link)).to.equal(true);
+    expect(hasProp('to', `/about-us/join-us/${listings[0].slug}`)(link)).to.equal(true);
     expect(containsOne(listings[0].title, note)).to.equal(true);
   });
 
@@ -42,5 +41,4 @@ describe('Jobs', () => {
     const parser = findWithType(HtmlParser, note);
     expect(hasProp('children', listings[0].description)(parser)).to.equal(true);
   });
-
 });

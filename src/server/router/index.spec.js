@@ -10,11 +10,11 @@ describe('router middleware', () => {
       const store = {};
       const renderer = sinon.stub();
       const props = {};
-      const handle = requestHandler(null, res, store, renderer); //req, res, store, render
+      const handle = requestHandler(null, res, store, renderer);
       handle(null, null, props);
 
-      expect(res.status.calledWith(200)).to.be.true;
-      expect(send.called).to.be.true;
+      expect(res.status.calledWith(200)).to.equal(true);
+      expect(send.called).to.equal(true);
       expect(renderer.calledWith(store, props));
     });
 
@@ -22,18 +22,18 @@ describe('router middleware', () => {
       const send = sinon.stub();
       const res = { status: sinon.stub().returns({ send }) };
       const renderer = sinon.stub();
-      const handle = requestHandler(null, res, null, renderer); //req, res, store, render
+      const handle = requestHandler(null, res, null, renderer);
       handle();
 
-      expect(res.status.calledWith(404)).to.be.true;
-      expect(send.called).to.be.true;
+      expect(res.status.calledWith(404)).to.equal(true);
+      expect(send.called).to.equal(true);
     });
 
     it('returns a 302 when redirectLocation is defined', () => {
       const res = { redirect: sinon.stub() };
-      const handle = requestHandler(null, res, null, null); //req, res, store, render
+      const handle = requestHandler(null, res, null, null);
       handle(null, { pathname: '/redirect', search: '' });
-      expect(res.redirect.calledWith(302, '/redirect')).to.be.true;
+      expect(res.redirect.calledWith(302, '/redirect')).to.equal(true);
     });
 
     it('returns a 500 when an error occurs', () => {
@@ -41,19 +41,19 @@ describe('router middleware', () => {
       const error = { message: 'Oh, no!' };
       const send = sinon.stub();
       const res = { status: sinon.stub().returns({ send }) };
-      const handle = requestHandler(null, res, null, null); //req, res, store, render
+      const handle = requestHandler(null, res, null, null);
       handle(error);
       console.error.restore();
-      expect(res.status.calledWith(500)).to.be.true;
-      expect(send.called).to.be.true;
+      expect(res.status.calledWith(500)).to.equal(true);
+      expect(send.called).to.equal(true);
     });
 
     it('redirects to login if needsAuth React Router prop exists and not logged in', () => {
       const req = { isAuthenticated: sinon.stub().returns(false) };
       const res = { redirect: sinon.stub() };
-      const handle = requestHandler(req, res, null, null); //req, res, store, render
+      const handle = requestHandler(req, res, null, null);
       handle(null, null, { routes: [{ needsAuth: true }] });
-      expect(res.redirect.calledWith(302, '/auth/login')).to.be.true;
+      expect(res.redirect.calledWith(302, '/auth/login')).to.equal(true);
     });
   });
 });

@@ -2,6 +2,8 @@
 // You can request only displaying events of past or future
 // with the `timeline` prop
 
+/* eslint-disable max-len */
+
 import React, { Component } from 'react';
 import styles from './style.css';
 
@@ -15,51 +17,38 @@ import icons from '../icons/style.css';
 
 import EventLinksList from '../event-links-list';
 
-import {eventHref} from '../../util/event';
+import { eventHref } from '../../util/event';
 
 import {splitEvents} from '../../util/split-events';
 
 export default class EventsList extends Component {
   static propTypes = {
     events: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-    timeline: React.PropTypes.oneOf(['past', 'future', 'today'])
+    timeline: React.PropTypes.oneOf(['past', 'future', 'today']),
   };
 
-  render () {
-
+  render() {
     let relevantEvents = splitEvents(this.props.events, this.props.timeline, {reverse: this.props.timeline === 'future'})
+
 
     if (relevantEvents.length > 0) {
       return (
         <div className={styles.eventsListTimelineSection}>
             {(() => {
               switch (this.props.timeline) {
-                case "past":
-                  return (
-                    <h2>
-                      Past events
-                    </h2>
-                  );
-                case "future":
-                  return (
-                    <h2>
-                    Upcoming events
-                    </h2>
-                  );
-                case "today":
-                  return (
-                    <h2>
-                      Today
-                    </h2>
-                  );
+                case 'past':
+                  return (<h2>Past events</h2>);
+                case 'future':
+                  return (<h2>Upcoming events</h2>);
+                case 'today':
+                  return (<h2>Today</h2>);
                 default:
                   return null;
               }
             })()}
           <ul className={styles.eventsList}>
             {
-              relevantEvents.map((event) => {
-                return (
+              relevantEvents.map((event) => (
                   <li key={`event_${event.id}`} className={styles.eventItem}>
                     <Grid fit={false}>
                       <Cell size={1} breakOn="mobile">
@@ -85,7 +74,7 @@ export default class EventsList extends Component {
                                 <span className={classNames(
                                   {
                                     [styles.arrow]: true,
-                                    [icons.sketchArrowRight]: true
+                                    [icons.sketchArrowRight]: true,
                                   })}
                                 />
                               </h2>
@@ -115,12 +104,13 @@ export default class EventsList extends Component {
                       </Cell>
                     </Grid>
                   </li>
-                  );
-              })
+              ))
             }
           </ul>
         </div>
       );
-    } else { return null; }
+    }
+
+    return null;
   }
 }

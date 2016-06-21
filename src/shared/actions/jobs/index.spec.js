@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { fetchSuccessful, fetchFailure, fetchJobs } from './';
-import reducer from './';
+import reducer, { fetchSuccessful, fetchFailure, fetchJobs } from './';
 import actions from '../actions';
 
 describe('jobs actions', () => {
@@ -9,7 +8,7 @@ describe('jobs actions', () => {
     it('returns an object containing jobs and correct type', () => {
       expect(fetchSuccessful('jobs')).to.deep.equal({
         type: actions.FETCH_JOBS_SUCCESS,
-        jobs: 'jobs'
+        jobs: 'jobs',
       });
     });
   });
@@ -18,13 +17,14 @@ describe('jobs actions', () => {
     it('returns an object containing error and correct type', () => {
       expect(fetchFailure('error')).to.deep.equal({
         type: actions.FETCH_JOBS_FAIL,
-        error: 'error'
+        error: 'error',
       });
     });
   });
 
   describe('fetch jobs', () => {
-    let fetchFn, fetch;
+    let fetchFn;
+    let fetch;
 
     beforeEach(() => {
       fetch = sinon.stub();
@@ -36,12 +36,14 @@ describe('jobs actions', () => {
     });
 
     describe('inner function', () => {
-      let getState, dispatch, state;
+      let getState;
+      let dispatch;
+      let state;
 
       beforeEach(() => {
         dispatch = sinon.stub();
         state = {
-          jobs: []
+          jobs: [],
         };
         getState = () => state;
       });
@@ -101,7 +103,7 @@ describe('jobs reducer', () => {
   it('updates jobs if fetch was successful', () => {
     const action = {
       type: actions.FETCH_JOBS_SUCCESS,
-      jobs: 'jobs'
+      jobs: 'jobs',
     };
     expect(reducer(undefined, action)).to.equal('jobs');
   });
@@ -109,7 +111,7 @@ describe('jobs reducer', () => {
   it('updates jobs if fetch failed', () => {
     const action = {
       type: actions.FETCH_JOBS_FAIL,
-      error: 'error'
+      error: 'error',
     };
     expect(reducer(undefined, action)).to.deep.equal([]);
   });

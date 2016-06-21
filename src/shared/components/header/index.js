@@ -5,7 +5,7 @@ import Nav from '../nav';
 import styles from './style.css';
 
 export default class Header extends Component {
-  render () {
+  render() {
     return (
       <header className={styles.header}>
         <Container>

@@ -3,7 +3,7 @@ import { apiEndpoint } from '../../config';
 
 const initialState = [];
 
-export default function reducer (state = initialState, action) {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case actions.FETCH_EVENTS_SUCCESS:
       return action.events;
@@ -14,17 +14,17 @@ export default function reducer (state = initialState, action) {
   }
 }
 
-export function fetchSuccessful (events) {
+export function fetchSuccessful(events) {
   return {
     type: actions.FETCH_EVENTS_SUCCESS,
-    events: events.list
+    events: events.list,
   };
 }
 
-export function fetchFailure (error) {
+export function fetchFailure(error) {
   return {
     type: actions.FETCH_EVENTS_FAIL,
-    error
+    error,
   };
 }
 
@@ -36,7 +36,8 @@ export const fetchEvents = (fetch) => (
       return Promise.resolve(events);
     }
 
-    return fetch(apiEndpoint + '/events')
+    return fetch(`${apiEndpoint}/events`)
+      // eslint-disable-next-line no-shadow
       .then(events => dispatch(fetchSuccessful(events)))
       .catch(e => dispatch(fetchFailure(e)));
   }

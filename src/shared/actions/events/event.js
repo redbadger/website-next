@@ -4,8 +4,7 @@ import HttpError from '../../util/http-error';
 
 const initialState = {};
 
-export default function reducer (state = initialState, action) {
-  console.log('ACTION', action);
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case actions.FETCH_EVENT_SUCCESS:
       return action.event;
@@ -16,27 +15,27 @@ export default function reducer (state = initialState, action) {
   }
 }
 
-export function fetchSuccessful (event) {
+export function fetchSuccessful(event) {
   return {
     type: actions.FETCH_EVENT_SUCCESS,
-    event
+    event,
   };
 }
 
-export function fetchFailure (error) {
+export function fetchFailure(error) {
   return {
     type: actions.FETCH_EVENT_FAIL,
-    error
+    error,
   };
 }
 
 export const fetchEvent = (fetch) => (
-  (dispatch, getState, nextState) => {
-    return fetchEvents(fetch)(dispatch, getState)
-      .then(() => {
-        const event = getState().events.find(j => {
-          return j.slug === nextState.params.slug;
-        });
+  (dispatch, getState, nextState) => (
+    fetchEvents(fetch)(dispatch, getState)
+      .then(() => { // eslint-disable-line consistent-return
+        const event = getState().events.find(j =>
+          j.slug === nextState.params.slug
+        );
         if (event) {
           dispatch(fetchSuccessful(event));
         } else {
@@ -44,6 +43,4 @@ export const fetchEvent = (fetch) => (
           dispatch(fetchFailure(error));
           return { error };
         }
-      });
-  }
-);
+      })));

@@ -1,7 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { fetchSuccessful, fetchFailure, fetchEvent } from './event';
-import reducer from './event';
+import reducer, { fetchSuccessful, fetchFailure, fetchEvent } from './event';
 import actions from '../actions';
 import HttpError from '../../util/http-error';
 
@@ -12,7 +11,7 @@ describe('event actions', () => {
 
       expect(fetchSuccessful(event)).to.deep.equal({
         type: actions.FETCH_EVENT_SUCCESS,
-        event
+        event,
       });
     });
   });
@@ -23,13 +22,14 @@ describe('event actions', () => {
 
       expect(fetchFailure(error)).to.deep.equal({
         type: actions.FETCH_EVENT_FAIL,
-        error
+        error,
       });
     });
   });
 
   describe('fetch event', () => {
-    let fetchFn, fetch;
+    let fetchFn;
+    let fetch;
 
     beforeEach(() => {
       fetch = sinon.stub().returns(Promise.resolve());
@@ -41,19 +41,21 @@ describe('event actions', () => {
     });
 
     describe('inner function', () => {
-      let getState, dispatch, state, nextState;
+      let getState;
+      let dispatch;
+      let state;
+      let nextState;
 
       beforeEach(() => {
         dispatch = sinon.spy();
         state = {
-          events: [{
-            slug: 'hello'
-          }, {
-            slug: 'there'
-          }]
+          events: [
+            { slug: 'hello' },
+            { slug: 'there' },
+          ],
         };
         nextState = {
-          params: {}
+          params: {},
         };
         getState = () => state;
       });
@@ -89,7 +91,7 @@ describe('event reducer', () => {
     it('returns the event', () => {
       const action = {
         type: actions.FETCH_EVENT_SUCCESS,
-        event: {}
+        event: {},
       };
       expect(reducer(undefined, action)).to.deep.equal(action.event);
     });
@@ -99,7 +101,7 @@ describe('event reducer', () => {
     it('returns an empty object', () => {
       const action = {
         type: actions.FETCH_EVENT_FAIL,
-        error: new HttpError(404)
+        error: new HttpError(404),
       };
       expect(reducer(undefined, action)).to.deep.equal({});
     });

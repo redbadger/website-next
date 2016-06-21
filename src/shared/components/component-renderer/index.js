@@ -10,25 +10,25 @@ import isArray from 'lodash/isArray';
 import isString from 'lodash/isString';
 
 const componentIndex = {
-  Paragraph: Paragraph,
-  Link: Link,
-  Strong: Strong,
-  Content: Content,
-  Title1: Title1,
-  Title2: Title2,
-  Title3: Title3
+  Paragraph,
+  Link,
+  Strong,
+  Content,
+  Title1,
+  Title2,
+  Title3,
 };
 
 export default class ComponentRenderer extends Component {
   static propTypes = {
     data: React.PropTypes.shape({
-      type: React.PropTypes.string
-    }).isRequired
+      type: React.PropTypes.string,
+    }).isRequired,
   };
 
-  build (data) {
+  build(data) {
     const componentName = data.type;
-    const Component = componentIndex[componentName];
+    const CustomComponent = componentIndex[componentName];
     const componentChildren = data.props.children;
 
     let text = null;
@@ -37,7 +37,7 @@ export default class ComponentRenderer extends Component {
     if (isArray(componentChildren)) {
       childNodes = componentChildren.map((child, index) => {
         if (child.type && componentIndex[child.type]) {
-          child.props.key = index;
+          child.props.key = index; // eslint-disable-line no-param-reassign
           return this.build(child);
         }
         return child;
@@ -48,10 +48,10 @@ export default class ComponentRenderer extends Component {
       text = componentChildren;
     }
 
-    return React.createElement(Component, data.props, text || childNodes);
+    return React.createElement(CustomComponent, data.props, text || childNodes);
   }
 
-  render () {
+  render() {
     return this.build(this.props.data);
   }
 }

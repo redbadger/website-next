@@ -10,19 +10,19 @@ export class Jobs extends Component {
   static propTypes = {
     jobs: React.PropTypes.arrayOf(React.PropTypes.shape({
       description: React.PropTypes.string,
-      title: React.PropTypes.string
-    }))
+      title: React.PropTypes.string,
+    })) // eslint-disable-line comma-dangle
   };
 
-  render () {
-    const listings = this.props.jobs.map((job, index) => {
-      return (
-        <Note key={index}>
-          <Link className={styles.title} to={'/about-us/join-us/' + job.slug}>{job.title}<span className={styles.icon}></span></Link>
-          <HtmlParser>{job.description}</HtmlParser>
-        </Note>
-      );
-    });
+  render() {
+    const listings = this.props.jobs.map((job, index) => (
+      <Note key={index}>
+        <Link className={styles.title} to={`/about-us/join-us/${job.slug}`}>
+          {job.title}<span className={styles.icon}></span>
+        </Link>
+        <HtmlParser>{job.description}</HtmlParser>
+      </Note>
+    ));
 
     return (
       <div className="jobs">
@@ -34,8 +34,6 @@ export class Jobs extends Component {
   }
 }
 
-export default connect((state) => {
-  return {
-    jobs: state.jobs
-  };
-})(Jobs);
+export default connect(state => ({
+  jobs: state.jobs,
+}))(Jobs);

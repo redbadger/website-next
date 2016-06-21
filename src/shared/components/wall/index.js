@@ -6,11 +6,12 @@ const { node, number } = React.PropTypes;
 export default class Wall extends Component {
   static propTypes = {
     children: node.isRequired,
-    cols: number.isRequired
+    cols: number.isRequired,
   };
 
-  render () {
+  render() {
     const elements = [];
+
     this.props.children.forEach((item, index) => {
       const field = index % this.props.cols;
 
@@ -24,7 +25,8 @@ export default class Wall extends Component {
     return (
       <Grid fit>
         {elements.map((column, index) => {
-          return (<Cell key={index} size={Math.floor(12/this.props.cols)}>{column}</Cell>);
+          const size = Math.floor(12 / this.props.cols);
+          return (<Cell key={index} size={size}>{column}</Cell>);
         })}
       </Grid>
     );

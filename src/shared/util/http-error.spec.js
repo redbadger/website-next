@@ -29,6 +29,5 @@ describe('HttpError', () => {
       expect(error500.message).to.equal('Network Error');
       expect(errorOther.message).to.equal('Error');
     });
-
   });
 });

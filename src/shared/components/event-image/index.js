@@ -6,10 +6,10 @@ import styles from './style.css';
 export default class EventImage extends Component {
   static propTypes = {
     href: React.PropTypes.string.isRequired,
-    imgPath: React.PropTypes.string.isRequired
+    imgPath: React.PropTypes.string.isRequired,
   };
 
-  render () {
+  render() {
     return (
       <div className={styles.imgBorder}>
         <div className={styles.imgWrapper}>
