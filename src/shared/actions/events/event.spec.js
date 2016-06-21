@@ -61,19 +61,22 @@ describe('event actions', () => {
       });
 
       it('dispatches success action if the event exists', (done) => {
-        nextState.params.id = 'hello';
+        nextState.params.slug = 'hello';
 
         fetchFn(dispatch, getState, nextState)
           .then(() => {
-            expect(dispatch.calledWithMatch(fetchSuccessful(state.events[0]))).to.equal(true);
+            const successAction = fetchSuccessful(state.events[0]);
+            expect(dispatch.firstCall.args[0]).to.deep.equal(successAction);
             done();
-          });
+          })
+          .catch(done);
       });
 
       it('dispatches fail action if the event does not exist, resolving with a 404 error', (done) => {
         fetchFn(dispatch, getState, nextState)
           .then((err) => {
-            expect(dispatch.calledWithMatch(fetchFailure(new HttpError(404)))).to.equal(true);
+            const failureAction = fetchFailure(new HttpError(404));
+            expect(dispatch.firstCall.args[0]).to.deep.equal(failureAction);
             expect(err.error).to.be.an.instanceof(HttpError);
             done();
           });
