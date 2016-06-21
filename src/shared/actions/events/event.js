@@ -33,9 +33,9 @@ export const fetchEvent = (fetch) => (
   (dispatch, getState, nextState) => (
     fetchEvents(fetch)(dispatch, getState)
       .then(() => { // eslint-disable-line consistent-return
-        const event = getState().events.find(j => (
-          j.slug === nextState.params.id
-        ));
+        const event = getState().events.find(j =>
+          j.slug === nextState.params.slug
+        );
         if (event) {
           dispatch(fetchSuccessful(event));
         } else {
@@ -43,6 +43,4 @@ export const fetchEvent = (fetch) => (
           dispatch(fetchFailure(error));
           return { error };
         }
-      })
-  )
-);
+      })));

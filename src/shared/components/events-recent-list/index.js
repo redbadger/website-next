@@ -18,13 +18,15 @@ export default class EventsRecentList extends Component {
         </div>
         <ul>
           {
-            this.props.events.map(event => (
-              <li>
-                <a href={eventHref(event)}>
-                  {event.doc.attributes.title}
-                </a>
-              </li>
-            ))
+            this.props.events.map((event, i) =>
+              (
+                <li key={i}>
+                  <a href={eventHref(event)} key={i}>
+                    {event.title}
+                  </a>
+                </li>
+              )
+            )
           }
         </ul>
       </div>
