@@ -1,5 +1,5 @@
 import { couchDb } from '../../../shared/config';
-import qs from 'qs';
+import qs from 'query-string';
 import moment from 'moment';
 import slugify from 'slug';
 import request from 'request';
