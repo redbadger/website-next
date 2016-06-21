@@ -77,6 +77,7 @@ export default class DefaultTemplate extends Component {
         <script key="state" id="initialState" type="application/json"
           dangerouslySetInnerHTML={{ __html: htmlEntities.decode(JSON.stringify(this.props.initialState)) }} />,
         <script key="bundle" type="text/javascript" src="/assets/client.js" />,
+        <script key="prismic-toolbar" type="text/javascript" src="//static.cdn.prismic.io/prismic.min.js" />,
       ];
     }
   }
