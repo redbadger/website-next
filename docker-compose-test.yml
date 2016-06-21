@@ -4,13 +4,6 @@ app:
     - "8000:8000"
   environment:
     - WORKABLE_KEY
-    - DB_HOST=couchdb
-    - DB_USERNAME
-    - DB_PASSWORD
-    - PASSPORT_GOOGLE_ALLOWEDDOMAINNAMES
-    - PASSPORT_SESSIONSECRET
-    - PASSPORT_GOOGLE_CLIENTID
-    - PASSPORT_GOOGLE_CLIENTSECRET
 proxy:
   image: redbadger/website-next-proxy
   ports:
