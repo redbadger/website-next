@@ -23,7 +23,7 @@ export default class Wall extends Component {
     });
 
     return (
-      <Grid fit>
+      <Grid>
         {elements.map((column, index) => {
           const size = Math.floor(12 / this.props.cols);
           return (<Cell key={index} size={size}>{column}</Cell>);
