@@ -1,7 +1,8 @@
 import sinon from 'sinon';
 import { expect } from 'chai';
 import { Prismic } from 'express-prismic';
-import enableDocumentPreview from './preview';
+import linkResolvers from './linkResolvers';
+import enableDocumentPreview from './';
 
 describe('Preview route', () => {
   let app;
@@ -11,6 +12,10 @@ describe('Preview route', () => {
     sandbox = sinon.sandbox.create();
 
     sandbox.stub(Prismic, 'init');
+
+    for (let name in linkResolvers) {
+      sandbox.stub(linkResolvers, name).returns(`/${name}_path`);
+    }
 
     app = {
       get: sandbox.stub(),
@@ -35,6 +40,10 @@ describe('Preview route', () => {
     expect(app.get.firstCall.args[1]).to.equal(Prismic.preview);
   });
 
+  it('returns the express app', () => {
+    expect(enableDocumentPreview(app)).to.deep.equal(app);
+  });
+
   describe('link resolution', () => {
     let linkResolver;
 
@@ -43,21 +52,17 @@ describe('Preview route', () => {
       linkResolver = Prismic.init.firstCall.args[0].linkResolver;
     });
 
-    it('returns the correct url path for events', () => {
-      const resolvedPath = linkResolver({
-        uid: 'my-event-title',
-        type: 'event',
-        data: {
-          'event.timestamp': {
-            value: '2016-10-22T08:00:00.000Z',
-          },
-        },
-      });
-      expect(resolvedPath).to.equal('/about-us/events/2016/10/22/my-event-title');
+    it('returns the return value of the link resolver associated with the given document', () => {
+      const doc = { type: 'event' };
+      const resolvedPath = linkResolver(doc);
+
+      expect(linkResolvers.event.firstCall.args[0]).to.equal(doc);
+      expect(resolvedPath).to.equal(linkResolvers.event.firstCall.returnValue);
     });
 
-    it('returns the root path if the document type is not known', () => {
+    it('returns the root path if the document type does not have a resolver', () => {
       const resolvedPath = linkResolver({ type: 'wibble' });
+
       expect(resolvedPath).to.equal('/');
     });
   });
