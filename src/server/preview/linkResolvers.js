@@ -5,12 +5,20 @@
 */
 const linkResolvers = {
   event: (doc) => {
-    const date = doc.data['event.timestamp'].value
-      .match(/^(\d{4})-(\d{2})-(\d{2})/)
-      .slice(1)
-      .join('/');
+    let eventPath = '/';
 
-    return `/about-us/events/${date}/${doc.uid}`;
+    try {
+      const datePath = doc.data['event.timestamp'].value
+        .match(/^(\d{4})-(\d{2})-(\d{2})/)
+        .slice(1)
+        .join('/');
+
+      eventPath = `/about-us/events/${datePath}/${doc.uid}`;
+    } catch (err) {
+      console.warn('Unable to create path for event preview.', err);
+    }
+
+    return eventPath;
   },
 };
 
