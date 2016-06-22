@@ -111,11 +111,11 @@ export default class JoinUs extends Component {
         <Section>
           <Container>
             <ComponentRenderer data={titles} />
-            <Grid fit>
-              <Cell>
+            <Grid>
+              <Cell size='6'>
                 <ComponentRenderer data={join} />
               </Cell>
-              <Cell>
+              <Cell size='6'>
                 <Video id="110925126" type="vimeo" />
               </Cell>
             </Grid>
