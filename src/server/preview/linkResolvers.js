@@ -13,7 +13,7 @@ const linkResolvers = {
         .slice(1)
         .join('/');
 
-      eventPath = `/about-us/events/${datePath}/${doc.uid}`;
+      eventPath += `about-us/events/${datePath}/${doc.uid}`;
     } catch (err) {
       console.warn('Unable to create path for event preview.', err);
     }
