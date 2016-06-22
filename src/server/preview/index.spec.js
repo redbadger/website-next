@@ -13,9 +13,9 @@ describe('Preview route', () => {
 
     sandbox.stub(Prismic, 'init');
 
-    for (let name in linkResolvers) {
+    Object.keys(linkResolvers).forEach((name) => {
       sandbox.stub(linkResolvers, name).returns(`/${name}_path`);
-    }
+    });
 
     app = {
       get: sandbox.stub(),

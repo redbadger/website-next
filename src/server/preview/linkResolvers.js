@@ -11,7 +11,7 @@ const linkResolvers = {
       .join('/');
 
     return `/about-us/events/${date}/${doc.uid}`;
-  }
+  },
 };
 
 export default linkResolvers;
