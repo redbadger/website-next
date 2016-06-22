@@ -36,8 +36,8 @@ export default class EventsList extends Component {
     tomorrow.setDate(today.getDate() + 1);
     tomorrow.setHours(0, 0, 0);
 
-    let relevantEvents = this.props.events.filter(event => {
-      const date = new Date(event.doc.datetime.iso);
+    let relevantEvents = this.props.events.filter((event) => {
+      const date = new Date(event.datetime.iso);
 
       switch (this.props.timeline) {
         case 'today':
@@ -70,62 +70,62 @@ export default class EventsList extends Component {
             })()}
           <ul className={styles.eventsList}>
             {
-              relevantEvents.map(event => (
-                <li key={`event_${event.id}`} className={styles.eventItem}>
-                  <Grid fit={false}>
-                    <Cell size={1} breakOn="mobile">
-                      <HR color="grey" customClassName={styles.mobileHorizontalLine} />
-                      <DateBubble
-                          date={event.doc.datetime.date}
-                          month={event.doc.datetime.monthSym}
-                          year={event.doc.datetime.year}
-                      />
-                    </Cell>
-                    <Cell size={1} key="event_picture_mobile" hideOn="mobileSM">
-                      <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href={eventHref(event)} />
-                    </Cell>
-                    <Cell size={11} breakOn="mobile">
-                      <HR color="grey" customClassName={styles.wideHorizontalLine} />
-                      <Grid fit={false}>
-                        <Cell size={8} key='event_description' breakOn="mobileS">
-                          <a className={styles.eventTitleLink} href={eventHref(event)}>
-                            <h2 className={styles.eventTitle}>
-                              <span>
-                                {event.doc.attributes.title}
-                              </span>
-                              <span className={classNames(
-                                {
-                                  [styles.arrow]: true,
-                                  [icons.sketchArrowRight]: true,
-                                })}
-                              />
-                            </h2>
-                          </a>
-                          <div className={styles.eventDescription}>
-                            {event.doc.attributes.strapline}
-                          </div>
-                          {
-                            event.doc.attributes.externalLinks ?
-                              <EventLinksList
-                                linkList={event.doc.attributes.externalLinks}
-                                listType="external" />
-                              : null
-                          }
-                          {
-                            event.doc.attributes.internalLinks ?
-                              <EventLinksList
-                                linkList={event.doc.attributes.internalLinks}
-                                listType="internal" />
-                              : null
-                          }
-                        </Cell>
-                        <Cell size={4} key='event_picture' breakOn="mobileS" hideOn="mobileS">
-                          <EventImage imgPath={ imageAssetsEndpoint + event.doc.attributes.featureImageFilename } href={eventHref(event)} />
-                        </Cell>
-                      </Grid>
-                    </Cell>
-                  </Grid>
-                </li>
+              relevantEvents.map((event) => (
+                  <li key={`event_${event.id}`} className={styles.eventItem}>
+                    <Grid fit={false}>
+                      <Cell size={1} breakOn="mobile">
+                        <HR color="grey" customClassName={styles.mobileHorizontalLine} />
+                        <DateBubble
+                            date={event.datetime.date}
+                            month={event.datetime.monthSym}
+                            year={event.datetime.year}
+                        />
+                      </Cell>
+                      <Cell size={1} key="event_picture_mobile" hideOn="mobileSM">
+                        <EventImage imgPath={ imageAssetsEndpoint + (event.featureImageFilename ? event.featureImageFilename : 'red-badger-event.jpg') } href={eventHref(event)} />
+                      </Cell>
+                      <Cell size={11} breakOn="mobile">
+                        <HR color="grey" customClassName={styles.wideHorizontalLine} />
+                        <Grid fit={false}>
+                          <Cell size={8} key='event_description' breakOn="mobileS">
+                            <a className={styles.eventTitleLink} href={eventHref(event)}>
+                              <h2 className={styles.eventTitle}>
+                                <span>
+                                  {event.title}
+                                </span>
+                                <span className={classNames(
+                                  {
+                                    [styles.arrow]: true,
+                                    [icons.sketchArrowRight]: true,
+                                  })}
+                                />
+                              </h2>
+                            </a>
+                            <div className={styles.eventDescription}>
+                              {event.strapline}
+                            </div>
+                            {
+                              event.externalLinks ?
+                                <EventLinksList
+                                  linkList={event.externalLinks}
+                                  listType="external" />
+                                : null
+                            }
+                            {
+                              event.internalLinks ?
+                                <EventLinksList
+                                  linkList={event.internalLinks}
+                                  listType="internal" />
+                                : null
+                            }
+                          </Cell>
+                          <Cell size={4} key='event_picture' breakOn="mobileS" hideOn="mobileS">
+                            <EventImage imgPath={ imageAssetsEndpoint + (event.featureImageFilename ? event.featureImageFilename : 'red-badger-event.jpg') } href={eventHref(event)} />
+                          </Cell>
+                        </Grid>
+                      </Cell>
+                    </Grid>
+                  </li>
               ))
             }
           </ul>

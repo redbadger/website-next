@@ -1,4 +1,4 @@
 /* eslint-disable max-len */
 export function eventHref(event) {
-  return `/about-us/events/${event.doc.datetime.year}/${event.doc.datetime.month}/${event.doc.datetime.date}/${event.doc.slug}`;
+  return `/about-us/events/${event.datetime.year}/${event.datetime.month}/${event.datetime.date}/${event.slug}`;
 }

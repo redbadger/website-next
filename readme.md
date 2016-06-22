@@ -11,18 +11,13 @@ nvm use
 
 Install your dependencies with `npm install`.
 
-### CouchDB
+### Badger Brain
 
-Install [CouchDB](http://couchdb.apache.org/) on your machine. Make sure that it is running and available on `http://127.0.0.1:5984`.
+Website-next is using Badger Brain GraphQL server as a source of data. In order to get things running locally you will have to clone, build and run Badger Brain on your machine.
 
-Navigate to [admin panel](http://127.0.0.1:5984/_utils/) and create admin user.
+Clone [Badger Brain](https://github.com/redbadger/badger-brain), then `npm i && npm run build && npm start`.
 
-In the root of this project make a copy of `.env.example` and call it `.env`. Amend the existing values and add CouchDB admin user / password in the following format:
-
-> export DB_USERNAME=admin
-> export DB_PASSWORD=password
-
-Run `npm run populate` to create new db and populate it with the fixtures data for events.
+Badger Brain will try to fetch data from our endpoints. At the moment the only supported endpoint is [Prismic.io](https://rb-website.prismic.io).
 
 ## Running
 

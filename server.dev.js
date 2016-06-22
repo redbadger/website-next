@@ -1,9 +1,7 @@
-"use strict";
-/* eslint no-console:0 */
+/* eslint no-console:0 no-underscore-dangle:0 */
 
 const chalk = require('chalk');
 const express = require('express');
-const authSetup  = require('./src/server/authSetup');
 const path = require('path');
 const webpack = require('webpack');
 const webpackDevMw = require('webpack-dev-middleware');
@@ -11,13 +9,13 @@ const webpackHotMw = require('webpack-hot-middleware');
 const webpackConfigs = require('./webpack.config');
 
 const port = process.env.PORT || 8000;
-const app = authSetup(express());
+const app = express();
 const clientConfig = webpackConfigs[0];
 const clientCompiler = webpack(clientConfig);
 
 app.use(webpackDevMw(clientCompiler, {
   noInfo: true,
-  publicPath: clientConfig.output.publicPath
+  publicPath: clientConfig.output.publicPath,
 }));
 
 app.use(webpackHotMw(clientCompiler));
@@ -31,7 +29,7 @@ serverCompiler.watch({}, (err) => {
     console.log(chalk.red(err));
   }
 
-  let mw = app._router.stack.find(mw => mw.name === 'mounted_app');
+  const mw = app._router.stack.find(mw => mw.name === 'mounted_app'); // eslint-disable-line
   if (mw) {
     app._router.stack.splice(app._router.stack.indexOf(mw), 1);
     delete require.cache[serverFile];
@@ -40,7 +38,7 @@ serverCompiler.watch({}, (err) => {
     console.log(chalk.white(chalk.yellow('INFO:'), 'Server loaded'));
   }
 
-  app.use(require(serverFile).default);
+  app.use(require(serverFile).default); // eslint-disable-line
 });
 
 app.listen(port, () => {

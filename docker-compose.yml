@@ -4,13 +4,7 @@ app:
     - "8000:8000"
   environment:
     - WORKABLE_KEY
-    - DB_USERNAME
-    - DB_PASSWORD
     - NEWRELIC_LICENSE
-    - PASSPORT_GOOGLE_ALLOWEDDOMAINNAMES
-    - PASSPORT_SESSIONSECRET
-    - PASSPORT_GOOGLE_CLIENTID
-    - PASSPORT_GOOGLE_CLIENTSECRET
 proxy:
   image: redbadger/website-next-proxy
   ports:
