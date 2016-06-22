@@ -5,6 +5,7 @@ app:
   environment:
     - WORKABLE_KEY
     - NEWRELIC_LICENSE
+    - BADGER_BRAIN_HOST
 proxy:
   image: redbadger/website-next-proxy
   ports:

@@ -25,7 +25,7 @@ describe('Preview route', () => {
     enableDocumentPreview(app);
 
     expect(Prismic.init.firstCall.args[0].apiEndPoint)
-      .to.equal('https://rb-website.prismic.io');
+      .to.equal('https://rb-website.prismic.io/api');
   });
 
   it('provides a default link resolver', () => {
