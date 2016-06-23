@@ -10,25 +10,14 @@ import WorkableAPI from './api/workable';
 import router from './router';
 import enableDocumentPreview from './preview';
 
-const app = express();
+const app = enableDocumentPreview(express());
 const workable = new WorkableAPI(fetch(), config.workable.key);
-const api = createApi(workable);
 
 app.use(express.static('static'));
 
 app.use('/assets', express.static('build/assets'));
 
-app.use('/api', api);
-
-/**
-Document preview is controlled from Prismic.io
-In order for the feature to work there must be an entry in Prismic settings to
-allow it to connect to the website. The Prismic Toolbar script must also be
-included in the page.
-
-Documentation: https://prismic.io/docs/in-website-preview
-*/
-enableDocumentPreview(app);
+app.use('/api', createApi(workable));
 
 app.use(router);
 
