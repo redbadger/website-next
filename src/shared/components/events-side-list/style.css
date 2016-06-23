@@ -1,6 +1,5 @@
 @value black from '../variables/colors.css';
 @value lightGrey2 from '../variables/colors.css';
-@value grey from '../variables/colors.css';
 
 .eventsSideList {
   font-size: 0.875em;
@@ -26,8 +25,4 @@
 .eventsSideList a {
   text-decoration: none;
   color: black;
-}
-
-.eventsSideList a:hover {
-  color: grey;
 }
