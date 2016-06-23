@@ -1,7 +1,6 @@
-import sinon from 'sinon';
 import { expect } from 'chai';
 import React from 'react';
-import { render, findWithType, findAllWithType } from '../../test-helper';
+import { render, findAllWithType } from '../../test-helper';
 import EventTagsList from './';
 
 describe('Compoonent: EventTagsList', () => {
