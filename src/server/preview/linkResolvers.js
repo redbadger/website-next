@@ -3,23 +3,28 @@
   previews. Each link resolver key, e.g. "event", matches the "type" property
   in the document schema and constructs the path using the provided document.
 */
-const linkResolvers = {
-  event: (doc) => {
-    let eventPath = '/';
+const asPreview = (resolver) => (
+  (doc) => {
+    let path = '/';
 
     try {
-      const datePath = doc.data['event.timestamp'].value
-        .match(/^(\d{4})-(\d{2})-(\d{2})/)
-        .slice(1)
-        .join('/');
-
-      eventPath += `about-us/events/${datePath}/${doc.uid}`;
-    } catch (err) {
-      console.warn('Unable to create path for event preview.', err);
+      path += `${resolver(doc)}?preview=${doc.id}`;
+    } catch (error) {
+      console.warn(`Could not create path: ${error.message}`);
     }
+    return path;
+  }
+);
 
-    return eventPath;
-  },
+const event = asPreview((doc) => {
+  const datePath = doc.data['event.timestamp'].value
+    .match(/^(\d{4})-(\d{2})-(\d{2})/)
+    .slice(1)
+    .join('/');
+
+  return `about-us/events/${datePath}/${doc.uid}`;
+});
+
+export default {
+  event,
 };
-
-export default linkResolvers;
