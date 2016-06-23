@@ -18,9 +18,9 @@ export class Events extends Component {
         <BannerReactConf />
         <Section>
           <Container>
-            <EventsList events={this.props.events} timeline="today" />
-            <EventsList events={this.props.events} timeline="future" />
-            <EventsList events={this.props.events} timeline="past" />
+            <EventsList events={this.props.events} timeline='today' />
+            <EventsList events={this.props.events} timeline='future' />
+            <EventsList events={this.props.events} timeline='past' />
           </Container>
         </Section>
       </div>

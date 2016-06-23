@@ -11,8 +11,9 @@ import isEqual from 'lodash/isEqual'; // lodash fp isEqual is broken in 4.0.0
 import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
-import EventsRecentList from '../../components/events-recent-list';
+import EventsSideList from '../../components/events-side-list';
 import EventLinksList from '../../components/event-links-list';
+import { splitEvents } from '../../util/split-events';
 
 import marked from 'marked';
 import Helmet from 'react-helmet';
@@ -21,6 +22,9 @@ export class Event extends Component {
   static fetchData = fetchEvent(fetch());
 
   render() {
+    let futureEvents = splitEvents(this.props.events, 'future', { reverse: true });
+    let todayEvents = splitEvents(this.props.events, 'today');
+
     return (
       <div className={styles.eventContainer}>
         <Helmet title={`${this.props.event.title} | Red Badger`} />
@@ -82,7 +86,15 @@ export class Event extends Component {
                 </div>
               </Cell>
               <Cell size={3} breakOn="mobile">
-                <EventsRecentList events={this.props.recentEvents} />
+                { todayEvents.length ?
+                  <EventsSideList events={todayEvents} title='Today'/>
+                  : []
+                }
+                { futureEvents.length ?
+                  <EventsSideList events={futureEvents} title='Upcoming'/>
+                  : []
+                }
+
               </Cell>
             </Grid>
           </Container>
@@ -103,7 +115,7 @@ function firstWithSlug(slug) {
 function mapStateToProps(state, { routeParams }) {
   return {
     event: state.event || firstWithSlug(routeParams.slug)(state.events),
-    recentEvents: state.events.slice(0, 10),
+    events: state.events,
   };
 }
 
