@@ -25,6 +25,8 @@ export class Event extends Component {
     let futureEvents = splitEvents(this.props.events, 'future', { reverse: true });
     let todayEvents = splitEvents(this.props.events, 'today');
 
+    console.log(this.props.event.tags);
+
     return (
       <div className={styles.eventContainer}>
         <Helmet title={`${this.props.event.title} | Red Badger`} />
@@ -75,6 +77,17 @@ export class Event extends Component {
                         : null
                     }
                     </div>
+                    {
+                      this.props.event.tags.length ?
+                        <div>
+                          <ul>
+                            {this.props.event.tags.map((tag) => (
+                              <li><a href="#" title={`Read more articles related to ${tag}`}>{tag}</a></li>
+                            ))}
+                          </ul>
+                        </div>
+                        : null
+                    }
                   </Cell>
                 </Grid>
                 <HR color="grey" />
@@ -94,7 +107,6 @@ export class Event extends Component {
                   <EventsSideList events={futureEvents} title='Upcoming'/>
                   : []
                 }
-
               </Cell>
             </Grid>
           </Container>
