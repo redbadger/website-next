@@ -102,7 +102,7 @@ function firstWithSlug(slug) {
 
 function mapStateToProps(state, { routeParams }) {
   return {
-    event: firstWithSlug(routeParams.slug)(state.events),
+    event: state.event || firstWithSlug(routeParams.slug)(state.events),
     recentEvents: state.events.slice(0, 10),
   };
 }

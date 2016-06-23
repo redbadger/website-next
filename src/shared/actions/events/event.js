@@ -1,5 +1,6 @@
 import actions from '../actions';
 import { fetchEvents } from './';
+import { apiEndpoint } from '../../config';
 import HttpError from '../../util/http-error';
 
 const initialState = {};
@@ -30,8 +31,17 @@ export function fetchFailure(error) {
 }
 
 export const fetchEvent = (fetch) => (
-  (dispatch, getState, nextState) => (
-    fetchEvents(fetch)(dispatch, getState)
+  (dispatch, getState, nextState) => {
+    const { location } = nextState;
+
+    if (location && location.query.preview) {
+      return fetch(`${apiEndpoint}/event?id=${location.query.preview}`)
+        // eslint-disable-next-line no-shadow
+        .then((event) => dispatch(fetchSuccessful(event)))
+        .catch((error) => dispatch(fetchFailure(error)));
+    }
+
+    return fetchEvents(fetch)(dispatch, getState)
       .then(() => { // eslint-disable-line consistent-return
         const event = getState().events.find(j =>
           j.slug === nextState.params.slug
@@ -43,4 +53,6 @@ export const fetchEvent = (fetch) => (
           dispatch(fetchFailure(error));
           return { error };
         }
-      })));
+      });
+  }
+);
