@@ -21,7 +21,7 @@ export default class TagsList extends Component {
         <ul>
           { this.props.tagsList.map((tag, index) => (
             <li key={index}>
-              <a href="#"
+              <a href={`/about-us/events/${tag}`}
                 className={styles.tagsListLink}
                 title={`See more content related to ${tag}`}>{tag}</a>
             </li>

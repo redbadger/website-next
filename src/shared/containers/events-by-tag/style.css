@@ -1,0 +1,14 @@
+.h1 {
+  composes: h1 from "../../components/typography/style.css";
+}
+
+.h1 span {
+  display: block;
+  line-height: 1.3;
+  text-transform: "uppercase";
+}
+
+.headingLeadLine {
+  composes: defaultFont from "../../components/fonts/style.css";
+  font-size: 0.5em
+}
