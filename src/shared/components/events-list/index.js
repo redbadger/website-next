@@ -15,10 +15,9 @@ import { Grid, Cell } from '../grid';
 import classNames from 'classnames';
 import icons from '../icons/style.css';
 
+import TagsList from '../tags-list';
 import EventLinksList from '../event-links-list';
-
 import { eventHref } from '../../util/event';
-
 import { splitEvents } from '../../util/split-events';
 
 export default class EventsList extends Component {
@@ -28,7 +27,11 @@ export default class EventsList extends Component {
   };
 
   render() {
-    const relevantEvents = splitEvents(this.props.events, this.props.timeline, { reverse: this.props.timeline === 'future' });
+    const relevantEvents = splitEvents(
+      this.props.events,
+      this.props.timeline,
+      { reverse: this.props.timeline === 'future' }
+    );
 
 
     if (relevantEvents.length > 0) {
@@ -83,18 +86,29 @@ export default class EventsList extends Component {
                               {event.strapline}
                             </div>
                             {
-                              event.externalLinks ?
-                                <EventLinksList
-                                  linkList={event.externalLinks}
-                                  listType="external" />
-                                : null
+                              event.externalLinks || event.internalLinks ?
+                                <div className={styles.eventLinks}>
+                                {
+                                  event.externalLinks ?
+                                    <EventLinksList
+                                      linkList={event.externalLinks}
+                                      listType="external" />
+                                    : null
+                                }
+                                {
+                                  event.internalLinks ?
+                                    <EventLinksList
+                                      linkList={event.internalLinks}
+                                      listType="internal" />
+                                    : null
+                                }
+                                </div>
+                              : null
                             }
                             {
-                              event.internalLinks ?
-                                <EventLinksList
-                                  linkList={event.internalLinks}
-                                  listType="internal" />
-                                : null
+                              event.tags
+                              ? <TagsList tagsList={event.tags} />
+                              : null
                             }
                           </Cell>
                           <Cell size={4} key='event_picture' breakOn="mobileS" hideOn="mobileS">
