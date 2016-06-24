@@ -10,7 +10,7 @@ exports.config = {
   /**
    * Array of application names.
    */
-  app_name: ['Red Badger Website'],
+  app_name: process.env.APP_ENV === 'production' ? ['[LIVE] Red Badger Website'] : ['[STAGING] Red Badger Website'],
   /**
    * Your New Relic license key.
    */
