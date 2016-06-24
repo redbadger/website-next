@@ -6,12 +6,12 @@ import styles from './style.css';
 
 export default class TagsList extends Component {
   static propTypes = {
-    tagsList: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+    tags: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
     tagsLinkPath: React.PropTypes.string.isRequired,
   };
 
   render() {
-    if (this.props.tagsList.length === 0) return null;
+    if (this.props.tags.length === 0) return null;
 
     return (
       <div className={classNames({
@@ -20,11 +20,11 @@ export default class TagsList extends Component {
       })}>
         <span className={icons.sketchTag} />
         <ul>
-          { this.props.tagsList.map((tag, index) => (
+          { this.props.tags.map((tag, index) => (
             <li key={index}>
               <a href={`/${this.props.tagsLinkPath}/${tag}`}
                 className={styles.tagsListLink}
-                title={`See more content related to ${tag}`}>{tag}</a>
+                title={`Read more content related to "${tag}"`}>{tag}</a>
             </li>
           )) }
         </ul>

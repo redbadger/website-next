@@ -111,7 +111,7 @@ export default class EventsList extends Component {
                             {
                               event.tags
                               ? <TagsList
-                                  tagsList={event.tags}
+                                  tags={event.tags}
                                   tagsLinkPath="about-us/events" />
                               : null
                             }
