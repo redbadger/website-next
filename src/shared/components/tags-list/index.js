@@ -7,6 +7,7 @@ import styles from './style.css';
 export default class TagsList extends Component {
   static propTypes = {
     tagsList: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
+    tagsLinkPath: React.PropTypes.string.isRequired,
   };
 
   render() {
@@ -21,7 +22,7 @@ export default class TagsList extends Component {
         <ul>
           { this.props.tagsList.map((tag, index) => (
             <li key={index}>
-              <a href={`/about-us/events/${tag}`}
+              <a href={`/${this.props.tagsLinkPath}/${tag}`}
                 className={styles.tagsListLink}
                 title={`See more content related to ${tag}`}>{tag}</a>
             </li>

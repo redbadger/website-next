@@ -85,7 +85,9 @@ export class Event extends Component {
                     {
                       event.tags.length ? (
                         <div className={styles.eventTags}>
-                          <TagsList tagsList={event.tags} />
+                          <TagsList
+                            tagsList={event.tags}
+                            tagsLinkPath="about-us/events" />
                         </div>
                       ) : null
                     }

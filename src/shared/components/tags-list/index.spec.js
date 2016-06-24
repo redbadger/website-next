@@ -14,7 +14,9 @@ describe('Compoonent: TagsList', () => {
     });
 
     it('renders a list of tags', () => {
-      const component = render(<TagsList tagsList={props.tagsList} />);
+      const component = render(
+        <TagsList tagsList={props.tagsList} tagsLinkPath="tags/path" />
+      );
       const listItems = findAllWithType('li', component);
 
       expect(listItems.length).to.equal(2);
@@ -23,7 +25,7 @@ describe('Compoonent: TagsList', () => {
         const tag = props.tagsList[index];
         const link = element.props.children;
 
-        expect(link.props.href).to.equal('#');
+        expect(link.props.href).to.equal(`/tags/path/${tag}`);
         expect(link.props.title).to.equal(`See more content related to ${tag}`);
         expect(link.props.children).to.equal(tag);
       });
