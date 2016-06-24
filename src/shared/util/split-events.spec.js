@@ -1,18 +1,15 @@
 import { splitEvents } from './split-events';
 import { expect } from 'chai';
+import * as MockDate from 'mockdate';
+
+MockDate.set('Thu Jun 23 2016 14:10:56 GMT+0100 (BST)');
 
 const currentDate = new Date();
 
 const laterToday = new Date();
-
-// We need this, but this test will
-// fail if you run this after 23:00
 laterToday.setHours(currentDate.getHours() + 1);
 
 const earlierToday = new Date();
-
-// We need this, but this test will
-// fail if you run this before 01:00am
 earlierToday.setHours(currentDate.getHours() - 1);
 
 const futureDate = new Date();
