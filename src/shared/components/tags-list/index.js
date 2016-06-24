@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import classNames from 'classnames';
-import layout from '../utils/layout.css';
-import icons from '../icons/style.css';
 import styles from './style.css';
 
 export default class TagsList extends Component {
@@ -14,15 +11,12 @@ export default class TagsList extends Component {
     if (this.props.tags.length === 0) return null;
 
     return (
-      <div className={classNames({
-        [layout.cf]: true,
-        [styles.tagsList]: true,
-      })}>
-        <span className={icons.sketchTag} />
+      <div className={styles.tagsList}>
+        <span className={styles.icon} />
         <ul>
           { this.props.tags.map((tag, index) => (
             <li key={index}>
-              <a href={`/${this.props.tagsLinkPath}/${tag}`}
+              <a href={`/tags/${tag}`}
                 className={styles.tagsListLink}
                 title={`Read more content related to "${tag}"`}>{tag}</a>
             </li>

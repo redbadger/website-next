@@ -1,4 +1,12 @@
+@value grey from "../variables/colors.css";
+
+.icon {
+  composes: sketchTag from "../../components/icons/style.css";
+  color: grey;
+}
+
 .tagsList {
+  composes: cf from "../../components/utils/layout.css";
   clear: both;
   margin-left: -0.7em;
 }
@@ -23,5 +31,13 @@
 
 .tagsListLink {
   composes: a from "../../components/typography/style.css";
+  composes: defaultFont from "../../components/fonts/style.css";
   cursor: pointer;
+  font-size: .875em;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.tagsListLink:hover {
+  text-decoration: underline;
 }

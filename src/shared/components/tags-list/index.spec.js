@@ -10,13 +10,12 @@ describe('Compoonent: TagsList', () => {
     beforeEach(() => {
       props = {
         tags: ['react', 'red badger'],
-        tagsLinkPath: 'about-us/events',
       };
     });
 
     it('renders a list of tags', () => {
       const component = render(
-        <TagsList tags={props.tags} tagsLinkPath={props.tagsLinkPath} />
+        <TagsList tags={props.tags} />
       );
       const listItems = findAllWithType('li', component);
 
@@ -26,7 +25,7 @@ describe('Compoonent: TagsList', () => {
         const tag = props.tags[index];
         const link = element.props.children;
 
-        expect(link.props.href).to.equal(`/${props.tagsLinkPath}/${tag}`);
+        expect(link.props.href).to.equal(`/tags/${tag}`);
         expect(link.props.title).to.equal(`Read more content related to "${tag}"`);
         expect(link.props.children).to.equal(tag);
       });
@@ -34,7 +33,7 @@ describe('Compoonent: TagsList', () => {
 
     it('returns null when the tags array is empty', () => {
       const component = render(
-        <TagsList tags={[]} tagsLinkPath={props.tagsLinkPath} />
+        <TagsList tags={[]} />
       );
 
       expect(component).to.equal(null);
@@ -42,7 +41,7 @@ describe('Compoonent: TagsList', () => {
 
     it('throws when the tags array or link path is omitted', () => {
       expect(() => render(
-        <TagsList tagsLinkPath={props.tagsLinkPath} />
+        <TagsList />
       )).to.throw();
     });
   });

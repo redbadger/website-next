@@ -7,7 +7,7 @@ import fetch from '../../util/fetch-proxy';
 import { connect } from 'react-redux';
 import EventsList from '../../components/events-list';
 
-export class Events extends Component {
+export class Tag extends Component {
   static fetchData = fetchEvents(fetch());
 
   render() {
@@ -48,4 +48,4 @@ function mapStateToProps(state, { routeParams }) {
 
 export default connect(
   mapStateToProps
-)(Events);
+)(Tag);

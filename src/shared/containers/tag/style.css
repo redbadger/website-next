@@ -5,7 +5,10 @@
 .h1 span {
   display: block;
   line-height: 1.3;
-  text-transform: "uppercase";
+}
+
+.h1 span:nth-child(2) {
+  text-transform: capitalize;
 }
 
 .headingLeadLine {

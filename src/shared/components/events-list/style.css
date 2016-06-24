@@ -17,6 +17,7 @@
 .eventsList {
   font-size: 1em;
   margin-top: 0;
+  padding-left: 0;
 }
 
 .eventItem {
