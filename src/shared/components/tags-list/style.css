@@ -1,0 +1,22 @@
+.tagsList ul {
+  display: inline;
+  list-style: none;
+  padding-left: 0;
+}
+
+.tagsList li {
+  display: inline;
+}
+
+.tagsList li:after {
+  content: ", ";
+}
+
+.tagsList li:last-child:after {
+  content: "";
+}
+
+.tagsListLink {
+  composes: a from "../../components/typography/style.css";
+  cursor: pointer;
+}

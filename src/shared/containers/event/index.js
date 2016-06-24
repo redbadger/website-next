@@ -13,7 +13,7 @@ import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
 import EventsSideList from '../../components/events-side-list';
 import EventLinksList from '../../components/event-links-list';
-import EventTagsList from '../../components/event-tags-list';
+import TagsList from '../../components/tags-list';
 import { splitEvents } from '../../util/split-events';
 
 import marked from 'marked';
@@ -60,23 +60,34 @@ export class Event extends Component {
                         )
                       }
                     </div>
-                    <div>
                     {
-                      this.props.event.externalLinks ?
-                        <EventLinksList
-                          linkList={this.props.event.externalLinks}
-                          listType="external" />
-                        : null
-                    }
-                    {
+                      this.props.event.externalLinks ||
                       this.props.event.internalLinks ?
-                        <EventLinksList
-                          linkList={this.props.event.internalLinks}
-                          listType="internal" />
+                        <div className={styles.eventLinks}>
+                          {
+                            this.props.event.externalLinks ?
+                              <EventLinksList
+                                linkList={this.props.event.externalLinks}
+                                listType="external" />
+                              : null
+                          }
+                          {
+                            this.props.event.internalLinks ?
+                              <EventLinksList
+                                linkList={this.props.event.internalLinks}
+                                listType="internal" />
+                              : null
+                          }
+                        </div>
                         : null
                     }
-                    </div>
-                    <EventTagsList tagsList={this.props.event.tags} />
+                    {
+                      this.props.event.tags.length ? (
+                        <div className={styles.eventTags}>
+                          <TagsList tagsList={this.props.event.tags} />
+                        </div>
+                      ) : null
+                    }
                   </Cell>
                 </Grid>
                 <HR color="grey" />
