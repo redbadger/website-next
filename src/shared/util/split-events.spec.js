@@ -3,6 +3,18 @@ import { expect } from 'chai';
 
 const currentDate = new Date();
 
+const laterToday = new Date();
+
+// We need this, but this test will
+// fail if you run this after 23:00
+laterToday.setHours(currentDate.getHours() + 1);
+
+const earlierToday = new Date();
+
+// We need this, but this test will
+// fail if you run this before 01:00am
+earlierToday.setHours(currentDate.getHours() - 1);
+
 const futureDate = new Date();
 futureDate.setDate(futureDate.getDate() + 5);
 
@@ -32,6 +44,18 @@ const testevents = [
     id: 'today-event-2',
     datetime: {
       iso: currentDate,
+    },
+  },
+  {
+    id: 'later-today-event',
+    datetime: {
+      iso: laterToday,
+    },
+  },
+  {
+    id: 'earlier-today-event',
+    datetime: {
+      iso: earlierToday,
     },
   },
   {
@@ -68,9 +92,11 @@ describe('SplitEvents', () => {
   it('returns todays events', () => {
     const timeline = 'today';
     const returnedEvents = splitEvents(testevents, timeline);
-    expect(returnedEvents.length).to.equal(2);
+    expect(returnedEvents.length).to.equal(4);
     expect(returnedEvents[0].id).to.equal('today-event-1');
     expect(returnedEvents[1].id).to.equal('today-event-2');
+    expect(returnedEvents[2].id).to.equal('later-today-event');
+    expect(returnedEvents[3].id).to.equal('earlier-today-event');
   });
 
   it('returns events in reverse order when specified', () => {
