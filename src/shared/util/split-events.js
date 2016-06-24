@@ -1,23 +1,16 @@
+import dateFns from 'date-fns';
 
 export function splitEvents(events, timeline, { reverse = false } = {}) {
-  const today = new Date();
-
-  const yesterday = new Date();
-  yesterday.setDate(today.getDate() - 1);
-  yesterday.setHours(23, 59, 59);
-
-  const tomorrow = new Date();
-  tomorrow.setDate(today.getDate() + 1);
-  tomorrow.setHours(0, 0, 0);
-
   let relevantEvents = events.filter(event => {
-    const d = new Date(event.datetime.iso);
-    if (timeline === 'today') {
-      return (d.toDateString() === today.toDateString());
-    } else if (timeline === 'past') {
-      return (d < yesterday);
+    const d = dateFns.parse(event.datetime.iso);
+    switch (timeline) {
+      case 'today':
+        return dateFns.isToday(d);
+      case 'past':
+        return (dateFns.isPast(d) && !dateFns.isToday(d));
+      default:
+        return (dateFns.isFuture(d) && !dateFns.isToday(d));
     }
-    return (d > tomorrow);
   }, this);
 
   if (relevantEvents.length > 1 && reverse === true) {
