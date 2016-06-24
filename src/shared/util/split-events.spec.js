@@ -2,74 +2,82 @@ import { splitEvents } from './split-events';
 import { expect } from 'chai';
 import * as MockDate from 'mockdate';
 
-MockDate.set('Thu Jun 23 2016 14:10:56 GMT+0100 (BST)');
-
-const currentDate = new Date();
-
-const laterToday = new Date();
-laterToday.setHours(currentDate.getHours() + 1);
-
-const earlierToday = new Date();
-earlierToday.setHours(currentDate.getHours() - 1);
-
-const futureDate = new Date();
-futureDate.setDate(futureDate.getDate() + 5);
-
-const previousDate = new Date();
-previousDate.setDate(previousDate.getDate() - 5);
-
-const testevents = [
-  {
-    id: 'past-event-1',
-    datetime: {
-      iso: previousDate,
-    },
-  },
-  {
-    id: 'past-event-2',
-    datetime: {
-      iso: previousDate,
-    },
-  },
-  {
-    id: 'today-event-1',
-    datetime: {
-      iso: currentDate,
-    },
-  },
-  {
-    id: 'today-event-2',
-    datetime: {
-      iso: currentDate,
-    },
-  },
-  {
-    id: 'later-today-event',
-    datetime: {
-      iso: laterToday,
-    },
-  },
-  {
-    id: 'earlier-today-event',
-    datetime: {
-      iso: earlierToday,
-    },
-  },
-  {
-    id: 'future-event-1',
-    datetime: {
-      iso: futureDate,
-    },
-  },
-  {
-    id: 'future-event-2',
-    datetime: {
-      iso: futureDate,
-    },
-  },
-];
+let testevents = [];
 
 describe('SplitEvents', () => {
+  beforeEach(() => {
+    MockDate.set('Thu Jun 23 2016 14:10:56 GMT+0100 (BST)');
+
+    const currentDate = new Date();
+
+    const laterToday = new Date();
+    laterToday.setHours(currentDate.getHours() + 1);
+
+    const earlierToday = new Date();
+    earlierToday.setHours(currentDate.getHours() - 1);
+
+    const futureDate = new Date();
+    futureDate.setDate(futureDate.getDate() + 5);
+
+    const previousDate = new Date();
+    previousDate.setDate(previousDate.getDate() - 5);
+
+    testevents = [
+      {
+        id: 'past-event-1',
+        datetime: {
+          iso: previousDate,
+        },
+      },
+      {
+        id: 'past-event-2',
+        datetime: {
+          iso: previousDate,
+        },
+      },
+      {
+        id: 'today-event-1',
+        datetime: {
+          iso: currentDate,
+        },
+      },
+      {
+        id: 'today-event-2',
+        datetime: {
+          iso: currentDate,
+        },
+      },
+      {
+        id: 'later-today-event',
+        datetime: {
+          iso: laterToday,
+        },
+      },
+      {
+        id: 'earlier-today-event',
+        datetime: {
+          iso: earlierToday,
+        },
+      },
+      {
+        id: 'future-event-1',
+        datetime: {
+          iso: futureDate,
+        },
+      },
+      {
+        id: 'future-event-2',
+        datetime: {
+          iso: futureDate,
+        },
+      },
+    ];
+  });
+
+  afterEach(() => {
+    MockDate.reset();
+  });
+
   it('returns future events', () => {
     const timeline = 'future';
     const returnedEvents = splitEvents(testevents, timeline);
