@@ -39,7 +39,7 @@ describe('Compoonent: TagsList', () => {
       expect(component).to.equal(null);
     });
 
-    it('throws when the tags array or link path is omitted', () => {
+    it('throws when the tags array is omitted', () => {
       expect(() => render(
         <TagsList />
       )).to.throw();
