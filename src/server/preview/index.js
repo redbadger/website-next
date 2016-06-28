@@ -1,4 +1,5 @@
 import { Prismic } from 'express-prismic';
+import { prismicApiEndpoint } from '../config';
 import linkResolver from './linkResolvers';
 
 /**
@@ -10,12 +11,7 @@ import linkResolver from './linkResolvers';
   Documentation: https://prismic.io/docs/in-website-preview
 */
 const config = {
-  apiEndpoint: (
-    process.env.NODE_ENV === 'production'
-      ? 'https://rb-website.prismic.io/api'
-      : 'https://rb-website-stage.prismic.io/api'
-  ),
-  linkResolver,
+  apiEndpoint: prismicApiEndpoint,
 };
 
 export default function enableDocumentPreview(app) {
