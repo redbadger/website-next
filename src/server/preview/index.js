@@ -1,6 +1,5 @@
 import { Prismic } from 'express-prismic';
-import { prismicApiEndpoint } from '../config';
-import linkResolver from './linkResolvers';
+import linkResolvers from './linkResolvers';
 
 /**
   Document preview is controlled from Prismic.io
@@ -10,17 +9,19 @@ import linkResolver from './linkResolvers';
 
   Documentation: https://prismic.io/docs/in-website-preview
 */
-const config = {
-  apiEndpoint: prismicApiEndpoint,
-};
-
 export default function enableDocumentPreview(app) {
-  Prismic.init(config);
+  Prismic.init({
+    apiEndpoint: 'https://rb-website.prismic.io/api',
 
-  app.get('/preview', (req, res, ctx) => {
-    config.linkResolver = linkResolver.bind(null, req.query.token);
-    Prismic.preview.call(Prismic, req, res, ctx);
+    linkResolver: (doc) => {
+      if (typeof linkResolvers[doc.type] === 'function') {
+        return linkResolvers[doc.type](doc);
+      }
+      return '/';
+    },
   });
+
+  app.get('/preview', Prismic.preview);
 
   return app;
 }

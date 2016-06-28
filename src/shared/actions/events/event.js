@@ -34,9 +34,8 @@ export const fetchEvent = (fetch) => (
   (dispatch, getState, nextState) => {
     const { location } = nextState;
 
-    if (location) {
-      const { id, token } = location.query;
-      return fetch(`${apiEndpoint}/event?id=${id}&token=${token}`)
+    if (location && location.query.preview) {
+      return fetch(`${apiEndpoint}/event?id=${location.query.preview}`)
         // eslint-disable-next-line no-shadow
         .then((event) => dispatch(fetchSuccessful(event)))
         .catch((error) => dispatch(fetchFailure(error)));

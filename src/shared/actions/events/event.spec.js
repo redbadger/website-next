@@ -100,8 +100,7 @@ describe('event actions', () => {
           nextState = {
             location: {
               query: {
-                id: 'V2fPACUAANPVidtf',
-                token: 'https://rb-website-stage.prismic.io/previews/2hK875KRXAAj0YVk',
+                preview: 'V2fPACUAANPVidtf',
               },
             },
           };
@@ -112,8 +111,8 @@ describe('event actions', () => {
 
           fetchFn(dispatch, getState, nextState)
             .then(() => {
-              const { id, token } = nextState.location.query;
-              expect(fetch.firstCall.args[0]).to.equal(`${apiEndpoint}/event?id=${id}&token=${token}`);
+              const { preview } = nextState.location.query;
+              expect(fetch.firstCall.args[0]).to.equal(`${apiEndpoint}/event?id=${preview}`);
               done();
             })
             .catch(done);

@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import { expect } from 'chai';
 import { Prismic } from 'express-prismic';
-import linkResolver from './linkResolvers';
+import linkResolvers from './linkResolvers';
 import enableDocumentPreview from './';
 
 describe('Preview route', () => {
@@ -12,7 +12,10 @@ describe('Preview route', () => {
     sandbox = sinon.sandbox.create();
 
     sandbox.stub(Prismic, 'init');
-    sandbox.stub(Prismic, 'preview');
+
+    Object.keys(linkResolvers).forEach((name) => {
+      sandbox.stub(linkResolvers, name).returns(`/${name}_path`);
+    });
 
     app = {
       get: sandbox.stub(),
@@ -27,54 +30,40 @@ describe('Preview route', () => {
     enableDocumentPreview(app);
 
     expect(Prismic.init.firstCall.args[0].apiEndpoint)
-      .to.equal('https://rb-website-stage.prismic.io/api');
+      .to.equal('https://rb-website.prismic.io/api');
   });
 
   it('applies the preview route to the provided express app', () => {
     enableDocumentPreview(app);
 
     expect(app.get.firstCall.args[0]).to.equal('/preview');
-    expect(app.get.firstCall.args[1]).to.be.a('function');
+    expect(app.get.firstCall.args[1]).to.equal(Prismic.preview);
   });
 
   it('returns the express app', () => {
     expect(enableDocumentPreview(app)).to.deep.equal(app);
   });
 
-  describe('when the /preview route is invoked', () => {
-    let routeHandler;
-    let req;
+  describe('link resolution', () => {
+    let linkResolver;
 
     beforeEach(() => {
       enableDocumentPreview(app);
-
-      routeHandler = app.get.firstCall.args[1];
-
-      req = {
-        query: {
-          token: 'https://rb-website-stage.prismic.io/previews/2hK875KRXAAj0YVk',
-        },
-      };
-
-      sandbox.spy(linkResolver, 'bind');
+      linkResolver = Prismic.init.firstCall.args[0].linkResolver;
     });
 
-    it('binds the preview token to the link resolver', () => {
-      routeHandler(req);
+    it('returns the return value of the link resolver associated with the given document', () => {
+      const doc = { type: 'event' };
+      const resolvedPath = linkResolver(doc);
 
-      expect(linkResolver.bind.firstCall.args[0]).to.equal(null);
-      expect(linkResolver.bind.firstCall.args[1]).to.equal(req.query.token);
+      expect(linkResolvers.event.firstCall.args[0]).to.equal(doc);
+      expect(resolvedPath).to.equal(linkResolvers.event.firstCall.returnValue);
     });
 
-    it('invokes the Prismic.preview handler and passes the required arguments', () => {
-      const res = {};
-      const ctx = {};
+    it('returns the root path if the document type does not have a resolver', () => {
+      const resolvedPath = linkResolver({ type: 'wibble' });
 
-      routeHandler(req, res, ctx);
-
-      expect(Prismic.preview.firstCall.args[0]).to.equal(req);
-      expect(Prismic.preview.firstCall.args[1]).to.equal(res);
-      expect(Prismic.preview.firstCall.args[2]).to.equal(ctx);
+      expect(resolvedPath).to.equal('/');
     });
   });
 });
