@@ -44,7 +44,7 @@ export const fetchEvent = (fetch) => (
     return fetchEvents(fetch)(dispatch, getState)
       .then(() => { // eslint-disable-line consistent-return
         const event = getState().events.find(j =>
-          j.slug === nextState.params.slug
+          j.slug.toUpperCase() === nextState.params.slug.toUpperCase()
         );
         if (event) {
           dispatch(fetchSuccessful(event));

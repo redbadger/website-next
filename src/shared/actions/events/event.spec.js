@@ -66,7 +66,9 @@ describe('event actions', () => {
           ],
         };
         nextState = {
-          params: {},
+          params: {
+            slug: 'unknown-event',
+          },
         };
         getState = () => state;
       });
