@@ -6,9 +6,14 @@ import Container from '../container';
 import { Grid, Cell } from '../grid';
 import Input from '../input';
 import Button from '../button';
+import icons from '../icons/style.css';
+import display from '../utils/display.css';
+
+/**
+  Note: this css module must be imported last :(
+  https://github.com/redbadger/website-next/issues/182
+*/
 import styles from './style.css';
-import * as icons from '../icons/style.css';
-import * as display from '../utils/display.css';
 
 export default class Footer extends Component {
   render() {
