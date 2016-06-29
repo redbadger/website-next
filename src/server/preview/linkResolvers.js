@@ -4,11 +4,11 @@
   in the document schema and constructs the path using the provided document.
 */
 const asPreview = (resolver) => (
-  (doc) => {
+  (token, doc) => {
     let path = '/';
 
     try {
-      path += `${resolver(doc)}?preview=${doc.id}`;
+      path += `${resolver(doc)}?id=${doc.id}&token=${token}`;
     } catch (error) {
       console.warn(`Could not create path: ${error.message}`);
     }
@@ -16,15 +16,20 @@ const asPreview = (resolver) => (
   }
 );
 
-const event = asPreview((doc) => {
-  const datePath = doc.data['event.timestamp'].value
-    .match(/^(\d{4})-(\d{2})-(\d{2})/)
-    .slice(1)
-    .join('/');
+export const resolvers = {
+  event: asPreview((doc) => {
+    const datePath = doc.data['event.timestamp'].value
+      .match(/^(\d{4})-(\d{2})-(\d{2})/)
+      .slice(1)
+      .join('/');
 
-  return `about-us/events/${datePath}/${doc.uid}`;
-});
-
-export default {
-  event,
+    return `about-us/events/${datePath}/${doc.uid}`;
+  }),
 };
+
+export default function linkResolver(token, doc) {
+  if (typeof resolvers[doc.type] === 'function') {
+    return resolvers[doc.type](token, doc);
+  }
+  return '/';
+}

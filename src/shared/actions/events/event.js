@@ -33,9 +33,10 @@ export function fetchFailure(error) {
 export const fetchEvent = (fetch) => (
   (dispatch, getState, nextState) => {
     const { location } = nextState;
+    const { id, token } = location ? location.query : {};
 
-    if (location && location.query.preview) {
-      return fetch(`${apiEndpoint}/event?id=${location.query.preview}`)
+    if (id && token) {
+      return fetch(`${apiEndpoint}/event?id=${id}&token=${token}`)
         // eslint-disable-next-line no-shadow
         .then((event) => dispatch(fetchSuccessful(event)))
         .catch((error) => dispatch(fetchFailure(error)));

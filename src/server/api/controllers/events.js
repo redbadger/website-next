@@ -5,11 +5,13 @@ const badgerBrainEndpoint =
   ? badgerBrain.remote
   : badgerBrain.local;
 
-const getRequestOptions = (body) => ({
+const getRequestOptions = (req, body) => ({
   method: 'POST',
-  headers: {
+  headers: Object.assign({}, {
     'Content-Type': 'application/graphql',
-  },
+  }, req.query.token && {
+    'X-Preview': req.query.token,
+  }),
   body,
 });
 
@@ -51,12 +53,12 @@ export default class EventsController {
       }
     `;
 
-    fetch(badgerBrainEndpoint, getRequestOptions(body))
-      .then((response) => (
+    fetch(badgerBrainEndpoint, getRequestOptions(req, body))
+      .then((response) => {
         response.json().then((json) => {
-          res.send(json.data.event);
-        })
-      ))
+          res.send(json.data ? json.data.event : json);
+        });
+      })
       .catch((err) => {
         res.status(err.status).send(err.message);
       });
@@ -71,7 +73,7 @@ export default class EventsController {
       }
     `;
 
-    fetch(badgerBrainEndpoint, getRequestOptions(body))
+    fetch(badgerBrainEndpoint, getRequestOptions(req, body))
       .then((response) => response.json())
       .then((events) => {
         res.send({ list: events.data.allEvents.sort((a, b) =>
