@@ -51,10 +51,18 @@
   font-weight: bold;
 }
 
+.eventLinks {
+  composes: cf from "../../components/utils/layout.css";
+}
+
 .externalLinkIcon {
   font-size: 1em;
   color: red;
   position: absolute;
+}
+
+.eventTags {
+  margin-top: 1.5em;
 }
 
 .mobileHorizontalLine {

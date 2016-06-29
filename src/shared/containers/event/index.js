@@ -13,6 +13,7 @@ import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
 import EventsSideList from '../../components/events-side-list';
 import EventLinksList from '../../components/event-links-list';
+import TagsList from '../../components/tags-list';
 import { splitEvents } from '../../util/split-events';
 
 import marked from 'marked';
@@ -22,12 +23,14 @@ export class Event extends Component {
   static fetchData = fetchEvent(fetch());
 
   render() {
-    let futureEvents = splitEvents(this.props.events, 'future', { reverse: true });
-    let todayEvents = splitEvents(this.props.events, 'today');
+    const { event, events } = this.props;
+    let futureEvents = splitEvents(events, 'future', { reverse: true });
+    let todayEvents = splitEvents(events, 'today');
+
 
     return (
       <div className={styles.eventContainer}>
-        <Helmet title={`${this.props.event.title} | Red Badger`} />
+        <Helmet title={`${event.title} | Red Badger`} />
         <Section>
           <Container>
             <Grid fit={false}>
@@ -35,9 +38,9 @@ export class Event extends Component {
                 <HR color="grey"
                   customClassName={styles.mobileHorizontalLine} />
                 <DateBubble
-                    date={this.props.event.datetime.date}
-                    month={this.props.event.datetime.monthSym}
-                    year={this.props.event.datetime.year}
+                    date={event.datetime.date}
+                    month={event.datetime.monthSym}
+                    year={event.datetime.year}
                 />
               </Cell>
               <Cell size={8} breakOn="mobile">
@@ -45,36 +48,49 @@ export class Event extends Component {
                 <Grid fit={false}>
                   <Cell size={11} key='event_description' breakOn="mobileS">
                     <h2 className={styles.eventTitle}>
-                      {this.props.event.title}
+                      {event.title}
                     </h2>
                     <div className={styles.eventDescription}>
-                      {this.props.event.strapline}
+                      {event.strapline}
                     </div>
                     <div className={styles.eventBody}>
                       {
-                        this.props.event.body.map((el, i) =>
+                        event.body.map((el, i) =>
                           (<p key={i}>
                             {marked(el.text)}
                           </p>)
                         )
                       }
                     </div>
-                    <div>
                     {
-                      this.props.event.externalLinks ?
-                        <EventLinksList
-                          linkList={this.props.event.externalLinks}
-                          listType="external" />
+                      event.externalLinks || event.internalLinks ?
+                        <div className={styles.eventLinks}>
+                          {
+                            event.externalLinks ?
+                              <EventLinksList
+                                linkList={event.externalLinks}
+                                listType="external" />
+                              : null
+                          }
+                          {
+                            event.internalLinks ?
+                              <EventLinksList
+                                linkList={event.internalLinks}
+                                listType="internal" />
+                              : null
+                          }
+                        </div>
                         : null
                     }
                     {
-                      this.props.event.internalLinks ?
-                        <EventLinksList
-                          linkList={this.props.event.internalLinks}
-                          listType="internal" />
-                        : null
+                      event.tags.length ? (
+                        <div className={styles.eventTags}>
+                          <TagsList
+                            tags={event.tags}
+                            tagsLinkPath="about-us/events" />
+                        </div>
+                      ) : null
                     }
-                    </div>
                   </Cell>
                 </Grid>
                 <HR color="grey" />
@@ -94,7 +110,6 @@ export class Event extends Component {
                   <EventsSideList events={futureEvents} title='Upcoming'/>
                   : []
                 }
-
               </Cell>
             </Grid>
           </Container>

@@ -17,6 +17,7 @@
 .eventsList {
   font-size: 1em;
   margin-top: 0;
+  padding-left: 0;
 }
 
 .eventItem {
@@ -53,6 +54,11 @@
 .eventDescription {
   margin-top: 10px;
   float: left;
+}
+
+.eventLinks {
+  composes: cf from "../../components/utils/layout.css";
+  margin-bottom: 1em;
 }
 
 .mobileHorizontalLine {

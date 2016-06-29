@@ -16,6 +16,7 @@ const getRequestOptions = (body) => ({
 const allEventFields = `
   id
   slug
+  tags
   title
   strapline
   internalLinks {
