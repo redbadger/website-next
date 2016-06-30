@@ -1,5 +1,4 @@
 .eventLinkList {
-  composes: cf from "../utils/layout.css";
   width: 100%;
   float: left;
 }
