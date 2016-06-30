@@ -1,10 +1,12 @@
 .eventLinkList {
+  composes: cf from "../utils/layout.css";
   width: 100%;
   float: left;
 }
 
 .fullDetailsLink {
-  composes: aBold from "../../components/typography/style.css";
+  composes: aBold from "../typography/style.css";
+  clear: both;
   color: black;
   display: block;
   text-decoration: none;
