@@ -3,6 +3,7 @@
 .icon {
   composes: sketchTag from "../icons/style.css";
   color: grey;
+  float: left;
 }
 
 .tagsList {
