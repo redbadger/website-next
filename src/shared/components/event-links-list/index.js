@@ -1,10 +1,11 @@
 // Displays list of links related to the event
 
 import React, { Component } from 'react';
-import styles from './style.css';
 
 import classNames from 'classnames';
+import layout from '../utils/layout.css';
 import icons from '../icons/style.css';
+import styles from './style.css';
 
 export default class EventLinksList extends Component {
   static propTypes = {
@@ -18,7 +19,10 @@ export default class EventLinksList extends Component {
     const { listType } = this.props;
 
     return (
-      <div className={styles.eventLinkList}>
+      <div className={classNames({
+        [styles.eventLinkList]: true,
+        [layout.cf]: true,
+      })}>
         {
           this.props.linkList.map(eventLink => (
             <a

@@ -1,3 +1,5 @@
+@value mobile from "../../components/variables/breakpoints.css";
+
 .h1 {
   composes: h1 from "../../components/typography/style.css";
 }
@@ -14,4 +16,10 @@
 .headingLeadLine {
   composes: defaultFont from "../../components/fonts/style.css";
   font-size: 0.5em
+}
+
+@media mobile {
+  .h1 {
+    margin-bottom: 0;
+  }
 }

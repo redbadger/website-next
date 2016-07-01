@@ -4,7 +4,8 @@
 }
 
 .fullDetailsLink {
-  composes: aBold from "../../components/typography/style.css";
+  composes: aBold from "../typography/style.css";
+  clear: both;
   color: black;
   display: block;
   text-decoration: none;
