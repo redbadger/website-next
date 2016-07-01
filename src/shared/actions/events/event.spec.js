@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
+import { defaultEvent } from '../../../../spec/fixtures/events';
 import reducer, { fetchSuccessful, fetchFailure, fetchEvent } from './event';
 import { apiEndpoint } from '../../config';
 import actions from '../actions';
@@ -60,6 +61,7 @@ describe('event actions', () => {
       beforeEach(() => {
         dispatch = sinon.spy();
         state = {
+          event: {},
           events: [
             { slug: 'hello' },
             { slug: 'there' },
@@ -73,29 +75,43 @@ describe('event actions', () => {
         getState = () => state;
       });
 
-      it('dispatches success action if the event exists', (done) => {
-        nextState.params.slug = 'hello';
-
+      it('returns a resolved promise containing the event from the store', (done) => {
+        state.event = defaultEvent;
         fetchFn(dispatch, getState, nextState)
-          .then(() => {
-            const successAction = fetchSuccessful(state.events[0]);
-            expect(dispatch.firstCall.args[0]).to.deep.equal(successAction);
+          .then((event) => {
+            expect(event).to.deep.equal(state.event);
+            expect(fetch.callCount).to.equal(0);
+            expect(dispatch.callCount).to.equal(0);
             done();
           })
           .catch(done);
       });
 
-      it('dispatches fail action if the event does not exist, resolving with a 404 error', (done) => {
-        fetchFn(dispatch, getState, nextState)
-          .then((err) => {
-            const failureAction = fetchFailure(new HttpError(404));
-            expect(dispatch.firstCall.args[0]).to.deep.equal(failureAction);
-            expect(err.error).to.be.an.instanceof(HttpError);
-            done();
-          });
+      describe('when there is no event in the store', () => {
+        it('dispatches success action if the event exists', (done) => {
+          nextState.params.slug = 'hello';
+
+          fetchFn(dispatch, getState, nextState)
+            .then(() => {
+              const successAction = fetchSuccessful(state.events[0]);
+              expect(dispatch.firstCall.args[0]).to.deep.equal(successAction);
+              done();
+            })
+            .catch(done);
+        });
+
+        it('dispatches fail action if the event does not exist, resolving with a 404 error', (done) => {
+          fetchFn(dispatch, getState, nextState)
+            .then((err) => {
+              const failureAction = fetchFailure(new HttpError(404));
+              expect(dispatch.firstCall.args[0]).to.deep.equal(failureAction);
+              expect(err.error).to.be.an.instanceof(HttpError);
+              done();
+            });
+        });
       });
 
-      describe('when a preview ID query is present', () => {
+      describe('when there is no event in the store and preview query params are set', () => {
         beforeEach(() => {
           nextState = {
             location: {
