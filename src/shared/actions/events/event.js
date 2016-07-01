@@ -32,6 +32,12 @@ export function fetchFailure(error) {
 
 export const fetchEvent = (fetch) => (
   (dispatch, getState, nextState) => {
+    const storedEvent = getState().event;
+
+    if (storedEvent && Object.keys(storedEvent).length > 0) {
+      return Promise.resolve(storedEvent);
+    }
+
     const { location } = nextState;
     const { id, token } = location ? location.query : {};
 
