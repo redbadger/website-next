@@ -1,0 +1,33 @@
+@value black from '../variables/colors.css';
+@value lightGrey2 from '../variables/colors.css';
+@value grey from '../variables/colors.css';
+
+.newsSideList {
+  font-size: 0.875em;
+  padding: 1em;
+  background: lightGrey2;
+  border-radius: 5px;
+  margin-top: 1.5em;
+}
+
+.newsSideListTitle {
+  text-transform: uppercase;
+}
+
+.newsSideList ul {
+  padding: 0;
+}
+
+.newsSideList li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.newsSideList a {
+  text-decoration: none;
+  color: black;
+}
+
+.newsSideList a:hover {
+  color: grey;
+}

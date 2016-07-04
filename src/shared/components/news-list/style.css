@@ -1,0 +1,85 @@
+@value mobile from "../variables/breakpoints.css";
+@value red from "../variables/colors.css";
+
+.newsListTimelineSection {
+  margin-bottom: 50px;
+}
+
+.newsListTimelineSection:last-child {
+  margin-bottom: 0;
+}
+
+.newsListTimelineSection h2 {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.newsListTimelineSection h2.newsTitle {
+  text-align: left;
+}
+
+.newsList {
+  font-size: 1em;
+  margin-top: 0;
+  padding-left: 0;
+}
+
+.newsItem {
+  position: relative;
+  list-style-type: none;
+}
+
+.newsTitleLink {
+  text-decoration: none;
+}
+
+.newsTitle {
+  composes: h2 from "../../components/typography/style.css";
+  font-size: 1.6em;
+  text-decoration: none;
+  display: inline;
+  margin: 0 0 20px 0;
+  float: left;
+}
+
+.newsTitle span {
+  display: inline;
+}
+
+.newsTitle:hover, .newsTitle:active, .newsTitle:focus {
+  color: red;
+}
+
+.arrow {
+  color: red;
+  padding-left: 5px;
+}
+
+.newsDescription {
+  margin-top: 10px;
+  float: left;
+}
+
+.newsLinks {
+  composes: cf from "../../components/utils/layout.css";
+  margin-bottom: 1em;
+}
+
+.mobileHorizontalLine {
+  display: none;
+  margin: 1.5em 0 0 0;
+}
+
+@media mobile {
+  .wideHorizontalLine {
+    display: none;
+  }
+
+  .mobileHorizontalLine {
+    display: block;
+  }
+
+  .newsList {
+    padding: 0;
+  }
+}
