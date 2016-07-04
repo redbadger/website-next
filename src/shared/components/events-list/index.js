@@ -17,7 +17,7 @@ import icons from '../icons/style.css';
 
 import TagsList from '../tags-list';
 import EventLinksList from '../event-links-list';
-import { eventHref } from '../../util/event';
+import { eventHref } from '../../util/url-helper';
 import { splitEvents } from '../../util/split-events';
 
 export default class EventsList extends Component {

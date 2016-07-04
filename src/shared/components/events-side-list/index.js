@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import styles from './style.css';
 
-import { eventHref } from '../../util/event';
+import { eventHref } from '../../util/url-helper';
 
 export default class EventsSideList extends Component {
   static propTypes = {
