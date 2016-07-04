@@ -2,14 +2,23 @@ import dateFns from 'date-fns';
 
 export function splitEvents(events, timeline, { reverse = false } = {}) {
   let relevantEvents = events.filter(event => {
-    const d = dateFns.parse(event.datetime.iso);
+    const startDate = dateFns.parse(event.startDateTime.iso);
+    const endDate = event.endDateTime && dateFns.parse(event.endDateTime.iso);
+
+    const isActiveMultiDayEvent = (
+      endDate !== null
+      ? dateFns.isWithinRange(new Date(), startDate, endDate)
+      : false
+    );
+
     switch (timeline) {
       case 'today':
-        return dateFns.isToday(d);
+        return dateFns.isToday(startDate) || isActiveMultiDayEvent;
       case 'past':
-        return (dateFns.isPast(d) && !dateFns.isToday(d));
+        return !isActiveMultiDayEvent &&
+          (dateFns.isPast(startDate) && !dateFns.isToday(startDate));
       default:
-        return (dateFns.isFuture(d) && !dateFns.isToday(d));
+        return (dateFns.isFuture(startDate) && !dateFns.isToday(startDate));
     }
   }, this);
 

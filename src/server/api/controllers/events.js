@@ -15,6 +15,14 @@ const getRequestOptions = (req, body) => ({
   body,
 });
 
+const dateTimeFields = `
+  iso
+  date
+  month
+  monthSym
+  year
+`;
+
 const allEventFields = `
   id
   slug
@@ -29,12 +37,11 @@ const allEventFields = `
     title
     url
   }
-  datetime {
-    iso
-    date
-    month
-    monthSym
-    year
+  startDateTime {
+    ${dateTimeFields}
+  }
+  endDateTime {
+    ${dateTimeFields}
   }
   body {
     type
