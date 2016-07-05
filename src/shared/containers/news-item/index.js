@@ -2,7 +2,6 @@ import Container from '../../components/container';
 import React, { Component } from 'react';
 import { fetchNewsItem } from '../../actions/news/news-item';
 import Section from '../../components/section';
-import styles from './style.css';
 import fetch from '../../util/fetch-proxy';
 import { connect } from 'react-redux';
 import { filter, flow, head, property } from 'lodash/fp';
@@ -17,6 +16,11 @@ import TagsList from '../../components/tags-list';
 
 import marked from 'marked';
 import Helmet from 'react-helmet';
+import classNames from 'classnames';
+import typography from '../../components/typography/style.css';
+import layout from '../../components/utils/layout.css';
+import icons from '../../components/icons/style.css';
+import styles from './style.css';
 
 export class NewsItem extends Component {
   static fetchData = fetchNewsItem(fetch());
@@ -43,7 +47,11 @@ export class NewsItem extends Component {
                 <HR color="grey" customClassName={styles.wideHorizontalLine} />
                 <Grid fit={false}>
                   <Cell size={11} key='newsItem_description' breakOn="mobileS">
-                    <h2 className={styles.newsItemTitle}>
+                    <h2 className={classNames(
+                      {
+                        [typography.h2]: true,
+                        [styles.newsItemTitle]: true,
+                      })}>
                       {newsItem.title}
                     </h2>
                     <div className={styles.newsItemDescription}>
@@ -60,7 +68,7 @@ export class NewsItem extends Component {
                     </div>
                     {
                       newsItem.externalLinks || newsItem.internalLinks ?
-                        <div className={styles.newsItemLinks}>
+                        <div className={layout.cf}>
                           {
                             newsItem.externalLinks ?
                               <LinksList
@@ -92,7 +100,11 @@ export class NewsItem extends Component {
                 <HR color="grey" />
                 <div className={styles.moreNewsItems}>
                   <a href="/about-us/news">
-                    <span className={styles.arrowBack} />
+                    <span className={classNames(
+                      {
+                        [icons.sketchArrowLeft]: true,
+                        [styles.arrowBack]: true,
+                      })} />
                     <span>More news</span>
                   </a>
                 </div>

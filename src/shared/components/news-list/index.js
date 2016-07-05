@@ -5,7 +5,6 @@
 /* eslint-disable max-len */
 
 import React, { Component } from 'react';
-import styles from './style.css';
 
 import EventImage from '../event-image';
 import { imageAssetsEndpoint } from '../../config';
@@ -18,6 +17,9 @@ import icons from '../icons/style.css';
 import TagsList from '../tags-list';
 import LinksList from '../links-list';
 import { newsItemHref } from '../../util/url-helper';
+import layout from '../utils/layout.css';
+import typography from '../../components/typography/style.css';
+import styles from './style.css';
 
 export default class EventsList extends Component {
   static propTypes = {
@@ -51,7 +53,11 @@ export default class EventsList extends Component {
                         <Grid fit={false}>
                           <Cell size={8} key='news_description' breakOn="mobileS">
                             <a className={styles.newsTitleLink} href={newsItemHref(news)}>
-                              <h2 className={styles.newsTitle}>
+                              <h2 className={classNames(
+                                {
+                                  [typography.h2]: true,
+                                  [styles.newsTitle]: true,
+                                })}>
                                 <span>
                                   {news.title}
                                 </span>
@@ -68,7 +74,11 @@ export default class EventsList extends Component {
                             </div>
                             {
                               news.externalLinks || news.internalLinks ?
-                                <div className={styles.newsLinks}>
+                                <div className={classNames(
+                                  {
+                                    [layout.cf]: true,
+                                    [styles.newsLinks]: true,
+                                  })}>
                                 {
                                   news.externalLinks ?
                                     <LinksList

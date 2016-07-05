@@ -1,13 +1,5 @@
-@value mobile from "../../components/variables/breakpoints.css";
-@value red from "../../components/variables/colors.css";
-
 .newsItemBody a {
-  color: red;
-}
-
-.h1 {
-  composes: h1 from "../../components/typography/style.css";
-  text-align: center;
+  color: #BE1414;
 }
 
 img {
@@ -28,12 +20,11 @@ img {
 }
 
 .newsItemTitle {
-  composes: h2 from "../../components/typography/style.css";
   font-size: 1.6em;
   text-decoration: none;
   display: inline;
   margin: 0 0 20px 0;
-  color: red;
+  color: #BE1414;
 }
 
 .arrow {
@@ -41,27 +32,14 @@ img {
   color: black;
 }
 
-.fullDetailsLink {
-  composes: aBold from "../../components/typography/style.css";
-  color: black;
-  display: block;
-  text-decoration: none;
-  margin-top: 0.8em;
-  position: relative;
-}
-
 .newsItemDescription {
   margin-top: 10px;
   font-weight: bold;
 }
 
-.newsItemLinks {
-  composes: cf from "../../components/utils/layout.css";
-}
-
 .externalLinkIcon {
   font-size: 1em;
-  color: red;
+  color: #BE1414;
   position: absolute;
 }
 
@@ -81,15 +59,10 @@ img {
 }
 
 .moreEvents a:hover, .moreEvents a:focus {
-  color: red;
+  color: #BE1414;
 }
 
-.arrowBack {
-  composes: sketchArrowLeft from "../../components/icons/style.css";
-  color: red;
-}
-
-@media mobile {
+@media (max-width: 767px) {
   .wideHorizontalLine {
     display: none;
   }
