@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 
 import classNames from 'classnames';
 import layout from '../utils/layout.css';
-import icons from '../icons/style.css';
 import styles from './style.css';
+import ListLink from './list-link';
 
 export default class LinksList extends Component {
   static propTypes = {
@@ -25,20 +25,7 @@ export default class LinksList extends Component {
       })}>
         {
           this.props.linkList.map(link => (
-            <a
-              className={styles.fullDetailsLink}
-              href={link.url}
-              key={link.url}
-              target={listType === 'external' ? '_blank' : null}
-            >
-              <span>{link.title}</span>
-              <span className={classNames({
-                [icons.sketchExternalLink]: listType === 'external',
-                [icons.sketchArrowRight]: listType === 'internal',
-                [styles.externalLinkIcon]: true,
-              })}
-              />
-            </a>
+            <ListLink link={link} direction={listType} />
           ))
         }
       </div>
