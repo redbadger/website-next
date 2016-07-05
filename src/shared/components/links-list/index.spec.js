@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import TestUtils from 'react-addons-test-utils';
 import jsdom from 'jsdom';
 
-describe.only('LinksList', () => {
+describe('LinksList', () => {
   const listings = [{
     title: 'Red Badger',
     url: 'http://www.red-badger.com',
