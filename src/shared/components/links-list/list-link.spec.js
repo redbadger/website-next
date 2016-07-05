@@ -26,7 +26,7 @@ describe('ListLink', () => {
       expect(wrapper.is('a[target="_blank"]')).to.equal(true);
     });
 
-    it.only('will have the correct link', () => {
+    it('will have the correct link', () => {
       expect(wrapper.html()).to.contain('href="http://www.red-badger.com"');
     });
   });
