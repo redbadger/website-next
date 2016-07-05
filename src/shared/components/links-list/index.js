@@ -1,4 +1,4 @@
-// Displays list of links related to the event
+// Displays list of links related to the item
 
 import React, { Component } from 'react';
 
@@ -7,7 +7,7 @@ import layout from '../utils/layout.css';
 import icons from '../icons/style.css';
 import styles from './style.css';
 
-export default class EventLinksList extends Component {
+export default class LinksList extends Component {
   static propTypes = {
     linkList: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
     listType: React.PropTypes.oneOf(['external', 'internal']).isRequired,
@@ -20,18 +20,18 @@ export default class EventLinksList extends Component {
 
     return (
       <div className={classNames({
-        [styles.eventLinkList]: true,
+        [styles.linkList]: true,
         [layout.cf]: true,
       })}>
         {
-          this.props.linkList.map(eventLink => (
+          this.props.linkList.map(link => (
             <a
               className={styles.fullDetailsLink}
-              href={eventLink.url}
-              key={eventLink.url}
+              href={link.url}
+              key={link.url}
               target={listType === 'external' ? '_blank' : null}
             >
-              <span>{eventLink.title}</span>
+              <span>{link.title}</span>
               <span className={classNames({
                 [icons.sketchExternalLink]: listType === 'external',
                 [icons.sketchArrowRight]: listType === 'internal',

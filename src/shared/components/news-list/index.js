@@ -16,7 +16,7 @@ import classNames from 'classnames';
 import icons from '../icons/style.css';
 
 import TagsList from '../tags-list';
-import EventLinksList from '../event-links-list';
+import LinksList from '../links-list';
 import { newsItemHref } from '../../util/url-helper';
 
 export default class EventsList extends Component {
@@ -71,14 +71,14 @@ export default class EventsList extends Component {
                                 <div className={styles.newsLinks}>
                                 {
                                   news.externalLinks ?
-                                    <EventLinksList
+                                    <LinksList
                                       linkList={news.externalLinks}
                                       listType="external" />
                                     : null
                                 }
                                 {
                                   news.internalLinks ?
-                                    <EventLinksList
+                                    <LinksList
                                       linkList={news.internalLinks}
                                       listType="internal" />
                                     : null

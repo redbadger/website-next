@@ -12,7 +12,7 @@ import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
 import NewsSideList from '../../components/news-side-list';
-import EventLinksList from '../../components/event-links-list';
+import LinksList from '../../components/links-list';
 import TagsList from '../../components/tags-list';
 
 import marked from 'marked';
@@ -63,14 +63,14 @@ export class NewsItem extends Component {
                         <div className={styles.newsItemLinks}>
                           {
                             newsItem.externalLinks ?
-                              <EventLinksList
+                              <LinksList
                                 linkList={newsItem.externalLinks}
                                 listType="external" />
                               : null
                           }
                           {
                             newsItem.internalLinks ?
-                              <EventLinksList
+                              <LinksList
                                 linkList={newsItem.internalLinks}
                                 listType="internal" />
                               : null

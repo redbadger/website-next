@@ -12,7 +12,7 @@ import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
 import EventsSideList from '../../components/events-side-list';
-import EventLinksList from '../../components/event-links-list';
+import LinksList from '../../components/links-list';
 import TagsList from '../../components/tags-list';
 import { splitEvents } from '../../util/split-events';
 
@@ -67,14 +67,14 @@ export class Event extends Component {
                         <div className={styles.eventLinks}>
                           {
                             event.externalLinks ?
-                              <EventLinksList
+                              <LinksList
                                 linkList={event.externalLinks}
                                 listType="external" />
                               : null
                           }
                           {
                             event.internalLinks ?
-                              <EventLinksList
+                              <LinksList
                                 linkList={event.internalLinks}
                                 listType="internal" />
                               : null

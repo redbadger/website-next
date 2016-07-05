@@ -16,7 +16,7 @@ import classNames from 'classnames';
 import icons from '../icons/style.css';
 
 import TagsList from '../tags-list';
-import EventLinksList from '../event-links-list';
+import LinksList from '../links-list';
 import { eventHref } from '../../util/url-helper';
 import { splitEvents } from '../../util/split-events';
 
@@ -95,14 +95,14 @@ export default class EventsList extends Component {
                                 <div className={styles.eventLinks}>
                                 {
                                   event.externalLinks ?
-                                    <EventLinksList
+                                    <LinksList
                                       linkList={event.externalLinks}
                                       listType="external" />
                                     : null
                                 }
                                 {
                                   event.internalLinks ?
-                                    <EventLinksList
+                                    <LinksList
                                       linkList={event.internalLinks}
                                       listType="internal" />
                                     : null
