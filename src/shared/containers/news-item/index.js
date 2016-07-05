@@ -11,7 +11,7 @@ import isEqual from 'lodash/isEqual'; // lodash fp isEqual is broken in 4.0.0
 import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
-import NewsSideList from '../../components/news-side-list';
+import LinksListSide from '../../components/links-list-side';
 import LinksList from '../../components/links-list';
 import TagsList from '../../components/tags-list';
 
@@ -98,7 +98,7 @@ export class NewsItem extends Component {
                 </div>
               </Cell>
               <Cell size={3} breakOn="mobile">
-                <NewsSideList news={news.slice(0, 10)} />
+                <LinksListSide title="Recent News" listType="news" links={news.slice(0, 10)} />
               </Cell>
             </Grid>
           </Container>

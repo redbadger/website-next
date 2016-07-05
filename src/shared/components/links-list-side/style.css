@@ -2,7 +2,7 @@
 @value lightGrey2 from '../variables/colors.css';
 @value grey from '../variables/colors.css';
 
-.newsSideList {
+.linksListSide {
   font-size: 0.875em;
   padding: 1em;
   background: lightGrey2;
@@ -10,24 +10,24 @@
   margin-top: 1.5em;
 }
 
-.newsSideListTitle {
+.linksListSideTitle {
   text-transform: uppercase;
 }
 
-.newsSideList ul {
+.linksListSide ul {
   padding: 0;
 }
 
-.newsSideList li {
+.linksListSide li {
   list-style: none;
   margin-bottom: 10px;
 }
 
-.newsSideList a {
+.linksListSide a {
   text-decoration: none;
   color: black;
 }
 
-.newsSideList a:hover {
+.linksListSide a:hover {
   color: grey;
 }
