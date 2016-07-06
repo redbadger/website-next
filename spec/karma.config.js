@@ -5,32 +5,37 @@ webpackConfig.module.preLoaders = [
   {
     test: /\.js$/,
     exclude: /(node_modules|\.spec\.js)/,
-    loader: 'isparta'
-  }
+    loader: 'isparta',
+  },
 ];
+webpackConfig.externals = {
+  'react/lib/ExecutionEnvironment': true,
+  'react/lib/ReactContext': true,
+  'react/addons': true,
+};
 
 module.exports = function (config) {
   config.set({
     browsers: ['PhantomJS', 'Firefox'],
-    frameworks: [ 'mocha' ],
+    frameworks: ['mocha'],
     files: [
       '../node_modules/phantomjs-polyfill/bind-polyfill.js',
-      './karma-context.js'
+      './karma-context.js',
     ],
     preprocessors: {
-      './karma-context.js': [ 'webpack', 'sourcemap' ]
+      './karma-context.js': ['webpack', 'sourcemap'],
     },
     reporters: [
       'mocha',
-      'coverage'
+      'coverage',
     ],
     coverageReporter: {
       type: 'lcov',
-      dir: './coverage'
+      dir: './coverage',
     },
     webpack: webpackConfig,
     webpackMiddleware: {
-      noInfo: true
+      noInfo: true,
     },
     plugins: [
       'karma-webpack',
@@ -39,8 +44,8 @@ module.exports = function (config) {
       'karma-firefox-launcher',
       'karma-phantomjs-launcher',
       'karma-coverage',
-      'karma-sourcemap-loader'
+      'karma-sourcemap-loader',
     ],
-    singleRun: true
+    singleRun: true,
   });
 };
