@@ -24,8 +24,8 @@ export default class LinksList extends Component {
         [layout.cf]: true,
       })}>
         {
-          this.props.linkList.map(link => (
-            <ListLink link={link} direction={listType} />
+          this.props.linkList.map((link, i) => (
+            <ListLink key={i} link={link} direction={listType} />
           ))
         }
       </div>
