@@ -1,5 +1,8 @@
+@value mobile from "../../components/variables/breakpoints.css";
+@value red from "../../components/variables/colors.css";
+
 .newsItemBody a {
-  color: #BE1414;
+  color: red;
 }
 
 img {
@@ -24,7 +27,7 @@ img {
   text-decoration: none;
   display: inline;
   margin: 0 0 20px 0;
-  color: #BE1414;
+  color: red;
 }
 
 .arrow {
@@ -39,7 +42,7 @@ img {
 
 .externalLinkIcon {
   font-size: 1em;
-  color: #BE1414;
+  color: red;
   position: absolute;
 }
 
@@ -59,10 +62,10 @@ img {
 }
 
 .moreEvents a:hover, .moreEvents a:focus {
-  color: #BE1414;
+  color: red;
 }
 
-@media (max-width: 767px) {
+@media mobile {
   .wideHorizontalLine {
     display: none;
   }
