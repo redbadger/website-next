@@ -18,7 +18,7 @@ describe('ListLink', () => {
       );
     });
 
-    it('will have a text', () => {
+    it('will have text', () => {
       expect(wrapper.text()).to.equal('Red Badger');
     });
 
