@@ -1,7 +1,6 @@
 import LinksList from './index';
 import React from 'react';
 import { expect } from 'chai';
-import TestUtils from 'react-addons-test-utils';
 import { shallow } from 'enzyme';
 import ListLink from './list-link';
 
