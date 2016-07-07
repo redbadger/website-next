@@ -6,6 +6,7 @@ import event from './actions/events/event';
 import events from './actions/events';
 import newsItem from './actions/news/news-item';
 import news from './actions/news';
+import taggedDocs from './actions/tagged-docs';
 
 const rootReducer = combineReducers({
   contentAreas,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   events,
   newsItem,
   news,
+  taggedDocs,
   routing: routeReducer,
 });
 

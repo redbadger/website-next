@@ -2,6 +2,7 @@ import express from 'express';
 import JobsController from './controllers/jobs';
 import EventsController from './controllers/events';
 import NewsController from './controllers/news';
+import TaggedDocsController from './controllers/tagged-docs';
 import bodyParser from 'body-parser';
 
 export default function createApi(workable) {
@@ -9,6 +10,7 @@ export default function createApi(workable) {
   const jobsController = new JobsController(workable);
   const eventsController = new EventsController();
   const newsController = new NewsController();
+  const taggedDocsController = new TaggedDocsController();
 
   api.use(bodyParser.json());
   api.use(bodyParser.urlencoded({ extended: true }));
@@ -18,6 +20,7 @@ export default function createApi(workable) {
   api.get('/events', eventsController.getEvents);
   api.get('/news', newsController.getNews);
   api.get('/news/:id', newsController.getNewsItem);
+  api.get('/taggedDocs/:tag', taggedDocsController.getTaggedDocs);
 
   return api;
 }
