@@ -9,8 +9,9 @@ webpackConfig.module.preLoaders = [
   },
 ];
 webpackConfig.externals = {
+  jsdom: 'window',
+  'react/lib/ReactContext': 'window',
   'react/lib/ExecutionEnvironment': true,
-  'react/lib/ReactContext': true,
   'react/addons': true,
 };
 
