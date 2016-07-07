@@ -86,6 +86,7 @@
     "file-loader": "^0.8.5",
     "glob": "^6.0.4",
     "isparta-loader": "^2.0.0",
+    "jsdom": "^9.4.1",
     "json-loader": "^0.5.4",
     "karma": "^0.13.19",
     "karma-coverage": "^0.5.3",
