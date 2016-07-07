@@ -7,6 +7,11 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory, match } from 'react-router';
 
+import { googleAnalyticsUA } from '../shared/config';
+
+import * as ReactGA from 'react-ga';
+ReactGA.initialize(googleAnalyticsUA);
+
 const initialStateString = document.getElementById('initialState').textContent;
 const initialState = JSON.parse(initialStateString);
 const store = createStore(browserHistory, initialState);
@@ -19,6 +24,9 @@ match({
   history: browserHistory,
 }, (error, redirectLocation, renderProps) => {
   const routerUpdate = () => {
+    ReactGA.set({ page: window.location.pathname });
+    ReactGA.pageview(window.location.pathname);
+
     if (renderProps && !(store.getState().routing.location.hash)) {
       // Scroll to top when a hash doesn't exist, and we're on a valid route.
       window.scrollTo(0, 0);
