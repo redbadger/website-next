@@ -15,7 +15,7 @@ const getRequestOptions = (req, body) => ({
   body,
 });
 
-const allEventFields = `
+export const allEventFields = `
   id
   slug
   tags

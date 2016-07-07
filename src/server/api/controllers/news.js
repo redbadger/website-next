@@ -15,7 +15,7 @@ const getRequestOptions = (req, body) => ({
   body,
 });
 
-const allNewsFields = `
+export const allNewsFields = `
   id
   slug
   tags
