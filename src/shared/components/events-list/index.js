@@ -16,8 +16,8 @@ import classNames from 'classnames';
 import icons from '../icons/style.css';
 
 import TagsList from '../tags-list';
-import EventLinksList from '../event-links-list';
-import { eventHref } from '../../util/event';
+import LinksList from '../links-list';
+import { eventHref } from '../../util/url-helper';
 import { splitEvents } from '../../util/split-events';
 
 export default class EventsList extends Component {
@@ -38,6 +38,8 @@ export default class EventsList extends Component {
 
 
     if (relevantEvents.length > 0) {
+      const eventImageAssetsEndpoint = `${imageAssetsEndpoint}/events/`;
+
       return (
         <div className={styles.eventsListTimelineSection}>
             {(() => {
@@ -66,7 +68,7 @@ export default class EventsList extends Component {
                         />
                       </Cell>
                       <Cell size={1} key="event_picture_mobile" hideOn="mobileSM">
-                        <EventImage imgPath={ imageAssetsEndpoint + (event.featureImageFilename ? event.featureImageFilename : 'red-badger-event.jpg') } href={eventHref(event)} />
+                        <EventImage imgPath={ eventImageAssetsEndpoint + (event.featureImageFilename ? event.featureImageFilename : 'red-badger-event.jpg') } href={eventHref(event)} />
                       </Cell>
                       <Cell size={11} breakOn="mobile">
                         <HR color="grey" customClassName={styles.wideHorizontalLine} />
@@ -93,14 +95,14 @@ export default class EventsList extends Component {
                                 <div className={styles.eventLinks}>
                                 {
                                   event.externalLinks ?
-                                    <EventLinksList
+                                    <LinksList
                                       linkList={event.externalLinks}
                                       listType="external" />
                                     : null
                                 }
                                 {
                                   event.internalLinks ?
-                                    <EventLinksList
+                                    <LinksList
                                       linkList={event.internalLinks}
                                       listType="internal" />
                                     : null
@@ -117,7 +119,7 @@ export default class EventsList extends Component {
                             }
                           </Cell>
                           <Cell size={4} key='event_picture' breakOn="mobileS" hideOn="mobileS">
-                            <EventImage imgPath={ imageAssetsEndpoint + (event.featureImageFilename ? event.featureImageFilename : 'red-badger-event.jpg') } href={eventHref(event)} />
+                            <EventImage imgPath={ eventImageAssetsEndpoint + (event.featureImageFilename ? event.featureImageFilename : 'red-badger-event.jpg') } href={eventHref(event)} />
                           </Cell>
                         </Grid>
                       </Cell>

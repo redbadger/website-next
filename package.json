@@ -6,7 +6,6 @@
   "main": "build/server",
   "scripts": {
     "build": "npm run clean && webpack --progress",
-    "populate": "source .env && node scripts/import-events-to-couchdb.js",
     "clean": "rimraf build",
     "lint": "eslint ./src",
     "local": "source .env && NODE_ENV=development HOT=true node server.dev.js",
@@ -76,6 +75,7 @@
     "chai": "^3.5.0",
     "css-loader": "^0.23.1",
     "css-modules-require-hook": "^2.1.0",
+    "enzyme": "^2.3.0",
     "eslint": "^2.12.0",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.8.1",

@@ -7,6 +7,8 @@ import Job from './containers/job';
 import Events from './containers/events';
 import Tag from './containers/tag';
 import Event from './containers/event';
+import News from './containers/news';
+import NewsItem from './containers/news-item';
 import { Route } from 'react-router';
 import HttpError from './util/http-error';
 import './containers/error';
@@ -41,6 +43,8 @@ export default function routes(store) {
       route({ component: Events, path: '/about-us/events' }),
       route({ component: Event, path: '/about-us/events/:year/:month/:day/:slug' }),
       route({ component: Tag, path: '/tags/:tag' }),
+      route({ component: News, path: '/about-us/news' }),
+      route({ component: NewsItem, path: '/about-us/news/:year/:month/:day/:slug' }),
     )
   );
 }

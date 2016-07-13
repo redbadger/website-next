@@ -7,6 +7,6 @@ export const badgerBrain = {
 };
 
 export const imageAssetsEndpoint =
-  '//res.cloudinary.com/red-badger-assets/image/upload/events/';
+  '//res.cloudinary.com/red-badger-assets/image/upload';
 
 export const googleAnalyticsUA = 'UA-16654919-1';
