@@ -47,7 +47,7 @@ export default class EventsController {
   getEvent = (req, res) => {
     const body = `
       query {
-        event(id: "${req.query.id}") {
+        event(id: "${req.params.id}") {
           ${allEventFields}
         }
       }

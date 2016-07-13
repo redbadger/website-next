@@ -129,7 +129,7 @@ describe('event actions', () => {
           fetchFn(dispatch, getState, nextState)
             .then(() => {
               const { id, token } = nextState.location.query;
-              expect(fetch.firstCall.args[0]).to.equal(`${apiEndpoint}/event?id=${id}&token=${token}`);
+              expect(fetch.firstCall.args[0]).to.equal(`${apiEndpoint}/event/${id}?token=${token}`);
               done();
             })
             .catch(done);

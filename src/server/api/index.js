@@ -12,7 +12,7 @@ export default function createApi(workable) {
   api.use(bodyParser.urlencoded({ extended: true }));
 
   api.get('/jobs', jobsController.getJobs);
-  api.get('/event', eventsController.getEvent);
+  api.get('/event/:id', eventsController.getEvent);
   api.get('/events', eventsController.getEvents);
 
   return api;
