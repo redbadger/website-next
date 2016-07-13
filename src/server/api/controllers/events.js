@@ -29,7 +29,14 @@ const allEventFields = `
     title
     url
   }
-  datetime {
+  startDateTime {
+    iso
+    date
+    month
+    monthSym
+    year
+  }
+  endDateTime {
     iso
     date
     month
@@ -77,7 +84,7 @@ export default class EventsController {
       .then((response) => response.json())
       .then((events) => {
         res.send({ list: events.data.allEvents.sort((a, b) =>
-          new Date(b.datetime.iso) - new Date(a.datetime.iso)
+          new Date(b.startDateTime.iso) - new Date(a.startDateTime.iso)
         ) });
       })
       .catch((err) => {
