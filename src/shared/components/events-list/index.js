@@ -60,9 +60,13 @@ export default class EventsList extends Component {
                       <Cell size={12}>
                         <HR color="grey" customClassName={styles.mobileHorizontalLine} />
                         <DateBubble
-                            date={event.startDateTime.date}
-                            month={event.startDateTime.monthSym}
-                            year={event.startDateTime.year}
+                            startDate={event.startDateTime.date}
+                            startMonth={event.startDateTime.monthSym}
+                            startYear={event.startDateTime.year}
+                            endDate={event.endDateTime.date}
+                            endMonth={event.endDateTime.monthSym}
+                            endYear={event.endDateTime.year}
+                            displayDateRange={(this.props.timeline === 'today' && event.startDateTime.date !== event.endDateTime.date)}
                         />
                       </Cell>
                       <Cell size={1} key="event_picture_mobile" hideOn="mobileSM">

@@ -5,23 +5,22 @@ import styles from './style.css';
 
 export default class DateBubble extends Component {
   static propTypes = {
-    date: React.PropTypes.string,
-    month: React.PropTypes.string,
-    year: React.PropTypes.string,
+    startDate: React.PropTypes.string,
+    startMonth: React.PropTypes.string,
+    startYear: React.PropTypes.string,
+    endDate: React.PropTypes.string,
+    endMonth: React.PropTypes.string,
+    endYear: React.PropTypes.string,
+    displayDateRange: React.PropTypes.boolean,
   };
 
   render() {
+    const displayDate = this.props.displayDateRange ?
+      `${this.props.startDate} ${this.props.startMonth} ${this.props.startYear} - ${this.props.endDate} ${this.props.endMonth} ${this.props.endYear}`
+      : `${this.props.startDate} ${this.props.startMonth} ${this.props.startYear}`;
     return (
       <div className={styles.dateBubble}>
-        <div className={styles.date}>
-          {this.props.date}
-        </div>
-        <div className={styles.month}>
-          {this.props.month}
-        </div>
-        <div className={styles.year}>
-          {this.props.year}
-        </div>
+        {displayDate}
       </div>
     );
   }
