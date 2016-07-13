@@ -34,7 +34,7 @@ export class Event extends Component {
         <Section>
           <Container>
             <Grid fit={false}>
-              <Cell size={1} breakOn="mobile">
+              <Cell size={12} breakOn="mobile">
                 <HR color="grey"
                   customClassName={styles.mobileHorizontalLine} />
                 <DateBubble
@@ -44,9 +44,8 @@ export class Event extends Component {
                 />
               </Cell>
               <Cell size={8} breakOn="mobile">
-                <HR color="grey" customClassName={styles.wideHorizontalLine} />
                 <Grid fit={false}>
-                  <Cell size={11} key='event_description' breakOn="mobileS">
+                  <Cell size={12} key='event_description' breakOn="mobileS">
                     <h2 className={styles.eventTitle}>
                       {event.title}
                     </h2>
