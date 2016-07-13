@@ -57,7 +57,7 @@ export default class EventsList extends Component {
               relevantEvents.map((event) => (
                   <li key={`event_${event.id}`} className={styles.eventItem}>
                     <Grid fit={false}>
-                      <Cell size={1} breakOn="mobile">
+                      <Cell size={12}>
                         <HR color="grey" customClassName={styles.mobileHorizontalLine} />
                         <DateBubble
                             date={event.datetime.date}
@@ -68,8 +68,7 @@ export default class EventsList extends Component {
                       <Cell size={1} key="event_picture_mobile" hideOn="mobileSM">
                         <EventImage imgPath={ imageAssetsEndpoint + (event.featureImageFilename ? event.featureImageFilename : 'red-badger-event.jpg') } href={eventHref(event)} />
                       </Cell>
-                      <Cell size={11} breakOn="mobile">
-                        <HR color="grey" customClassName={styles.wideHorizontalLine} />
+                      <Cell size={12} breakOn="mobile">
                         <Grid fit={false}>
                           <Cell size={8} key='event_description' breakOn="mobileS">
                             <a className={styles.eventTitleLink} href={eventHref(event)}>

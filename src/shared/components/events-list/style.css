@@ -66,19 +66,11 @@
 }
 
 .mobileHorizontalLine {
-  display: none;
+  display: block;
   margin: 1.5em 0 0 0;
 }
 
 @media mobile {
-  .wideHorizontalLine {
-    display: none;
-  }
-
-  .mobileHorizontalLine {
-    display: block;
-  }
-
   .eventsList {
     padding: 0;
   }

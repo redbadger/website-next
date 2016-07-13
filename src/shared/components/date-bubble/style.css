@@ -1,15 +1,14 @@
-@value mobile from "../variables/breakpoints.css";
+@value red from "../variables/colors.css";
 
 .dateBubble {
-  background: #be1414;
   display: inline-block;
-  font-size: 0.8em;
-  color: #fff;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: red;
   text-align: center;
   text-transform: uppercase;
   min-width: 3em;
   margin-bottom: 1em;
-  padding: 0.3em 0;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius: 5px;
@@ -18,27 +17,11 @@
 }
 
 .date {
-  font-size: 2em;
+  font-size: 0.9em;
   line-height: 1.2em;
 }
 
-.month {
-}
-
-.year {
-}
-
-@media mobile {
-  .dateBubble {
-    padding: 0.3em;
-  }
-
-  .date, .month, .year {
-    display: inline-block;
-    margin: 0 2px;
-  }
-
-  .date {
-    font-size: 1em;
-  }
+.date, .month, .year {
+  display: inline-block;
+  margin: 0 2px;
 }
