@@ -29,13 +29,13 @@ export default class EventsList extends Component {
   render() {
     const relevantEvents =
       this.props.timeline
-      ? splitEvents(
-        this.props.events,
-        this.props.timeline,
-        { reverse: this.props.timeline === 'future' }
-      )
+      ? splitEvents({
+        events: this.props.events,
+        timeline: this.props.timeline,
+        reverse: this.props.timeline === 'future',
+        todayDateTime: new Date(),
+      })
       : this.props.events;
-
 
     if (relevantEvents.length > 0) {
       return (
