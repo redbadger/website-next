@@ -1,4 +1,5 @@
 // Displays date bubble
+/* eslint-disable max-len */
 
 import React, { Component } from 'react';
 import styles from './style.css';

@@ -25,49 +25,73 @@ describe('SplitEvents', () => {
     testevents = [
       {
         id: 'past-event-1',
-        datetime: {
+        startDateTime: {
+          iso: previousDate,
+        },
+        endDateTime: {
           iso: previousDate,
         },
       },
       {
         id: 'past-event-2',
-        datetime: {
+        startDateTime: {
+          iso: previousDate,
+        },
+        endDateTime: {
           iso: previousDate,
         },
       },
       {
         id: 'today-event-1',
-        datetime: {
+        startDateTime: {
+          iso: currentDate,
+        },
+        endDateTime: {
           iso: currentDate,
         },
       },
       {
         id: 'today-event-2',
-        datetime: {
+        startDateTime: {
+          iso: currentDate,
+        },
+        endDateTime: {
           iso: currentDate,
         },
       },
       {
         id: 'later-today-event',
-        datetime: {
+        startDateTime: {
+          iso: laterToday,
+        },
+        endDateTime: {
           iso: laterToday,
         },
       },
       {
         id: 'earlier-today-event',
-        datetime: {
+        startDateTime: {
+          iso: earlierToday,
+        },
+        endDateTime: {
           iso: earlierToday,
         },
       },
       {
         id: 'future-event-1',
-        datetime: {
+        startDateTime: {
+          iso: futureDate,
+        },
+        endDateTime: {
           iso: futureDate,
         },
       },
       {
         id: 'future-event-2',
-        datetime: {
+        startDateTime: {
+          iso: futureDate,
+        },
+        endDateTime: {
           iso: futureDate,
         },
       },
