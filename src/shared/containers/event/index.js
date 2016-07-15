@@ -24,8 +24,15 @@ export class Event extends Component {
 
   render() {
     const { event, events } = this.props;
-    let futureEvents = splitEvents(events, 'future', { reverse: true });
-    let todayEvents = splitEvents(events, 'today');
+    const futureEvents = splitEvents({
+      events,
+      timeline: 'future',
+      reverse: true,
+    });
+    const todayEvents = splitEvents({
+      events,
+      timeline: 'today',
+    });
 
 
     return (
@@ -38,9 +45,8 @@ export class Event extends Component {
                 <HR color="grey"
                   customClassName={styles.mobileHorizontalLine} />
                 <DateBubble
-                    date={event.startDateTime.date}
-                    month={event.startDateTime.monthSym}
-                    year={event.startDateTime.year}
+                    startDateTime={event.startDateTime}
+                    endDateTime={event.endDateTime}
                 />
               </Cell>
               <Cell size={8} breakOn="mobile">

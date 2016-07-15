@@ -10,12 +10,11 @@ import { imageAssetsEndpoint } from '../../config';
 import DateBubble from '../date-bubble';
 import HR from '../hr';
 import { Grid, Cell } from '../grid';
-import classNames from 'classnames';
-import icons from '../icons/style.css';
 
 import TagsList from '../tags-list';
 import EventLinksList from '../event-links-list';
 import EventsTimelineTitle from '../events-timeline-title';
+import EventTitle from '../event-title';
 import { eventHref } from '../../util/event';
 import { splitEvents } from '../../util/split-events';
 
@@ -29,7 +28,6 @@ const EventsList = ({
       events,
       timeline,
       reverse: timeline === 'future',
-      todayDateTime: new Date(),
     })
     : events;
 
@@ -46,12 +44,8 @@ const EventsList = ({
                       <HR color="grey" customClassName=
                         {styles.mobileHorizontalLine} />
                       <DateBubble
-                          startDate={event.startDateTime.date}
-                          startMonth={event.startDateTime.monthSym}
-                          startYear={event.startDateTime.year}
-                          endDate={event.endDateTime.date}
-                          endMonth={event.endDateTime.monthSym}
-                          endYear={event.endDateTime.year}
+                          startDateTime={event.startDateTime}
+                          endDateTime={event.endDateTime}
                           displayDateRange={(timeline === 'today' &&
                             event.startDateTime.date !==
                               event.endDateTime.date)}
@@ -67,20 +61,8 @@ const EventsList = ({
                       <Grid fit={false}>
                         <Cell size={8} key='event_description'
                           breakOn="mobileS">
-                          <a className={styles.eventTitleLink}
-                            href={eventHref(event)}>
-                            <h2 className={styles.eventTitle}>
-                              <span>
-                                {event.title}
-                              </span>
-                              <span className={classNames(
-                                {
-                                  [styles.arrow]: true,
-                                  [icons.sketchArrowRight]: true,
-                                })}
-                              />
-                            </h2>
-                          </a>
+                          <EventTitle eventTitle={event.title}
+                            eventHref={eventHref(event)} />
                           <div className={styles.eventDescription}>
                             {event.strapline}
                           </div>

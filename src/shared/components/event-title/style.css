@@ -1,0 +1,23 @@
+@value red from "../variables/colors.css";
+
+.eventTitleLink {
+  text-decoration: none;
+}
+
+.eventTitle {
+  composes: h2 from "../../components/typography/style.css";
+  font-size: 1.6em;
+  text-decoration: none;
+  display: inline;
+  margin: 0 0 20px 0;
+  float: left;
+  text-align: left;
+}
+
+.eventTitle span {
+  display: inline;
+}
+
+.eventTitle:hover, .eventTitle:active, .eventTitle:focus {
+  color: red;
+}

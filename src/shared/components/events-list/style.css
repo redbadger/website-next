@@ -14,10 +14,6 @@
   text-align: center;
 }
 
-.eventsListTimelineSection h2.eventTitle {
-  text-align: left;
-}
-
 .eventsList {
   font-size: 1em;
   margin-top: 0;
@@ -27,27 +23,6 @@
 .eventItem {
   position: relative;
   list-style-type: none;
-}
-
-.eventTitleLink {
-  text-decoration: none;
-}
-
-.eventTitle {
-  composes: h2 from "../../components/typography/style.css";
-  font-size: 1.6em;
-  text-decoration: none;
-  display: inline;
-  margin: 0 0 20px 0;
-  float: left;
-}
-
-.eventTitle span {
-  display: inline;
-}
-
-.eventTitle:hover, .eventTitle:active, .eventTitle:focus {
-  color: red;
 }
 
 .arrow {
