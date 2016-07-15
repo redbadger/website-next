@@ -1,28 +1,38 @@
 // Displays date bubble
-/* eslint-disable max-len */
 
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import styles from './style.css';
 
-export default class DateBubble extends Component {
-  static propTypes = {
-    startDate: React.PropTypes.string,
-    startMonth: React.PropTypes.string,
-    startYear: React.PropTypes.string,
-    endDate: React.PropTypes.string,
-    endMonth: React.PropTypes.string,
-    endYear: React.PropTypes.string,
-    displayDateRange: React.PropTypes.boolean,
-  };
-
-  render() {
-    const displayDate = this.props.displayDateRange ?
-      `${this.props.startDate} ${this.props.startMonth} ${this.props.startYear} - ${this.props.endDate} ${this.props.endMonth} ${this.props.endYear}`
-      : `${this.props.startDate} ${this.props.startMonth} ${this.props.startYear}`;
-    return (
-      <div className={styles.dateBubble}>
-        {displayDate}
-      </div>
-    );
+const DateBubble = ({
+  startDate,
+  startMonth,
+  startYear,
+  endDate,
+  endMonth,
+  endYear,
+  displayDateRange,
+}) => {
+  let displayDateContent = '';
+  if (displayDateRange) {
+    displayDateContent = `${startDate} ${startMonth} ${startYear} \
+    - ${endDate} ${endMonth} ${endYear}`;
+  } else {
+    displayDateContent = `${startDate} ${startMonth} ${startYear}`;
   }
-}
+
+  return (<div className={styles.dateBubble}>
+    {displayDateContent}
+  </div>);
+};
+
+DateBubble.propTypes = {
+  startDate: PropTypes.string,
+  startMonth: PropTypes.string,
+  startYear: PropTypes.string,
+  endDate: PropTypes.string,
+  endMonth: PropTypes.string,
+  endYear: PropTypes.string,
+  displayDateRange: PropTypes.bool,
+};
+
+export default DateBubble;
