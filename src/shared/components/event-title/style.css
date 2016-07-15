@@ -5,7 +5,6 @@
 }
 
 .eventTitle {
-  composes: h2 from "../../components/typography/style.css";
   font-size: 1.6em;
   text-decoration: none;
   display: inline;

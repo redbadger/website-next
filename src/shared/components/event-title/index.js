@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
-import styles from './style.css';
 import classNames from 'classnames';
 import icons from '../icons/style.css';
+import styles from './style.css';
+import { h2 } from '../typography/style.css';
 
 const EventTitle = ({
   eventTitle,
@@ -9,7 +10,10 @@ const EventTitle = ({
 }) => (
   <a className={styles.eventTitleLink}
     href={eventHref}>
-    <h2 className={styles.eventTitle}>
+    <h2 className={classNames({
+      [styles.eventTitle]: true,
+      [h2]: true,
+    })}>
       <span>
         {eventTitle}
       </span>
