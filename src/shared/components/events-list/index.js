@@ -2,8 +2,6 @@
 // You can request only displaying events of past or future
 // with the `timeline` prop
 
-/* eslint-disable max-len */
-
 import React, { PropTypes } from 'react';
 import styles from './style.css';
 
@@ -17,6 +15,7 @@ import icons from '../icons/style.css';
 
 import TagsList from '../tags-list';
 import EventLinksList from '../event-links-list';
+import EventsTimelineTitle from '../events-timeline-title';
 import { eventHref } from '../../util/event';
 import { splitEvents } from '../../util/split-events';
 
@@ -37,25 +36,15 @@ const EventsList = ({
   if (relevantEvents.length > 0) {
     return (
       <div className={styles.eventsListTimelineSection}>
-          {(() => {
-            switch (timeline) {
-              case 'past':
-                return (<h2>Past events</h2>);
-              case 'future':
-                return (<h2>Upcoming events</h2>);
-              case 'today':
-                return (<h2>Today</h2>);
-              default:
-                return null;
-            }
-          })()}
+          <EventsTimelineTitle timeline={timeline} />
         <ul className={styles.eventsList}>
           {
             relevantEvents.map((event) => (
                 <li key={`event_${event.id}`} className={styles.eventItem}>
                   <Grid fit={false}>
                     <Cell size={12}>
-                      <HR color="grey" customClassName={styles.mobileHorizontalLine} />
+                      <HR color="grey" customClassName=
+                        {styles.mobileHorizontalLine} />
                       <DateBubble
                           startDate={event.startDateTime.date}
                           startMonth={event.startDateTime.monthSym}
@@ -63,16 +52,23 @@ const EventsList = ({
                           endDate={event.endDateTime.date}
                           endMonth={event.endDateTime.monthSym}
                           endYear={event.endDateTime.year}
-                          displayDateRange={(timeline === 'today' && event.startDateTime.date !== event.endDateTime.date)}
+                          displayDateRange={(timeline === 'today' &&
+                            event.startDateTime.date !==
+                              event.endDateTime.date)}
                       />
                     </Cell>
                     <Cell size={1} key="event_picture_mobile" hideOn="mobileSM">
-                      <EventImage imgPath={ imageAssetsEndpoint + (event.featureImageFilename ? event.featureImageFilename : 'red-badger-event.jpg') } href={eventHref(event)} />
+                      <EventImage imgPath={ imageAssetsEndpoint +
+                        (event.featureImageFilename ?
+                          event.featureImageFilename :
+                          'red-badger-event.jpg') } href={eventHref(event)} />
                     </Cell>
                     <Cell size={12} breakOn="mobile">
                       <Grid fit={false}>
-                        <Cell size={8} key='event_description' breakOn="mobileS">
-                          <a className={styles.eventTitleLink} href={eventHref(event)}>
+                        <Cell size={8} key='event_description'
+                          breakOn="mobileS">
+                          <a className={styles.eventTitleLink}
+                            href={eventHref(event)}>
                             <h2 className={styles.eventTitle}>
                               <span>
                                 {event.title}
@@ -116,8 +112,13 @@ const EventsList = ({
                             : null
                           }
                         </Cell>
-                        <Cell size={4} key='event_picture' breakOn="mobileS" hideOn="mobileS">
-                          <EventImage imgPath={ imageAssetsEndpoint + (event.featureImageFilename ? event.featureImageFilename : 'red-badger-event.jpg') } href={eventHref(event)} />
+                        <Cell size={4} key='event_picture' breakOn="mobileS"
+                          hideOn="mobileS">
+                          <EventImage imgPath={ imageAssetsEndpoint +
+                            (event.featureImageFilename ?
+                              event.featureImageFilename :
+                                'red-badger-event.jpg') }
+                            href={eventHref(event)} />
                         </Cell>
                       </Grid>
                     </Cell>
