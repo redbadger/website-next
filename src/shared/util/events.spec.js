@@ -1,5 +1,10 @@
-import { splitEvents } from './events';
+/* eslint-disable no-multi-str */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-unused-vars */
+
+import { splitEvents, setEndDate, eventImagePath } from './events';
 import { expect } from 'chai';
+import { imageAssetsEndpoint } from '../config';
 import * as MockDate from 'mockdate';
 
 let testEventsSingleDay = [];
@@ -7,6 +12,43 @@ let testEventsMultiDay = [];
 let testEventsMultiDayInProgress = [];
 let testErrorMultiDay = [];
 let currentDate;
+
+describe('Set end date', () => {
+  const startDateTime = {
+    date: 5,
+  };
+  const endDateTime = {
+    date: 8,
+  };
+
+  it('returns end date when timeline is set to today \
+    and start date is different', () => {
+    expect(setEndDate('today', startDateTime, endDateTime))
+      .to.deep.equal(endDateTime);
+  });
+
+  it('returns null when timeline is not set to today \
+    and start date is different', () => {
+    expect(setEndDate('past', startDateTime, endDateTime)).to.be.null;
+  });
+
+  it('returns null when timeline is set to today \
+    and start date is same', () => {
+    const endDateTimeToday = {
+      date: 5,
+    };
+    expect(setEndDate('past', startDateTime, endDateTimeToday)).to.be.null;
+  });
+});
+
+describe('Event image path', () => {
+  it('returns full image path when image filename is provided', () => {
+    expect(eventImagePath('hi.jpg')).to.equal('//res.cloudinary.com/red-badger-assets/image/upload/events/hi.jpg');
+  });
+  it('returns default image path when image filename is not provided', () => {
+    expect(eventImagePath()).to.equal('//res.cloudinary.com/red-badger-assets/image/upload/events/red-badger-event.jpg');
+  });
+});
 
 describe('SplitEvents', () => {
   beforeEach(() => {

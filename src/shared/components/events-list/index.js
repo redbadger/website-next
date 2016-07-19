@@ -16,7 +16,7 @@ import EventLinksList from '../event-links-list';
 import EventsTimelineTitle from '../events-timeline-title';
 import EventTitle from '../event-title';
 import { eventHref } from '../../util/event';
-import { splitEvents, setEndDate } from '../../util/events';
+import { splitEvents, setEndDate, eventImagePath } from '../../util/events';
 
 const EventsList = ({
   events,
@@ -52,10 +52,9 @@ const EventsList = ({
                       />
                     </Cell>
                     <Cell size={1} key="event_picture_mobile" hideOn="mobileSM">
-                      <EventImage imgPath={ imageAssetsEndpoint +
-                        (event.featureImageFilename ?
-                          event.featureImageFilename :
-                          'red-badger-event.jpg') } href={eventHref(event)} />
+                      <EventImage
+                        imgPath={eventImagePath(event.featureImageFilename)}
+                        href={eventHref(event)} />
                     </Cell>
                     <Cell size={12} breakOn="mobile">
                       <Grid fit={false}>

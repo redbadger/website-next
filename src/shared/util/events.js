@@ -1,4 +1,5 @@
 import dateFns from 'date-fns';
+import { imageAssetsEndpoint } from '../config';
 
 export function splitEvents({
   events,              // array of events
@@ -49,4 +50,9 @@ export function setEndDate(timeline, startDateTime, endDateTime) {
     return endDateTime;
   }
   return null;
+}
+
+export function eventImagePath(
+  featureImageFilename = 'red-badger-event.jpg') {
+  return imageAssetsEndpoint + featureImageFilename;
 }
