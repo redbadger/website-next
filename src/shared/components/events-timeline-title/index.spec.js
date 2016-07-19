@@ -8,10 +8,4 @@ describe('EventsTimelineTitle component', () => {
     const wrapper = shallow(<EventsTimelineTitle timeline="today" />);
     expect(wrapper.find('h2').length).to.equal(1);
   });
-
-  it('renders null with wrong timeline value provided', () => {
-    const wrapper = shallow(<EventsTimelineTitle timeline="aaa" />);
-    expect(wrapper.find('h2').length).to.equal(0);
-    expect(wrapper.nodes).to.deep.equal([null]);
-  });
 });
