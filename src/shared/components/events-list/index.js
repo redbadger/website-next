@@ -6,7 +6,6 @@ import React, { PropTypes } from 'react';
 import styles from './style.css';
 
 import EventImage from '../event-image';
-import { imageAssetsEndpoint } from '../../config';
 import DateBubble from '../date-bubble';
 import HR from '../hr';
 import { Grid, Cell } from '../grid';
@@ -95,10 +94,8 @@ const EventsList = ({
                         </Cell>
                         <Cell size={4} key='event_picture' breakOn="mobileS"
                           hideOn="mobileS">
-                          <EventImage imgPath={ imageAssetsEndpoint +
-                            (event.featureImageFilename ?
-                              event.featureImageFilename :
-                                'red-badger-event.jpg') }
+                          <EventImage
+                            imgPath={eventImagePath(event.featureImageFilename)}
                             href={eventHref(event)} />
                         </Cell>
                       </Grid>

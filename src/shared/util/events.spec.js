@@ -41,12 +41,15 @@ describe('Set end date', () => {
   });
 });
 
-describe('Event image path', () => {
+describe.only('Event image path', () => {
   it('returns full image path when image filename is provided', () => {
     expect(eventImagePath('hi.jpg')).to.equal('//res.cloudinary.com/red-badger-assets/image/upload/events/hi.jpg');
   });
   it('returns default image path when image filename is not provided', () => {
     expect(eventImagePath()).to.equal('//res.cloudinary.com/red-badger-assets/image/upload/events/red-badger-event.jpg');
+  });
+  it('returns default image path when image filename is null', () => {
+    expect(eventImagePath(null)).to.equal('//res.cloudinary.com/red-badger-assets/image/upload/events/red-badger-event.jpg');
   });
 });
 

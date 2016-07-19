@@ -53,6 +53,7 @@ export function setEndDate(timeline, startDateTime, endDateTime) {
 }
 
 export function eventImagePath(
-  featureImageFilename = 'red-badger-event.jpg') {
-  return imageAssetsEndpoint + featureImageFilename;
+  featureImageFilename) {
+  const f = featureImageFilename || 'red-badger-event.jpg';
+  return imageAssetsEndpoint + f;
 }
