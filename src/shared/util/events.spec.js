@@ -1,4 +1,4 @@
-import { splitEvents } from './split-events';
+import { splitEvents } from './events';
 import { expect } from 'chai';
 import * as MockDate from 'mockdate';
 

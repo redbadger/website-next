@@ -16,7 +16,7 @@ import EventLinksList from '../event-links-list';
 import EventsTimelineTitle from '../events-timeline-title';
 import EventTitle from '../event-title';
 import { eventHref } from '../../util/event';
-import { splitEvents } from '../../util/split-events';
+import { splitEvents, setEndDate } from '../../util/events';
 
 const EventsList = ({
   events,
@@ -45,10 +45,10 @@ const EventsList = ({
                         {styles.mobileHorizontalLine} />
                       <DateBubble
                           startDateTime={event.startDateTime}
-                          endDateTime={event.endDateTime}
-                          displayDateRange={(timeline === 'today' &&
-                            event.startDateTime.date !==
-                              event.endDateTime.date)}
+                          endDateTime={setEndDate(
+                            timeline,
+                            event.startDateTime,
+                            event.endDateTime)}
                       />
                     </Cell>
                     <Cell size={1} key="event_picture_mobile" hideOn="mobileSM">

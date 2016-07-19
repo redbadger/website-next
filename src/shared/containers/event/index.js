@@ -14,7 +14,7 @@ import DateBubble from '../../components/date-bubble';
 import EventsSideList from '../../components/events-side-list';
 import EventLinksList from '../../components/event-links-list';
 import TagsList from '../../components/tags-list';
-import { splitEvents } from '../../util/split-events';
+import { splitEvents, setEndDate } from '../../util/events';
 
 import marked from 'marked';
 import Helmet from 'react-helmet';
@@ -46,7 +46,10 @@ export class Event extends Component {
                   customClassName={styles.mobileHorizontalLine} />
                 <DateBubble
                     startDateTime={event.startDateTime}
-                    endDateTime={event.endDateTime}
+                    endDateTime={setEndDate(
+                      'today',
+                      event.startDateTime,
+                      event.endDateTime)}
                 />
               </Cell>
               <Cell size={8} breakOn="mobile">

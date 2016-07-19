@@ -6,10 +6,9 @@ import styles from './style.css';
 const DateBubble = ({
   startDateTime,
   endDateTime,
-  displayDateRange,
 }) => {
   let displayDateContent = '';
-  if (displayDateRange) {
+  if (endDateTime) {
     displayDateContent =
     (`${startDateTime.date} ${startDateTime.monthSym} ${startDateTime.year} - `
     + `${endDateTime.date} ${endDateTime.monthSym} ${endDateTime.year}`);
@@ -30,9 +29,8 @@ const dateShape = {
 };
 
 DateBubble.propTypes = {
-  startDateTime: PropTypes.shape(dateShape),
+  startDateTime: PropTypes.shape(dateShape).isRequired,
   endDateTime: PropTypes.shape(dateShape),
-  displayDateRange: PropTypes.bool,
 };
 
 export default DateBubble;
