@@ -16,7 +16,7 @@ const EventsTimelineTitle = ({
 };
 
 EventsTimelineTitle.propTypes = {
-  timeline: PropTypes.string.isRequired,
+  timeline: PropTypes.oneOf(['past', 'future', 'today']).isRequired,
 };
 
 export default EventsTimelineTitle;

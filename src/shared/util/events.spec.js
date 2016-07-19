@@ -41,7 +41,7 @@ describe('Set end date', () => {
   });
 });
 
-describe.only('Event image path', () => {
+describe('Event image path', () => {
   it('returns full image path when image filename is provided', () => {
     expect(eventImagePath('hi.jpg')).to.equal('//res.cloudinary.com/red-badger-assets/image/upload/events/hi.jpg');
   });
