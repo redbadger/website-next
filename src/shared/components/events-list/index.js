@@ -114,7 +114,7 @@ const EventsList = ({
 
 EventsList.propTypes = {
   events: PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  timeline: EventsTimelineTitle.propTypes.timeline,
+  timeline: PropTypes.oneOf(['past', 'future', 'today']).isRequired,
 };
 
 export default EventsList;
