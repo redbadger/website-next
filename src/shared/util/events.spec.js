@@ -11,6 +11,7 @@ let testEventsSingleDay = [];
 let testEventsMultiDay = [];
 let testEventsMultiDayInProgress = [];
 let testErrorMultiDay = [];
+let testEventsSingleDayWrongStartEndTime = [];
 let currentDate;
 
 describe('Set end date', () => {
@@ -217,7 +218,28 @@ describe('SplitEvents', () => {
         },
       },
     ];
+
+    testEventsSingleDayWrongStartEndTime = [
+      {
+        id: 'earlier-event',
+        startDateTime: {
+          iso: earlierToday,
+        },
+        endDateTime: {
+          iso: laterToday,
+        },
+      },
+      {
+        id: 'later-today-event',
+        startDateTime: {
+          iso: laterToday,
+        },
+        endDateTime: {
+          iso: earlierToday,
+        },
+      }];
   });
+
 
   afterEach(() => {
     MockDate.reset();
@@ -329,6 +351,17 @@ describe('SplitEvents', () => {
       expect(returnedEvents.length).to.equal(2);
       expect(returnedEvents[0].id).to.equal('future-event-2');
       expect(returnedEvents[1].id).to.equal('future-event-1');
+    });
+
+    it('omits event from the result if end time is earlier than start time', () => {
+      const timeline = 'today';
+      const returnedEvents = splitEvents({
+        events: testEventsSingleDayWrongStartEndTime,
+        timeline,
+        todayDateTime: currentDate,
+      });
+      expect(returnedEvents.length).to.equal(1);
+      expect(returnedEvents[0].id).to.equal('earlier-event');
     });
   });
 });

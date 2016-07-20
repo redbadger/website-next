@@ -12,8 +12,9 @@ export function splitEvents({
     const endDateTime = dateFns.parse(event.endDateTime.iso);
 
     // In a rare case of user error we omit this event from the output list
-    if (!dateFns.isSameDay(startDateTime, endDateTime) &&
-      !dateFns.isBefore(startDateTime, endDateTime)) {
+    if ((!dateFns.isSameDay(startDateTime, endDateTime) &&
+      !dateFns.isBefore(startDateTime, endDateTime)) ||
+        dateFns.differenceInMinutes(endDateTime, startDateTime) < 0) {
       return false;
     }
 
