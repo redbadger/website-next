@@ -32,7 +32,9 @@ const renderMarkup = (store, routerProps) => {
     </Provider>
   );
 
-  return renderToStaticMarkup(
+  try {
+
+  const m = renderToStaticMarkup(
     <DefaultTemplate
         initialState={store.getState()}
         title={mapRouteToPageTitle(routerProps.location.pathname)}
@@ -40,6 +42,11 @@ const renderMarkup = (store, routerProps) => {
       {application}
     </DefaultTemplate>
   );
+  console.log(m);
+  } catch(error) {
+    console.log(error);
+  }
+  return m;
 };
 
 const renderErrorPage = (error) => {
