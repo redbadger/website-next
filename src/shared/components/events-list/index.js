@@ -31,6 +31,7 @@ const EventsList = ({
               <EventsListEntry
                 event={event}
                 timeline={timeline}
+                key={`key_${event.id}`}
               />
             ))
           }
@@ -39,7 +40,7 @@ const EventsList = ({
     );
   }
 
-  return null;
+  return (<noscript />);
 };
 
 EventsList.propTypes = {

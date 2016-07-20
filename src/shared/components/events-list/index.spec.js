@@ -12,6 +12,6 @@ describe('EventsList component', () => {
         defaultEvent,
       ]}
     />);
-    expect(wrapper.find('li').length).to.equal(1);
+    expect(wrapper.find('ul').length).to.equal(1);
   });
 });

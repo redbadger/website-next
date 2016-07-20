@@ -6,9 +6,7 @@ import EventLinksList from '../event-links-list';
 
 const EventMeta = ({
   event,
-}) => {
-  console.log('META', event);
-  return (
+}) => (
   <div>
   {
     event.externalLinks || event.internalLinks ?
@@ -39,7 +37,6 @@ const EventMeta = ({
   }
   </div>
 );
-};
 
 EventMeta.propTypes = {
   event: PropTypes.object.isRequired,

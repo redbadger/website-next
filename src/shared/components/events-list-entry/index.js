@@ -12,10 +12,7 @@ import { eventHref } from '../../util/event';
 const EventsListEntry = ({
   event,
   timeline,
-}) => {
-  console.log('EVENT', event);
-  console.log('TIMELINE', timeline);
-  return (
+}) => (
   <li key={`event_${event.id}`} className={styles.eventItem}>
     <Grid fit={false}>
       <Cell size={12}>
@@ -56,8 +53,6 @@ const EventsListEntry = ({
     </Grid>
   </li>
 );
-};
-
 
 EventsListEntry.propTypes = {
   event: PropTypes.object.isRequired,
