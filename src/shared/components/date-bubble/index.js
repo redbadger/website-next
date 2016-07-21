@@ -3,24 +3,26 @@
 import React, { PropTypes } from 'react';
 import styles from './style.css';
 
+function displayDateContent(startDateTime, endDateTime) {
+  if (endDateTime) {
+    return (
+      `${startDateTime.date} ${startDateTime.monthSym} ${startDateTime.year} - `
+    + `${endDateTime.date} ${endDateTime.monthSym} ${endDateTime.year}`);
+  } else { // eslint-disable-line no-else-return
+    return (
+      `${startDateTime.date} ${startDateTime.monthSym} ${startDateTime.year}`);
+  }
+}
+
 const DateBubble = ({
   startDateTime,
   endDateTime,
-}) => {
-  let displayDateContent = '';
-  if (endDateTime) {
-    displayDateContent =
-    (`${startDateTime.date} ${startDateTime.monthSym} ${startDateTime.year} - `
-    + `${endDateTime.date} ${endDateTime.monthSym} ${endDateTime.year}`);
-  } else {
-    displayDateContent =
-    `${startDateTime.date} ${startDateTime.monthSym} ${startDateTime.year}`;
-  }
+}) => (
+  <div className={styles.dateBubble}>
+    {displayDateContent(startDateTime, endDateTime)}
+  </div>
+);
 
-  return (<div className={styles.dateBubble}>
-    {displayDateContent}
-  </div>);
-};
 
 const dateShape = {
   date: PropTypes.string.isRequired,
