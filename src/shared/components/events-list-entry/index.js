@@ -40,7 +40,11 @@ const EventsListEntry = ({
             <div className={styles.eventDescription}>
               {event.strapline}
             </div>
-            <EventMeta event={event} />
+            <EventMeta
+              internalLinks={event.internalLinks}
+              externalLinks={event.externalLinks}
+              tags={event.tags}
+             />
           </Cell>
           <Cell size={4} key='event_picture' breakOn="mobileS"
             hideOn="mobileS">

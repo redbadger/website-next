@@ -5,41 +5,42 @@ import TagsList from '../tags-list';
 import EventLinksList from '../event-links-list';
 
 const EventMeta = ({
-  event,
-}) => (
-  <div>
-  {
-    event.externalLinks || event.internalLinks ?
-      <div className={styles.eventLinks}>
+  internalLinks,
+  externalLinks,
+  tags,
+}) => {
+  if (internalLinks.length > 0 && externalLinks.length > 0) {
+    return (<div>
       {
-        event.externalLinks ?
-          <EventLinksList
-            linkList={event.externalLinks}
-            listType="external" />
-          : null
+        externalLinks || internalLinks ?
+          <div className={styles.eventLinks}>
+            <EventLinksList
+              linkList={externalLinks}
+              listType="external" />
+            <EventLinksList
+              linkList={internalLinks}
+              listType="internal" />
+          </div>
+        : <noscript />
       }
       {
-        event.internalLinks ?
-          <EventLinksList
-            linkList={event.internalLinks}
-            listType="internal" />
-          : null
+        tags
+        ? <TagsList
+            tags={tags}
+            tagsLinkPath="about-us/events" />
+        : <noscript />
       }
       </div>
-    : null
+    );
+  } else { // eslint-disable-line no-else-return
+    return (<noscript />);
   }
-  {
-    event.tags
-    ? <TagsList
-        tags={event.tags}
-        tagsLinkPath="about-us/events" />
-    : null
-  }
-  </div>
-);
+};
 
 EventMeta.propTypes = {
-  event: PropTypes.object.isRequired,
+  internalLinks: EventLinksList.propTypes.linkList,
+  externalLinks: EventLinksList.propTypes.linkList,
+  tags: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default EventMeta;
