@@ -12,8 +12,8 @@ import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
 import EventsSideList from '../../components/events-side-list';
-import EventLinksList from '../../components/event-links-list';
-import TagsList from '../../components/tags-list';
+import EventMeta from '../../components/event-meta';
+
 import { splitEvents, setEndDate } from '../../util/events';
 
 import marked from 'marked';
@@ -70,35 +70,11 @@ export class Event extends Component {
                         )
                       }
                     </div>
-                    {
-                      event.externalLinks || event.internalLinks ?
-                        <div className={styles.eventLinks}>
-                          {
-                            event.externalLinks ?
-                              <EventLinksList
-                                linkList={event.externalLinks}
-                                listType="external" />
-                              : null
-                          }
-                          {
-                            event.internalLinks ?
-                              <EventLinksList
-                                linkList={event.internalLinks}
-                                listType="internal" />
-                              : null
-                          }
-                        </div>
-                        : null
-                    }
-                    {
-                      event.tags.length ? (
-                        <div className={styles.eventTags}>
-                          <TagsList
-                            tags={event.tags}
-                            tagsLinkPath="about-us/events" />
-                        </div>
-                      ) : null
-                    }
+                    <EventMeta
+                      internalLinks={event.internalLinks}
+                      externalLinks={event.externalLinks}
+                      tags={event.tags}
+                     />
                   </Cell>
                 </Grid>
                 <HR color="grey" />
