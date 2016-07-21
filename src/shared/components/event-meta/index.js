@@ -32,9 +32,9 @@ const EventMeta = ({
       }
       </div>
     );
-  } else { // eslint-disable-line no-else-return
-    return (<noscript />);
   }
+
+  return (<noscript />);
 };
 
 EventMeta.propTypes = {

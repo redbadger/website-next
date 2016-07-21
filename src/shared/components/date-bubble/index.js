@@ -8,10 +8,9 @@ function displayDateContent(startDateTime, endDateTime) {
     return (
       `${startDateTime.date} ${startDateTime.monthSym} ${startDateTime.year} - `
     + `${endDateTime.date} ${endDateTime.monthSym} ${endDateTime.year}`);
-  } else { // eslint-disable-line no-else-return
-    return (
-      `${startDateTime.date} ${startDateTime.monthSym} ${startDateTime.year}`);
   }
+  return (
+    `${startDateTime.date} ${startDateTime.monthSym} ${startDateTime.year}`);
 }
 
 const DateBubble = ({
