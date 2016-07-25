@@ -26,8 +26,7 @@ const commonLoaders = (options, append) => {
 
 const commonPlugins = [
   new webpack.optimize.OccurenceOrderPlugin(),
-  new webpack.optimize.DedupePlugin(),
-  new webpack.NoErrorsPlugin()
+  new webpack.optimize.DedupePlugin()
 ];
 
 const clientConfig = {
