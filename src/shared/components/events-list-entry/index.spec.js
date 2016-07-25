@@ -1,17 +1,15 @@
-import EventsList from './index.js';
+import EventsListEntry from './index.js';
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import { defaultEvent } from '../../../../spec/fixtures/events.js';
 
-describe('EventsList component', () => {
+describe('EventsListEntry component', () => {
   it('renders successfully with default props', () => {
-    const wrapper = shallow(<EventsList
+    const wrapper = shallow(<EventsListEntry
       timeline="past"
-      events={[
-        defaultEvent,
-      ]}
+      event={defaultEvent}
     />);
-    expect(wrapper.find('ul').length).to.equal(1);
+    expect(wrapper.find('li').length).to.equal(1);
   });
 });

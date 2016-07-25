@@ -19,9 +19,16 @@ export const defaultEvent = {
       url: 'http://www.frontendlondon.co.uk/'
     },
   ],
-  datetime: {
+  startDateTime: {
     iso: '2016-06-25T11:00:00+0000',
     date: '25',
+    month: '06',
+    monthSym: 'Jun',
+    year: '2016',
+  },
+  endDateTime: {
+    iso: '2016-06-28T11:00:00+0000',
+    date: '28',
     month: '06',
     monthSym: 'Jun',
     year: '2016',

@@ -1,28 +1,37 @@
 // Displays date bubble
 
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import styles from './style.css';
 
-export default class DateBubble extends Component {
-  static propTypes = {
-    date: React.PropTypes.string,
-    month: React.PropTypes.string,
-    year: React.PropTypes.string,
-  };
-
-  render() {
+function displayDateContent(startDateTime, endDateTime) {
+  if (endDateTime) {
     return (
-      <div className={styles.dateBubble}>
-        <div className={styles.date}>
-          {this.props.date}
-        </div>
-        <div className={styles.month}>
-          {this.props.month}
-        </div>
-        <div className={styles.year}>
-          {this.props.year}
-        </div>
-      </div>
-    );
+      `${startDateTime.date} ${startDateTime.monthSym} ${startDateTime.year} - `
+    + `${endDateTime.date} ${endDateTime.monthSym} ${endDateTime.year}`);
   }
+  return (
+    `${startDateTime.date} ${startDateTime.monthSym} ${startDateTime.year}`);
 }
+
+const DateBubble = ({
+  startDateTime,
+  endDateTime,
+}) => (
+  <div className={styles.dateBubble}>
+    {displayDateContent(startDateTime, endDateTime)}
+  </div>
+);
+
+
+const dateShape = {
+  date: PropTypes.string.isRequired,
+  monthSym: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
+};
+
+DateBubble.propTypes = {
+  startDateTime: PropTypes.shape(dateShape).isRequired,
+  endDateTime: PropTypes.shape(dateShape),
+};
+
+export default DateBubble;

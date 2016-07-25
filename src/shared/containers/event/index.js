@@ -12,9 +12,9 @@ import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
 import EventsSideList from '../../components/events-side-list';
-import EventLinksList from '../../components/event-links-list';
-import TagsList from '../../components/tags-list';
-import { splitEvents } from '../../util/split-events';
+import EventMeta from '../../components/event-meta';
+
+import { splitEvents, setEndDate } from '../../util/events';
 
 import marked from 'marked';
 import Helmet from 'react-helmet';
@@ -24,8 +24,15 @@ export class Event extends Component {
 
   render() {
     const { event, events } = this.props;
-    let futureEvents = splitEvents(events, 'future', { reverse: true });
-    let todayEvents = splitEvents(events, 'today');
+    const futureEvents = splitEvents({
+      events,
+      timeline: 'future',
+      reverse: true,
+    });
+    const todayEvents = splitEvents({
+      events,
+      timeline: 'today',
+    });
 
 
     return (
@@ -34,19 +41,20 @@ export class Event extends Component {
         <Section>
           <Container>
             <Grid fit={false}>
-              <Cell size={1} breakOn="mobile">
+              <Cell size={12} breakOn="mobile">
                 <HR color="grey"
                   customClassName={styles.mobileHorizontalLine} />
                 <DateBubble
-                    date={event.datetime.date}
-                    month={event.datetime.monthSym}
-                    year={event.datetime.year}
+                    startDateTime={event.startDateTime}
+                    endDateTime={setEndDate(
+                      'today',
+                      event.startDateTime,
+                      event.endDateTime)}
                 />
               </Cell>
               <Cell size={8} breakOn="mobile">
-                <HR color="grey" customClassName={styles.wideHorizontalLine} />
                 <Grid fit={false}>
-                  <Cell size={11} key='event_description' breakOn="mobileS">
+                  <Cell size={12} key='event_description' breakOn="mobileS">
                     <h2 className={styles.eventTitle}>
                       {event.title}
                     </h2>
@@ -62,35 +70,11 @@ export class Event extends Component {
                         )
                       }
                     </div>
-                    {
-                      event.externalLinks || event.internalLinks ?
-                        <div className={styles.eventLinks}>
-                          {
-                            event.externalLinks ?
-                              <EventLinksList
-                                linkList={event.externalLinks}
-                                listType="external" />
-                              : null
-                          }
-                          {
-                            event.internalLinks ?
-                              <EventLinksList
-                                linkList={event.internalLinks}
-                                listType="internal" />
-                              : null
-                          }
-                        </div>
-                        : null
-                    }
-                    {
-                      event.tags.length ? (
-                        <div className={styles.eventTags}>
-                          <TagsList
-                            tags={event.tags}
-                            tagsLinkPath="about-us/events" />
-                        </div>
-                      ) : null
-                    }
+                    <EventMeta
+                      internalLinks={event.internalLinks}
+                      externalLinks={event.externalLinks}
+                      tags={event.tags}
+                     />
                   </Cell>
                 </Grid>
                 <HR color="grey" />
