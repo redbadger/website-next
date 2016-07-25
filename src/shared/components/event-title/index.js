@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import icons from '../icons/style.css';
-import styles from './style.css';
+import styles from '../events-list/style.css';
 import { h2 } from '../typography/style.css';
 
 const EventTitle = ({
