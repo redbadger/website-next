@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import styles from './style.css';
+import styles from '../events-list/style.css';
 import EventImage from '../event-image';
 import DateBubble from '../date-bubble';
 import EventMeta from '../event-meta';

@@ -1,4 +1,0 @@
-.eventLinks {
-  composes: cf from "../../components/utils/layout.css";
-  margin-bottom: 1em;
-}

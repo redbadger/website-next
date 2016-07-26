@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import styles from './style.css';
+import styles from '../events-list/style.css';
 
 import TagsList from '../tags-list';
 import EventLinksList from '../event-links-list';

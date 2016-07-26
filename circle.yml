@@ -9,6 +9,7 @@ dependencies:
     - "~/docker"
   pre:
     - rm -rf node_modules
+    - npm install phantomjs-prebuilt
     - npm install
     - sudo pip install awsebcli --upgrade --ignore-installed six
     - docker login -u $DOCKER_USERNAME -p $DOCKER_PASS -e $DOCKER_EMAIL
