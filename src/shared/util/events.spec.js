@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 
-import { splitEvents, setEndDate, eventImagePath } from './events';
+import { splitEvents, setEndDate, eventImagePath, parseDateAndResetTime } from './events';
 import { expect } from 'chai';
 import { imageAssetsEndpoint } from '../config';
 import * as MockDate from 'mockdate';
@@ -51,6 +51,15 @@ describe('Event image path', () => {
   });
   it('returns default image path when image filename is null', () => {
     expect(eventImagePath(null)).to.equal('//res.cloudinary.com/red-badger-assets/image/upload/events/red-badger-event.jpg');
+  });
+});
+
+describe('Parse date and reset time to 00:00', () => {
+  it('resets time but preserves the date', () => {
+    currentDate = new Date();
+    const d = parseDateAndResetTime(currentDate);
+    expect(d.getHours()).to.equal(0);
+    expect(d.getMinutes()).to.equal(0);
   });
 });
 
@@ -353,14 +362,14 @@ describe('SplitEvents', () => {
       expect(returnedEvents[1].id).to.equal('future-event-1');
     });
 
-    it('omits event from the result if end time is earlier than start time', () => {
+    it('sanitates time of the event', () => {
       const timeline = 'today';
       const returnedEvents = splitEvents({
         events: testEventsSingleDayWrongStartEndTime,
         timeline,
         todayDateTime: currentDate,
       });
-      expect(returnedEvents.length).to.equal(1);
+      expect(returnedEvents.length).to.equal(2);
       expect(returnedEvents[0].id).to.equal('earlier-event');
     });
   });
