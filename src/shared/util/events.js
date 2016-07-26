@@ -1,6 +1,12 @@
 import dateFns from 'date-fns';
 import { imageAssetsEndpoint } from '../config';
 
+export function parseDateAndResetTime(dateTimeIso) {
+  const d = dateFns.parse(dateTimeIso);
+  const e = dateFns.setHours(d, 0);
+  return dateFns.setMinutes(e, 0);
+}
+
 export function splitEvents({
   events,              // array of events
   timeline,            // one of 'past', 'today', 'future'
@@ -8,8 +14,8 @@ export function splitEvents({
   todayDateTime = new Date(),  // iso string representing today date
 }) {
   let relevantEvents = events.filter(event => {
-    const startDateTime = dateFns.parse(event.startDateTime.iso);
-    const endDateTime = dateFns.parse(event.endDateTime.iso);
+    const startDateTime = parseDateAndResetTime(event.startDateTime.iso);
+    const endDateTime = parseDateAndResetTime(event.endDateTime.iso);
 
     // In a rare case of user error we omit this event from the output list
     if ((!dateFns.isSameDay(startDateTime, endDateTime) &&
