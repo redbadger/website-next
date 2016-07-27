@@ -1,8 +1,17 @@
 # Change Log
 
-## [Unreleased](https://github.com/redbadger/website-next/tree/HEAD)
+## [v0.4.0](https://github.com/redbadger/website-next/tree/v0.4.0) (2016-07-26)
+[Full Changelog](https://github.com/redbadger/website-next/compare/v0.3.6...v0.4.0)
 
-[Full Changelog](https://github.com/redbadger/website-next/compare/v0.3.5...HEAD)
+**Merged pull requests:**
+
+- Parse date and reset time [\#199](https://github.com/redbadger/website-next/pull/199) ([asavin](https://github.com/asavin))
+- Fix for Order in extracted chunk undefined webpack errors [\#198](https://github.com/redbadger/website-next/pull/198) ([asavin](https://github.com/asavin))
+- Multiday events [\#197](https://github.com/redbadger/website-next/pull/197) ([asavin](https://github.com/asavin))
+- REST’arised events URL [\#190](https://github.com/redbadger/website-next/pull/190) ([sebflipper](https://github.com/sebflipper))
+
+## [v0.3.6](https://github.com/redbadger/website-next/tree/v0.3.6) (2016-07-08)
+[Full Changelog](https://github.com/redbadger/website-next/compare/v0.3.5...v0.3.6)
 
 **Merged pull requests:**
 
