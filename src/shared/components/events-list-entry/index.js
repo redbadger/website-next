@@ -59,7 +59,16 @@ const EventsListEntry = ({
 );
 
 EventsListEntry.propTypes = {
-  event: PropTypes.object.isRequired,
+  event: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.string),
+    featureImageFilename: PropTypes.string,
+    startDateTime: DateBubble.propTypes.startDateTime,
+    endDateTime: DateBubble.propTypes.endDateTime,
+    internalLinks: EventMeta.propTypes.internalLinks,
+    externalLinks: EventMeta.propTypes.externalLinks,
+  }),
   timeline: PropTypes.oneOf(['past', 'future', 'today']).isRequired,
 };
 
