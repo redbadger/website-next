@@ -25,6 +25,18 @@ const mapRouteToPageTitle = (path) => {
   return defaultTitle;
 };
 
+const renderErrorPage = (error) => {
+  const application = renderToString(
+    <ErrorPage status={error.status} />
+  );
+
+  return renderToStaticMarkup(
+    <DefaultTemplate js={false}>
+      {application}
+    </DefaultTemplate>
+  );
+};
+
 const renderMarkup = (store, routerProps) => {
   let application;
 
@@ -35,7 +47,7 @@ const renderMarkup = (store, routerProps) => {
       </Provider>
     );
   } catch (error) {
-    console.log(error);
+    console.error('Server error:', error);
   }
 
   return renderToStaticMarkup(
@@ -43,18 +55,6 @@ const renderMarkup = (store, routerProps) => {
         initialState={store.getState()}
         title={mapRouteToPageTitle(routerProps.location.pathname)}
     >
-      {application}
-    </DefaultTemplate>
-  );
-};
-
-const renderErrorPage = (error) => {
-  const application = renderToString(
-    <ErrorPage status={error.status} />
-  );
-
-  return renderToStaticMarkup(
-    <DefaultTemplate js={false}>
       {application}
     </DefaultTemplate>
   );

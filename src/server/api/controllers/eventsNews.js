@@ -100,14 +100,13 @@ export function getNews(req, res) {
 
   fetch(badgerBrainEndpoint, getRequestOptions(req, body))
     .then((response) => response.json())
-    .then((events) => {
-      res.send({ list: events.data.allEvents.sort((a, b) =>
-        new Date(b.dateTime.iso) - new Date(a.dateTime.iso)
-      ) });
-    })
+    .then((news) =>
+      res.send({ list: news.data.allNews.sort((a, b) =>
+        new Date(b.datetime.iso) - new Date(a.datetime.iso)
+      ) })
     .catch((err) => {
       res.status(err.status).send(err.message);
-    });
+    }));
 }
 
 export function getEvent(req, res) {

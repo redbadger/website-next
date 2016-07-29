@@ -38,7 +38,9 @@ export const fetchNews = (fetch) => (
 
     return fetch(`${apiEndpoint}/news`)
       // eslint-disable-next-line no-shadow
-      .then(news => dispatch(fetchSuccessful(news)))
-      .catch(e => dispatch(fetchFailure(e)));
+      .then(news =>
+        dispatch(fetchSuccessful(news)))
+      .catch(e =>
+        dispatch(fetchFailure(e)));
   }
 );

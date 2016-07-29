@@ -1,13 +1,14 @@
 import Container from '../../components/container';
 import React, { Component } from 'react';
-import { fetchEvents } from '../../actions/events';
+import { fetchNews } from '../../actions/news';
 import Section from '../../components/section';
 import styles from './style.css';
 import fetch from '../../util/fetch-proxy';
 import { connect } from 'react-redux';
+import EventsListEntry from '../../components/events-list-entry';
 
 export class News extends Component {
-  static fetchData = fetchEvents(fetch());
+  static fetchData = fetchNews(fetch());
 
   render() {
     return (
@@ -19,7 +20,16 @@ export class News extends Component {
               {
                 this.props.news.map((newsItem) => (
                   <EventsListEntry
-                    event={newsItem}
+                    id={newsItem.id}
+                    tags={newsItem.tags}
+                    slug={newsItem.slug}
+                    title={newsItem.title}
+                    strapline={newsItem.strapline}
+                    startDateTime={newsItem.datetime}
+                    endDateTime={newsItem.endDateTime}
+                    externalLinks={newsItem.externalLinks}
+                    internalLinks={newsItem.internalLinks}
+                    featureImageFilename={newsItem.featureImageFilename}
                     key={`key_${newsItem.id}`}
                     timeline="past"
                   />
