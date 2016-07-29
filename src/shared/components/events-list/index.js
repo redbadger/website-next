@@ -29,7 +29,16 @@ const EventsList = ({
           {
             relevantEvents.map((event) => (
               <EventsListEntry
-                event={event}
+                id={event.id}
+                tags={event.tags}
+                slug={event.slug}
+                title={event.title}
+                strapline={event.strapline}
+                startDateTime={event.startDateTime}
+                endDateTime={event.endDateTime}
+                externalLinks={event.externalLinks}
+                internalLinks={event.internalLinks}
+                featureImageFilename={event.featureImageFilename}
                 timeline={timeline}
                 key={`key_${event.id}`}
               />

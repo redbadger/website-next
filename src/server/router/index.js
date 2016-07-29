@@ -26,11 +26,17 @@ const mapRouteToPageTitle = (path) => {
 };
 
 const renderMarkup = (store, routerProps) => {
-  const application = renderToString(
-    <Provider store={store}>
-      <RouterContext {...routerProps}/>
-    </Provider>
-  );
+  let application;
+
+  try {
+    application = renderToString(
+      <Provider store={store}>
+        <RouterContext {...routerProps}/>
+      </Provider>
+    );
+  } catch (error) {
+    console.log(error);
+  }
 
   return renderToStaticMarkup(
     <DefaultTemplate

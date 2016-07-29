@@ -22,7 +22,6 @@ const DateBubble = ({
   </div>
 );
 
-
 const dateShape = {
   date: PropTypes.string.isRequired,
   monthSym: PropTypes.string.isRequired,
