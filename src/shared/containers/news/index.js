@@ -5,7 +5,7 @@ import Section from '../../components/section';
 import styles from './style.css';
 import fetch from '../../util/fetch-proxy';
 import { connect } from 'react-redux';
-import EventsListEntry from '../../components/events-list-entry';
+import EventsListEntry from '../../components/events-news-list-entry';
 
 export class News extends Component {
   static fetchData = fetchNews(fetch());
@@ -31,6 +31,7 @@ export class News extends Component {
                     internalLinks={newsItem.internalLinks}
                     featureImageFilename={newsItem.featureImageFilename}
                     key={`key_${newsItem.id}`}
+                    type="news"
                     timeline="past"
                   />
                 ))

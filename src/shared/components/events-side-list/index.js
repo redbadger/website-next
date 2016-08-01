@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import styles from './style.css';
 
-import { eventHref } from '../../util/event';
+import { eventNewsHref } from '../../util/eventNewsUrl';
 
 export default class EventsSideList extends Component {
   static propTypes = {
@@ -21,7 +21,13 @@ export default class EventsSideList extends Component {
             this.props.events.map((event, i) =>
               (
                 <li key={i}>
-                  <a href={eventHref(event)} key={i}>
+                  <a href={eventNewsHref({
+                    year: event.startDateTime.year,
+                    month: event.startDateTime.month,
+                    date: event.startDateTime.date,
+                    type: 'event',
+                    slug: event.slug,
+                  })} key={i}>
                     {event.title}
                   </a>
                 </li>

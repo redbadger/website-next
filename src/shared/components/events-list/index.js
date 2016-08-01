@@ -5,7 +5,7 @@
 import React, { PropTypes } from 'react';
 import styles from './style.css';
 import EventsTimelineTitle from '../events-timeline-title';
-import EventsListEntry from '../events-list-entry';
+import EventsNewsListEntry from '../events-news-list-entry';
 import { splitEvents } from '../../util/events';
 
 const EventsList = ({
@@ -28,7 +28,7 @@ const EventsList = ({
         <ul className={styles.eventsList}>
           {
             relevantEvents.map((event) => (
-              <EventsListEntry
+              <EventsNewsListEntry
                 id={event.id}
                 tags={event.tags}
                 slug={event.slug}
@@ -40,6 +40,7 @@ const EventsList = ({
                 internalLinks={event.internalLinks}
                 featureImageFilename={event.featureImageFilename}
                 timeline={timeline}
+                type="event"
                 key={`key_${event.id}`}
               />
             ))

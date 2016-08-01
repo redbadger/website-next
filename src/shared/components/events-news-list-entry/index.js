@@ -5,14 +5,15 @@ import EventImage from '../event-image';
 import DateBubble from '../date-bubble';
 import EventTitle from '../event-title';
 import React, { PropTypes } from 'react';
-import { eventHref } from '../../util/event';
+import { eventNewsHref } from '../../util/eventNewsUrl';
 import styles from '../events-list/style.css';
 import { setEndDate, eventImagePath } from '../../util/events';
 
-const EventsListEntry = ({
+const EventsNewsListEntry = ({
   id,
   tags,
   slug,
+  type,
   title,
   timeline,
   strapline,
@@ -22,10 +23,11 @@ const EventsListEntry = ({
   startDateTime,
   featureImageFilename,
 }) => {
-  const eventRenderLink = eventHref({
+  const eventRenderLink = eventNewsHref({
     year: startDateTime.year,
     month: startDateTime.month,
     date: startDateTime.date,
+    type,
     slug,
   });
 
@@ -76,7 +78,7 @@ const EventsListEntry = ({
 );
 };
 
-EventsListEntry.propTypes = {
+EventsNewsListEntry.propTypes = {
   id: PropTypes.string.isRequired,
   strapline: PropTypes.string,
   slug: PropTypes.string.isRequired,
@@ -87,7 +89,8 @@ EventsListEntry.propTypes = {
   internalLinks: EventMeta.propTypes.internalLinks,
   startDateTime: DateBubble.propTypes.startDateTime,
   endDateTime: DateBubble.propTypes.endDateTime,
+  type: PropTypes.oneOf(['news', 'event']).isRequired,
   timeline: PropTypes.oneOf(['past', 'future', 'today']).isRequired,
 };
 
-export default EventsListEntry;
+export default EventsNewsListEntry;
