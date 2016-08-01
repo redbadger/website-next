@@ -7,7 +7,7 @@ export const badgerBrain = {
 };
 
 export const imageAssetsEndpoint =
-  '//res.cloudinary.com/red-badger-assets/image/upload/t_rbthumb/events/';
+  '//res.cloudinary.com/red-badger-assets/image/upload/events/';
 
 export const imageMasterAssetsEndpoint =
   '//res.cloudinary.com/red-badger-assets/image/upload/events/';
