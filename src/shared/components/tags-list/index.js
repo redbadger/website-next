@@ -1,33 +1,33 @@
-import React, { Component } from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 import { cf } from '../utils/layout.css';
 import styles from './style.css';
 
-export default class TagsList extends Component {
-  static propTypes = {
-    tags: React.PropTypes.arrayOf(React.PropTypes.string).isRequired,
-    tagsLinkPath: React.PropTypes.string.isRequired,
-  };
+const TagsList = ({
+  tags,
+}) => {
+  if (tags.length === 0) return (<noscript />);
+  return (
+    <div className={classNames({
+      [cf]: true,
+      [styles.tagsList]: true,
+    })}>
+      <span className={styles.icon} />
+      <ul>
+        { tags.map((tag, index) => (
+          <li key={index}>
+            <a href={`/tags/${tag}`}
+              className={styles.tagsListLink}
+              title={`Read more content related to "${tag}"`}>{tag}</a>
+          </li>
+        )) }
+      </ul>
+    </div>
+  );
+};
 
-  render() {
-    if (this.props.tags.length === 0) return null;
+TagsList.propTypes = {
+  tags: PropTypes.arrayOf(React.PropTypes.string).isRequired,
+};
 
-    return (
-      <div className={classNames({
-        [cf]: true,
-        [styles.tagsList]: true,
-      })}>
-        <span className={styles.icon} />
-        <ul>
-          { this.props.tags.map((tag, index) => (
-            <li key={index}>
-              <a href={`/tags/${tag}`}
-                className={styles.tagsListLink}
-                title={`Read more content related to "${tag}"`}>{tag}</a>
-            </li>
-          )) }
-        </ul>
-      </div>
-    );
-  }
-}
+export default TagsList;

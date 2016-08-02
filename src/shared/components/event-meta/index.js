@@ -9,8 +9,11 @@ const EventMeta = ({
   externalLinks,
   tags,
 }) => {
+  let linksSection = (<noscript />);
+  let tagsSection = (<noscript />);
+
   if (internalLinks.length > 0 && externalLinks.length > 0) {
-    return (<div>
+    linksSection = (<div>
       {
         externalLinks || internalLinks ?
           <div className={styles.eventLinks}>
@@ -23,18 +26,20 @@ const EventMeta = ({
           </div>
         : <noscript />
       }
-      {
-        tags
-        ? <TagsList
-            tags={tags}
-            tagsLinkPath="about-us/events" />
-        : <noscript />
-      }
       </div>
     );
   }
 
-  return (<noscript />);
+  if (tags && tags.length > 0) {
+    tagsSection = (
+      <TagsList tags={tags} />
+    );
+  }
+
+  return (<div>
+    {linksSection}
+    {tagsSection}
+    </div>);
 };
 
 EventMeta.propTypes = {

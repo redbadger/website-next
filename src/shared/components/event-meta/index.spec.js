@@ -11,6 +11,6 @@ describe('EventMeta component', () => {
       externalLinks={defaultEvent.externalLinks}
       tags={defaultEvent.tags}
     />);
-    expect(wrapper.find('div').length).to.equal(2);
+    expect(wrapper.find('div').length).to.equal(3);
   });
 });

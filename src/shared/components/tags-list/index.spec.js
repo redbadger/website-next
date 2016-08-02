@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import React from 'react';
 import { render, findAllWithType } from '../../test-helper';
+import { shallow } from 'enzyme';
 import TagsList from './';
 
 describe('Compoonent: TagsList', () => {
@@ -31,12 +32,12 @@ describe('Compoonent: TagsList', () => {
       });
     });
 
-    it('returns null when the tags array is empty', () => {
-      const component = render(
+    it('renders empty tag when the tags array is empty', () => {
+      const component = shallow(
         <TagsList tags={[]} />
       );
 
-      expect(component).to.equal(null);
+      expect(component.text()).to.equal('');
     });
 
     it('throws when the tags array is omitted', () => {
