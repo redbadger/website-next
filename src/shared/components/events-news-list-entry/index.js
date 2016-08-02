@@ -32,7 +32,7 @@ const EventsNewsListEntry = ({
   });
 
   return (
-  <li key={`event_${id}`} className={styles.eventItem}>
+  <li key={`entry_${id}`} className={styles.eventItem}>
     <Grid fit={false}>
       <Cell size={12}>
         <HR color="grey" customClassName=

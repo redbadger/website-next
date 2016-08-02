@@ -22,6 +22,10 @@ const mapRouteToPageTitle = (path) => {
     return `Join Us | ${defaultTitle}`;
   }
 
+  if ((/news/gi).test(path)) {
+    return `News | ${defaultTitle}`;
+  }
+
   return defaultTitle;
 };
 
