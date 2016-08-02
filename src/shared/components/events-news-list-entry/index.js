@@ -1,6 +1,6 @@
 import HR from '../hr';
 import { Grid, Cell } from '../grid';
-import EventMeta from '../event-meta';
+import EventNewsMeta from '../event-news-meta';
 import EventImage from '../event-image';
 import DateBubble from '../date-bubble';
 import EventTitle from '../event-title';
@@ -59,7 +59,7 @@ const EventsNewsListEntry = ({
             <div className={styles.eventDescription}>
               {strapline}
             </div>
-            <EventMeta
+            <EventNewsMeta
               internalLinks={internalLinks}
               externalLinks={externalLinks}
               tags={tags}
@@ -85,8 +85,8 @@ EventsNewsListEntry.propTypes = {
   title: PropTypes.string.isRequired,
   featureImageFilename: PropTypes.string,
   tags: PropTypes.arrayOf(PropTypes.string),
-  externalLinks: EventMeta.propTypes.externalLinks,
-  internalLinks: EventMeta.propTypes.internalLinks,
+  externalLinks: EventNewsMeta.propTypes.externalLinks,
+  internalLinks: EventNewsMeta.propTypes.internalLinks,
   startDateTime: DateBubble.propTypes.startDateTime,
   endDateTime: DateBubble.propTypes.endDateTime,
   type: PropTypes.oneOf(['news', 'event']).isRequired,

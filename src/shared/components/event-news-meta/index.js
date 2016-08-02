@@ -4,7 +4,7 @@ import styles from '../events-list/style.css';
 import TagsList from '../tags-list';
 import EventLinksList from '../event-links-list';
 
-const EventMeta = ({
+const EventNewsMeta = ({
   internalLinks,
   externalLinks,
   tags,
@@ -42,10 +42,10 @@ const EventMeta = ({
     </div>);
 };
 
-EventMeta.propTypes = {
+EventNewsMeta.propTypes = {
   internalLinks: EventLinksList.propTypes.linkList,
   externalLinks: EventLinksList.propTypes.linkList,
   tags: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default EventMeta;
+export default EventNewsMeta;

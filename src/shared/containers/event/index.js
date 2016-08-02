@@ -12,7 +12,7 @@ import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
 import EventsNewsSideList from '../../components/events-news-side-list';
-import EventMeta from '../../components/event-meta';
+import EventNewsMeta from '../../components/event-news-meta';
 
 import { splitEvents, setEndDate } from '../../util/events';
 
@@ -70,7 +70,7 @@ export class Event extends Component {
                         )
                       }
                     </div>
-                    <EventMeta
+                    <EventNewsMeta
                       internalLinks={event.internalLinks}
                       externalLinks={event.externalLinks}
                       tags={event.tags}

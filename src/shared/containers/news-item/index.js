@@ -12,7 +12,7 @@ import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
 import EventsNewsSideList from '../../components/events-news-side-list';
-import EventMeta from '../../components/event-meta';
+import EventNewsMeta from '../../components/event-news-meta';
 
 import marked from 'marked';
 import Helmet from 'react-helmet';
@@ -58,7 +58,7 @@ export class NewsItem extends Component {
                         )
                       }
                     </div>
-                    <EventMeta
+                    <EventNewsMeta
                       internalLinks={newsItem.internalLinks}
                       externalLinks={newsItem.externalLinks}
                       tags={newsItem.tags}
