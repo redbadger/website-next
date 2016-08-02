@@ -5,6 +5,10 @@
   color: red;
 }
 
+.eventBody img {
+  max-width: 100%;
+}
+
 .h1 {
   composes: h1 from "../../components/typography/style.css";
   text-align: center;

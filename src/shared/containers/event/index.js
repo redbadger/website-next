@@ -11,7 +11,7 @@ import isEqual from 'lodash/isEqual'; // lodash fp isEqual is broken in 4.0.0
 import HR from '../../components/hr';
 import { Grid, Cell } from '../../components/grid';
 import DateBubble from '../../components/date-bubble';
-import EventsSideList from '../../components/events-side-list';
+import EventsNewsSideList from '../../components/events-news-side-list';
 import EventMeta from '../../components/event-meta';
 
 import { splitEvents, setEndDate } from '../../util/events';
@@ -87,11 +87,17 @@ export class Event extends Component {
               </Cell>
               <Cell size={3} breakOn="mobile">
                 { todayEvents.length ?
-                  <EventsSideList events={todayEvents} title='Today'/>
+                  <EventsNewsSideList
+                    entryList={todayEvents}
+                    title='Today'
+                    entryType='event' />
                   : []
                 }
                 { futureEvents.length ?
-                  <EventsSideList events={futureEvents} title='Upcoming'/>
+                  <EventsNewsSideList
+                    entryList={futureEvents}
+                    title='Upcoming'
+                    entryType='event' />
                   : []
                 }
               </Cell>
