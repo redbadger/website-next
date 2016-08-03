@@ -36,6 +36,7 @@ export const fetchNews = (fetch) => (
       return Promise.resolve(news);
     }
 
+
     return fetch(`${apiEndpoint}/news`)
       // eslint-disable-next-line no-shadow
       .then(news =>
