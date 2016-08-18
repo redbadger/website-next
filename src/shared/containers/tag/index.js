@@ -31,7 +31,9 @@ export class Tag extends Component {
               </span>
               {tag}
             </h1>
+            <h2 className={styles.h2}>Events</h2>
             {eventsList}
+            <h2 className={styles.h2}>News</h2>
             {newsList}
             {
               (!eventsList && !newsList) ?
