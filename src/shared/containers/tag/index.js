@@ -16,10 +16,20 @@ export class Tag extends Component {
 
     const eventsList =
       (Array.isArray(events) && events.length > 0)
-      ? (<EventsList events={events} />) : null;
+      ? (
+        <div>
+          <h2 className={styles.h2}>Events</h2>
+          <EventsList events={events} />
+        </div>
+        ) : null;
     const newsList =
       (Array.isArray(news) && news.length > 0)
-      ? (<NewsList news={news} />) : null;
+      ? (
+        <div>
+          <h2 className={styles.h2}>News</h2>
+          <NewsList news={news} />
+        </div>
+        ) : null;
 
     return (
       <div>
@@ -31,9 +41,7 @@ export class Tag extends Component {
               </span>
               {tag}
             </h1>
-            <h2 className={styles.h2}>Events</h2>
             {eventsList}
-            <h2 className={styles.h2}>News</h2>
             {newsList}
             {
               (!eventsList && !newsList) ?
