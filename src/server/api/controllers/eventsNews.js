@@ -69,6 +69,14 @@ const fullNewsQuery = `
   ${dateTimeFieldsNews}
 `;
 
+const sortNews = (list) =>
+  list.sort((a, b) =>
+    new Date(b.datetime.iso) - new Date(a.datetime.iso));
+
+const sortEvents = (list) =>
+  list.sort((a, b) =>
+    new Date(b.startDateTime.iso) - new Date(a.startDateTime.iso));
+
 export function getNewsItem(req, res) {
   const body = `
     query {
@@ -101,9 +109,7 @@ export function getNews(req, res) {
   fetch(badgerBrainEndpoint, getRequestOptions(req, body))
     .then((response) => response.json())
     .then((news) =>
-      res.send({ list: news.data.allNews.sort((a, b) =>
-        new Date(b.datetime.iso) - new Date(a.datetime.iso)
-      ) })
+      res.send({ list: sortNews(news.data.allNews) })
     .catch((err) => {
       res.status(err.status).send(err.message);
     }));
@@ -141,9 +147,36 @@ export function getEvents(req, res) {
   fetch(badgerBrainEndpoint, getRequestOptions(req, body))
     .then((response) => response.json())
     .then((events) => {
-      res.send({ list: events.data.allEvents.sort((a, b) =>
-        new Date(b.startDateTime.iso) - new Date(a.startDateTime.iso)
-      ) });
+      res.send({ list: sortEvents(events.data.allEvents) });
+    })
+    .catch((err) => {
+      res.status(err.status).send(err.message);
+    });
+}
+
+export function getTags(req, res) {
+  const body = `
+    query {
+      allEvents {
+        ${fullEventsQuery}
+      }
+      allNews {
+        ${fullNewsQuery}
+      }
+    }
+  `;
+
+  fetch(badgerBrainEndpoint, getRequestOptions(req, body))
+    .then((response) => response.json())
+    .then((tags) => {
+      res.send({
+        events: {
+          list: sortEvents(tags.data.allEvents),
+        },
+        news: {
+          list: sortNews(tags.data.allNews),
+        },
+      });
     })
     .catch((err) => {
       res.status(err.status).send(err.message);

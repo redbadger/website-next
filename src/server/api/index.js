@@ -5,6 +5,7 @@ import {
   getEvents,
   getNews,
   getNewsItem,
+  getTags,
 } from './controllers/eventsNews';
 import bodyParser from 'body-parser';
 
@@ -20,6 +21,7 @@ export default function createApi(workable) {
   api.get('/events', getEvents);
   api.get('/news', getNews);
   api.get('/news/:id', getNewsItem);
+  api.get('/tags', getTags);
 
   return api;
 }

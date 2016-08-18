@@ -1,7 +1,6 @@
 import Container from '../../components/container';
 import React, { Component } from 'react';
-import { fetchEvents } from '../../actions/events';
-import { fetchNews } from '../../actions/news';
+import { fetchTags } from '../../actions/tags';
 import Section from '../../components/section';
 import styles from './style.css';
 import fetch from '../../util/fetch-proxy';
@@ -10,8 +9,7 @@ import EventsList from '../../components/events-list';
 import NewsList from '../../components/news-list';
 
 export class Tag extends Component {
-  static fetchData = fetchNews(fetch());
-  static fetchEventsData = fetchEvents(fetch());
+  static fetchData = fetchTags(fetch());
 
   render() {
     const { tag, events, news } = this.props;
