@@ -9,28 +9,23 @@ const EventNewsMeta = ({
   externalLinks,
   tags,
 }) => {
-  let linksSection = (<noscript />);
-  let tagsSection = (<noscript />);
+  const linksSection = (<div>
+    {
+      externalLinks || internalLinks ?
+        <div className={styles.eventLinks}>
+          <EventLinksList
+            linkList={externalLinks}
+            listType="external" />
+          <EventLinksList
+            linkList={internalLinks}
+            listType="internal" />
+        </div>
+      : <noscript />
+    }
+    </div>
+  );
 
-  if (internalLinks.length > 0 && externalLinks.length > 0) {
-    linksSection = (<div>
-      {
-        externalLinks || internalLinks ?
-          <div className={styles.eventLinks}>
-            <EventLinksList
-              linkList={externalLinks}
-              listType="external" />
-            <EventLinksList
-              linkList={internalLinks}
-              listType="internal" />
-          </div>
-        : <noscript />
-      }
-      </div>
-    );
-  }
-
-  tagsSection = (
+  const tagsSection = (
     <TagsList tags={tags} />
   );
 

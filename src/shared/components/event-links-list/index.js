@@ -11,7 +11,7 @@ const EventLinksList = ({
   linkList,
   listType,
 }) => {
-  if (linkList.length === 0) return (<noscript />);
+  if (!linkList || linkList.length === 0) return (<noscript />);
   return (
     <div className={classNames({
       [styles.eventLinkList]: true,
@@ -44,7 +44,7 @@ EventLinksList.propTypes = {
   linkList: PropTypes.arrayOf(PropTypes.shape({
     url: PropTypes.string,
     title: PropTypes.string,
-  })).isRequired,
+  })),
   listType: React.PropTypes.oneOf(['external', 'internal']).isRequired,
 };
 
