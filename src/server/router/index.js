@@ -11,7 +11,7 @@ import DefaultTemplate from '../templates/default';
 
 import getRoutes from '../../shared/routes';
 
-const mapRouteToPageTitle = (path) => {
+export const mapRouteToPageTitle = (path) => {
   const defaultTitle = 'Red Badger';
 
   if ((/events/gi).test(path)) {

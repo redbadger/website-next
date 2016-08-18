@@ -30,11 +30,9 @@ const EventNewsMeta = ({
     );
   }
 
-  if (tags && tags.length > 0) {
-    tagsSection = (
-      <TagsList tags={tags} />
-    );
-  }
+  tagsSection = (
+    <TagsList tags={tags} />
+  );
 
   return (<div>
     {linksSection}

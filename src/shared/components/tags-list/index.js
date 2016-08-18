@@ -6,7 +6,7 @@ import styles from './style.css';
 const TagsList = ({
   tags,
 }) => {
-  if (tags.length === 0) return (<noscript />);
+  if (!tags || tags.length === 0) return (<noscript />);
   return (
     <div className={classNames({
       [cf]: true,
@@ -27,7 +27,7 @@ const TagsList = ({
 };
 
 TagsList.propTypes = {
-  tags: PropTypes.arrayOf(React.PropTypes.string).isRequired,
+  tags: PropTypes.arrayOf(React.PropTypes.string),
 };
 
 export default TagsList;

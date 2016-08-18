@@ -1,8 +1,20 @@
-import { requestHandler } from './index';
+import { requestHandler, mapRouteToPageTitle } from './';
 import sinon from 'sinon';
 import { expect } from 'chai';
 
 describe('router middleware', () => {
+  describe('setting correct page title based on the current route', () => {
+    it('returns correct title for Events related routes', () => {
+      expect(mapRouteToPageTitle('/about-us/events/myevent')).to.equal('Events | Red Badger');
+    });
+    it('returns correct title for News related routes', () => {
+      expect(mapRouteToPageTitle('/about-us/news/mynews')).to.equal('News | Red Badger');
+    });
+    it('returns correct title for Join Us related routes', () => {
+      expect(mapRouteToPageTitle('/about-us/join-us/job')).to.equal('Join Us | Red Badger');
+    });
+  });
+
   describe('request handler', () => {
     it('returns a 200 and renders when route is found', () => {
       const send = sinon.stub();

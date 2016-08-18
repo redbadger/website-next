@@ -40,10 +40,12 @@ describe('Compoonent: TagsList', () => {
       expect(component.text()).to.equal('');
     });
 
-    it('throws when the tags array is omitted', () => {
-      expect(() => render(
+    it('renders noscript tag when the tags array is omitted', () => {
+      const component = shallow(
         <TagsList />
-      )).to.throw();
+      );
+
+      expect(component.text()).to.equal('');
     });
   });
 });
