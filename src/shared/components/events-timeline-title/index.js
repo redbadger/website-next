@@ -11,12 +11,12 @@ const EventsTimelineTitle = ({
     case 'today':
       return (<h2>Today</h2>);
     default:
-      return null;
+      return (<noscript />);
   }
 };
 
 EventsTimelineTitle.propTypes = {
-  timeline: PropTypes.oneOf(['past', 'future', 'today']).isRequired,
+  timeline: PropTypes.oneOf(['past', 'future', 'today']),
 };
 
 export default EventsTimelineTitle;

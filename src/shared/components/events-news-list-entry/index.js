@@ -90,7 +90,7 @@ EventsNewsListEntry.propTypes = {
   startDateTime: DateBubble.propTypes.startDateTime,
   endDateTime: DateBubble.propTypes.endDateTime,
   type: PropTypes.oneOf(['news', 'event']).isRequired,
-  timeline: PropTypes.oneOf(['past', 'future', 'today']).isRequired,
+  timeline: PropTypes.oneOf(['past', 'future', 'today']),
 };
 
 export default EventsNewsListEntry;
