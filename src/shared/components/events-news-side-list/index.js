@@ -5,6 +5,22 @@ import styles from './style.css';
 
 import { eventNewsHref } from '../../util/eventNewsUrl';
 
+export const entryDateTimeMap = (entryType, entry) => {
+  if (entryType === 'event') {
+    return {
+      year: entry.startDateTime.year,
+      month: entry.startDateTime.month,
+      date: entry.startDateTime.date,
+    };
+  }
+
+  return {
+    year: entry.datetime.year,
+    month: entry.datetime.month,
+    date: entry.datetime.date,
+  };
+};
+
 const EventsNewsSideList = ({
   entryList,
   title,
@@ -17,17 +33,8 @@ const EventsNewsSideList = ({
     <ul>
       {
         entryList.map((entry, i) => {
-          const entryDateTime = entryType === 'event' ?
-          {
-            year: entry.startDateTime.year,
-            month: entry.startDateTime.month,
-            date: entry.startDateTime.date,
-          } :
-          {
-            year: entry.datetime.year,
-            month: entry.datetime.month,
-            date: entry.datetime.date,
-          };
+          const entryDateTime = entryDateTimeMap(entryType, entry);
+
           return (
             <li key={i}>
               <a href={eventNewsHref({
