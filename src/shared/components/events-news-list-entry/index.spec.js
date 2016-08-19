@@ -8,16 +8,7 @@ describe('EventsListEntry component', () => {
   it('renders successfully with default props', () => {
     const wrapper = shallow(<EventsListEntry
       timeline="past"
-      id={defaultEvent.id}
-      tags={defaultEvent.tags}
-      slug={defaultEvent.slug}
-      title={defaultEvent.title}
-      strapline={defaultEvent.strapline}
-      startDateTime={defaultEvent.startDateTime}
-      endDateTime={defaultEvent.endDateTime}
-      externalLinks={defaultEvent.externalLinks}
-      internalLinks={defaultEvent.internalLinks}
-      featureImageFilename={defaultEvent.featureImageFilename}
+      {...defaultEvent}
     />);
     expect(wrapper.find('li').length).to.equal(1);
   });
