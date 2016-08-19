@@ -77,6 +77,9 @@ const sortEvents = (list) =>
   list.sort((a, b) =>
     new Date(b.startDateTime.iso) - new Date(a.startDateTime.iso));
 
+const sendError = (res, err) =>
+  res.status(err.status).send(err.message);
+
 export function getNewsItem(req, res) {
   const body = `
     query {
@@ -91,7 +94,7 @@ export function getNewsItem(req, res) {
     .then((json) =>
         res.send(json.data ? json.data.news : json)
     .catch((err) =>
-      res.status(err.status).send(err.message)
+      sendError(res, err)
     ));
 }
 
@@ -109,7 +112,7 @@ export function getNews(req, res) {
     .then((news) =>
       res.send({ list: sortNews(news.data.allNews) })
     .catch((err) => {
-      res.status(err.status).send(err.message);
+      sendError(res, err);
     }));
 }
 
@@ -129,7 +132,7 @@ export function getEvent(req, res) {
       });
     })
     .catch((err) => {
-      res.status(err.status).send(err.message);
+      sendError(res, err);
     });
 }
 
@@ -148,7 +151,7 @@ export function getEvents(req, res) {
       res.send({ list: sortEvents(events.data.allEvents) });
     })
     .catch((err) => {
-      res.status(err.status).send(err.message);
+      sendError(res, err);
     });
 }
 
@@ -177,6 +180,6 @@ export function getTags(req, res) {
       });
     })
     .catch((err) => {
-      res.status(err.status).send(err.message);
+      sendError(res, err);
     });
 }
