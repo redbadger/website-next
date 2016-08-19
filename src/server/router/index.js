@@ -44,15 +44,11 @@ const renderErrorPage = (error) => {
 const renderMarkup = (store, routerProps) => {
   let application;
 
-  try {
-    application = renderToString(
-      <Provider store={store}>
-        <RouterContext {...routerProps}/>
-      </Provider>
-    );
-  } catch (error) {
-    console.error('Server error:', error);
-  }
+  application = renderToString(
+    <Provider store={store}>
+      <RouterContext {...routerProps}/>
+    </Provider>
+  );
 
   return renderToStaticMarkup(
     <DefaultTemplate
@@ -83,7 +79,13 @@ export const requestHandler = (req, res, store, render) => (
     } else if (!routerProps) {
       handleError(new HttpError(404), res);
     } else {
-      res.status(200).send(render(store, routerProps));
+      let markup;
+      try {
+        markup = render(store, routerProps);
+      } catch (err) {
+        handleError(err, res);
+      }
+      res.status(200).send(markup);
     }
   }
 );
