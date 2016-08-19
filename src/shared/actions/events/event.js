@@ -43,7 +43,6 @@ export const fetchEvent = (fetch) => (
 
     if (id && token) {
       return fetch(`${apiEndpoint}/event/${id}?token=${token}`)
-        // eslint-disable-next-line no-shadow
         .then((event) => dispatch(fetchSuccessful(event)))
         .catch((error) => dispatch(fetchFailure(error)));
     }
