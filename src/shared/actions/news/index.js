@@ -22,9 +22,9 @@ export function fetchSuccessful(news) {
 }
 
 export function fetchFailure(error) {
+  console.error(error); // eslint-disable-line no-console
   return {
     type: actions.FETCH_NEWS_FAIL,
-    error,
   };
 }
 

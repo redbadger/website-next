@@ -20,7 +20,6 @@ describe('news actions', () => {
     it('returns an object containing error and correct type', () => {
       expect(fetchFailure('error')).to.deep.equal({
         type: actions.FETCH_NEWS_FAIL,
-        error: 'error',
       });
     });
   });
