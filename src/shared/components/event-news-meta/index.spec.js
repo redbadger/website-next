@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import { defaultEvent } from '../../../../spec/fixtures/events.js';
 
-describe.only('EventMeta component', () => {
+describe('EventMeta component', () => {
   it('renders successfully with all props provided', () => {
     const wrapper = shallow(<EventMeta
       internalLinks={defaultEvent.internalLinks}

@@ -87,14 +87,12 @@ export function getNewsItem(req, res) {
   `;
 
   fetch(badgerBrainEndpoint, getRequestOptions(req, body))
-    .then((response) => {
-      response.json().then((json) => {
-        res.send(json.data ? json.data.event : json);
-      });
-    })
-    .catch((err) => {
-      res.status(err.status).send(err.message);
-    });
+    .then((response) => response.json())
+    .then((json) =>
+        res.send(json.data ? json.data.news : json)
+    .catch((err) =>
+      res.status(err.status).send(err.message)
+    ));
 }
 
 export function getNews(req, res) {
