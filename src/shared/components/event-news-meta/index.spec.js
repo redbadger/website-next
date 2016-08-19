@@ -27,4 +27,9 @@ describe('EventMeta component', () => {
     />);
     expect(wrapper.find('div').length).to.equal(3);
   });
+
+  it('renders successfully with no links provided', () => {
+    const wrapper = shallow(<EventMeta />);
+    expect(wrapper.find('div').length).to.equal(2);
+  });
 });
