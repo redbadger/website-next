@@ -1,5 +1,7 @@
-@value mobile from "../variables/breakpoints.css";
-@value red from "../variables/colors.css";
+@value red: #BE1414;
+@value hero: "FranklinGothicHand", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@value font: #333;
+@value mobileMaxWidth: 767px;
 
 .eventsListTimelineSection {
   margin-bottom: 50px;
@@ -34,7 +36,10 @@
 }
 
 .eventTitle {
-  composes: h2 from "../../components/typography/style.css";
+  color: font;
+  font-family: hero;
+  font-weight: normal;
+  line-height: 1;
   font-size: 1.6em;
   text-decoration: none;
   display: inline;
@@ -60,8 +65,17 @@
   width: 100%;
 }
 
+.eventLinks:before,
+.eventLinks:after {
+  content: " "; /* 1 */
+  display: table; /* 2 */
+}
+
+.eventLinks:after {
+  clear: both;
+}
+
 .eventLinks {
-  composes: cf from "../../components/utils/layout.css";
   margin-bottom: 1em;
 }
 
@@ -70,7 +84,7 @@
   margin: 1.5em 0 0 0;
 }
 
-@media mobile {
+@media (max-width: mobileMaxWidth) {
   .eventsList {
     padding: 0;
   }

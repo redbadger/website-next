@@ -1,5 +1,16 @@
-@value mobile from "../../components/variables/breakpoints.css";
 @value red from "../../components/variables/colors.css";
+@value mobileMaxWidth: 767px;
+@value hero from "../../components/fonts/style.css";
+
+.h2,
+.typography h2 {
+  color: font;
+  font-family: hero;
+  font-size: 2.5em;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0 0 0.6em;
+}
 
 .eventBody a {
   color: red;
@@ -28,7 +39,7 @@
 }
 
 .eventTitle {
-  composes: h2 from "../../components/typography/style.css";
+  composes: h2;
   font-size: 1.6em;
   text-decoration: none;
   display: inline;
@@ -43,9 +54,7 @@
 
 .fullDetailsLink {
   composes: aBold from "../../components/typography/style.css";
-  color: black;
   display: block;
-  text-decoration: none;
   margin-top: 0.8em;
   position: relative;
 }
@@ -89,7 +98,7 @@
   color: red;
 }
 
-@media mobile {
+@media (max-width: mobileMaxWidth) {
   .wideHorizontalLine {
     display: none;
   }
