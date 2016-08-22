@@ -1,9 +1,4 @@
-import { badgerBrain } from '../../../shared/config';
-
-const badgerBrainEndpoint =
-  process.env.NODE_ENV === 'production'
-  ? badgerBrain.remote
-  : badgerBrain.local;
+const badgerBrainEndpoint = process.env.BADGER_BRAIN_HOST;
 
 const getRequestOptions = (req, body) => ({
   method: 'POST',
