@@ -4,33 +4,38 @@ import styles from '../events-list/style.css';
 import TagsList from '../tags-list';
 import EventLinksList from '../event-links-list';
 
+export const linksSection = ({ externalLinks, internalLinks }) => {
+  if (externalLinks || internalLinks) {
+    return (
+      <div className={styles.eventLinks}>
+        <EventLinksList
+          linkList={externalLinks}
+          listType="external" />
+        <EventLinksList
+          linkList={internalLinks}
+          listType="internal" />
+      </div>
+    );
+  }
+  return (<noscript />);
+};
+
 const EventNewsMeta = ({
   internalLinks,
   externalLinks,
   tags,
 }) => {
-  const linksSection = (<div>
-    {
-      externalLinks || internalLinks ?
-        <div className={styles.eventLinks}>
-          <EventLinksList
-            linkList={externalLinks}
-            listType="external" />
-          <EventLinksList
-            linkList={internalLinks}
-            listType="internal" />
-        </div>
-      : <noscript />
-    }
-    </div>
-  );
-
   const tagsSection = (
     <TagsList tags={tags} />
   );
 
   return (<div>
-    {linksSection}
+    {
+      linksSection({
+        externalLinks,
+        internalLinks,
+      })
+    }
     {tagsSection}
     </div>);
 };
