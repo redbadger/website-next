@@ -11,7 +11,7 @@ import DefaultTemplate from '../templates/default';
 
 import getRoutes from '../../shared/routes';
 
-const mapRouteToPageTitle = (path) => {
+export const mapRouteToPageTitle = (path) => {
   const defaultTitle = 'Red Badger';
 
   if ((/events/gi).test(path)) {
@@ -22,11 +22,29 @@ const mapRouteToPageTitle = (path) => {
     return `Join Us | ${defaultTitle}`;
   }
 
+  if ((/news/gi).test(path)) {
+    return `News | ${defaultTitle}`;
+  }
+
   return defaultTitle;
 };
 
-const renderMarkup = (store, routerProps) => {
+const renderErrorPage = (error) => {
   const application = renderToString(
+    <ErrorPage status={error.status} />
+  );
+
+  return renderToStaticMarkup(
+    <DefaultTemplate js={false}>
+      {application}
+    </DefaultTemplate>
+  );
+};
+
+const renderMarkup = (store, routerProps) => {
+  let application;
+
+  application = renderToString(
     <Provider store={store}>
       <RouterContext {...routerProps}/>
     </Provider>
@@ -37,18 +55,6 @@ const renderMarkup = (store, routerProps) => {
         initialState={store.getState()}
         title={mapRouteToPageTitle(routerProps.location.pathname)}
     >
-      {application}
-    </DefaultTemplate>
-  );
-};
-
-const renderErrorPage = (error) => {
-  const application = renderToString(
-    <ErrorPage status={error.status} />
-  );
-
-  return renderToStaticMarkup(
-    <DefaultTemplate js={false}>
       {application}
     </DefaultTemplate>
   );
@@ -73,7 +79,13 @@ export const requestHandler = (req, res, store, render) => (
     } else if (!routerProps) {
       handleError(new HttpError(404), res);
     } else {
-      res.status(200).send(render(store, routerProps));
+      let markup;
+      try {
+        markup = render(store, routerProps);
+      } catch (err) {
+        handleError(err, res);
+      }
+      res.status(200).send(markup);
     }
   }
 );

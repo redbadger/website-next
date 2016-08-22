@@ -8,7 +8,7 @@ describe('EventsListEntry component', () => {
   it('renders successfully with default props', () => {
     const wrapper = shallow(<EventsListEntry
       timeline="past"
-      event={defaultEvent}
+      {...defaultEvent}
     />);
     expect(wrapper.find('li').length).to.equal(1);
   });

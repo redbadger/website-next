@@ -13,6 +13,10 @@
   text-transform: capitalize;
 }
 
+.h2 {
+  margin-bottom: 0;
+}
+
 .headingLeadLine {
   composes: defaultFont from "../../components/fonts/style.css";
   font-size: 0.5em

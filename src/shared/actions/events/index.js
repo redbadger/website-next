@@ -37,8 +37,8 @@ export const fetchEvents = (fetch) => (
     }
 
     return fetch(`${apiEndpoint}/events`)
-      // eslint-disable-next-line no-shadow
-      .then(events => dispatch(fetchSuccessful(events)))
+      .then(eventsData =>
+        dispatch(fetchSuccessful(eventsData)))
       .catch(e => dispatch(fetchFailure(e)));
   }
 );

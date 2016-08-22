@@ -1,6 +1,6 @@
 import Container from '../../components/container';
 import React, { Component } from 'react';
-import { fetchEvent } from '../../actions/events/event';
+import { fetchNewsItem } from '../../actions/news/news-item';
 import Section from '../../components/section';
 import styles from './style.css';
 import fetch from '../../util/fetch-proxy';
@@ -14,30 +14,22 @@ import DateBubble from '../../components/date-bubble';
 import EventsNewsSideList from '../../components/events-news-side-list';
 import EventNewsMeta from '../../components/event-news-meta';
 
-import { splitEvents, setEndDate } from '../../util/events';
-
 import marked from 'marked';
 import Helmet from 'react-helmet';
 
-export class Event extends Component {
-  static fetchData = fetchEvent(fetch());
+export class NewsItem extends Component {
+  static fetchData = fetchNewsItem(fetch());
 
   render() {
-    const { event, events } = this.props;
-    const futureEvents = splitEvents({
-      events,
-      timeline: 'future',
-      reverse: true,
-    });
-    const todayEvents = splitEvents({
-      events,
-      timeline: 'today',
-    });
+    const { newsItem, news } = this.props;
 
+    // Only displaying limited amount of recent news
+    // in the side link list
+    const recentNews = news.slice(0, 5);
 
     return (
       <div className={styles.eventContainer}>
-        <Helmet title={`${event.title} | Red Badger`} />
+        <Helmet title={`${newsItem.title} | Red Badger`} />
         <Section>
           <Container>
             <Grid fit={false}>
@@ -45,25 +37,21 @@ export class Event extends Component {
                 <HR color="grey"
                   customClassName={styles.mobileHorizontalLine} />
                 <DateBubble
-                    startDateTime={event.startDateTime}
-                    endDateTime={setEndDate(
-                      'today',
-                      event.startDateTime,
-                      event.endDateTime)}
+                    startDateTime={newsItem.datetime}
                 />
               </Cell>
               <Cell size={8} breakOn="mobile">
                 <Grid fit={false}>
                   <Cell size={12} key='event_description' breakOn="mobileS">
                     <h2 className={styles.eventTitle}>
-                      {event.title}
+                      {newsItem.title}
                     </h2>
                     <div className={styles.eventDescription}>
-                      {event.strapline}
+                      {newsItem.strapline}
                     </div>
                     <div className={styles.eventBody}>
                       {
-                        event.body.map((el, i) =>
+                        newsItem.body.map((el, i) =>
                           (<p key={i}>
                             {marked(el.text)}
                           </p>)
@@ -71,35 +59,26 @@ export class Event extends Component {
                       }
                     </div>
                     <EventNewsMeta
-                      internalLinks={event.internalLinks}
-                      externalLinks={event.externalLinks}
-                      tags={event.tags}
+                      internalLinks={newsItem.internalLinks}
+                      externalLinks={newsItem.externalLinks}
+                      tags={newsItem.tags}
                      />
                   </Cell>
                 </Grid>
                 <HR color="grey" />
                 <div className={styles.moreEvents}>
-                  <a href="/about-us/events">
+                  <a href="/about-us/news">
                     <span className={styles.arrowBack} />
-                    <span>More events</span>
+                    <span>More news</span>
                   </a>
                 </div>
               </Cell>
               <Cell size={3} breakOn="mobile">
-                { todayEvents.length ?
-                  <EventsNewsSideList
-                    entryList={todayEvents}
-                    title='Today'
-                    entryType='event' />
-                  : []
-                }
-                { futureEvents.length ?
-                  <EventsNewsSideList
-                    entryList={futureEvents}
-                    title='Upcoming'
-                    entryType='event' />
-                  : []
-                }
+                <EventsNewsSideList
+                  entryList={recentNews}
+                  title="Recent news"
+                  entryType="news"
+                />
               </Cell>
             </Grid>
           </Container>
@@ -119,11 +98,11 @@ function firstWithSlug(slug) {
 
 function mapStateToProps(state, { routeParams }) {
   return {
-    event: state.event || firstWithSlug(routeParams.slug)(state.events),
-    events: state.events,
+    newsItem: state.newsItem || firstWithSlug(routeParams.slug)(state.news),
+    news: state.news,
   };
 }
 
 export default connect(
   mapStateToProps
-)(Event);
+)(NewsItem);
