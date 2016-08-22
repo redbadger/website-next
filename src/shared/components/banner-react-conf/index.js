@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styles from './style.css';
-import { imageMasterAssetsEndpoint } from '../../config';
+import { imageAssetsEndpoint } from '../../config';
 
 export default class BannerReactConf extends Component {
   render() {
@@ -8,15 +8,15 @@ export default class BannerReactConf extends Component {
       <div className={styles.bannerContainer}>
         <a href="http://react.london/conference/" target="_blank">
           <img
-            src={`${imageMasterAssetsEndpoint}react-conf-desktop-banner.png`}
+            src={`${imageAssetsEndpoint}react-conf-desktop-banner.png`}
             className={styles.reactConfDesktopBanner}
           />
           <img
-            src={`${imageMasterAssetsEndpoint}react-conf-tablet-banner.png`}
+            src={`${imageAssetsEndpoint}react-conf-tablet-banner.png`}
             className={styles.reactConfTabletBanner}
           />
           <img
-            src={`${imageMasterAssetsEndpoint}react-conf-mobile-banner.png`}
+            src={`${imageAssetsEndpoint}react-conf-mobile-banner.png`}
             className={styles.reactConfMobileBanner}
           />
         </a>

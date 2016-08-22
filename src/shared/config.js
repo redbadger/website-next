@@ -9,7 +9,4 @@ export const badgerBrain = {
 export const imageAssetsEndpoint =
   '//res.cloudinary.com/red-badger-assets/image/upload/events/';
 
-export const imageMasterAssetsEndpoint =
-  '//res.cloudinary.com/red-badger-assets/image/upload/events/';
-
 export const googleAnalyticsUA = 'UA-16654919-1';
