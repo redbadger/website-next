@@ -12,3 +12,7 @@ npm-debug.log
 !.elasticbeanstalk/*.global.yml
 
 newrelic_agent.log
+
+docs/.sass-cache
+docs/Gemfile.lock
+docs/_site
