@@ -1,5 +1,16 @@
 # Change Log
 
+## [v0.5.0](https://github.com/redbadger/website-next/tree/v0.5.0) (2016-08-23)
+[Full Changelog](https://github.com/redbadger/website-next/compare/v0.4.0...v0.5.0)
+
+**Closed issues:**
+
+- Banner link to React London conf should be updated [\#195](https://github.com/redbadger/website-next/issues/195)
+
+**Merged pull requests:**
+
+- News index and pages [\#200](https://github.com/redbadger/website-next/pull/200) ([asavin](https://github.com/asavin))
+
 ## [v0.4.0](https://github.com/redbadger/website-next/tree/v0.4.0) (2016-07-26)
 [Full Changelog](https://github.com/redbadger/website-next/compare/v0.3.6...v0.4.0)
 
