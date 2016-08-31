@@ -17,12 +17,12 @@ Staging site: [https://www-staging.red-badger.com/about-us/](https://www-staging
 
 <a href="assets/infrastructure-chart.png"><img src="assets/infrastructure-chart.png"></a>
 
-Website-next is a node app with an isomorphic React JS frontend. The application is deployed as a docker image to Dockerhub and then to Elastic Beanstalk, the AWS platform as a service. As a result deployment and infrastructure is largely automated for us AWS. For information on Elastic Beanstalk see the [official documentation][eb-docs].
+Website-next is a node app with an isomorphic React JS frontend. The application is deployed as a docker image to Dockerhub and then to Elastic Beanstalk, the AWS platform as a service. As a result deployment and infrastructure is largely automated for AWS. For information on Elastic Beanstalk see the [official documentation][eb-docs].
 
 [eb-docs]: http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html
 
 The backend is deployed as a [docker](https://www.docker.com/) image, so we
-need to build the image before we can deploy it. [CircleCI](https://circleci.com) is a third party continuous integration service that we use to run out test suite whenever new code is pushed to GitHub.
+need to build the image before we can deploy it. [CircleCI](https://circleci.com) is a third party continuous integration service that we use to run our test suite whenever new code is pushed to GitHub.
 
 If the tests pass and the code is on the master branch CircleCI will do the
 following deployment steps:
@@ -36,7 +36,7 @@ following deployment steps:
    will take a few minutes to roll out.
 
 Once code has been verified as working on staging we can deploy to production.
-To do that, create new release on Github repository - this will initialise new CircleCI build, which will perform production deploy of the current master branch.
+To do that, [create a new release](https://help.github.com/articles/creating-releases/) on the Github repository - this will initialise a new CircleCI build, which will perform production deploy of the current master branch.
 
 ## Old site and new site
 
