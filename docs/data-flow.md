@@ -36,7 +36,7 @@ Content editor's guide can also be found [here][editor-guide].
 
 ## Images
 
-Image content used on Website Next is hosted on a third party image hosting service called [Cloudinary][cloudinary]. The file name is copied into a document's field in Prismic. The URL to the image will then be exposed by Badger Brain for use by React.London.
+Image content used on Website Next is hosted on a third party image hosting service called [Cloudinary][cloudinary]. The file name is copied into a document's field in Prismic. The URL to the image will then be exposed by Badger Brain for use by React.London or Website next.
 
 Cloudinary is not ideal, and there is an ongoing discussion on the [relevant issue](https://github.com/redbadger/website-next/issues/201). The idea would be to develop a lambda implementation of assets processing pipeline, which would take care of the image resizing, correct format and compression ratio, as well as would upload it to the correct place on AWS S3 bucket.
 
@@ -60,7 +60,7 @@ Prismic to contain the content we need to go through the following process.
 
 The content management system we use, Prismic, has a few limitations in
 comparison to a traditional database with custom GUI editor setup. The two
-that have the largest impact on our work on React.London is that it lacks data
+that have the largest impact on our work on React.London and Website Next is that it lacks data
 validation features and it has no concept of a required field. As a result of
 this it is possible to publish documents that are missing some or all of the
 content we require to fully render the site.
