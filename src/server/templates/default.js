@@ -78,8 +78,15 @@ export default class DefaultTemplate extends Component {
           dangerouslySetInnerHTML={{ __html: htmlEntities.decode(JSON.stringify(this.props.initialState)) }} />,
         <script key="bundle" type="text/javascript" src="/assets/client.js" />,
         <script key="prismic-toolbar" type="text/javascript" src="//static.cdn.prismic.io/prismic.min.js" />,
+        <script type="text/javascript" src="https://secure.leadforensics.com/js/77932.js" />,
       ];
     }
+
+    return (
+      <noscript>
+        <img src="https://secure.leadforensics.com/77932.png" style={{ display: 'none' }} />
+      </noscript>
+    );
   }
 
   render() {
