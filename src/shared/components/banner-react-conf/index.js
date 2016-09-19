@@ -6,7 +6,7 @@ export default class BannerReactConf extends Component {
   render() {
     return (
       <div className={styles.bannerContainer}>
-        <a href="http://react.london/conference/" target="_blank">
+        <a href="https://react.london/" target="_blank">
           <img
             src={`${imageAssetsEndpoint}react-conf-desktop-banner.png`}
             className={styles.reactConfDesktopBanner}
