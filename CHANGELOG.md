@@ -1,5 +1,14 @@
 # Change Log
 
+## [v0.5.1](https://github.com/redbadger/website-next/tree/v0.5.1) (2016-09-19)
+[Full Changelog](https://github.com/redbadger/website-next/compare/v0.5.0...v0.5.1)
+
+**Merged pull requests:**
+
+- Fixing banner link to React.London pages [\#206](https://github.com/redbadger/website-next/pull/206) ([asavin](https://github.com/asavin))
+- Adding leadforensics tracking script [\#204](https://github.com/redbadger/website-next/pull/204) ([asavin](https://github.com/asavin))
+- Corrected some typos, added some links [\#203](https://github.com/redbadger/website-next/pull/203) ([zoeabryant](https://github.com/zoeabryant))
+
 ## [v0.5.0](https://github.com/redbadger/website-next/tree/v0.5.0) (2016-08-23)
 [Full Changelog](https://github.com/redbadger/website-next/compare/v0.4.0...v0.5.0)
 
