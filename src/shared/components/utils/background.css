@@ -2,12 +2,12 @@
 
 .blackPaper {
   background-color: black;
-  background-image: url("./black-paper.jpg");
+
   width: 100%;
 }
 
 .craft {
-  background-image: url("./craft.png");
+
 }
 
 .paperTear {
@@ -16,7 +16,7 @@
 
 .paperTear:before {
   content: "";
-  background-image: url("./paper-tear.png");
+  
   background-position: center bottom;
   background-repeat: repeat-x;
   width: 100%;

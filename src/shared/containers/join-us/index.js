@@ -124,6 +124,7 @@ export default class JoinUs extends Component {
             <Jobs />
           </Container>
         </Section>
+        <HR color="red" />
         <div className={styles.apply}>
           <Section>
             <Container>

@@ -1,6 +1,25 @@
 @value font from "../variables/colors.css";
 
+/*
+ * Note: These currently do not work 100% with post-css module values. It looks
+ * like it is in the pipeline but for now these values will be parsed to their
+ * first declared value. i.e. "CenturyGothic"
+ * (https://github.com/css-modules/postcss-modules-values/pull/23)
+ */
+
+@import url("//hello.myfonts.net/count/322627");
+
 @font-face {
+  font-family: 'ProximaNova-Bold';
+  src: url('./322627_0_0.woff') format('woff'), url('./322627_0_0.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ProximaNova-Light';
+  src: url('./322627_1_0.woff') format('woff'), url('./322627_1_0.ttf') format('truetype');
+}
+
+/*@font-face {
   font-family: "FranklinGothicHand";
   src: url("./FranklinGothicHand.eot");
   src: url("./FranklinGothicHand.eot?#iefix") format("embedded-opentype"), url("./FranklinGothicHand.woff") format("woff"), url("./FranklinGothicHand.ttf") format("truetype");
@@ -11,45 +30,10 @@
   src: url("./FranklinGothicHandDemi.eot");
   src: url("./FranklinGothicHandDemi.eot?#iefix") format("embedded-opentype"), url("./FranklinGothicHandDemi.woff") format("woff"), url("./FranklinGothicHandDemi.ttf")  format("truetype"), url("./FranklinGothicHandDemi.svg#26db41b3b7fd6eb21c95af94ce516beb") format("svg");
   font-weight: bold;
-}
+}*/
 
-@font-face {
-  font-family: "CenturyGothic";
-  src: url("./CenturyGothicRegular.eot");
-  src: url("./CenturyGothicRegular.eot?#iefix") format("embedded-opentype"), url("./CenturyGothicRegular.woff") format("woff"), url("./CenturyGothicRegular.ttf") format("truetype");
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "CenturyGothic";
-  src: url("./CenturyGothicBold.eot");
-  src: url("./CenturyGothicBold.eot?#iefix") format("embedded-opentype"), url("./CenturyGothicBold.woff") format("woff"), url("./CenturyGothicBold.ttf") format("truetype");
-  font-weight: bold;
-}
-
-@font-face {
-  font-family: "CenturyGothic";
-  src: url("./CenturyGothicRegularItalic.eot");
-  src: url("./CenturyGothicRegularItalic.eot?#iefix") format("embedded-opentype"), url("./CenturyGothicRegularItalic.woff") format("woff"), url("./CenturyGothicRegularItalic.ttf") format("truetype");
-  font-style: italic;
-}
-
-@font-face {
-  font-family: "CenturyGothic";
-  src: url("./CenturyGothicBoldItalic.eot");
-  src: url("./CenturyGothicBoldItalic.eot?#iefix") format("embedded-opentype"), url("./CenturyGothicBoldItalic.woff") format("woff"), url("./CenturyGothicBoldItalic.ttf") format("truetype");
-  font-weight: bold;
-  font-style: italic;
-}
-
-/*
- * Note: These currently do not work 100% with post-css module values. It looks
- * like it is in the pipeline but for now these values will be parsed to their
- * first declared value. i.e. "CenturyGothic"
- * (https://github.com/css-modules/postcss-modules-values/pull/23)
- */
-@value default: "CenturyGothic", "Helvetica Neue", Helvetica, Arial, sans-serif;
-@value hero: "FranklinGothicHand", "Helvetica Neue", Helvetica, Arial, sans-serif;
+@value default: "ProximaNova-Light", sans-serif;
+@value hero: "Sentinel A", "Sentinel B", serif;
 
 .defaultFontSize {
   font-size: 16px;
