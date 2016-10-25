@@ -19,21 +19,8 @@
   src: url('./322627_1_0.woff') format('woff'), url('./322627_1_0.ttf') format('truetype');
 }
 
-/*@font-face {
-  font-family: "FranklinGothicHand";
-  src: url("./FranklinGothicHand.eot");
-  src: url("./FranklinGothicHand.eot?#iefix") format("embedded-opentype"), url("./FranklinGothicHand.woff") format("woff"), url("./FranklinGothicHand.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "FranklinGothicHand";
-  src: url("./FranklinGothicHandDemi.eot");
-  src: url("./FranklinGothicHandDemi.eot?#iefix") format("embedded-opentype"), url("./FranklinGothicHandDemi.woff") format("woff"), url("./FranklinGothicHandDemi.ttf")  format("truetype"), url("./FranklinGothicHandDemi.svg#26db41b3b7fd6eb21c95af94ce516beb") format("svg");
-  font-weight: bold;
-}*/
-
-@value default: "ProximaNova-Light", sans-serif;
-@value hero: "Sentinel A", "Sentinel B", serif;
+@value default: "ProximaNova-Light", Helvetica, Arial, sans-serif;
+@value hero: "Sentinel A", "Sentinel B", Georgia, serif;
 
 .defaultFontSize {
   font-size: 16px;
