@@ -1,7 +1,7 @@
 @value red from "../variables/colors.css";
 
 .note {
-  background-color: #f8f8f8;
+  background-color: white;
   padding: 20px 20px 5px 20px;
   border: 1px solid #d0d0d0;
   float: left;
