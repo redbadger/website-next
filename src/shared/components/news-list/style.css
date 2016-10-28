@@ -1,4 +1,4 @@
-@value red: #BE1414;
+@value red: #fc1d42;
 @value hero: "FranklinGothicHand", "Helvetica Neue", Helvetica, Arial, sans-serif;
 @value font: #333;
 @value mobileMaxWidth: 767px;
@@ -13,7 +13,6 @@
 
 .eventsListTimelineSection h2 {
   margin-bottom: 0;
-  text-align: center;
 }
 
 .eventsListTimelineSection h2.eventTitle {
@@ -42,7 +41,7 @@
   line-height: 1;
   font-size: 1.6em;
   text-decoration: none;
-  display: inline;
+  display: inline-block;
   margin: 0 0 20px 0;
   float: left;
 }

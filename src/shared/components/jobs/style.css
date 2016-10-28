@@ -14,8 +14,14 @@
 }
 
 .icon {
-  composes: sketchArrowRight from "../icons/style.css";
-  color: red;
+  width: 20px;
+  display: inline-block;
+  margin-left: 6px;
+}
+
+.icon img {
+  width: 100%;
+  display: inline-block;
 }
 
 .jobs p {

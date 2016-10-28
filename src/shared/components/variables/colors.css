@@ -1,25 +1,25 @@
 @value font: #333;
 
-@value white: #FFF;
-@value black: #000;
-@value grey: #888;
-@value darkGrey: #666;
-@value midGrey: #BBB;
-@value lightGrey: #DDD;
-@value lighterGrey: #E7E7E7;
-@value lightGrey2: #E5E5E5;
+@value white: #f8f8f8;
+@value black: #212121;
+@value grey: #565656;
+@value darkGrey: #565656;
+@value midGrey: #565656;
+@value lightGrey: #ccc;
+@value lighterGrey: #ccc;
+@value lightGrey2: #ccc;
 
-@value red: #BE1414;
-@value blue: #065AA1;
-@value green: #406618;
-@value turquoise: #005952;
-@value orange: #F25E17;
-@value purple: #663366;
-@value cyan: #009187;
-@value lightCyan: #00C4B6;
-@value lightGreen: #6DA620;
+@value red: #fc1d42;
+@value blue: #00d5ec;
+@value green: #22d69b;
+@value turquoise: #00d5ec;
+@value orange: #ffd811;
+@value purple: #00d5ec;
+@value cyan: #00d5ec;
+@value lightCyan: #00d5ec;
+@value lightGreen: #22d69b;
 
-@value stampRed: #BA3A3D;
-@value craftLabelColor: #F8D39C;
+@value stampRed: #fc1d42;
+@value craftLabelColor: #ffd811;
 
 @value primary: red;

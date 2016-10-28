@@ -18,7 +18,7 @@ export class Jobs extends Component {
     const listings = this.props.jobs.map((job, index) => (
       <Note key={index}>
         <Link className={styles.title} to={`/about-us/join-us/${job.slug}`}>
-          {job.title}<span className={styles.icon}></span>
+          {job.title}
         </Link>
         <HtmlParser>{job.description}</HtmlParser>
       </Note>
