@@ -64,7 +64,7 @@ const fullNewsQuery = `
   ${dateTimeFieldsNews}
 `;
 
-export const sanitizeEvents = (list) =>
+export const selectValidEvents = (list) =>
   list.filter((listItem) => !!listItem.startDateTime &&
     !!listItem.startDateTime.iso);
 
@@ -147,7 +147,7 @@ export function getEvents(req, res) {
   fetch(badgerBrainEndpoint, getRequestOptions(req, body))
     .then((response) => response.json())
     .then((events) => {
-      res.send({ list: sortEvents(sanitizeEvents(events.data.allEvents)) });
+      res.send({ list: sortEvents(selectValidEvents(events.data.allEvents)) });
     })
     .catch((err) => {
       sendError(res, err);

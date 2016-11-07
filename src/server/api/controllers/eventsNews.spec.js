@@ -1,8 +1,8 @@
-import { sanitizeEvents } from './eventsNews';
+import { selectValidEvents } from './eventsNews';
 import { expect } from 'chai';
 
-describe.only('Events Utils', () => {
-  describe('sanitizeEvents', () => {
+describe('Events Utils', () => {
+  describe('selectValidEvents', () => {
     it('filters out events with no startDateTime', () => {
       const events = [
         {
@@ -18,7 +18,7 @@ describe.only('Events Utils', () => {
         },
       ];
 
-      const output = sanitizeEvents(events);
+      const output = selectValidEvents(events);
 
       expect(output).to.contain({
         title: 'Event A',
