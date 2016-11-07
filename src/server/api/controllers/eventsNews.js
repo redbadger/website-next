@@ -64,8 +64,9 @@ const fullNewsQuery = `
   ${dateTimeFieldsNews}
 `;
 
-const sanitizeEvents = (list) =>
-  list.filter((listItem) => !!listItem.startDateTime);
+export const sanitizeEvents = (list) =>
+  list.filter((listItem) => !!listItem.startDateTime &&
+    !!listItem.startDateTime.iso);
 
 const sortNews = (list) =>
   list.sort((a, b) =>
