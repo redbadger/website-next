@@ -17,9 +17,9 @@ describe.only('Events Utils', () => {
           startDateTime: { garbage: true },
         },
       ];
+
       const output = sanitizeEvents(events);
 
-      console.log(output);
       expect(output).to.contain({
         title: 'Event A',
         startDateTime: { iso: '2016-11-07T12:16:58+00:00' },
