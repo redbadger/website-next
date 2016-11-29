@@ -57,11 +57,10 @@ export default class Nav extends Component {
         <nav className={navClass} ref="nav">
           <ul className={styles.navList}>
             <NavItem href="/" title="Home" />
-            <NavItem href="/our-work" title="Our work" />
-            <NavItem href="/services" title="Services" />
-            <NavItem href="/ideas" title="Ideas" />
+            <NavItem href="/what-we-do" title="What we do" />
+            <NavItem href="/about-us" title="About us" />
             <NavItem href="/blog" title="Blog" />
-            <NavItem active href="/about-us" title="About us" />
+            <NavItem href="/about-us/events" title="Events" />
           </ul>
           <div className={badgeClass}>
             <Badge />
