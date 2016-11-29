@@ -42,7 +42,7 @@ const EventsNewsSideList = ({
                 month: entryDateTime.month,
                 date: entryDateTime.date,
                 slug: entry.slug,
-                entryType,
+                type: entryType,
               })} key={i}>
                 {entry.title}
               </a>
