@@ -1,4 +1,6 @@
-# Red Badger Website
+# DEPRECATED - Red Badger Website
+
+This project is officially deprecated. All functionality has been moved to the [Website Honestly project](https://github.com/redbadger/website-honestly/).
 
 ## Getting Started
 
