@@ -91,13 +91,16 @@ export default class DefaultTemplate extends Component {
 
   render() {
     return (
-      <html>
+      <html className="accessibilityDay">
         <head>
           <title>{this.props.title}</title>
           <link rel="stylesheet" type="text/css" href="https://cloud.typography.com/7838134/7848772/css/fonts.css" />
 
           {this.renderMeta()}
           {this.renderAssets()}
+          <style>
+            {'.accessibilityDay { filter: grayscale(100%); }'}
+          </style>
         </head>
         <body>
           <div id="mount" dangerouslySetInnerHTML={{ __html: htmlEntities.decode(this.props.children) }} />

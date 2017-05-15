@@ -1,0 +1,29 @@
+.accessibilityBar {
+  padding: 20px;
+  height: 80px;
+  background-color: #22d59b;
+}
+
+.accessibilityBar button {
+  display: inline-block;
+  font-family: 'ProximaNova-Bold', sans-serif;
+  font-weight: 800px;
+  font-size: 16px;
+  padding: 0 10px;
+  height: 40px;
+  background-color: #212121;
+  color: #f8f8f8;
+  border: none;
+  margin-right: 20px;
+}
+
+.accessibilityBar button:hover {
+  background-color: #606060;
+}
+
+.accessibilityBar p {
+  font-family: 'ProximaNova-Bold', sans-serif;
+  margin: 0;
+  font-weight: 800px;
+  display: inline-block;
+}

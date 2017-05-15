@@ -1,5 +1,6 @@
 import getRoutes from '../shared/routes';
 import createStore from '../shared/create-store';
+import styles from './style.css';
 
 import React from 'react';
 import { render } from 'react-dom';
@@ -34,11 +35,17 @@ match({
   };
 
   const Application = (
-    <Provider store={store}>
-      <Router {...renderProps}
-        history={browserHistory}
-        onUpdate={routerUpdate} />
-    </Provider>
+    <div>
+      <div className={styles.accessibilityBar}>
+        <button onClick={() => document.documentElement.classList.toggle('accessibilityDay')}>Gimme back my colour</button>
+        <p>Some text about what this is, Global Accessibility Day etc</p>
+      </div>
+      <Provider store={store}>
+        <Router {...renderProps}
+          history={browserHistory}
+          onUpdate={routerUpdate} />
+      </Provider>
+    </div>
   );
 
   render(Application, mountNode);
