@@ -1,0 +1,52 @@
+.accessibilityDay {
+  filter: grayscale(100%);
+}
+
+.accessibilityBar {
+  width: 100%;
+  padding: 20px;
+  background-color: #22d59b;
+  text-align: center;
+}
+
+.accessibilityBar button {
+  display: block;
+  font-family: 'ProximaNova-Bold', sans-serif;
+  font-weight: 800px;
+  font-size: 16px;
+  padding: 0 10px;
+  height: 40px;
+  background-color: #212121;
+  color: #f8f8f8;
+  border: none;
+  margin: 0 auto 20px;
+}
+
+.accessibilityBar button:hover {
+  background-color: #606060;
+}
+
+.accessibilityBar p {
+  font-family: 'ProximaNova-Bold', sans-serif;
+  font-weight: 800px;
+  display: block;
+}
+
+@media screen and (min-width: 690px) {
+  .app {
+    padding-top: 80px;
+  }
+
+  .accessibilityBar {
+    text-align: left;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    display: flex;
+    align-items: baseline;
+  }
+
+  .accessibilityBar button {
+    margin: 0 20px 0 0;
+  }
+}
